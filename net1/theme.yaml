@@ -1,0 +1,21 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name: "Netistrar 1"
+license: "UNLICENSED"
+licenselink: "https://oxil.uk/terms/"
+description: "Netistrar Corporate Theme"
+homepage: "https://oxil.uk"
+tags:
+- "netistrar"
+- "white label"
+features:
+- "some"
+- "awesome"
+- "features"
+
+min_version: 0.01
+
+author:
+    name: "Oxford Information Labs"
+    homepage: "https://oxil.uk"

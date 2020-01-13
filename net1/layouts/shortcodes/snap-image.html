@@ -1,0 +1,11 @@
+<div {{with .Get "class"}}class="{{.}}"{{end}}>
+  <div class="snap-hero ">
+    <div class="slide">
+      <div class="layer">
+
+        <img class="responsive-image" {{with .Get "src"}}src="{{.}}"{{end}} {{with .Get "alt"}}alt="{{.}}"{{end}}>
+
+      </div>
+    </div>
+  </div>
+</div>

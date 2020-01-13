@@ -1,0 +1,33 @@
+
+
+<div class="white px1 borb1 bordd prod {{with .Get "selected"}}{{if eq . "true"}}prod-selected{{end}}{{end}} flex justify-between {{ if eq (.Get "featured") "true" }}mb1l featured{{end}}" {{with .Get "tippy" }}id="{{.}}"{{end}} {{with .Get "datatippycontent"}}data-tippy-content="{{.}}"{{end}} >
+  <div class="flex1 pt050 pb050">
+    <div class="flex-grid flex-wrap justify-between align-start ">
+      <div>
+      <div class="{{if eq (.Get "featured") "true"}}f3{{else}}f4{{end}} semi pt1">{{with .Get "domain"}}{{.}}{{end}} <span class="availability-label {{if eq (.Get "featured") "true"}}f4{{else}}f5{{end}} green-text"></span>
+      </div>
+
+        {{- if eq (.Get "generaloffer") "true" -}}
+        <div class="vsmall red-text pt050 pb050l">{{.Get "generalofferstrap" | safeHTML}} {{.Get "generalofferinfo" | safeHTML}}</div>
+        {{- end -}}
+
+      </div>
+      <div ><div class="pt1 flex-grid justify-end">{{if eq (.Get "itemoffer") "true"}}<span class="super f4 strike pr050">{{with .Get "rrp"}}{{.}}{{end}}</span>{{end}}<span class="{{if eq (.Get "itemoffer") "true"}}red-text{{end}} {{if eq (.Get "featured") "true"}}f4{{else}}f5{{end}}">{{if eq (.Get "itemoffer") "true"}}{{.Get "itemofferprice"}}{{else}}{{.Get "rrp"}}{{end}}</span><button data-template="one" class="pop but butlk small text-colour super "><i class="net-help-circle"></i></button> <div class="hidden" id="one"><strong>Pricing</strong><p>{{.Get "priceinfo"}}</p></div></div>
+        <div class="text-right-lg pb050 lh12" ><span class="{{if eq (.Get "itemoffer") "true"}}red-text{{end}} vsmall">{{.Get "pricestrap"}}</span></div>
+      </div>
+
+    </div>
+{{- if eq (.Get "featured") "true" -}}
+    <div class="g5-text borb1 borcc pb050">The world's most popular domain name ending</div>
+    <div class="vsmall thin py050">{{.Get "marketingstrapextra" | safeHTML}} {{.Get "marketingextrainfo" | safeHTML}}</div>
+{{- else -}}
+
+{{- end -}}
+  </div>
+  <div class="pt150">
+    <label class="rcheck mb0"><input class="add-domain" name="configurestaticpackage" type="checkbox" {{with .Get "selected"}}{{if eq . "true"}}checked="checked"{{end}}{{end}}>
+      <span class="checkmark"></span> <span class="g8-text select-label small hidden-md"></span>
+    </label>
+  </div>
+
+</div>

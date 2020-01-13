@@ -1,0 +1,13 @@
+{{- with .Param "header-extras"}}
+{{if eq "searchtools" .}}
+<div id="searchtools" class=" pt1 px1 px2l grid flex align-center flex-wrap flex-row-reverse justify-end" >
+  <div class="w-40 flex mb050 mb0l">
+    {{ partial "searchbox-sm" (dict "inputcss" "borr0") }}
+    <button class="butlk inv flex align-center ml1 hidden-sm btn-filters-domain-search"  data-target="show">Filters <i class="net-chevron-down"></i></button>
+
+  </div>
+
+  <div class="flex w-sm align-center justify-between-sm pl1 pl0l mr1l"><span class="small-sm">Your search: <b>mybusiness.com</b> &bullet; Popular</span><button class=" hidden-md butlk inv flex align-center ml1 btn-filters-domain-search" data-target="show">Filters <i class="net-chevron-down"></i></button></div>
+</div>
+{{end}}
+{{end}}

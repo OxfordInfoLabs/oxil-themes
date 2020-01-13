@@ -1,0 +1,49 @@
+{{ $data := $.Site.Data }}
+{{$iconstyle := .Get "iconstyle"}}
+{{$iconinlinestyle := .Get "iconinlinestyle"}}
+
+{{$page_param := "features"}}
+{{ $chosenfeature := .Get "feature_source" }}
+{{ $layout := .Get "page_layout" }}
+{{ $containerclasses := .Get "container_classes" }}
+
+{{ if $chosenfeature}}
+
+{{$page_param = $chosenfeature}}
+
+{{end}}
+
+{{ if isset .Page.Params $page_param }}
+
+
+<div {{with $containerclasses}}class="{{.}}"{{end}}>
+  {{ range (index .Page.Params $page_param)}}
+
+  {{ $feature :=  $data.features.all . }}
+  <div class="flex-grid white-text mb3 mb150l">
+    <div class="w-20 flex justify-center-sm">
+      {{with $feature.icon}}
+      <div class="flex justify-center align-center white" style="border-radius: 50%;height: 100px;width: 100px;-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.25);
+-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.25);
+box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.25);">
+        <img src="/images/{{.}}-icon.svg" alt="{{.}} icon" width="55">
+      </div>
+      {{end}}
+    </div>
+    <div class="flex1 text-center-sm mt1 mt0l">
+      <div class="f4 bold">{{ $feature.title }}</div>
+      <div class="">{{ $feature.summary }}</div>
+      {{with $feature.cta}}<div class="flex justify-center-sm"><a class="white-text" href="{{.}}">{{with $feature.ctatext}}{{.}}{{end}}</a></div>{{end}}
+    </div>
+  </div>
+
+  {{end}}
+
+
+
+</div>
+
+
+
+
+{{ end }}

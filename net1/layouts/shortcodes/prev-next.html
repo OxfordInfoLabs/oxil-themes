@@ -1,0 +1,6 @@
+<div class="brand-lighter ">
+  <div class="grid flex-grid flex-row-reverse px1 px2l py3">
+    <a href="{{with .Get "nexturl"}}{{.}}{{end}}" class="inv white-text white-text-hover flex align-center flex1 mb3 mb0l" ><span class="flex1 text-right "><span class="normal">Next</span><br><span class="f4 semi">{{with .Get "nextlabel"}}{{.}}{{end}}</span></span><i class="net-chevron-right ml1 f4" ></i></a>
+    <a href="{{with .Get "prevurl"}}{{.}}{{end}}" class="inv white-text white-text-hover flex align-center flex1 " style=""><i class="net-chevron-left mr1 f4" ></i> <span class="flex1"><span class="normal">Previous</span><br><span class="f4 semi">{{with .Get "prevlabel"}}{{.}}{{end}}</span></span></a>
+  </div>
+</div>

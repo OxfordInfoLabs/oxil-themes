@@ -1,0 +1,246 @@
+
+html, body
+  height: 100%
+
+
+.gauze
+  z-index: 120
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  background-color: rgba(0,0,0,0.7)
+  display: none
+  @at-root .with-gauze
+    .gauze
+      display: block
+    > div#fixedwrap
+      overflow-y: hidden
+
+
+
+
+body
+  margin: 0
+  height: 100%
+  display: flex
+  flex-direction: column
+  overflow-y: hidden
+
+
+#fixedwrap
+  flex: 1
+  overflow-y: auto
+  position: relative
+
+
+header
+  position: relative
+  z-index: 150
+  box-shadow: 0px 2px 2px 0px rgba(42, 42, 42,0.15)
+  background-color: white
+  transition: all 1s cubic-bezier(.65,-.01,.26, 1)
+
+.toptools
+  display: flex
+  &.closed
+    display: none
+
+
+//#top-bar-wrap
+//  #logo
+//    display: block
+//  #logo-rev
+//    display: none
+//  &.white-text
+//    a, button
+//      color: white
+//    #logo
+//      display: none
+//    #logo-rev
+//      display: block
+
+
+
+//.btn-open-sidebar-lg
+//  display: flex
+//  @media screen and (max-width: $small)
+//    display: none
+//
+//.btn-open-sidebar-sm
+//  display: flex
+//  @media screen and (min-width: $tablet)
+//    display: none
+
+//.btn-close-sidebar-lg
+//  display: none
+
+.btn-close-sidebar
+  display: none
+
+//.sidebar-open-lg
+//  @media screen and (max-width: $small)
+//    .btn-open-sidebar-lg
+//      display: none
+//
+//  @media screen and (min-width: $small)
+//    main
+//      margin-left: 250px
+//    .sidenav
+//      width: 250px
+//    .btn-open-sidebar-lg
+//      display: none
+//    .btn-close-sidebar-lg
+//      display: flex
+
+.sidebar-open
+
+  overflow: hidden
+  main
+    margin-left: 0
+  .sidenav
+    width: 292px
+  .btn-close-sidebar
+    display: flex
+  //.btn-open-sidebar-sm
+  //  display: none
+  .gauze
+    position: fixed
+  header
+    z-index: 100
+
+
+.sidenav
+  height: 100%
+  padding-bottom: 3rem
+  width: 0
+  position: fixed
+  z-index: 200
+  top: 0
+  left: 0
+  overflow-x: hidden
+  overflow-y: auto
+  &::-webkit-scrollbar
+    display: none
+  transition: 0.5s
+
+
+.left-bar-nav
+  a
+    text-decoration: none
+    display: block
+    padding: .75rem 1rem
+    border-left-width: 4px
+    border-left-style: solid
+    border-left-color: #eeeeee
+    line-height: 1.5
+    &:hover
+
+      background-color: #efefef
+    &.active
+      border-left-color: map_get($colours,brand)
+
+
+
+
+#mobile-menu-toggle
+  font-size: 1.2rem
+  justify-content: flex-start
+  font-weight: bold
+  margin-bottom: 0
+  height: 66px
+  border: 1px solid white
+  border-bottom: 1px solid map_get($colours, brand)
+  &:hover
+    border-width: 1px
+    border-bottom: 1px solid map_get($colours, brand)
+  &:focus
+    outline: none
+    border-width: 1px
+    border-bottom: 1px solid map_get($colours, brand)
+
+
+//#top-bar-search
+//  display: flex
+//  align-items: center
+//  padding-left: .25rem
+//  background-color: map_get($colours, background)
+//  @extend .hidden-sm
+//  > input
+//    border: 0
+//    margin-bottom: 0
+//    width: 250px
+//    padding: .35rem
+//    &:focus
+//      outline: 0
+//      box-shadow: none
+//  > i
+//    @extend .ga-text
+//    font-size: 1.2rem
+
+
+
+
+
+.expand-menu
+  position: absolute
+  top: calc(100% + 1px)
+  left: 0
+  right: 0
+  z-index: 150
+  transform: scaleY(0)
+  -webkit-transform-origin: top
+  -moz-transform-origin: top
+  -ms-transform-origin: top
+  -o-transform-origin: top
+  transform-origin: top
+  transition: all .3s cubic-bezier(.65,-.01,.26, 1)
+  box-shadow: 0 7px 5px -5px #aaa
+  &.active
+    transform: scaleY(1)
+  .h-divider
+    border-right: none
+    border-bottom: 4px solid map_get($colours,brand)
+    padding-bottom: 2rem
+    margin-bottom: 2rem
+    @media screen and (min-width: $tablet)
+      border-right: 4px solid map_get($colours,brand)
+      padding-bottom: 0
+      margin-bottom: 0
+      border-bottom: none
+
+
+
+
+//#home-btn
+//  padding: 0
+//  display: block
+//  display: flex
+//  align-items: center
+//  justify-content: center
+//  border-bottom: 1px solid #eeeeee
+//  padding-bottom: 2rem
+//  img
+//    display: inline-block
+//    max-height: 45px
+//    width: auto
+
+.scroll-to-top
+  display: none
+  position: fixed
+  bottom: 20px
+  right: 30px
+  z-index: 99
+  border: none
+  outline: none
+  color: white
+  cursor: pointer
+  padding: 15px
+  border-radius: 10px
+  font-size: 18px
+  background-color: map_get($colours,brand)
+
+  &:hover
+    background-color: lighten(map_get($colours,brand),10%)
+

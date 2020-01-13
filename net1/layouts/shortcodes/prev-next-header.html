@@ -1,0 +1,12 @@
+
+<div class="grid flex justify-between px1 px2l py150" {{with .Get "style"}}style="{{.}}"{{end}}>
+{{- $class := .Get "class" -}}
+{{- $linkclass := .Get "linkclass" -}}
+<div class="breadcrumb hidden-sm {{with $class}}{{.}}{{end}}">{{ partial "breadcrumb" (dict "p1" .Page "p2" .Page "linkclass" $linkclass)}}</div>
+{{if .Get "prevlabel"}}
+<a href="{{with .Get "prevurl"}}{{.}}{{end}}" class="inv hidden-md inverse flex align-center {{with .Get "linkclass"}}{{.}}{{end}}" style="font-size: inherit"><i class="net-chevron-left" style="font-size: 1rem;"></i> {{with .Get "prevlabel"}}{{.}}{{end}}</a>
+{{end}}
+{{if .Get "nextlabel"}}
+  <a href="{{with .Get "nexturl"}}{{.}}{{end}}" class="inv flex align-center  {{with $linkclass}}{{.}}{{end}}" style="font-size: inherit">{{with .Get "nextlabel"}}{{.}}{{end}} <i class="net-chevron-right" style="font-size: 1rem;"></i></a>
+{{end}}
+</div>

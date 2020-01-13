@@ -1,0 +1,297 @@
+
+
+a
+  font-weight: 700
+  color: map_get($colours, brand)
+  text-decoration: underline
+  &.inv
+    text-decoration: none
+  &:hover
+    text-decoration: none
+  &.wh
+    color: white
+    &:hover
+      color: white
+
+
+button
+  background-color: transparent
+  cursor: pointer
+  font-family: $base-font-family
+
+
+
+a.but, button.but
+  background-color: map_get($colours, brand)
+  border: 0
+  border-radius: 4px
+  color: map_get($colours, white)
+  display: inline-block
+  font-size: ms(2)
+  font-weight: 500
+  line-height: $base-line-height
+  margin: 0 .5rem
+  padding: .65rem 1.5rem
+  text-align: center
+  text-decoration: none
+  text-transform: none
+  transition: opacity .2s ease-in-out
+  white-space: nowrap
+  position: relative
+
+
+  &:focus,
+  &:hover,
+  &:active
+    color: white
+
+
+  &:hover
+    background-color: rgba(map_get($colours, brand), .8)
+    color: white
+    cursor: pointer
+    text-decoration: none
+
+
+  &:active
+    opacity: 1
+
+  &.butfullsm
+    width: 100%
+    @media screen and (min-width: $tablet)
+        width: auto
+
+  &brwh
+    border: .15em solid white
+    color: white
+    &:focus,
+    &:hover,
+    &:active
+      color: white
+
+  &lk
+    background-color: inherit
+    border: 0
+    padding: 0
+    margin-top: 0
+    margin-bottom: 0
+    font-size: 1em
+    line-height: $base-line-height
+    font-weight: bold
+    &.semi
+      font-weight: 600
+    &.normal
+      font-weight: 400
+    text-decoration: underline
+    color: map_get($colours, brand)
+    &:hover
+      background-color: transparent
+      color: map_get($colours, brand)
+    &.white-text
+      color: white
+      &:hover
+        color: white
+    &.butwh
+      border-radius: 4px
+      padding: 0 .3em
+
+    &.inv
+      text-decoration: none
+    &.text-colour
+      color: $text-color
+
+  &:first-child
+    margin-left: 0
+
+
+  &:last-child
+    margin-right: 0
+
+
+  // sizes
+  &lg
+    font-size: ms(3)
+    padding: 1rem 1.5rem
+
+
+  &sm
+    font-size: ms()
+    padding: .2rem .6rem
+
+  &blk
+    margin-left: 0
+    margin-right: 0
+    width: 100%
+    max-width: 100%
+
+  &.ic
+    &
+      padding-left: 2em
+      padding-right: 2em
+    i
+      display: flex
+      align-items: center
+      position: absolute
+      top: 0
+      bottom: 0
+    &r
+      i
+        right: .5em
+
+    &l
+      i
+        left: .5em
+  &mobfull
+    @media screen and (max-width: $tablet)
+      margin-left: 0
+      margin-right: 0
+      width: 100%
+      max-width: 100%
+
+  &muted
+    background-color: map_get($colours,gd)
+    &:hover
+      color: map_get($colours,ga)
+      background-color: rgba(map_get($colours,gd), .8)
+
+  &wh
+    background-color: white
+    color: map_get($colours,brand)
+    border: .15em solid map_get($colours,brand)
+    &:focus,
+    &:hover,
+    &:active
+      background-color: white
+      color: map_get($colours,brand)
+
+    &bk
+      border: .15em solid black
+      color: black
+      &:hover
+        color: black
+
+  &bk
+    background-color: black
+    color: white
+    border: .15em solid white
+    &:hover
+      background-color: black
+      color: white
+
+  &gn
+    background-color: map_get($colours,green)
+    color: white
+    border: .15em solid map_get($colours,green)
+    &:hover
+      background-color: map_get($colours,green)
+      color: white
+
+  &or
+    background-color: map_get($colours,orange)
+    color: white
+    border: .15em solid map_get($colours,orange)
+    &:hover
+      background-color: map_get($colours,orange)
+      color: white
+
+
+.chevron-right
+  &:after
+    font-family: 'Netistrar-Font'
+    content: '\e90e'
+    margin-left: .25rem
+
+
+.cta-link
+  display: flex
+  align-items: center
+  text-transform: uppercase
+  text-decoration: none
+  @extend .f5
+  @extend .chevron-right
+  &.less
+    text-transform: none
+  &.cta-link-inverse
+    color: white
+    &:hover
+      color: white
+
+
+
+
+
+
+
+
+
+
+
+  // colors
+  //&--secondary
+  //  background-color: $c-secondary
+  //  color: $c-white
+  //
+  //  &:hover
+  //    background-color: rgba($c-secondary, .8)
+  //    color: $c-white
+  //
+  //
+  //
+  //&--white
+  //  background-color: $c-white
+  //  color: $c-primary
+  //
+  //  &:hover
+  //    background-color: rgba($c-white, .8)
+  //    color: rgba($c-primary, .8)
+  //
+  //
+  //
+  //&--green
+  //  background-color: $c-success
+  //  color: $c-white
+  //
+  //  &:hover
+  //    background-color: rgba($c-success, .8)
+  //    color: $c-white
+  //
+  //
+  //
+  //&--red
+  //  background-color: $c-error
+  //  color: $c-white
+  //
+  //  &:hover
+  //    background-color: rgba($c-error, .8)
+  //    color: $c-white
+  //
+  //
+  //
+  //&--transparent
+  //  background-color: transparent
+  //  color: $c-but-transparent
+  //
+  //  &:active,
+  //  &:hover,
+  //  &:focus
+  //    background-color: transparent
+  //    color: rgba($c-button-transparent, .8)
+  //    opacity: .8
+  //
+  //
+  //
+  //&--outlined
+  //  background-color: transparent
+  //  border: $bd-medium
+  //  color: $c-button-outlined
+  //
+  //  &:active,
+  //  &:hover,
+  //  &:focus
+  //    background-color: transparent
+  //    color: rgba($c-button-outlined, .8)
+  //    opacity: .8
+  //
+  //
+  //
+  //

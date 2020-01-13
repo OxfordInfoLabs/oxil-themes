@@ -1,0 +1,160 @@
+// function for getting values along the modular scale
+// Courtesy of Bourbon - https://github.com/thoughtbot/bourbon/blob/v4-stable/app/assets/stylesheets/functions/_modular-scale.scss
+
+$g-modular-scale--base: 1rem !default;
+$g-modular-scale--ratio: 1.333 !default; // Perfect fourth
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function modular-scale($increment, $value: $g-modular-scale--base, $ratio: $g-modular-scale--ratio) {
+  $v1: nth($value, 1);
+  $v2: nth($value, length($value));
+  $value: $v1;
+
+  // scale $v2 to just above $v1
+  @while $v2 > $v1 {
+    $v2: ($v2 / $ratio); // will be off-by-1
+  }
+  @while $v2 < $v1 {
+    $v2: ($v2 * $ratio); // will fix off-by-1
+  }
+
+  // check AFTER scaling $v2 to prevent double-counting corner-case
+  $double-stranded: $v2 > $v1;
+
+  @if $increment > 0 {
+    @for $i from 1 through $increment {
+      @if $double-stranded and ($v1 * $ratio) > $v2 {
+        $value: $v2;
+        $v2: ($v2 * $ratio);
+      } @else {
+        $v1: ($v1 * $ratio);
+        $value: $v1;
+      }
+    }
+  }
+
+  @if $increment < 0 {
+    // adjust $v2 to just below $v1
+    @if $double-stranded {
+      $v2: ($v2 / $ratio);
+    }
+
+    @for $i from $increment through -1 {
+      @if $double-stranded and ($v1 / $ratio) < $v2 {
+        $value: $v2;
+        $v2: ($v2 / $ratio);
+      } @else {
+        $v1: ($v1 / $ratio);
+        $value: $v1;
+      }
+    }
+  }
+
+  @return $value;
+}
+
+// Rounds the inputted number to the set number of decimals
+@function decimal-round ($number, $digits: 0, $mode: round) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @if $mode == round {
+    @return round($number * $n) / $n;
+  } @else if $mode == ceil {
+    @return ceil($number * $n) / $n;
+  } @else if $mode == floor {
+    @return floor($number * $n) / $n;
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+
+@function spacing($space: 'base') {
+  @if map-has-key($spacing-map, $space) {
+    @return map-get($spacing-map, $space);
+  }
+}
+
+@function rem($pixels, $context: 16) {
+
+  $rem: (strip-unit($pixels) / $context) * 1rem;
+
+  @return $rem;
+}
+
+$g-base-spacing: rem(13.5px);
+
+
+
+@function decimal-round ($number, $digits: 0, $mode: round) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+    @warn '#{ $number } is not a number.';
+    @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+    @warn '#{ $digits } is not a number.';
+    @return $number;
+  } @else if not unitless($digits) {
+    @warn '#{ $digits } has a unit.';
+    @return $number;
+  }
+  @for $i from 1 through $digits {
+    $n: $n * 10;
+  }
+  @if $mode == round {
+    @return round($number * $n) / $n;
+  } @else if $mode == ceil {
+    @return ceil($number * $n) / $n;
+  } @else if $mode == floor {
+    @return floor($number * $n) / $n;
+  } @else {
+    @warn '#{ $mode } is undefined keyword.';
+    @return $number;
+  }
+}
+
+$spacing-map: (
+        quad   : decimal-round(($g-base-spacing * 4), 2),
+        triple : decimal-round(($g-base-spacing * 3), 2),
+        double : decimal-round(($g-base-spacing * 2), 2),
+        oneHalf : decimal-round(($g-base-spacing * 1.5), 2),
+        pointFour : decimal-round(($g-base-spacing * 1.4), 2),
+        pointTwo : decimal-round(($g-base-spacing * 1.2), 2),
+
+        base   : decimal-round($g-base-spacing, 2),
+
+        half   : decimal-round(($g-base-spacing / 2), 2),
+        7      : 7px,
+        6      : 6px,
+        third  : decimal-round(($g-base-spacing / 3), 2),
+        quart  : decimal-round(($g-base-spacing / 4), 2),
+        3      : 3px,
+        2      : 2px,
+        1      : 1px,
+        none   : 0
+);

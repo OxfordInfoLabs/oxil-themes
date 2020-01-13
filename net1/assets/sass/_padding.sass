@@ -1,0 +1,61 @@
+$spaces: ("025": ".25", "050": ".5", "075": ".75","1": "1","125": "1.25", "150": "1.5", "175": "1.75","2": "2","3": "3","4": "4","5": "5","6": "6")
+$sides: (top, right, bottom, left)
+
+@each $key, $space in $spaces
+	@each $side in $sides
+		//.m-#{str-slice($side, 0, 1)}-#{$space}
+		//  margin-#{$side}: #{$space}px !important
+		.p#{str-slice($side, 0, 1)}#{$key}
+			padding-#{$side}: #{$space}rem
+	.px#{$key}
+		padding-left: #{$space}rem
+		padding-right: #{$space}rem
+	.py#{$key}
+		padding-top: #{$space}rem
+		padding-bottom: #{$space}rem
+	.p#{$key}
+		padding: #{$space}rem
+
+
+
+@media screen and (min-width: $small)
+	@each $key, $space in $spaces
+		@each $side in $sides
+			.p#{str-slice($side, 0, 1)}#{$key}l
+				padding-#{$side}: #{$space}rem
+		.px#{$key}l
+			padding-left: #{$space}rem
+			padding-right: #{$space}rem
+		.py#{$key}l
+			padding-top: #{$space}rem
+			padding-bottom: #{$space}rem
+		.p#{$key}l
+			padding: #{$space}rem
+
+@each $side in $sides
+	//.m-#{str-slice($side, 0, 1)}-#{$space}
+	//  margin-#{$side}: #{$space}px !important
+	.p#{str-slice($side, 0, 1)}0
+		padding-#{$side}: 0
+.px0
+	padding-left: 0
+	padding-right: 0
+.py0
+	padding-top: 0
+	padding-bottom: 0
+.p0
+	padding: 0
+@media screen and (min-width: $small)
+	@each $side in $sides
+		//.m-#{str-slice($side, 0, 1)}-#{$space}
+		//  margin-#{$side}: #{$space}px !important
+		.p#{str-slice($side, 0, 1)}0l
+			padding-#{$side}: 0
+	.px0l
+		padding-left: 0
+		padding-right: 0
+	.py0l
+		padding-top: 0
+		padding-bottom: 0
+	.p0l
+		padding: 0

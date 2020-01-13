@@ -1,0 +1,55 @@
+{{- $bkImg := .Resources.GetMatch "*background*" -}}
+
+<div class="slide {{.Params.slideClasses}}" style="{{with $bkImg}}background-image:url('{{$bkImg.RelPermalink}} ');{{- end -}}{{with .Params.heroheight}}height: {{.}};{{- end -}}" >
+  <div class="layer layer1">
+
+    {{- $imgContainerClasses := .Params.heroImageContainerClasses -}}
+    {{- $imgContainerBoxClasses := .Params.heroImageContainerBoxClasses -}}
+    {{- $img := .Resources.GetMatch "*featured*" -}}
+    {{- with $img -}}
+    {{- $big := .Resize "2000x" -}}
+    {{- $medium := .Resize "1000x" -}}
+    {{- $small := $big.Resize "600x" -}}
+
+<div class="container-box flex {{$imgContainerBoxClasses}}" >
+<div class="{{$imgContainerClasses}}">
+  <img  src="{{ $medium.RelPermalink }}" srcset="{{ $small.RelPermalink }} 600w, {{ $medium.RelPermalink }} 1000w, {{ $big.RelPermalink }} 2000w" alt="{{ $img.Title }}" width="{{ $medium.Width }}" sizes="(min-width:1000px) 1000w, 100vw"  >
+</div>
+</div>
+    {{- end -}}
+  </div>
+  {{- if not .Params.heroImageOnly -}}
+  <div class="layer layer2" >
+    <div class="container-box flex {{.Params.heroContentContainerBoxClasses}}">
+      <div class="hero-container {{.Params.heroContentContainerClasses}}">
+        {{- if .Params.heroBreadcrumb -}}<div>
+        <div class="breadcrumb {{with .Params.heroBreadcrumbClass}}{{.}}{{- end -}}">{{- partial "breadcrumb" (dict "p1" .Page "p2" .Page "linkcss" "wh")}}</div>
+      </div>{{- end -}}
+        <div class="hero-title {{.Params.heroContentTitleClasses}}">{{.Title}}</div>
+        <div>
+          {{- $ctaText := .Params.heroCtaText -}}
+          {{- $ctaUrl := .Params.heroCtaUrl -}}
+          {{- $ctaClasses := .Params.heroCtaClasses -}}
+          {{- $ctaWrapClasses := .Params.heroCtaWrapClasses -}}
+          {{- $ctaChevron := .Params.heroCtaChevron -}}
+          {{- $contentDescClasses := .Params.heroContentDescriptionClasses -}}
+
+          {{- $.Scratch.Set "desc" .Description -}}
+          {{- with .Param "altdesc" -}}
+          {{- $.Scratch.Set "desc" . -}}
+          {{- end -}}
+
+          {{- with $.Scratch.Get "desc" -}}
+          <p class="hero-desc {{$contentDescClasses}}">{{.}}</p>
+          {{- end -}}
+          {{- with $ctaText -}}
+          <p class="hero-cta {{$ctaWrapClasses}} ">
+           {{- if $ctaUrl -}} <a href="{{$ctaUrl}}" class="{{$ctaClasses}}">{{if eq $ctaChevron "left"}}<i class="net-chevron-left"></i>{{- end -}}{{- end -}} {{- $ctaText}} {{if $ctaUrl}} {{if eq $ctaChevron "right"}}<i class="net-chevron-right"></i>{{- end -}}</a>{{- end -}}
+          </p>
+        {{- end}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{- end -}}
+</div>

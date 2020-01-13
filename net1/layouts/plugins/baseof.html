@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-GB" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="utf-8">
+  <title>{{- block "title" .}}{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}{{- end}}</title>
+  {{- partial "head.html" . -}}
+  {{- block "schema" . }}
+  {{ partial "schema" .}}
+
+  {{- end}}
+  {{- block "stylesheet" . -}}
+  {{ $options := (dict "targetPath" "style.css" "outputStyle" "expanded" "enableSourceMap" true) }}
+  {{ $style := resources.Get "sass/style.sass" | resources.ToCSS $options | minify | fingerprint}}
+  <link rel="stylesheet" href="{{ $style.Permalink }}">
+  {{- end}}
+  {{- block "styleblock" . -}}{{- end}}
+
+  {{if .Site.Params.ga}}
+  {{with .Site.Params.ga_code}}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{.}}"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{.}}');
+  </script>
+  {{end}}
+  {{end}}
+</head>
+
+{{- block "bodytag" . }}<body id="body" class="page">{{- end }}
+{{ partial "ote" .}}
+{{- block "headertag" . }}
+{{- partial "header.html" . -}}
+{{- end }}
+{{- block "herotag" . }}{{- end }}
+
+
+
+{{- block "main" . }}{{- end }}
+
+
+
+{{- block "footer" .}}
+{{- partial "footer.html" . -}}
+{{- end}}
+<div class="scroll-to-top">Top</div>
+
+
+
+
+{{ $jquery := resources.Get "/js/jquery.js" }}
+{{ $kinibind := resources.Get "/js/kinibind.js" }}
+{{ $highlight := resources.Get "/js/highlight.pack.js" }}
+{{ $slider := resources.Get "/js/simpleslider.js" }}
+{{ $cookie := resources.Get "/js/cookie.js" }}
+{{ $main := resources.Get "/js/main.js" }}
+{{ $bundle := slice $kinibind  $jquery $highlight $slider $cookie $main | resources.Concat "/js/bundle.js" | minify | fingerprint }}
+
+<script src="{{ $bundle.Permalink }}"></script>
+<script data-cookie-notice='{ "learnMoreLinkEnabled": true, "learnMoreLinkHref": "/terms/policies/cookie-policy/" }'></script>
+
+{{- block "scriptblock" . }}{{- end }}
+{{- block "bodyclose" . }}
+</body>
+{{- end }}
+</html>

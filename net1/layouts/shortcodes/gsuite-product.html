@@ -1,0 +1,117 @@
+<style>
+  #property {
+    display: block;
+  }
+
+  @media screen and (min-width: 1000px) {
+
+    #property {
+      display: flex;
+    }
+
+    .property-details {
+      padding-left: 4rem;
+      padding-right: 2rem;
+      width: 60%;
+    }
+
+    .desc p, .desc h5 {
+      margin-bottom: .5rem;
+    }
+
+    .desc li {
+      margin-bottom: 0;
+
+    }
+  }
+</style>
+
+
+{{ $allplans := .Site.GetPage (.Get "path") }}
+{{ $.Scratch.Set "plan" "Basic"}}
+{{if eq .Page.Params.plantitle "Business"}}
+{{ $.Scratch.Set "plan" "Business"}}
+{{end}}
+{{if eq .Page.Params.plantitle "Enterprise"}}
+{{ $.Scratch.Set "plan" "Enterprise"}}
+{{end}}
+
+<net-gsuite>
+  <div class="grid grid-big ">
+
+    <div class="white pt3">
+
+      <div class="grid grid-big">
+        <div class="flex-grid px1 px2l">
+          <div class="w-80 pr2l">
+
+            <div id="property">
+              <div class="w-40 pb2"><img class="responsive-image" src="/images/gsuite.gif" alt="G Suite logo"></div>
+              <div class="property-details">
+                <div class="breadcrumb small">{{ partial "breadcrumb" (dict "p1" .Page "p2" .Page)}}</div>
+                <h1 class="f3 mb0">{{.Page.Title}}</h1>
+                <p>{{.Page.Description}}</p>
+
+                <hr>
+                <div class="flex align-center" net-show="gsuites" style="display:none;">
+
+                  <b>{gsuite.plan} Price: </b>
+                  <span class="f3 brand-danger-text pr1" >&nbsp;&pound;
+                    <span
+                        net-if="gsuite.plan || eval '===' 'Monthly'"
+                        net-html="gsuites.{{$.Scratch.Get "plan"}}.Monthly.netPrice | eval '*' gsuite.seats"></span>
+                  <span
+                      net-if="gsuite.plan || eval '===' 'Annual'"
+                      net-html="gsuites.{{$.Scratch.Get "plan"}}.Annual.netPrice | eval '*' gsuite.seats"></span>
+
+                  </span>
+
+
+                </div>
+
+                <div class="small mt2 desc">
+                  <p class=" italic">{{$allplans.Param "activedomainrequirement"}}</p>
+                  {{ $list := .Page.Resources.GetMatch "list*" }}
+                  {{ with $list }}
+                  {{.Content}}
+                  {{ end }}
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="w-20">
+
+            <net-gsuite-sidebar plan="{{$.Scratch.Get "plan"}}"></net-gsuite-sidebar>
+
+          </div>
+        </div>
+
+        <hr class="mb0 mt3">
+
+      </div>
+
+    </div>
+  </div>
+
+</net-gsuite>
+
+<div class="background py2 list">
+  <div class="grid grid-big px1 px2l small">
+    {{ $desc := .Page.Resources.GetMatch "details*" }}
+    {{ with $desc }}<h3 class="mt0 ">{{.Title}}</h3>
+    <div class="pl1 w-60">{{.Content}}</div>
+    {{ end }}
+  </div>
+
+</div>
+<div class="white py2 desc">
+  <div class="grid grid-big px1 px2l small">
+    {{ $desc := .Page.Resources.GetMatch "description*" }}
+    {{ with $desc }}<h3 class="mt0 mb050">{{.Title}}</h3>
+    <div class="ml1 w-60">{{.Content}}</div>
+    {{ end }}
+  </div>
+
+</div>

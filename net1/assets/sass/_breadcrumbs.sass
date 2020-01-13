@@ -1,0 +1,47 @@
+.breadcrumb
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  flex: 1
+
+  text-transform: uppercase
+  .open-sidebar
+    text-transform: uppercase
+
+  > a, .leaf
+    display: inline-block
+    text-decoration: none
+    word-wrap: break-all
+    min-width: 0
+    //white-space: normal
+    &:before
+      content: '\e90e'
+      vertical-align: middle
+      display: inline-block
+      font-family: 'Netistrar-Font'
+      font-weight: normal
+      font-style: normal
+      font-size: .75rem
+      margin: 0 .25rem
+      -webkit-font-smoothing: antialiased
+    &:first-child
+      &:before
+        display: none
+    &:hover
+      text-decoration: underline
+  .leaf
+    &:hover
+      text-decoration: none
+  .leaf
+    text-transform: none
+  //@media screen and (max-width: $tablet)
+  //  a
+  //    display: none
+  //  .leaf
+  //    text-transform: uppercase
+  //    font-weight: 600
+  //    &:before
+  //      content: none
+  //  button
+  //    //border: none
+  //    margin-bottom: 0

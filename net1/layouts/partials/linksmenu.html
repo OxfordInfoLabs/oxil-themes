@@ -1,0 +1,14 @@
+{{- $site := .site -}}
+{{- $css := .css -}}
+{{- $page := .page -}}
+{{- with .menu -}}
+{{- range . -}}
+{{- if eq .URL "DASHBOARD" -}}
+<a href="{{- $site.Params.dashboard_url -}}" class="{{- $css -}}" net-show="info.loggedInUser.displayName" >{{- T (.Name | urlize) -}}</a>
+{{- else if and ((.Pre) (eq .Pre "button")) -}}
+<button id="btn-{{.Name}}" class="butlk flex align-center {{$css}} {{ if eq ($page.Scratch.Get "theme") "brand" }}white-text{{end}}" data-target="show">{{ T .Name }}</button>
+{{- else -}}
+<a href="{{- .URL | relLangURL -}}" class="{{- $css }} {{ if eq $page.RelPermalink .URL -}}active{{- end -}}"><span>{{- .Name -}}</span></a>
+{{- end -}}
+{{- end -}}
+{{- end -}}

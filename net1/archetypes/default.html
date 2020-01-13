@@ -1,0 +1,19 @@
+---
+title: "{{ replace .Name "-" " " | title }}"
+publishdate: "{{ now.Format "2006-01-02" }}"
+lastmod: "{{ now.Format "2006-01-02" }}"
+categories: []
+description: "About {{ replace .Name "-" " " | title }}"
+authors:
+- 'Lucien Taylor'
+slideClasses: ""
+frontpagehero: 'false'
+
+---
+
+<div class="grid px1 px2l pt4">
+  <h1>{{< param title >}}</h1>
+
+</div>
+
+{{< prev-next prevlabel="PREV" prevurl="/PURL/" nextlabel="NEXT" nexturl="/NURL/">}}
