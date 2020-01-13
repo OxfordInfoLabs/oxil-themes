@@ -55,7 +55,7 @@
       <div class="flex align-center hidden-sm mr1 {{if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}"><span>{{.Params.search_strap}}</span></div>
       <div class="w-33 ">
 
-        {{- partial "searchbox-sm" (dict "inputcss" "bor1") -}}
+        {{- partial "searchbox-sm" (dict "context" . "inputcss" "bor1") -}}
       </div>
       <div class="flex1 flex justify-end ml050l mt1 mt0l"><a href="/cart/" class="but butor butsm butfullsm"  >View cart <i
           class="net-chevron-right"></i></a></div>

@@ -1,0 +1,27 @@
+{
+  "name": "oxil-net1",
+  "version": "1.0.1",
+  "description": "Oxford Information Labs Netistrar Theme",
+  "main": "index.js",
+  "scripts": {
+    "publish:project": "../node_modules/.bin/bump patch; npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/OxfordInfoLabs/oxil-themes.git/net1"
+  },
+  "keywords": [
+    "themes",
+    "hugo",
+    "gohugo"
+  ],
+  "author": "Oxford Information Labs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OxfordInfoLabs/oxil-themes/issues"
+  },
+  "homepage": "https://github.com/OxfordInfoLabs/oxil-themes#readme",
+  "devDependencies": {
+    "version-bump-prompt": "^5.0.7"
+  }
+}
