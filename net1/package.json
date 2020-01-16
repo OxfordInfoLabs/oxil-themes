@@ -1,10 +1,10 @@
 {
   "name": "oxil-net1",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Oxford Information Labs Netistrar Theme",
   "main": "index.js",
   "scripts": {
-    "publish:project": "../node_modules/.bin/bump patch; npm publish"
+    "publish:project": "./node_modules/.bin/bump patch; npm publish"
   },
   "repository": {
     "type": "git",

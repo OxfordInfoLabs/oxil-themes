@@ -1,7 +1,0 @@
-{{ $url := $.Page.Permalink }}{{ range $i, $e := $.Site.Home.AllTranslations }}{{ if $i }}&nbsp;|&nbsp;{{end}}{{ if eq $url $e.Permalink }}
-<span class="bold brand-text" style="position: relative; ">
-  {{ $e.Language.LanguageName }}<i class="net-check" style="font-size: 1rem;"></i></span>
-{{ else }}
-<a href="{{ $e.Permalink }}">{{ .Language.LanguageName }}</a>
-{{ end }}{{end}}
-
