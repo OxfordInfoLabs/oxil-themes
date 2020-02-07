@@ -11,11 +11,11 @@
     </button>
 
     <div class="dropdown-container api-menu-{{.Params.apiController}}" {{if eq $currentPage .}}style="display: block"{{ end }}
-         kb-bind source="{{.Site.Params.apiurl}}/apidoc/default/api/{{.Params.apiController}}?format=json" model="{{.Params.apiController}}API">
+         net-bind source="{{.Site.Params.apiurl}}/apidoc/default/api/{{.Params.apiController}}?format=json" model="{{.Params.apiController}}API">
       <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
-      <a kb-each-method="{{.Params.apiController}}API.controller.methods"
-         kb-class="method.name"
-         kb-href="{{.CurrentSection.Permalink}}method/?api={{.Params.apiController}}&method={method.name}">{method.name}</a>
+      <a net-each-method="{{.Params.apiController}}API.controller.methods"
+         net-class="method.name"
+         net-href="{{.CurrentSection.Permalink}}method/?api={{.Params.apiController}}&method={method.name}">{method.name}</a>
     </div>
     {{ else if eq .Title "Reseller API Objects" }}
 
@@ -24,10 +24,10 @@
     </button>
 
     <div class="dropdown-container api-object" {{if eq $currentPage .}}style="display: block"{{ end }}
-         kb-bind source="{{.Site.Params.apiurl}}/apidoc/default?format=json" model="apiObjects">
+         net-bind source="{{.Site.Params.apiurl}}/apidoc/default?format=json" model="apiObjects">
       <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
-      <a kb-each-object="apiObjects.apiMetaData.objectSummaries" kb-path="object.path"
-         kb-href="{{.CurrentSection.Permalink}}object/?object={object.path}">{object.name}</a>
+      <a net-each-object="apiObjects.apiMetaData.objectSummaries" net-path="object.path"
+         net-href="{{.CurrentSection.Permalink}}object/?object={object.path}">{object.name}</a>
     </div>
 
     {{ else if eq .Title "Reseller API Exceptions" }}
@@ -37,10 +37,10 @@
     </button>
 
     <div class="dropdown-container api-exception" {{if eq $currentPage .}}style="display: block"{{ end }}
-         kb-bind source="{{.Site.Params.apiurl}}/apidoc/default?format=json" model="apiExceptions">
+         net-bind source="{{.Site.Params.apiurl}}/apidoc/default?format=json" model="apiExceptions">
       <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
-      <a kb-each-object="apiExceptions.apiMetaData.exceptionSummaries" kb-path="object.path"
-         kb-href="{{.CurrentSection.Permalink}}exception/?exception={object.path}">{object.name}</a>
+      <a net-each-object="apiExceptions.apiMetaData.exceptionSummaries" net-path="object.path"
+         net-href="{{.CurrentSection.Permalink}}exception/?exception={object.path}">{object.name}</a>
     </div>
     {{ end }}
 
