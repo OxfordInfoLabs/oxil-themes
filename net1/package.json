@@ -4,6 +4,8 @@
   "description": "Oxford Information Labs Netistrar Theme",
   "main": "index.js",
   "scripts": {
+    "webpack-watch": "webpack --config webpack.config.js --watch",
+    "webpack-build": "webpack --config webpack.config.js -p;",
     "publish:project": "./node_modules/.bin/bump patch; npm publish"
   },
   "repository": {
@@ -22,6 +24,11 @@
   },
   "homepage": "https://github.com/OxfordInfoLabs/oxil-themes#readme",
   "devDependencies": {
+    "highlight.js": "^9.18.1",
+    "highlightjs": "^9.16.2",
+    "lunr": "^2.3.8",
+    "query-string": "^6.10.1",
+    "tippy.js": "^5.2.0",
     "version-bump-prompt": "^5.0.7"
   }
 }
