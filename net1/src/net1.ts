@@ -1,9 +1,11 @@
 import NetistrarWhitelabel from "../../../netistrar/whitelabel/ts/index";
 import * as queryString from '../node_modules/query-string/index';
 import * as lunr from '../node_modules/lunr/lunr.js';
+
 var hljs = require('../node_modules/highlight.js/lib/highlight');
 import * as bash from '../node_modules/highlight.js/lib/languages/bash';
 import * as php from '../node_modules/highlight.js/lib/languages/php';
+
 hljs.registerLanguage('bash', bash);
 hljs.registerLanguage('php', php);
 import '../node_modules/highlight.js/styles/darkula.css';
@@ -194,19 +196,24 @@ function initLunr() {
 // Nothing crazy here, just hook up a listener on the input field
 function initUI() {
     $results = document.getElementById("results");
-    document.getElementById("search").addEventListener("keyup", function () {
-        $results.innerHTML = "";
 
-        // Only trigger a search when 2 chars. at least have been provided
-        var query = (<HTMLInputElement>this).value;
-        if (query.length < 2) {
-            return;
-        }
+    if ($results) {
 
-        var results = search(query);
+        document.getElementById("search").addEventListener("keyup", function () {
+            $results.innerHTML = "";
 
-        renderResults(results);
-    });
+            // Only trigger a search when 2 chars. at least have been provided
+            var query = (<HTMLInputElement>this).value;
+            if (query.length < 2) {
+                return;
+            }
+
+            var results = search(query);
+
+            renderResults(results);
+        });
+
+    }
 }
 
 /**
@@ -240,12 +247,12 @@ function renderResults(results) {
 
     // Only show the ten first results
     results.slice(0, 100).forEach(function (result) {
-       htmlString += '<h4 class="mb0 "><a class="bold inv" href="' + result.uri + '">' + result.title + '</a></h4>';
+        htmlString += '<h4 class="mb0 "><a class="bold inv" href="' + result.uri + '">' + result.title + '</a></h4>';
         htmlString += '<p class="small mb0"><a class="normal inv brand-2-text" href="' + result.uri + '">' + result.uri + '</a></p>';
         htmlString += '<p class="small">' + result.snippet + ' ...</p>';
     });
 
-    htmlString  += '<div class="pb3">&nbsp;</div>';
+    htmlString += '<div class="pb3">&nbsp;</div>';
     $results.innerHTML = htmlString;
 }
 
@@ -253,34 +260,36 @@ function renderResults(results) {
 initLunr();
 
 
-logoutMenuBtn.addEventListener('click', function (e) {
+if (logoutMenuBtn)
+    logoutMenuBtn.addEventListener('click', function (e) {
 
-    if (this.getAttribute('data-target') === 'show') {
-        defaultState();
-        gauze();
-        this.setAttribute('data-target', 'hide');
-        logoutMenu.setAttribute('data-state', 'show');
-    } else {
-        this.setAttribute('data-target', 'show');
-        defaultState();
-    }
+        if (this.getAttribute('data-target') === 'show') {
+            defaultState();
+            gauze();
+            this.setAttribute('data-target', 'hide');
+            logoutMenu.setAttribute('data-state', 'show');
+        } else {
+            this.setAttribute('data-target', 'show');
+            defaultState();
+        }
 
-});
+    });
 
 
-blogNewsBtn.addEventListener('click', function (e) {
+if (blogNewsBtn)
+    blogNewsBtn.addEventListener('click', function (e) {
 
-    if (this.getAttribute('data-target') === 'show') {
-        defaultState();
-        gauze();
-        this.setAttribute('data-target', 'hide');
-        blogNews.setAttribute('data-state', 'show');
-    } else {
-        this.setAttribute('data-target', 'show');
-        defaultState();
-    }
+        if (this.getAttribute('data-target') === 'show') {
+            defaultState();
+            gauze();
+            this.setAttribute('data-target', 'hide');
+            blogNews.setAttribute('data-state', 'show');
+        } else {
+            this.setAttribute('data-target', 'show');
+            defaultState();
+        }
 
-});
+    });
 
 if (filtersDomainSearchBtn)
     filtersDomainSearchBtn.addEventListener('click', function (e) {
@@ -297,18 +306,18 @@ if (filtersDomainSearchBtn)
 
     });
 
-sidebarBtn.addEventListener('click', function () {
-    if (this.getAttribute('data-target') === 'show') {
-        defaultState();
-        gauze();
-        this.setAttribute('data-target', 'hide');
-        document.querySelector('body').setAttribute('data-sidebar', 'show');
-    } else {
-        this.setAttribute('data-target', 'show');
-        defaultState();
-    }
-});
-
+if (sidebarBtn)
+    sidebarBtn.addEventListener('click', function () {
+        if (this.getAttribute('data-target') === 'show') {
+            defaultState();
+            gauze();
+            this.setAttribute('data-target', 'hide');
+            document.querySelector('body').setAttribute('data-sidebar', 'show');
+        } else {
+            this.setAttribute('data-target', 'show');
+            defaultState();
+        }
+    });
 
 
 let netDomainSearch = document.querySelector('net-domain-search');
