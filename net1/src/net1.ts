@@ -419,6 +419,9 @@ document.querySelectorAll('[data-navigate-back]').forEach((item: HTMLElement) =>
     });
 });
 
+tippy('[data-tippy-content]', {
+    trigger: 'click'
+});
 
 
 
