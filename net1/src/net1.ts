@@ -1,4 +1,3 @@
-import NetistrarWhitelabel from "../../../netistrar/whitelabel/ts/index";
 import * as queryString from '../node_modules/query-string/index';
 import * as lunr from '../node_modules/lunr/lunr.js';
 
@@ -12,6 +11,7 @@ import '../node_modules/highlight.js/styles/darkula.css';
 import tippy from '../node_modules/tippy.js/dist/tippy.esm';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/dist/svg-arrow.css';
+import "../node_modules/cookie-notice/dist/cookie.notice.min";
 
 
 declare var window: any;
@@ -26,15 +26,6 @@ var sidebarBtn: HTMLElement = document.querySelector('#btn-sidebar');
 
 
 hljs.initHighlightingOnLoad();
-
-
-new NetistrarWhitelabel({
-    endpoint: process.env.BACKEND_URL,
-    recaptchaKey: process.env.RECAPTCHA_KEY,
-    elementVisibilityFunction: function (element: Element, visible: boolean) {
-        element.setAttribute("data-state", visible ? "show" : "hide");
-    }
-});
 
 
 function defaultState() {
@@ -379,11 +370,6 @@ if (toolsFiltersButton)
         (<HTMLElement>document.querySelector('#toolsfilters')).style.display = 'none';
     });
 
-
-NetistrarWhitelabel.kinibind.bind(document.getElementById("body"), {
-    tldFilterValue: "",
-    request: queryString.parse(location.search)
-});
 
 initUI();
 

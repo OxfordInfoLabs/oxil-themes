@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/OxfordInfoLabs/oxil-themes#readme",
   "devDependencies": {
+    "cookie-notice": "^1.2.4",
     "highlight.js": "^9.18.1",
     "highlightjs": "^9.16.2",
     "lunr": "^2.3.8",
