@@ -16,7 +16,7 @@ import "../node_modules/cookie-notice/dist/cookie.notice.min";
 
 declare var window: any;
 
-var filtersDomainSearchBtn: HTMLElement = document.querySelector('.btn-filters-domain-search');
+var filtersDomainSearchBtns: NodeList = document.querySelectorAll('.btn-filters-domain-search');
 var filtersDomainSearch: HTMLElement = document.querySelector('#filters-domain-search');
 var blogNewsBtn: HTMLElement = document.querySelector('#btn-blognews');
 var blogNews: HTMLElement = document.querySelector('#blognews');
@@ -29,9 +29,16 @@ hljs.initHighlightingOnLoad();
 
 
 function defaultState() {
-    blogNews.setAttribute('data-state', 'hide');
-    filtersDomainSearch.setAttribute('data-state', 'hide');
-    logoutMenu.setAttribute('data-state', 'hide');
+
+    if (blogNews)
+        blogNews.setAttribute('data-state', 'hide');
+
+    if (filtersDomainSearch)
+        filtersDomainSearch.setAttribute('data-state', 'hide');
+
+    if (logoutMenu)
+        logoutMenu.setAttribute('data-state', 'hide');
+
     document.querySelectorAll('[data-target="hide"]').forEach((item: HTMLElement) => {
         item.setAttribute('data-target', 'show');
     });
@@ -282,7 +289,8 @@ if (blogNewsBtn)
 
     });
 
-if (filtersDomainSearchBtn)
+filtersDomainSearchBtns.forEach((filtersDomainSearchBtn: HTMLElement) => {
+
     filtersDomainSearchBtn.addEventListener('click', function (e) {
 
         if (this.getAttribute('data-target') === 'show') {
@@ -296,6 +304,7 @@ if (filtersDomainSearchBtn)
         }
 
     });
+});
 
 if (sidebarBtn)
     sidebarBtn.addEventListener('click', function () {
