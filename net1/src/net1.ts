@@ -25,9 +25,6 @@ var logoutMenu: HTMLElement = document.querySelector('#logout-menu');
 var sidebarBtn: HTMLElement = document.querySelector('#btn-sidebar');
 
 
-hljs.initHighlightingOnLoad();
-
-
 function defaultState() {
 
     if (blogNews)
@@ -158,7 +155,6 @@ var bindDropdowns = function () {
 }
 
 
-
 if (logoutMenuBtn)
     logoutMenuBtn.addEventListener('click', function (e) {
 
@@ -281,7 +277,6 @@ if (toolsFiltersButton)
     });
 
 
-
 document.querySelectorAll('ul.tabs li').forEach((item: HTMLElement) => {
 
     item.addEventListener("click", function () {
@@ -319,5 +314,22 @@ tippy('[data-tippy-content]', {
 });
 
 
+// Handle rehighlight situations
+let rehighliters = document.querySelectorAll("[data-rehighlight]");
 
+if (rehighliters.length == 0) {
+    hljs.initHighlightingOnLoad();
+} else {
+
+    rehighliters.forEach((element => {
+
+        element.addEventListener("sourceLoaded", () => {
+            setTimeout(() => {
+                hljs.initHighlighting();
+            }, 100);
+        });
+
+    }));
+
+}
 
