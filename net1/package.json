@@ -26,7 +26,6 @@
   "devDependencies": {
     "cookie-notice": "^1.2.4",
     "highlight.js": "^9.18.1",
-    "highlightjs": "^9.16.2",
     "lunr": "^2.3.8",
     "query-string": "^6.10.1",
     "tippy.js": "^5.2.0",

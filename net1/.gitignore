@@ -2,6 +2,7 @@ node_modules/
 layouts/partials/amp-stylesheet.html
 
 .idea
+package-lock.json
 
 
 
