@@ -84,10 +84,14 @@
 {{ $script := .Site.Data.webpack.main }}
 {{ with $script.js }}
 <script src="{{ relURL . }}"></script>
+{{- end -}}
+{{- with .FirstSection -}}
+{{- if eq (.Param "js") "help" -}}
+<script src="/help.js"></script>
+{{- end -}}
+{{- end -}}
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-{{ end }}
-{{ end }}
-
+{{- end -}}
 
 {{- if .Site.Params.ga -}}
 {{- if .Site.Params.ga_code -}}
