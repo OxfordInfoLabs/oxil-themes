@@ -1,6 +1,11 @@
+{{- if eq .Site.Params.robots "true" -}}
 User-agent: *
 Disallow: /app/
 Disallow: /cdn-cgi/
 {{ range where .Site.Pages "Params.noindex" "true" }}Disallow: {{ .RelPermalink }}
 {{ end }}
 Sitemap: {{ printf "%s/sitemap.xml" .Site.BaseURL | absLangURL }}
+{{- else -}}
+User-agent: *
+Disallow: /
+{{- end -}}
