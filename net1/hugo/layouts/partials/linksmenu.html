@@ -3,12 +3,11 @@
 {{- $page := .page -}}
 {{- with .menu -}}
 {{- range . -}}
-{{- if eq .URL "DASHBOARD" -}}
-<a href="{{- $site.Params.dashboard_url -}}" class="{{- $css -}}" net-show="info.loggedInUser.displayName" >{{- T (.Name | urlize) -}}</a>
-{{- else if and ((.Pre) (eq .Pre "button")) -}}
+{{- if eq .Pre "button" -}}
+<h1>{{.Pre}}</h1>
 <button id="btn-{{.Name}}" class="butlk flex align-center {{$css}} {{ if eq ($page.Scratch.Get "theme") "brand" }}white-text{{end}}" data-target="show">{{ T .Name }}</button>
 {{- else -}}
-<a href="{{- .URL | relLangURL -}}" class="{{- $css }} {{ if eq $page.RelPermalink .URL -}}active{{- end -}}"><span>{{- .Name -}}</span></a>
+<a href="{{- if eq .URL "DASHBOARD" -}}{{- $site.Params.dashboard_url -}}{{else}}{{- .URL -}}{{end}}" class="{{- $css }} {{ if eq $page.RelPermalink .URL -}}active{{- end -}}"><span>{{- if .Pre -}}<span class=" blk mb025">{{.Name}}</span><span class="vsmall g6-text normal">{{.Pre}}</span>{{else}}{{- .Name -}}{{end}}</span>{{- if .Post}}<i class="net-{{.Post}}"></i>{{end}}</a>
 {{- end -}}
 {{- end -}}
 {{- end -}}
