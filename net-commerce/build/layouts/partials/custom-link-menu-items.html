@@ -1,0 +1,9 @@
+{{- $css := .css -}}
+{{- $page := .page -}}
+{{- $site := .site -}}
+{{- $menuitem := .menuitem -}}
+
+{{- if eq $menuitem.URL "dashboard"}}
+<a net-show="info.loggedInUser" data-state="hide" href="{{- $site.Params.dashboard_url -}}" class="{{- $css }}">My Dashboard</a>
+{{- end -}}
+

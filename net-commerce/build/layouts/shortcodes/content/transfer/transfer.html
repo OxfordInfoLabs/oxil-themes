@@ -1,0 +1,168 @@
+
+
+<net-domain-transfer data-search-url="/search">
+
+  <div class="gf5">
+    <div class="grid px1 px2l pb4">
+
+      <div class="flex flex-row-reverse">
+        <div id="product-builder-widget-wrap" class="flex flex-col pl1l pt3">
+          <div class="stick">
+
+            {{ partial "product-builder-widget" (dict "bigbuttext" "Add to cart"  "bigbuticon" "net-chevron-right" "smallbuticon" "net-cart-solid" "radius"  "br8tl br8tr ") }}
+
+
+          </div>
+
+        </div>
+        <div class="w-75 pr1l pt3">
+
+
+          <h1>Transfer your domain</h1>
+          <p class="thin mb2">Here you can transfer your domain into your account with Netistrar.  If you haven't done so, <a href="/register/">click
+            here to Register an account</a>
+            before transferring a domain. </p>
+
+
+          <p net-hide="result" data-state="hide" class="text-center"><img src="/images/loading-animation.gif" alt="Netistrar loading animation">
+          </p>
+
+
+          <div class="flex-grid mb2" data-state="hide" net-show="status | eval '==' 'locked'">
+            <div class="w-50 white py2 px1">
+              <dl class="small">
+                <dt>Transferring:</dt>
+                <dd class="f4" >{transferDomain}</dd>
+                <dt>Current status:</dt>
+                <dd class="red-text"><i class="net-security"></i> Locked</dd>
+                <dt>Next:</dt>
+                <dd>Visit your current provider and unlock the domain name.</dd>
+              </dl>
+
+            </div>
+            <div class="w-50 gd p2 flex flex-col justify-center align-center">
+              <form data-check-lock-status class="flex flex-col justify-center align-center">
+
+
+                <net-recaptcha class="pb1" data-state="hide"></net-recaptcha>
+                <div class="red-text small" data-state="hide" data-recaptcha-error></div>
+                <button class="but butor py1" type="submit">Check again <i class="net-chevron-right"></i> </button>
+
+
+
+
+              </form>
+
+            </div>
+          </div>
+          <div class="flex-grid mb2 " data-state="hide" net-show="status | eval '==' 'unlocked'">
+            <div class="w-50 white py2 px1">
+              <dl class="small">
+                <dt>Transferring:</dt>
+                <dd class="f4" >{transferDomain}</dd>
+                <dt>Current status:</dt>
+                <dd class="green-text"><i class="net-tickbox"></i> Unlocked</dd>
+                <dt>Next:</dt>
+                <dd>Ready to transfer, enter the authorisation code in the box provided. <button class="but butlk small inv text-colour super" data-tippy-content="You can obtain this from your current Registrar.  Note, authorisation codes typically contain a mixture of non-standard characters.  They can also timeout, so try minimise any delay between generating the authorisation code and entering it here."><i class="net-help-circle"></i></button></dd>
+              </dl>
+
+            </div>
+            <div class="w-50 gd flex justify-center align-center p2">
+              <form data-check-auth-code>
+                <div class="flex justify-center">
+                  <input class="pl1 borr0 w-75" type="text" placeholder="Enter auth code" net-value="authCode">
+                  <button class="but butgn" type="submit" class="br0" >
+                    <i class="net-chevron-right g8-text f4 white-text"></i>
+                  </button>
+                </div>
+                <div>
+                  <net-recaptcha></net-recaptcha>
+                  <div class="red-text small pt1" net-html="authError"></div>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+
+          <div class="flex-grid mb2" data-state="hide" net-show="status | eval '==' 'authorised'">
+            <div class="w-50 white py2 px1">
+              <dl class="small">
+                <dt>Transferring:</dt>
+                <dd class="f4" >{transferDomain}</dd>
+                <dt>Current status:</dt>
+                <dd class="green-text"><i class="net-tickbox"></i> Unlocked</dd>
+                <dt>Next:</dt>
+                <dd>Ready to transfer. Add to cart.</dd>
+              </dl>
+
+            </div>
+            <div class="w-50 gd flex flex-col justify-center p2">
+              <h4 class="green-text">Authorisation accepted <i class="net-check"></i></h4>
+              <p class="small">The authorisation code has been accepted.  To complete the transfer the following fees are applicable:</p>
+              <ul class="small"><li>Registration Fee: £{items[0].price}</li>
+                <li>Transfer fee: N/A</li>
+              </ul>
+              <p class="small">To complete the transfer, click 'Add to Cart' and checkout as normal.</p>
+
+
+            </div>
+          </div>
+
+          <div class="flex-grid mb2" data-state="hide" net-show="status | eval '==' 'unassigned'">
+            <div class="w-50 white py2 px1">
+              <dl class="small">
+                <dt>Transferring:</dt>
+                <dd class="f4" >{transferDomain}</dd>
+                <dt>Current status:</dt>
+                <dd class="red-text"><i class="net-security"></i> Locked</dd>
+                <dt>Next:</dt>
+                <dd>Please complete a tag change operation using your current provider. You will need to supply our tag  NETISTRAR  as part of this operation. <button class="but butlk small inv text-colour super" data-tippy-content="As soon as you have completed the tag change, our system will be able to detect the domain as 'ready to transfer' into your account."><i class="net-help-circle"></i></button></dd>
+              </dl>
+
+            </div>
+            <div class="w-50 gd flex justify-center align-center p2">
+              <form data-check-assigned>
+                <div>
+                  <button class="but butor" type="submit">Check again <i class="net-chevron-right"></i> </button>
+                </div>
+                <div>
+                  <net-recaptcha></net-recaptcha>
+                  <div class="red-text small pt1" data-state="hide" data-recaptcha-error></div>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+          <div class="flex-grid mb2" data-state="hide" net-show="status | eval '==' 'assigned'">
+            <div class="w-50 white py2 px1">
+              <dl class="small">
+                <dt>Transferring:</dt>
+                <dd class="f4" >{transferDomain}</dd>
+                <dt>Current status:</dt>
+                <dd class="green-text"><i class="net-tickbox"></i> Unlocked</dd>
+                <dt>Next:</dt>
+                <dd>Ready to transfer. Add to cart.</dd>
+              </dl>
+
+            </div>
+            <div class="w-50 gd flex flex-col justify-center p2">
+              <h4 class="green-text">Tagged to Netistrar <i class="net-check"></i></h4>
+              <p class="small">The domain has been correctly tagged to Netistrar and is ready to transfer into your account:</p>
+              <ul class="small">
+                <li>Transfer fee: N/A</li>
+              </ul>
+              <p class="small">To complete the transfer, click 'Add to Cart' and checkout as normal. No fees are payable.</p>
+
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+</net-domain-transfer>

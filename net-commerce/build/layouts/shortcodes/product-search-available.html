@@ -10,9 +10,9 @@
       <div class="{{if eq (.Get "featured") "true"}}f3{{else}}f4{{end}} semi pt1 bw">{{with .Get "itemSelector"}}{ {{.}}.domainName} {{end}}<span class="availability-label hidden-sm {{if eq (.Get "featured") "true"}}f4{{else}}f5{{end}} green-text"></span>
       </div>
 
-        {{- if eq (.Get "generaloffer") "true" -}}
-        <div class="vsmall red-text pt050 pb050l">{{.Get "generalofferstrap" | safeHTML}} {{.Get "generalofferinfo" | safeHTML}}</div>
-        {{- end -}}
+
+        <div class="vsmall red-text pt050 pb050l">First year discounts on standard domains</div>
+
 
       </div>
 
@@ -33,8 +33,8 @@
         </div>
 
         <div class="pt1 flex-grid justify-end" net-show="{{.Get "itemSelector"}}.registrationPrices[0].original | eval '!==' 'N/A'">
-            <small net-if="{{.Get "itemSelector"}}.pricingType | eval '!==' 'STANDARD'">from</small>
-            <span class="super f4 strike pr050">&pound;{ {{.Get "itemSelector"}}.registrationPrices[0].original}</span>
+            <small net-if="{{.Get "itemSelector"}}.pricingType | eval '!==' 'STANDARD'">from&nbsp;</small>
+            <span net-if="{{.Get "itemSelector"}}.pricingType | eval '==' 'STANDARD'" class="super f4 strike pr050">&pound;{ {{.Get "itemSelector"}}.registrationPrices[0].original}</span>
             <span class="red-text {{if eq (.Get "featured") "true"}}f4{{else}}f5{{end}}">
       &pound;{ {{.Get "itemSelector"}}.registrationPrices[0].standard }
             </span>

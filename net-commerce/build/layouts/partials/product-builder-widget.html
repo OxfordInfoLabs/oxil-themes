@@ -1,5 +1,5 @@
 
-<div id="product-builder-widget" class="brand {{with .Get "radius"}}{{.}}{{else}}br8tl br8tr br8bl br8br{{end}} px075 pt1 pb150 ">
+<div id="product-builder-widget" class="brand {{with .radius}}{{.}}{{else}}br8tl br8tr br8bl br8br{{end}} px075 pt1 pb150 ">
   <div id="dec" class="img-shadow text-center white-text brand hidden-md"><i class="net-chevron-up"></i></div>
   <div class="totals" >
     <div class="semi uppercase white-text small pb050">Total</div>
@@ -8,22 +8,22 @@
   </div>
   <div class="ctrls ">
 
-      <a data-state="hide" net-show="items.length" {{with .Get "bigbutlink"}}data-post-package{{else}}data-add-to-cart{{end}} href="{{with .Get "bigbutlink"}}{{.}}{{else}}/cart/{{end}}"
-       class="but butgn w flex justify-between align-center butlg"><span>{{with .Get "bigbuttext"}}{{.}}{{else}}Continue{{end}}</span>
-        <i class="{{with .Get "bigbuticon"}}{{.}}{{else}}net-chevron-right{{end}}"></i></a>
+      <a data-state="hide" net-show="items.length" {{with .bigbutlink}}data-post-package{{else}}data-add-to-cart{{end}} href="{{with .bigbutlink}}{{.}}{{else}}/cart/{{end}}"
+       class="but butgn w flex justify-between align-center butlg"><span>{{with .bigbuttext}}{{.}}{{else}}Continue{{end}}</span>
+        <i class="{{with .bigbuticon}}{{.}}{{else}}net-chevron-right{{end}}"></i></a>
 
       <a net-hide="items.length"  href="#"
-      class="but butdisabled butgn w flex justify-between align-center butlg"><span>{{with .Get "bigbuttext"}}{{.}}{{else}}Continue{{end}}</span>
-      <i class="{{with .Get "bigbuticon"}}{{.}}{{else}}net-chevron-right{{end}}"></i></a>
+      class="but butdisabled butgn w flex justify-between align-center butlg"><span>{{with .bigbuttext}}{{.}}{{else}}Continue{{end}}</span>
+      <i class="{{with .bigbuticon}}{{.}}{{else}}net-chevron-right{{end}}"></i></a>
 
 
-      <a data-state="hide" net-show="items.length" data-add-to-cart href="{{with .Get "smallbutlink"}}{{.}}{{else}}{{.Site.Params.dashboard_url}}/checkout{{end}}"
+      <a data-state="hide" net-show="items.length" data-add-to-cart href="{{with .smallbutlink}}{{.}}{{else}}{{.Site.Params.dashboard_url}}/checkout{{end}}"
       class="but butbrwh butsm butblk">Quick checkout
-        <i class="{{with .Get "smallbuticon"}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
+        <i class="{{with .smallbuticon}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
 
       <a net-hide="items.length"  href="#"
       class="but butbrwh butdisabled butsm butblk">Quick checkout
-      <i class="{{with .Get "smallbuticon"}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
+      <i class="{{with .smallbuticon}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
 
   </div>
 

@@ -1,0 +1,29 @@
+
+
+<div class="white px1 py050 pr3 prod {{ if eq (.featured) "true" }}mb1{{end}}"  >
+
+
+    <div class="{{if eq (.featured) "true"}}f3{{else}}f4{{end}} semi pt1  bw">{{with .itemSelector}}{ {{.}}.domainName }{{end}} <span class="{{if eq (.featured) "true"}}f4{{else}}f5{{end}} green-text">is owned by you</span>
+    </div>
+{{- if eq (.featured) "true" -}}
+    <div class="small py1 borb1 borcc g5-text">Please navigate to your control panel to <a class="bold" href="{{ .Site.Params.dashboard_url }}" target="_blank">manage your domains</a>.</div>
+    <div class="vsmall thin py050" net-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">We have some alternative suggestions available to purchase today:
+        <span net-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
+            <span net-if="$index | eval '>' 0">&bullet;</span>
+            <a class='inv' href='#' net-toggle="visibleSuggestions['{suggestion.domainName}']">{suggestion.domainName}</a>&nbsp;
+        </span>
+    </div>
+{{- else -}}
+<div class="vsmall thin py1 g5-text">Please navigate to your control panel to <a class="bold" href="{{ .Site.Params.dashboard_url }}" target="_blank">manage your domains</a>.
+    <span net-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">
+    <br>Alternatives:
+    <span net-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
+    <span net-if="$index | eval '>' 0">&bullet;</span>
+    <a class='normal inv' href='#' net-toggle="visibleSuggestions['{suggestion.domainName}']">{suggestion.domainName}</a>&nbsp;
+    </span>
+    </span>
+</div>
+
+
+{{- end -}}
+</div>

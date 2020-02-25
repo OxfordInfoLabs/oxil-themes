@@ -1,0 +1,81 @@
+
+
+<div class="grid px1 px2l pb5 pt4">
+  <net-cart>
+    <div class="flex-grid flex-row-reverse">
+      <div id="product-builder-widget-wrap" class="pl1l w-25" >
+        <div id="product-builder-widget" class="brand br8tl br8tr br8bll br8brl px075 pt1 pb150 ">
+          <div id="dec" class="img-shadow text-center white-text brand hidden-md"><i class="net-chevron-up"></i></div>
+          <div class="totals">
+            <div class="semi uppercase white-text small pb050">Total</div>
+            <div class="white-text f3 bold pb050" data-state="show">£<span net-html="cart.netTotal"></span></div>
+
+          </div>
+          <div class="ctrls pt050">
+
+            <a data-state="hide" net-show="cart.items.length | eval '>' 0" href="{{.Site.Params.dashboard_url}}/checkout" class="but butlg butgn butblk w"><span>Checkout</span>
+
+              <i class="net-chevron-right"></i></a>
+
+            <a net-hide="cart.items.length | eval '>' 0" href="#" class="but butlg butdisabled butgn butblk w"><span>Checkout</span>
+
+              <i class="net-chevron-right"></i></a>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="w-75 pr1l">
+        <h1 class="f3 mb150 semi">Viewing cart</h1>
+
+        <div class="flex">
+          <div class="w-70 w75sm thin borr1 bordd py025 pl1l pr1">Item</div>
+          <div class="w-15 w25sm thin py025 px1 text-right">Price</div>
+          <div class="w-15 hidden-sm borl1 bordd "></div>
+        </div>
+        <div class="bort2 bordd mt025"></div>
+
+        <div net-each-item="cart.items" net-show="cart.items" data-state="hide">
+          <div class="flex mt025">
+            <div class="w-70 w75sm thin borr1 bordd py050 pl1l pr1">
+              <div class="bold "><span class="pr050">{item.productTitle}</span>
+              </div>
+              <div class="vsmall" net-show="item.productShortDescription">{item.productShortDescription}</div>
+              <div class="vsmall" net-show="item.productDescription">{item.productDescription}</div>
+              <div class="pt050"><button class="butctrl pr1 delete" net-if="item.domainName" >delete x</button> <a net-href="/configure?cartItem={$index}" class="butctrl inv px1 hidden-md" net-if="item.domainOperation | eval '==' 'registration'">edit <i class="net-edit"></i></a> </div>
+            </div>
+            <div class="w-15 w25sm thin py050 px1 text-right">&pound;{item.netPrice}</div>
+            <div class="w-15 hidden-sm borl1 bordd py050 px1">
+              <a net-href="/configure?cartItem={$index}" class="vsmall normal" net-if="item.domainOperation | eval '==' 'registration'">edit</a>
+            </div>
+          </div>
+          <div class="bort1 bordd mt025"></div>
+          <div net-each-subitem="item.subItems" net-show="cart.items" data-state="hide">
+            <div class="flex mt025">
+              <div class="w-70 w75sm thin borr1 bordd py050 pl1l pr1">
+                <div class="bold">{subitem.productTitle}</div>
+                <div class="vsmall" net-show="subitem.productShortDescription">{subitem.productShortDescription} {subitem.productDescription}</div>
+                <div class="vsmall" net-show="item.productTitle">Domain Name: {item.productTitle}</div>
+              </div>
+              <div class="w-15 w25sm thin py050 px1 text-right">&pound;{subitem.netPrice}</div>
+              <div class="w-15 hidden-sm borl1 bordd py050 px1">
+                <a net-href="/configure?cartItem={$index}" class="vsmall normal" net-if="item.domainOperation | eval '==' 'registration'">edit</a>
+              </div>
+            </div>
+            <div class="bort1 bordd mt025"></div>
+
+          </div>
+
+        </div>
+        <div class="flex">
+          <div class="flex1 flex align-center justify-end pr1"><span class="semi pr1">Total ex. VAT</span><span
+              class="f3 semi py2">&pound;<span net-html="cart.netTotal"></span></span></div>
+          <div class="w-15 w25sm hidden-sm"></div>
+        </div>
+
+
+      </div>
+    </div>
+  </net-cart>
+</div>

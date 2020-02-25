@@ -1,0 +1,64 @@
+
+
+<div class="brand white-text">
+  <div class="px1 px2l text-center pt1 pb3 ">
+    <h1 class="f2 normal white-text pb1">Ready to activate</h1>
+    <div class="grid grid-small ge-text f5 thin px1 text-center lh12">Your email address has been verified and your
+      account is ready to activate.
+    </div>
+  </div>
+
+
+</div>
+
+<div class="grid grid-small white my4 px1 px2l">
+
+  <net-activate>
+
+    <form data-activate>
+
+
+      <div class="pb1 flex-grid ">
+        <div class="w-50">
+          <label class="text-right-lg blk pr4l bold pb050 pb025l" for="activation-code">Enter your activation
+            code</label>
+          <p class="vsmall g8-text pr4l text-right-lg ">This is a once-only time limited code sent to your
+            email address.</p>
+        </div>
+        <div class="flex1">
+          <input id="activation-code" type="text" class="email-field w "
+                 data-code-field
+                 placeholder="e.g. 123ABC" autocomplete="false">
+          <p class="red-text small" data-state="hide" data-code-error></p>
+        </div>
+
+      </div>
+
+      <div class="pb1 flex-grid">
+        <div class="w-50"></div>
+        <div class="flex1">
+          <net-recaptcha></net-recaptcha>
+          <div class="red-text small pt1" data-state="hide" data-recaptcha-error></div>
+        </div>
+
+      </div>
+
+      <div class="flex-grid ">
+        <div class="w-50"></div>
+        <div class="flex1">
+          <div class="">
+            <button type="submit" class="submit-button but butgn chevron-right">Activate</button>
+            <button type="submit" class="hidden-submit" data-state="hide">Hidden</button>
+          </div>
+          <div class="red-text" data-state="hide">An error occurred during activation, please try again
+            later.
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+
+  </net-activate>
+
+</div>
