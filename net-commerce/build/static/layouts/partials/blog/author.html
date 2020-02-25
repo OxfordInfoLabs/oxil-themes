@@ -1,0 +1,15 @@
+
+{{ with .Params.authors }}
+{{ range first 1 . }}
+{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}
+
+{{ $hash := md5 .Params.gravatar }}
+<a href="{{.Permalink}}" class="ib mr050"
+     style="height:35px;width:35px;border-radius: 50%;background-image: url('https://www.gravatar.com/avatar/{{ $hash }}?s=35&d=identicon');"></a>
+<a href="{{.Permalink}}" class="ib small mr050 inverse">{{.Params.name}}</a>
+
+
+{{ end }}
+{{end}}
+{{ end }}
+

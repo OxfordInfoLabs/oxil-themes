@@ -1,0 +1,100 @@
+{{- define "herotag" -}}
+{{- if eq "help-hero" .Params.hero -}}
+{{- $img := .Resources.GetMatch "*featured*" -}}
+{{- with $img -}}
+{{- $medium := .Resize "1000x" -}}
+<div class="flex b-cover"
+     style="background-image: url({{$medium.RelPermalink}});background-position: center 30%;height: 400px;">
+  <div class="grid grid-desktop w flex justify-start align-center">
+    <div class="p2l px1 w-50">
+      <div class="f1 white-text shadow semi mb050">{{- $.Page.Params.title -}}</div>
+      <div class="f2 white-text normal mb2 mt050">{{- $.Page.Params.subtitle -}}</div>
+
+      <div class="flex align-center search-group white py050 ">
+        <i class="net-search ga-text f4 pl075 "></i><input id="search" class="bortrans w" type="text" placeholder="{{- $.Page.Params.searchtext -}}">
+
+      </div>
+      {{- partial "help/search-results" . -}}
+    </div>
+  </div>
+</div>
+{{- end -}}
+{{- end -}}
+{{- end -}}
+{{- define "main" -}}
+
+
+
+<div class="grid grid-desktop flex mt3 pb5">
+  <div class="w-25 hidden-sm" style="background: transparent;">
+    {{- partial "help/sidenav" . -}}
+  </div>
+  <div class="w-75 px2l px1" >
+    <div class="breadcrumb small">{{- partial "breadcrumb" (dict "p1" . "p2" .) -}}</div>
+
+    <h1 class="f-subheadline mt050 mb2">{{- .Title -}}</h1>
+
+    <div class="flex flex-wrap">
+
+
+      {{- if .RegularPages -}}
+      <div class="w-50 simple-menu pb3">
+
+
+
+          {{- range .RegularPages -}}
+          {{- if ne .Params.noList "1" -}}
+
+            <a class="normal blk inv mb050" href="{{- .Permalink -}}">{{- .Title -}}</a>
+
+          {{- end -}}
+          {{- end -}}
+
+      </div>
+
+      {{- end -}}
+
+
+      {{- range where .Sections ".Draft" "ne" true -}}
+
+      <div class="w-50 simple-menu pb3 flex">
+        {{- $title := .Title -}}
+        {{- $thumb := .Resources.GetMatch "*icon*" -}}
+        {{- with $thumb -}}
+       <div class="pr2">
+
+
+         <img src="{{- .RelPermalink -}}" alt="{{- $title -}} icon" width="60" >
+
+       </div>
+        {{- end -}}
+       <div class="">
+         <h4 >{{- .Title -}}</h4>
+
+         {{- range .Pages -}}
+         {{- if ne .Params.noList "1" -}}
+
+         <a class="normal blk inv mb050" href="{{- .Permalink -}}">{{- .Title -}}</a>
+
+         {{- end -}}
+         {{- end -}}
+
+         {{- range .Sections -}}
+
+         <a class="normal blk inv mb050" href="{{- .Permalink -}}">{{- .Title -}}</a>
+
+         {{- end -}}
+
+       </div>
+
+
+      </div>
+      {{- end -}}
+
+    </div>
+  </div>
+</div>
+
+{{- end -}}
+
+

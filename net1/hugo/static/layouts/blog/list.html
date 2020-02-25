@@ -1,0 +1,106 @@
+
+
+{{define "schema"}}
+<script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "itemListElement":[
+      {{ range $pos, $value := first 3 (after 1 .Pages.ByDate.Reverse) }}{{ if $pos }},{{ end }}{
+          "@type":"ListItem",
+          "position":{{ add $pos 1}},
+          "url":"{{$value.Permalink}}"
+        }{{ end }}
+
+
+    ]
+  }
+  </script>
+{{ end }}
+
+{{ define "bodytag"}}
+<body id="body" class="blog">
+
+{{ end }}
+
+
+{{ define "headertag"}}
+{{ partial "blog/header" . }}
+
+
+{{ end }}
+
+
+{{ define "main" }}
+<div class="gf9">
+  <div class="grid px1 px2l py2 flex " >
+    <div class="breadcrumb">
+      {{partial "breadcrumb" (dict "p1" . "p2" .) }}
+    </div>
+  </div>
+</div>
+    <div class="grid px1 py2 p4l">
+
+      <h1 class="f-subheadline lh-title semi w-60 ">{{.Title}}</h1>
+
+    </div>
+
+    {{ range first 1 .Pages.ByLastmod.Reverse  }}
+    <div class=" pb3">
+      <div class="snap-hero">
+
+
+        {{ partial "blog/hero" .}}
+
+      </div>
+    </div>
+
+    {{ end }}
+
+
+    <div class=" pb5">
+
+
+      <div class=" px2l grid flex-grid flex-wrap flex-gutter-3">
+
+        {{ range after 1 (where .Pages.ByLastmod.Reverse "Params.frontpageonly" "!=" "true") }}
+        <div class="w-33 flex flex-col mb2" >
+
+          {{ $img := .Resources.GetMatch "*featured*" }}
+          {{ $permalink := .Permalink }}
+          {{ with $img }}
+          {{ $small := .Resize "600x" }}
+
+          <div class="blog-img with-link" >
+            <amp-img width="16" height="9" layout="responsive" src="{{$small.RelPermalink}}"></amp-img>
+            <a href="{{$permalink}}"></a>
+          </div>
+          {{end}}
+          <div class="gf9 p2 flex flex-col justify-between flex1" >
+
+            <div>
+              <ul class="unstyled vsmall uppercase" >
+                {{ range .Params.categories }}<li class="com lh1"><a class="inv normal text-colour" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>{{ end }}
+              </ul>
+              <div class="f4 semi mb1 lh-title"><a class="inv text-colour" href="{{.Permalink}}">{{.Title}}</a>
+              </div>
+            </div>
+            <time class="small muted-text" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
+            {{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
+            </time>
+          </div>
+
+        </div>
+        {{ end }}
+      </div>
+
+
+    </div>
+
+  {{ end }}
+
+  {{ define "bodyclose"  }}
+</body>
+{{ end }}
+
+

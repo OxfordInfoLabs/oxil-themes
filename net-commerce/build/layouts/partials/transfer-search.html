@@ -1,0 +1,14 @@
+{{- if eq (.Param "transfer-search") "true" -}}
+<div class="grid px1 px2l pt1 pb050">
+  <div class="w-50">
+    <form action="/transfer" class="flex search-group search-groupmuted white">
+      <input class="flex1 pl1 borr0" type="text" name="transferDomain" placeholder="Enter a domain name you own e.g. myname.com">
+      <button type="submit" class="br0"  >
+        <i class="net-search g8-text f4 white-text"></i>
+      </button>
+    </form>
+
+  </div>
+
+</div>
+{{- end -}}

@@ -1,0 +1,8 @@
+{{- $css := .inputcss -}}
+{{- $placeholder := .placeholder -}}
+<form action="/search/" class="flex search-group search-groupmuted white">
+  <input class="flex1 pl1 {{ $css }}" type="text" name="domainsearch"  placeholder="{{with $placeholder}}{{.}}{{else}}Enter keyword, name, brand ..{{end}}">
+  <button type="submit" class="br0" >
+    <i class="net-search g8-text f4 white-text"></i>
+  </button>
+</form>

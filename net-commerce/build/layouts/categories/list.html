@@ -1,0 +1,30 @@
+{{ define "main" }}
+<div class=" white">
+  <div class="grid px1 px2l py2l">
+
+    <h1 class="f-subheadline lh-title semi w-60 ">{{ T "categories"}}</h1>
+
+  </div>
+</div>
+<div class="white pb4">
+
+  <div class="grid px1 px2l">
+
+
+
+      {{$categorypages := .Pages.ByDate.Reverse}}
+      {{ range $categorypages }}
+
+
+
+          <h4 class="mt0 "><a class="bold" href="{{.RelPermalink}}">{{ .Title}}</a></h4>
+
+
+      {{end}}
+
+
+  </div>
+</div>
+
+
+{{ end }}

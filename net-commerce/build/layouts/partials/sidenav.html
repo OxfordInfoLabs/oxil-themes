@@ -1,0 +1,58 @@
+<nav id="nav-main" class="sidenav gf5" >
+
+  <net-session>
+
+  <div class="flex justify-between pt1 pb125" >
+
+    <div class="flex px050" net-hide="info.loggedInUser"><i class="net-user-round ga-text f1"></i></div>
+
+    <div class="flex1 flex" net-if="info.loggedInUser">
+      <div class="px050"><i class="net-user-round orange-text f1"></i></div>
+      <div class="flex1"><div class="f4 wrbr mb050">{info.loggedInUser.displayName}</div><div class="vsmall wrbr lh11">{info.loggedInUser.email}</div></div>
+
+
+    </div>
+
+    <div class="pr1"><button class="btn-close-sidebar butlk inv text-colour"><i class="net-close f4"></i></button></div>
+
+  </div>
+  <div class="side-menu white mb2" net-hide="info.loggedInUser">
+    <a href="/login/" class="">Sign in <i class="net-chevron-right muted-text"></i></a>
+
+
+  </div>
+
+  <div class="side-menu white mb2" net-hide="info.loggedInUser">
+    <a href="/signup/" class=""><span><span class=" blk mb025">Register</span><span class="vsmall g6-text normal">Register a new trade account</span></span><i class="net-tickbox muted-text"></i></a>
+
+  </div>
+
+  <div class="side-menu white mb2" net-if="info.loggedInUser">
+    <a href="{{$.Site.Params.dashboard_url}}"><span><span class=" blk mb025">My dashboard</span><span class="vsmall g6-text normal">Manage domains, websites ..</span></span><i class="net-launch-out"></i></a>
+    <a href="{{$.Site.Params.dashboard_url}}/account/orders/search"><span><span class=" blk mb025">My orders</span><span class="vsmall g6-text normal">View and manage your orders ..</span></span><i class="net-launch-out"></i></a>
+    <net-signout redirect-url="/"><span class="red-text normal">Sign out</span>
+    </net-signout>
+
+  </div>
+
+  <div class="side-menu white">
+    <a href="/prices/" class="">Prices <i class="net-launch-out"></i></a>
+    <a href="/help/" class="">Help <i class="net-launch-out"></i></a>
+    <button class="dropdown-btn">About <i class="net-dummy"></i></button>
+    <div class="dropdown-container">
+      {{ $menu := .Site.Menus.about}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
+    </div>
+    <button class="dropdown-btn">Products & Services <i class="net-dummy"></i></button>
+    <div class="dropdown-container">
+      {{ $menu := .Site.Menus.services}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
+    </div>
+    <button class="dropdown-btn">Useful links <i class="net-dummy"></i></button>
+    <div class="dropdown-container">
+      {{ $menu := .Site.Menus.usefullinks}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
+    </div>
+  </div>
+
+  </net-session>
+
+
+</nav>

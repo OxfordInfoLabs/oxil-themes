@@ -1,0 +1,52 @@
+
+<div class="side-menu">
+  {{ $currentPage := . }}
+  {{ range sort .CurrentSection.Pages ".Params.weight" }}
+  {{ if ne .Params.noList "1"}}
+
+  {{ if .Params.apiController }}
+
+    <button class="dropdown-btn api-menu-{{.Params.apiController}} {{if eq $currentPage .}}active{{ end }}">
+    {{.Title}} <i class="net-chevron-down"></i>
+    </button>
+
+    <div class="dropdown-container api-menu-{{.Params.apiController}}" {{if eq $currentPage .}}style="display: block"{{ end }}
+         net-bind source="{{.Site.Params.apiurl}}/apidoc/default/api/{{.Params.apiController}}?format=json" model="{{.Params.apiController}}API">
+      <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
+      <a net-each-method="{{.Params.apiController}}API.controller.methods"
+         net-class="method.name"
+         net-href="{{.CurrentSection.Permalink}}method/?api={{.Params.apiController}}&method={method.name}">{method.name}</a>
+    </div>
+    {{ else if eq .Title "Reseller API Objects" }}
+
+    <button class="dropdown-btn api-object {{if eq $currentPage .}}active{{ end }}">
+      {{.Title}} <i class="net-chevron-down"></i>
+    </button>
+
+    <div class="dropdown-container api-object" {{if eq $currentPage .}}style="display: block"{{ end }}
+         net-bind source="{{.Site.Params.apiurl}}/apidoc/default?format=json" model="apiObjects">
+      <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
+      <a net-each-object="apiObjects.apiMetaData.objectSummaries" net-path="object.path"
+         net-href="{{.CurrentSection.Permalink}}object/?object={object.path}">{object.name}</a>
+    </div>
+
+    {{ else if eq .Title "Reseller API Exceptions" }}
+
+    <button class="dropdown-btn api-exception {{if eq $currentPage .}}active{{ end }}">
+      {{.Title}} <i class="net-chevron-down"></i>
+    </button>
+
+    <div class="dropdown-container api-exception" {{if eq $currentPage .}}style="display: block"{{ end }}
+         net-bind source="{{.Site.Params.apiurl}}/apidoc/default?format=json" model="apiExceptions">
+      <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
+      <a net-each-object="apiExceptions.apiMetaData.exceptionSummaries" net-path="object.path"
+         net-href="{{.CurrentSection.Permalink}}exception/?exception={object.path}">{object.name}</a>
+    </div>
+    {{ end }}
+
+  {{ end }}
+  {{ end }}
+
+
+</div>
+

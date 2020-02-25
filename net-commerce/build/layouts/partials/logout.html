@@ -1,0 +1,41 @@
+
+<div id="logout-menu" class="expand-menu white pb4" data-state="hide" >
+  <div class="grid px1l">
+
+    <div class="flex justify-end mt2 px1"><a class="close-menu but butlk inv "><i
+        class="net-close f4"></i></a>
+    </div>
+    <div class="flex pt3">
+      <div class="w-50 px1 flex">
+
+        <div class="pr1"><i class="net-user-round f1 orange-text"></i></div>
+        <div class="flex1">
+          <div class="f3 mb050 semi">{info.loggedInUser.fullName}</div>
+          <div class="mb2">{info.loggedInUser.email}</div>
+          <p class="flex justify-start">
+            <net-signout redirect-url="/" class="netistrar-signout">Sign out <i class="net-close"></i></net-signout>
+          </p>
+
+
+        </div>
+
+
+
+      </div>
+      <div class="w-50 px1 big-link-menu">
+        <div class="side-menu white mb2" net-show="info.loggedInUser.email" data-state="hide">
+          <a href="{{$.Site.Params.dashboard_url}}"><span><span class=" blk mb025">My dashboard</span><span class="vsmall g6-text normal">Manage hosting, domains and more ..</span></span><i class="net-launch-out"></i></a>
+          <a href="{{$.Site.Params.dashboard_url}}/account/orders/search"><span><span class=" blk mb025">My orders</span><span class="vsmall g6-text normal">View and manage your orders ..</span></span><i class="net-launch-out"></i></a>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+</div>

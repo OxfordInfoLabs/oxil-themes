@@ -1,0 +1,12 @@
+<div class="w-50 flex flex-col justify-between py1">
+  {{ with .Site.GetPage (.Get "path") }}
+  <div>
+    <h4> {{.Title}}</h4>
+    <p>{{ if .Description }}{{ .Description }}{{ else }}A Netistrar article: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}</p>
+  </div>
+  <div>
+    <p><a class="inv" href="{{.Permalink}}" style="font-size: 1rem">{{T "readmore"}} <i class="net-chevron-right" ></i></a></p>
+    <hr>
+  </div>
+  {{end}}
+</div>

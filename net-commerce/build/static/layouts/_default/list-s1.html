@@ -1,0 +1,28 @@
+{{- define "main" -}}
+<div class="gf9">
+  <div class="grid px1 px2l py150">
+    <div class="breadcrumb">
+      {{- partial "breadcrumb" (dict "p1" . "p2" .) -}}
+    </div>
+  </div>
+</div>
+
+<div class="grid px1 px2l py4">
+  <div class="flex flex-wrap ">
+    <div class="w-80"><h1>{{- .Title -}}</h1>
+      {{- .Content -}}
+
+      <ul>
+        {{- range .Sections -}}
+        <li><a href="{{.Permalink}}">{{ .Title }}</a></li>
+        {{- end -}}
+      </ul>
+      <ul>
+        {{- range .Pages -}}
+        <li><a href="{{.Permalink}}">{{ .Title }}</a></li>
+        {{- end -}}
+      </ul>
+    </div>
+  </div>
+</div>
+{{- end -}}

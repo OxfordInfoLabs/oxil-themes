@@ -1,0 +1,87 @@
+{{- .Scratch.Set "theme" "default" -}}
+
+{{- with .CurrentSection -}}
+{{- with .Param "theme" -}}
+{{- $.Scratch.Set "theme" . -}}
+{{- end -}}
+{{- end -}}
+<!--allow page overloads-->
+{{- with .Param "theme" -}}
+{{- $.Scratch.Set "theme" . -}}
+{{- end -}}
+{{- with .Param "header" -}}
+{{- $.Scratch.Set "header" . -}}
+{{- end -}}
+
+{{- if eq (.Scratch.Get "header") "modal" -}}
+<header  class="pr1 pt1 pb050 {{ if eq (.Scratch.Get "theme") "brand" }}brand{{end}} {{ if eq (.Param "noshadow") "true" }}noshadow{{end}}">
+<div class="grid px1 px2l flex justify-between">{{- partial "logo" . -}}
+  <a class="g8-text inv thin flex align-center f5" href="#" data-navigate-back>Cancel <i class="net-close "></i></a>
+</div>
+
+</header>
+{{- end -}}
+
+
+{{- if ne (.Scratch.Get "header") "modal" -}}
+
+<header  class="pr1 py1 {{ if eq (.Scratch.Get "theme") "brand" }}brand{{end}} {{ if eq (.Param "noshadow") "true" }}noshadow{{end}}">
+
+  <net-session>
+
+
+      <div class="grid flex px1 px2l justify-between align-center">
+
+        <div class="flex align-center flex1 ">
+          {{- partial "logo" . -}}
+          <div class="flex flex1 justify-end align-center ">
+              {{- $menu := .Site.Menus.top_bar -}}
+              {{- $linkcss := "hidden-md hidden-sm visible-desktop mr2 inv medium" -}}
+              {{- if eq (.Scratch.Get "theme") "brand" -}}
+                {{- $linkcss = "hidden-md hidden-sm visible-desktop wh mr2 inv medium" -}}
+              {{- end -}}
+              {{- partial "linksmenu.html" (dict "page" . "site" .Site  "ctx" $ "css" $linkcss "menu" $menu) -}}
+
+
+
+          </div>
+        </div>
+
+        <div class="flex align-center justify-end">
+          {{- partial "login-logout" . -}}
+
+
+          <a net-show="info.cartItems" href="/cart/" class="btn-cart butlk inv mr075 rel {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}" data-state="hide" ><i class="net-cart-solid f4 mr050"></i><span  class="counter counter-sm">{info.cartItems}</span></a>
+          <button id="btn-sidebar" class="butlk pr050 inv {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}" data-target="show"><i class="net-menu-alt f3"></i></button>
+        </div>
+      </div>
+
+
+
+    {{- if eq (.FirstSection.Permalink) "/help/"}}{{ if ne (.CurrentSection.Permalink) "/help/" -}}
+    <div class=" pt1 px1 px2l grid flex align-center" >
+      <div class="w-33 ">
+        {{-  partial "help/search-header" . -}}
+      </div>
+
+    </div>
+    {{- end -}}{{- end -}}
+  </net-session>
+
+    <net-domain-filters>
+      {{- partial "header-extras" . -}}
+      {{- partial "transfer-search" . -}}
+      {{- partial "filters-domain-search" . -}}
+    </net-domain-filters>
+
+<net-session>
+  {{- partial "blognews" . -}}
+
+  {{-  partial "logout" . -}}
+</net-session>
+
+</header>
+
+{{- end -}}
+
+

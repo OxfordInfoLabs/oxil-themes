@@ -1,0 +1,64 @@
+
+<div id="master-slider" class="snap-hero animated">
+  {{ range first 3 (where .Site.Pages.ByDate.Reverse "Params.frontpagehero" "true") }}
+  {{ $bkImg := .Resources.GetMatch "*background*" }}
+  {{ $bkColour := .Params.heroBackgroundColour }}
+
+  <div class="slide {{.Params.slideClasses}}" style="{{with $bkImg}}background-image:url('{{$bkImg.RelPermalink}} ');{{end}} {{with $bkColour}}background-color: {{.}};{{end}}" >
+    <div class="layer layer1">
+
+      {{ $imgContainerClasses := .Params.heroImageContainerClasses }}
+      {{ $imgContainerBoxClasses := .Params.heroImageContainerBoxClasses }}
+      {{ $img := .Resources.GetMatch "*featured*" }}
+      {{ with $img }}
+      {{ $big := .Resize "2000x" }}
+      {{ $medium := .Resize "1000x" }}
+      {{ $small := $big.Resize "600x" }}
+
+      <div class="container-box flex {{$imgContainerBoxClasses}}" >
+        <div class="{{$imgContainerClasses}}">
+
+          <img src="{{ $medium.RelPermalink }}" srcset="{{ $small.RelPermalink }} 600w, {{ $medium.RelPermalink }} 1000w, {{ $big.RelPermalink }} 2000w" alt="{{ $img.Title }}" width="{{ $medium.Width }}" sizes="(min-width:1000px) 1000w, 100vw"  >
+
+        </div>
+
+      </div>
+
+      {{ end }}
+    </div>
+    {{if not .Params.heroImageOnly }}
+    <div class="layer layer2" >
+      <div class="container-box flex {{.Params.heroContentContainerBoxClasses}}">
+        <div class="hero-container {{.Params.heroContentContainerClasses}}">
+
+
+          <div class="hero-title {{.Params.heroContentTitleClasses}}">{{.Title}}</div>
+
+          <div>
+            {{ $ctaText := .Params.heroCtaText }}
+            {{ $ctaUrl := cond (isset .Params "cta_url") .Params.cta_url .Permalink  }}
+            {{ $ctaClasses := .Params.heroCtaClasses }}
+            {{ $ctaWrapClasses := .Params.heroCtaWrapClasses }}
+            {{ $contentDescClasses := .Params.heroContentDescriptionClasses }}
+            {{ $subtitle := cond (isset .Params "hero_subtitle") .Params.hero_subtitle .Description }}
+            {{with $subtitle}}
+            <p class="hero-desc {{$contentDescClasses}}">{{.}}</p>
+            {{end}}
+            {{with $ctaText}}
+            <p class="{{$ctaWrapClasses}} ">
+              <a href="{{$ctaUrl}}" class="{{$ctaClasses}}">{{ $ctaText}}</a>
+            </p>
+
+
+            {{end}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+    {{end}}
+
+  </div>
+
+  {{ end }}
+</div>

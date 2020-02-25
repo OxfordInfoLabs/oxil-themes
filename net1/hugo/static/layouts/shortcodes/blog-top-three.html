@@ -1,0 +1,73 @@
+
+
+
+
+    <div class="flex flex-wrap flex-gutter-2-050">
+      {{$first := first 1 (intersect (where .Site.Pages.ByDate.Reverse "Section" "blog") (where .Site.Pages.ByDate.Reverse "Params.frontpagehero" "!=" "true"))}}
+      {{ range $first }}
+      <div class="w-50 flex flex-col mb2">
+
+
+        {{ $img := .Resources.GetMatch "*featured*" }}
+        {{ $permalink := .RelPermalink }}
+        {{ with $img }}
+        {{ $small := .Resize "600x" }}
+        <div class="aspect sixteen-nine two-one-sm">
+          <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
+
+            <a href="{{$permalink}}" class="link-over"></a>
+          </div>
+        </div>
+        {{end}}
+
+        <div class="gf9 flex1 p1">
+
+
+          <h3 class="lh-title mt0 mb025"><a class="inv font-color bold" href="{{.RelPermalink}}">{{.Title}}</a>
+          </h3>
+          <ul class="unstyled small uppercase ">
+            {{- range .Params.categories -}}
+            <li class="mb0 com"><a class="inv normal g6-text" href="/categories/{{ . | urlize }}/">{{.}}</a></li>
+            {{- end -}}
+          </ul>
+        </div>
+      </div>
+      {{end}}
+      <div class="w-50 mb2" style="">
+        <div class="flex flex-gutter-2-050 " style="height: 100%;">
+          {{$nexttwo := first 2 ( after 1 (intersect (where .Site.RegularPages.ByDate.Reverse "Section" "blog") (where .Site.RegularPages.ByDate.Reverse ".Params.frontpagehero" "!=" "true")))}}
+          {{ range $nexttwo }}
+
+          <div class="w-50 flex flex-col" style="height: 100%;">
+
+            {{ $img := .Resources.GetMatch "*featured*" }}
+            {{ $permalink := .RelPermalink }}
+            {{ with $img }}
+            {{ $small := .Resize "300x" }}
+            <div class="aspect sixteen-nine ">
+              <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
+
+                <a href="{{$permalink}}" class="link-over"></a>
+              </div>
+            </div>
+            {{end}}
+
+            <div class="gf9 flex1 p1 flex flex-col justify-between">
+
+
+              <h4 class="mt0"><a class="inv font-color bold" href="{{.RelPermalink}}">{{.Title}}</a></h4>
+              <ul class="unstyled small uppercase ">
+                {{- range .Params.categories -}}
+                <li class="mb0 com"><a class="inv normal g6-text" href="/categories/{{ . | urlize }}/">{{. }}</a></li>
+                {{- end -}}
+              </ul>
+
+            </div>
+          </div>
+
+          {{end}}
+        </div>
+      </div>
+    </div>
+
+

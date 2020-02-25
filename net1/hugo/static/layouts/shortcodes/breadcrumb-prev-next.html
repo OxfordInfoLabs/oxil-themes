@@ -1,0 +1,8 @@
+<div class="grid flex justify-between px1 px2l py150 {{.Get "class"}}" style="border-bottom: 1px solid #eee;">
+
+  <div class="breadcrumb hidden-sm ">{{ partial "breadcrumb" (dict "p1" .Page "p2" .Page)}}</div>
+  <a href="{{.Get "prev_url"}}" class="hidden-md inverse flex align-center" style="font-size: inherit"><i class="net-chevron-left" style="font-size: 1rem;"></i> {{.Get "prev"}}</a>
+
+  <a href="{{.Get "next_url"}}" class="hidden-md inverse flex align-center" style="font-size: inherit">{{.Get "next"}} <i class="net-chevron-right" style="font-size: 1rem;"></i></a>
+
+</div>

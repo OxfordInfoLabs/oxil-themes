@@ -1,0 +1,14 @@
+{{- with .Param "header-extras"}}
+{{- if eq "searchtools" . -}}
+<div id="searchtools" class=" pt1 px1 px2l grid flex align-center flex-wrap flex-row-reverse justify-end" >
+  <div class="w-40 flex mb050 mb0l">
+    {{ partial "searchbox-sm" (dict "context" . "inputcss" "borr0") }}
+    <button class="butlk inv flex align-center ml1 hidden-sm btn-filters-domain-search"  data-target="show">Filters <span data-state="hide" net-show="changedFilterCount | eval '>' 0">(<span net-html="changedFilterCount"></span>)</span><i class="net-chevron-down"></i></button>
+
+  </div>
+
+  <div class="flex w-sm align-center justify-between-sm pl1 pl0l mr1l"><span class="small-sm">Your search: <b net-html="request.domainsearch"></b> &bullet; <span net-html="filterValues.categories"></span><span net-hide="filterValues.categories" data-state="hide">Popular</span></span>
+    <button class=" hidden-md butlk inv flex align-center ml1 btn-filters-domain-search" data-target="show">Filters <span data-state="hide" net-show="changedFilterCount | eval '>' 0">({changedFilterCount})</span><i class="net-chevron-down"></i></button></div>
+</div>
+{{- end -}}
+{{- end -}}

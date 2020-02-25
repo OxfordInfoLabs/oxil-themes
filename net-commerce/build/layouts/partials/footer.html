@@ -1,0 +1,69 @@
+<footer class="bk mb0 flex1">
+
+  <div class="grid px1 px2l">
+    <div class="flex-grid align-center pt3 pb2 " style="border-bottom: 1px solid #555">
+      <div class="w-50"><div class=" flex align-center"><div class="b-cover mb0 ib" style="width: 132px; height: 44px;background-image: url('/images/netistrar-white.svg');"></div><span
+          class="semi white-text" style="font-size: 32px; padding-left: 0.15rem; margin-top: -2px;">Help</span></div>
+
+
+      </div>
+      <div class="w-50">
+        <p class="small white-text">We’re here to help. Looking for more information about signing up, our plans, how it works and
+          contact
+          information</p>
+
+        <a href="/help/" class="wh inv inv-link bold f4">Contact and Support <i class="net-chevron-right"
+                                                                                     style="font-size: 1rem"></i></a>
+      </div>
+
+
+    </div>
+    <div class="py2 flex-grid" style="border-bottom: 1px solid #555">
+      <div class="w-50">
+
+
+        <div class="mb2 b-cover" style="width: 90px; height: 91px;background-image: url('/images/icann-250.png');"></div>
+        <div class="b-cover" style="width: 90px; height: 98.27px;background-image: url('/images/nominet-250.png');"></div>
+
+
+      </div>
+      <div class="w-50 flex-grid">
+        <div class="w-50 pt2 pt0l">
+          <p class="flex justify-start"><a href="/about/how-it-works/" class="but butwh butwhbk" >How it works</a></p>
+
+
+          {{ $menu := .Site.Menus.footer1 }}
+          {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt1" "linkcss" "wh inv blk pb1") }}
+
+        </div>
+        <div class="w-50 pt2 pt0l">
+          <p class="flex justify-start">
+            <a href="/signup/" class="but butbk butbrwh"><span class="flex align-center">
+                      Register  <i class="net-chevron-right"></i>
+                    </span></a>
+          </p>
+
+          {{ $menu := .Site.Menus.footer2 }}
+          {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt1" "linkcss" "wh inv blk pb1") }}
+        </div>
+
+      </div>
+    </div>
+    <div class="py2 flex-grid">
+      <div class="w-50">
+        <p class="white-text">&copy; {{ dateFormat "2006" now }} Netistrar Limited.</p>
+        <p class="small muted-text">Registered in England and Wales No. 08735583</p>
+
+      </div>
+      <div class="w-50 flex-grid">
+        <p class="w-50"><a class="wh inv inv-link ib mr1" href="/terms/">Terms</a><a class="inv-link inv wh"
+                                                                      href="/terms/policies/privacy/">Privacy</a></p>
+        <p class="w-50"><a href="https://twitter.com/netistrar" class="wh net-twitter f4 inv "></a><a
+            href="https://www.facebook.com/netistrar" class="wh net-facebook f4 inv "></a><a
+            href="https://www.linkedin.com/company/netistrar-ltd/" class="wh net-linkedin f4 inv "></a></p>
+      </div>
+    </div>
+  </div>
+
+
+</footer>

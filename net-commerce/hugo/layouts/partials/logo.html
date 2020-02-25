@@ -1,0 +1,6 @@
+<div class="flex align-center"><a class="flex align-center inverse mr050" href="{{-  "/" | relLangURL }}" id="btn-brand">
+  <img class="hidden-sm hidden-md visible-desktop" src="/images/{{  if eq (.Scratch.Get "theme") "brand" }}{{.Site.Params.logo_rev}}{{else}}{{.Site.Params.logo}}{{end}}" height="{{ if eq (.Scratch.Get "theme") "brand" }}{{with .Site.Params.logo_rev_height}}{{.}}{{end}}{{else}}{{with .Site.Params.logo_height}}{{.}}{{end}}{{end}}" alt="{{.Site.Title}} logo">
+  <img class="hidden-dt" src="/images/{{ if eq (.Scratch.Get "theme") "brand" }}{{.Site.Params.logo_mini_rev}}{{else}}{{.Site.Params.logo_mini}}{{end}}" height="{{ if eq (.Scratch.Get "theme") "brand" }}{{with .Site.Params.logo_mini_rev_height}}{{.}}{{end}}{{else}}{{with .Site.Params.logo_mini_height}}{{.}}{{end}}{{end}}" alt="{{.Site.Title}} logo" >
+  </a>
+
+</div>

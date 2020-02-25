@@ -1,0 +1,16 @@
+{{- if .p1.Parent -}}
+{{- partial "breadcrumb" (dict "p1" .p1.Parent "p2" .p2 "linkclass" .linkclass "leafclass" .leafclass) -}}
+{{- else if not .p1.IsHome -}}
+{{- partial "breadcrumb" (dict "p1" .p1.Site.Home "p2" .p2  "linkclass" .linkclass "leafclass" .leafclass) -}}
+{{- end -}}
+{{- if eq .p1 .p2 -}}
+<span class="{{with .leafclass}}leaf {{.}}{{else}}leaf{{end}}">{{- .p1.LinkTitle -}}</span>
+{{- else -}}
+<a href="{{- .p1.Permalink -}}" class="{{with .linkclass}}{{.}}{{end}}">
+  {{- if .p1.IsHome -}}
+  {{- .p1.Site.Params.shorttitle -}}
+  {{- else -}}
+  {{- .p1.LinkTitle -}}
+  {{- end -}}
+</a>
+{{- end -}}

@@ -1,0 +1,12 @@
+{{ $prefix := "content"}}
+
+{{with .Get "prefix"}}
+{{ $prefix = .}}
+{{end}}
+
+{{ $resource := (.Page.Resources.GetMatch (printf "*%s*" $prefix))}}
+
+{{ with $resource }}
+{{ .Content | markdownify }}
+{{ end }}
+

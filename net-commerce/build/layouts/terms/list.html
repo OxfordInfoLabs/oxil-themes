@@ -1,0 +1,34 @@
+
+  {{ define "main" }}
+  <div class="grid ">
+    <div class="white mt2 pt4l px1 px3l pb4 mr2 mr4l flex-grid ">
+      <div id="terms-copy" class="w-75 pr4l">
+        <p class="mb4 hidden-md"><a href="#terms-menu" class="but butwh butwhbk butsm ic icr">Terms menu <i
+            class="net-chevron-down"></i></a></p>
+        <div class="breadcrumb small">{{ partial "breadcrumb" (dict "p1" . "p2" .)}}</div>
+        <h1>{{.Title}}</h1>
+        <p><i>{{T "lastupdated"}} {{dateFormat "Monday, Jan 2, 2006" .Date}}</i>
+        </p>
+        {{ .Content }}
+
+        <h3 class="normal">{{T "inthissection"}}</h3>
+        <div class="simple-menu mb4">
+          {{ range .Pages }}
+          {{if ne . $}}
+          <a class="normal blk inv mb050" href="{{ .Permalink }}">{{ .Title }}</a>
+          {{end}}
+          {{ end }}
+        </div>
+      </div>
+      <div class="w-25">
+        <div id="terms-menu" class="brand white-text f4 bold py050 px1">{{T "terms"}}</div>
+        {{ partial "terms/sidebar.html" . }}
+
+      </div>
+    </div>
+  </div>
+
+  {{ end }}
+
+
+

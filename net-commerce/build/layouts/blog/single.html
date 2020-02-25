@@ -1,0 +1,145 @@
+{{- define "bodytag" -}}
+<body id="body" class="blog">
+{{- end -}}
+{{- define "main" -}}
+<div class="gf9">
+  <div class="grid px1 px2l py2  " >
+    <div class="breadcrumb">
+      {{partial "breadcrumb" (dict "p1" . "p2" .) }}
+    </div>
+  </div>
+</div>
+    <div class="grid grid-medium px1  pt3 pb1" style="width: 100%;">
+      <ul class="unstyled small uppercase">{{ range .Params.categories }}<li class="mb0 com"><a class="inv normal" href="{{ "/categories/" | relLangURL }}{{ . | urlize }}/">{{.}}</a></li>{{ end }}</ul>
+
+
+      <h1 class=" mt0">{{ .Title }}</h1>
+      <div class="flex-grid align-center justify-between pt1 pb1">
+        <div class="flex align-center pb1">
+          <time class="small ga-text" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
+          {{ if ne .PublishDate .Lastmod }}Updated: {{end}}{{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
+          </time>
+        </div>
+        <p class="mb0 pb1">
+          <amp-social-share height="25" width="35" class="" type="twitter"></amp-social-share>
+          <amp-social-share height="25" width="35" class="" type="facebook"
+                            data-param-app_id="{{.Site.Params.facebookappid}}"></amp-social-share>
+          <amp-social-share height="25" width="35" class="" type="linkedin"></amp-social-share>
+        </p>
+
+      </div>
+
+
+    </div>
+    {{with .Params.youtube}}
+    <div>
+      <div class="grid grid-medium px1l">
+        <amp-youtube
+            data-videoid="{{.}}"
+            layout="responsive"
+            width="480" height="270" autoplay></amp-youtube>
+
+      </div>
+    </div>
+    {{- else -}}
+    <div class=" grid w-80">
+
+      {{- $img := .Resources.GetMatch "*featured*" -}}
+      {{- $permalink := .Permalink -}}
+      {{- with $img -}}
+      {{- $medium := .Resize "1200x" -}}
+      <div class="blog-img ">
+        <amp-img width="2" height="1" layout="responsive" src="{{$medium.RelPermalink}}"></amp-img>
+      </div>
+      {{- end -}}
+      {{- $caption := .Params.featuredcaption -}}
+      {{- with $caption -}}
+      <p class="grid grid-medium px1 px4l small italic mt050 px1">{{$caption}}</p>
+      {{- end -}}
+    </div>
+    {{- end -}}
+
+    <div class="grid grid-medium px1 pt4">
+      {{- .Content -}}
+    </div>
+    <div class="grid grid-medium px1 px4l py4">
+
+      <div class="flex-grid flex-gutter-2">
+        <div class="w-50 pt4 text-center">
+          {{- partial "blog/author-box" . -}}
+        </div>
+        <div class="w-50 flex flex-col justify-center align-center">
+          <p class="small"><b>{{T "published"}}:</b>
+            <time class=" g9-text" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.PublishDate)) }}">
+            {{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
+            </time>, {{ .WordCount }} {{T "words"}}.</p>
+          <p class="mb0 flex align-center">
+            <b class="mr1">{{T "share"}}</b>
+            <amp-social-share height="25" width="35" class="" type="twitter"></amp-social-share>
+            <amp-social-share height="25" width="35" class="" type="facebook"
+                              data-param-app_id="{{.Site.Params.facebookappid}}"></amp-social-share>
+            <amp-social-share height="25" width="35" class="" type="linkedin"></amp-social-share>
+          </p>
+
+        </div>
+      </div>
+    </div>
+{{- $related := newScratch -}}
+  {{- $related.Set "related" 0 -}}
+        {{- $page_link := .Permalink -}}
+        {{- $categories := .Params.categories -}}
+        {{- range $page := where .Site.Pages.ByDate.Reverse "Section" "blog" -}}
+        {{- $has_common_categories := intersect $categories .Params.categories | len | lt 0 -}}
+        {{- if and $has_common_categories (ne $page_link $page.Permalink) (lt ($.Scratch.Get "$c") 5) -}}
+        {{- $.Scratch.Add "$c" 1 -}}
+        {{- if (eq ($.Scratch.Get "$c") 1) -}}
+  {{- $related.Set "related" 1 -}}
+  <aside class="gf9 pt3 pb5 ">
+    <div class="grid grid-medium px1 px4l">
+      <h2>{{T "relatedarticles"}}</h2>
+      <div class="flex flex-wrap flex-gutter-2-050">
+        {{- end -}}
+        <div class="w-50 flex flex-col mb2">
+
+          {{- $img := $page.Resources.GetMatch "*featured*" -}}
+          {{- $permalink := $page.RelPermalink -}}
+          {{- with $img -}}
+          {{- $small := .Resize "600x" -}}
+          <div class="blog-img with-link">
+            <amp-img width="16" height="9" layout="responsive" src="{{$small.RelPermalink}}"></amp-img>
+            <a href="{{$permalink}}"></a>
+          </div>
+          {{- end -}}
+          <div class="white p2 flex flex-col justify-between flex1">
+            <h4 class="mt0 mb050"><a class="inv font-color bold" href="{{$page.RelPermalink}}">{{$page.Title}}</a>
+            </h4>
+            <ul class="unstyled small ">
+              {{- range $page.Params.categories -}}
+              <li class="com"><a class="inv normal g6-text" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>
+              {{- end -}}
+            </ul>
+          </div>
+        </div>
+        {{- end -}}
+        {{- end -}}
+        {{- if (eq ($related.Get "related") 1) -}}
+            </div>
+          </div>
+        </aside>
+        {{- end -}}
+  <div class="brand-lighter ">
+    <div class="grid grid-medium flex-grid flex-row-reverse px1 px1l py3">
+      {{- if .NextInSection -}}
+      <a href="{{.NextInSection.Permalink}}" class="inv white-text white-text-hover flex align-center flex1 mb3 mb0l" ><span class="flex1 text-right "><span class="normal">{{T "next"}}</span><br><span class="f4 bold">{{.NextInSection.Title}}</span></span><i class="net-chevron-right ml1" ></i></a>
+      {{- end -}}
+      {{- if .PrevInSection -}}
+      <a href="{{.PrevInSection.Permalink}}" class="inv white-text white-text-hover flex align-center flex1 " style=""><i class="net-chevron-left mr1" ></i> <span class="flex1"><span class="normal">{{T "previous"}}</span><br><span class="f4 bold">{{.PrevInSection.Title}}</span></span></a>
+      {{- end -}}
+    </div>
+  </div>
+{{- end -}}
+
+
+{{- define "bodyclose" -}}
+</body>
+{{- end -}}

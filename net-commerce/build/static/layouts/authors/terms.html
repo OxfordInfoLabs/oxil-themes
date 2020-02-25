@@ -1,0 +1,42 @@
+{{ define "bodytag"}}
+<body id="body" class="blog fixed-header flex flex-col" style="min-height: 100vh">
+
+{{ end }}
+
+
+{{ define "headertag"}}
+{{ partial "blog/header" . }}
+
+
+{{ end }}
+
+
+{{ define "main" }}
+<div class="gf9">
+  <div class="grid px1 px2l py2 flex " >
+    <div class="breadcrumb">
+      {{partial "breadcrumb" (dict "p1" . "p2" .) }}
+    </div>
+  </div>
+</div>
+<main class="flex1 white">
+
+  <div class="grid px1 px2l py5">
+
+    <h1 class="">{{.Title}}</h1>
+    {{.Content}}
+
+    {{ range .Data.Pages }}
+    <h4><a href="{{ .Permalink }}">{{ .Params.name }}</a></h4>
+    <p class="w-60">{{.Description}}</p>
+    {{ end }}
+
+
+  </div>
+
+</main>
+{{ end }}
+
+{{ define "bodyclose" }}
+</body>
+{{ end }}

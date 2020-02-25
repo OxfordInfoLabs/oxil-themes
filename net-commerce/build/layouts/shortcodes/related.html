@@ -1,0 +1,45 @@
+
+{{ $page_link := .Page.Permalink }}
+{{ $categories := .Page.Params.categories }}
+{{ $related_title := .Get "title" }}
+{{ range $page := where .Site.Pages.ByDate.Reverse "Section" "blog" }}
+{{ $has_common_categories := intersect $categories .Params.categories | len | lt 0 }}
+{{ if and $has_common_categories (ne $page_link $page.Permalink) (lt ($.Scratch.Get "$c") 5)}}
+{{ $.Scratch.Add "$c" 1 }}
+{{ if (eq ($.Scratch.Get "$c") 1)}}{{with $related_title}}<h2 class="mb2" >{{.}}</h2>{{end}}<div class="flex flex-wrap flex-gutter-2-050">{{end}}
+
+  <div class="w-50 flex flex-col mb2">
+
+
+    {{ $img := $page.Resources.GetMatch "*featured*" }}
+    {{ $permalink := $page.RelPermalink }}
+    {{ with $img }}
+    {{ $small := .Resize "600x" }}
+    <div class="aspect sixteen-nine two-one-sm">
+      <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
+
+        <a href="{{$permalink}}" class="link-over"></a>
+      </div>
+    </div>
+    {{end}}
+
+    <div class="ge flex1 p1 flex flex-col justify-between">
+
+      <div>
+        <ul class="unstyled comma-separated small uppercase ">
+          {{ range $page.Params.categories }}
+          <li><a class="inverse normal g6-text" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>
+          {{ end }}
+        </ul>
+        <h3 class="lh-title mt0 "><a class="inverse font-color bold" href="{{$page.RelPermalink}}">{{$page.Title}}</a>
+        </h3>
+      </div>
+      <time class="small muted" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date ($page.PublishDate)) }}">
+      {{ dateFormat "2 Jan, 2006" (default .Date ($page.PublishDate)) }}
+      </time>
+    </div>
+  </div>
+{{ end }}
+{{ end }}
+{{ if (gt ($.Scratch.Get "$c") 0)}}</div>{{end}}
+

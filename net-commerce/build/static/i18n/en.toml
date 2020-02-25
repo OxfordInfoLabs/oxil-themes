@@ -1,0 +1,76 @@
+[category]
+other = "Category"
+[categories]
+other = "Categories"
+[searchlabel]
+other = "Find a domain name, review trade prices"
+[allcategories]
+other = "All categories"
+[categoryall]
+other = "All"
+[published]
+other = "Published"
+[words]
+other = "Words"
+[share]
+other = "Share"
+[next]
+other = "Next"
+[previous]
+other = "Previous"
+[dashboard]
+other = "My Dashboard"
+[orders]
+other = "My Orders"
+[login]
+other = "Login"
+[signin]
+other = "Sign in"
+[register]
+other = "Register"
+[logout]
+other = "Logout"
+[signup]
+other = "Sign up"
+[help]
+other = "Help"
+[more]
+other = "More"
+[relatedarticles]
+other = "Related articles"
+[newcustomers]
+other = "New customers"
+[learnmore]
+other = "Learn more"
+[usefullinks]
+other = "Useful links"
+[foryou]
+other = "For you"
+[signedinuser]
+other = "Signed in user"
+[menu]
+other = "Menu"
+[language]
+other = "Language"
+[howitworks]
+other = "How it works"
+[registered]
+other = "Registered in England and Wales"
+[contactandsupport]
+other = "Contact and Support"
+[home]
+other = "Home"
+[terms]
+other = "Terms"
+[inthissection]
+other = "In this section"
+[lastupdated]
+other = "Last updated"
+[privacy]
+other = "Privacy"
+[readmore]
+other = "Read more"
+[blognews]
+other = "Blog & News"
+[blog]
+other = "Blog"
