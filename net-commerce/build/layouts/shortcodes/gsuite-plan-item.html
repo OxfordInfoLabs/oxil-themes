@@ -14,8 +14,8 @@
 
 
 
-<div class="w-33 flex flex-col mb3" style="min-width: 200px;">
-  <h5 class="normal py050 {{with $planColour}}{{.}}{{end}} white-text m0">{{$planpage.Params.plantitle}}</h5>
+<div class="w-33 flex flex-col mb3" >
+  <h5 class="normal py050 {{with $planColour}}{{.}}{{end}} {{with .Get "planheadingcolour"}}{{.}}{{else}}white-text{{end}} m0">{{$planpage.Params.plantitle}}</h5>
   <div class="flex1">
     <div class="gf9 px1 py1">
       <p style="min-height: 75px;">{{$planpage.Params.plandesc}}</p>

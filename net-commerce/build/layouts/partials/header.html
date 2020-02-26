@@ -32,7 +32,7 @@
 
       <div class="grid flex px1 px2l justify-between align-center">
 
-        <div class="flex align-center flex1 ">
+
           {{- partial "logo" . -}}
           <div class="flex flex1 justify-end align-center ">
               {{- $menu := .Site.Menus.top_bar -}}
@@ -43,20 +43,15 @@
               {{- partial "linksmenu.html" (dict "page" . "site" .Site  "ctx" $ "css" $linkcss "menu" $menu) -}}
 
           </div>
-        </div>
 
-        <div class="flex align-center justify-end" >
           <div class="flex align-center justify-end" data-state="hide" net-show="info.response">
             {{- partial "login-logout" . -}}
 
             <a net-show="info.cartItems" href="/cart/" class="btn-cart butlk inv mr075 rel {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}" data-state="hide" ><i class="net-cart-solid f4 mr050"></i><span
-                class="counter counter-sm">{info.cartItems}</span></a>
-          </div>
+                class="counter counter-sm">{info.cartItems}</span></a></div>
 
-            <button id="btn-sidebar" class="butlk pr050 pt1 inv {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}" data-target="show"><i class="net-menu-alt f3"></i></button>
+          <button id="btn-sidebar" class="butlk pr050 inv {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}" data-target="show"><i class="net-menu-alt f3"></i></button>
 
-
-        </div>
       </div>
 
 

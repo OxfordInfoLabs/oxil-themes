@@ -5,7 +5,7 @@
 {{- $medium := .Resize "1000x" -}}
 <div class="flex b-cover"
      style="background-image: url({{$medium.RelPermalink}});background-position: center 30%;height: 400px;">
-  <div class="grid grid-desktop w flex justify-start align-center">
+  <div class="grid w flex justify-start align-center">
     <div class="p2l px1 w-50">
       <div class="f1 white-text shadow semi mb050">{{- $.Page.Params.title -}}</div>
       <div class="f2 white-text normal mb2 mt050">{{- $.Page.Params.subtitle -}}</div>
@@ -25,7 +25,7 @@
 
 
 
-<div class="grid grid-desktop flex mt3 pb5">
+<div class="grid px1 px2l flex mt3 pb5">
   <div class="w-25 hidden-sm" style="background: transparent;">
     {{- partial "help/sidenav" . -}}
   </div>
