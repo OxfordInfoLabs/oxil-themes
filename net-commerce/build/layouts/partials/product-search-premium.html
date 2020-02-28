@@ -3,7 +3,10 @@
         <div class="flex-grid flex-wrap justify-between align-start ">
             <div>
                 <div class="{{if eq (.featured) "true"}}f3{{else}}f4{{end}} semi pt1 bw">{{with .itemSelector}}{ {{.}}.domainName} {{end}}<span class="availability-label f4 brand-text"></span>
-                </div></div>
+                </div>
+
+            <div class="vsmall red-text pt050 pb050l">This has been categorised by the Registry as a high-value premium domain name.</div>
+        </div>
 
             <div>
 
@@ -37,9 +40,14 @@
         </div>
 
 {{- if eq (.featured) "true" -}}
-<div class="g5-text borb1 borcc pb050 small mt1">The world's most popular domain name ending</div>
+<div class="mt1">
+    <div class="g5-text pb050 small " net-if="{{.itemSelector}}.tldDescription"
+         net-html="{{.itemSelector}}.tldDescription"></div>
+    <div class="vsmall bort1 borcc thin py050 ">This is a <span class='semi'>high quality</span> domain name: <span
+            class='semi'>Sought-after domain ending <span net-if="{{.itemSelector}}.prefixLength | eval '<' 15"> &bullet; <span
+            class='semi'>Less than 15 characters</span></span></div>
+</div>
 {{- end -}}
-        <div class="vsmall py050">This has been categorised by the Registry as a <span class="label label-brand white-text">premium</span> domain name.</div>
 
 
 </div>

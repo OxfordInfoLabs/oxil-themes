@@ -10,7 +10,6 @@
       <div class="{{if eq (.featured) "true"}}f3{{else}}f4{{end}} semi pt1 bw">{{with .itemSelector}}{ {{.}}.domainName} {{end}}<span class="availability-label hidden-sm {{if eq (.featured) "true"}}f4{{else}}f5{{end}} green-text"></span>
       </div>
 
-
         <div class="vsmall red-text pt050 pb050l">First year discounts on standard domains</div>
 
 
@@ -53,11 +52,15 @@
 
     </div>
 {{- if eq (.featured) "true" -}}
-    <div class="g5-text borb1 borcc pb050 small mt1" net-if="{{.itemSelector}}.tldDescription" net-html="{{.itemSelector}}.tldDescription"></div>
-<div class="vsmall thin py050">This is a <span class='semi'>high quality</span> domain name: <span class='semi'>Sought-after domain ending <span net-if="{{.itemSelector}}.prefixLength | eval '<' 15"> &bullet; <span class='semi'>Less than 15 characters</span></span></div>
-{{- else -}}
-
+<div class="mt1">
+    <div class="g5-text pb050 small " net-if="{{.itemSelector}}.tldDescription"
+         net-html="{{.itemSelector}}.tldDescription"></div>
+    <div class="vsmall bort1 borcc thin py050 ">This is a <span class='semi'>high quality</span> domain name: <span
+            class='semi'>Sought-after domain ending <span net-if="{{.itemSelector}}.prefixLength | eval '<' 15"> &bullet; <span
+            class='semi'>Less than 15 characters</span></span></div>
+</div>
 {{- end -}}
+
   </div>
   <div class="pt150 spinner-sm">
     <label class="rcheck mb0" net-if="{{.itemSelector}}.pricingType | eval '===' 'STANDARD'"><input
