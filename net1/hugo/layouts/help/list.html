@@ -62,10 +62,9 @@
         {{- $thumb := .Resources.GetMatch "*icon*" -}}
         {{- with $thumb -}}
        <div class="pr2">
-
-
-         <img src="{{- .RelPermalink -}}" alt="{{- $title -}} icon" width="60" >
-
+        <div class="help-svg">
+         {{- .Content | safeHTML -}}
+        </div>
        </div>
         {{- end -}}
        <div class="">
