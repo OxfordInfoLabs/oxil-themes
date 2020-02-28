@@ -1,9 +1,9 @@
 
-  <button id="btn-logout-menu" net-show="info.loggedInUser.displayName" class="butlk inv open-logout-menu mr1 flex align-center semi {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}" data-target="show" data-state="hide">
+  <button id="btn-logout-menu" net-show="info.loggedInUser.displayName" class="butlk inv open-logout-menu mr1 flex align-center medium {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}" data-target="show" data-state="hide">
     <span
       class="btn-text hidden-sm ellipsis " style="max-width: 130px;">{info.loggedInUser.displayName}</span><i class="net-user hidden-md f3"></i>
   </button>
-  <a href="/register/" id="btn-user-menu" net-hide="info.loggedInUser.displayName" data-state="hide" class="hidden-sm {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}} inv normal mr150" >Register</a>
+  <a href="/register/" id="btn-user-menu" net-hide="info.loggedInUser.displayName" data-state="hide" class="hidden-sm {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}} inv mr150 medium" >Register</a>
   <span class="hidden-sm ib mr1"><a href="/sign-in/" class="but but{{ if eq (.Scratch.Get "theme") "brand" }}br{{end}}wh inv " net-hide="info.loggedInUser.displayName" data-state="hide">{{T "signin"}}</a></span>
 
 

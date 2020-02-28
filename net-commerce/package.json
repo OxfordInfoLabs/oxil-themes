@@ -17,7 +17,7 @@
     "hugo:watch": "mkdir -p build; rsync -r ../net1/hugo/* build; rsync -r hugo/* build",
     "watch:webpack": "webpack --config webpack.config.js --watch",
     "watch:npm": "npm-watch hugo:watch",
-    "watch": "run-p --print-label watch:**"
+    "watch": "rm -rf build; run-p --print-label watch:**"
   },
   "author": "",
   "license": "ISC",
