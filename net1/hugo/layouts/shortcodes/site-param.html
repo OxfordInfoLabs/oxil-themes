@@ -2,6 +2,6 @@
 {{- $siteParams := .Site.Params -}}
 {{- with $paramName -}}
 {{- with $siteParams -}}
-{{- index . (lower $paramName) -}}
+{{- index . (lower $paramName) | safeHTML -}}
 {{- end -}}
 {{- end -}}
