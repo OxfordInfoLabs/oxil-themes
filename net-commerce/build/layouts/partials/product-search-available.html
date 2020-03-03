@@ -10,7 +10,12 @@
       <div class="{{if eq (.featured) "true"}}f3{{else}}f4{{end}} semi pt1 bw">{{with .itemSelector}}{ {{.}}.domainName} {{end}}<span class="availability-label hidden-sm {{if eq (.featured) "true"}}f4{{else}}f5{{end}} green-text"></span>
       </div>
 
-<!--        <div class="vsmall red-text pt050 pb050l">First year discounts on standard domains</div>-->
+
+        <div class="vsmall red-text pt050 pb050l" net-if="{{.itemSelector}}.offers.length | eval '>' 0">
+            <span net-each-offer="{{.itemSelector}}.offers">
+                {offer}.&nbsp;
+            </span>
+        </div>
 
 
       </div>
