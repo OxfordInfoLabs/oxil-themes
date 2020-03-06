@@ -1,0 +1,64 @@
+
+
+<div class="grid px1 px2l pb5 pt4">
+  <kc-cart>
+    <div class="flex flex-row-reverse">
+      <div id="checkout-widget-wrap" class="pl1l" >
+        {{ partial "checkout/checkout-widget" (dict "bigbuttext" "Checkout" "bigbutlink" "/checkout/") }}
+      </div>
+      <div class="w-75 pr1l">
+        <h1 class="f3 mb150 semi">Viewing cart</h1>
+        <div class="overflow-x">
+          <table class="table table-cart white" >
+            <thead>
+            <tr><td colspan="3" class="spacer"></td></tr>
+            <tr>
+              <th width="66%" class="thin borr1 bordd py025">Item
+              </th>
+              <th class="text-right thin borr1 bordd py025">Price</th>
+              <th></th>
+            </tr>
+            <tr><td colspan="3" class="spacer"></td></tr>
+            </thead>
+            <tbody ka-each-item="cart.items" >
+            <tr><td colspan="3" class="spacer"></td></tr>
+            <tr>
+              <td class="borr1 bordd py025">
+
+                <div class="bold">{item.title}</div>
+                <div ka-show="item.subtitle">{item.subtitle}</div>
+                <div class="tiny" ka-show="item.description">{item.description}</div>
+                <div class="tiny" ka-each-subitem="item.subItems">
+                  - {subitem.title}: {subitem.quantity}
+                </div>
+
+
+                <div class="pt050"><button class="delete" >delete x</button></div>
+
+              </td>
+              <td class="text-right borr1 bordd py025 " >{item.total}
+              </td>
+              <td>
+                <a ka-href="/hosting/static/configure?cartItem={$index}" class="vsmall normal" ka-if="item.type | eval '===' 'static'">edit plan</a>
+              </td>
+            </tr>
+            <tr><td colspan="3" class="spacer"></td></tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th colspan="2" class="text-right-lg ">
+                <div class="pt1 pb2"><span class="semi pr1">Total ex. VAT</span><span
+                    class="f3 semi py2">{cart.subtotal}</span></div>
+
+              </th>
+              <th></th>
+            </tr>
+            </tfoot>
+
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </kc-cart>
+</div>

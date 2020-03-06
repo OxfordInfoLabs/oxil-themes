@@ -1,0 +1,66 @@
+<footer class="bk mb0 flex1">
+
+  <div class="grid px1 px2l">
+    <div class="flex-grid align-center pt3 pb2 " style="border-bottom: 1px solid #555">
+      <div class="w-50"><div class=" flex align-center pb2">
+        <div class="b-cover mr050" style="width: {{.Site.Params.logo_rev_width}}px; height: {{.Site.Params.logo_rev_height}}px;background-image: url('/images/{{.Site.Params.logo_rev}}');"></div>
+</div>
+
+
+      </div>
+      <div class="w-50">
+        <p class="small">{{.Site.Params.contactinfofooter}}</p>
+
+        <a href="/help/" class="inv wh inverse-link bold f4">{{T "contactandsupport"}} <i class="net-chevron-right"></i></a>
+      </div>
+
+    </div>
+    <div class="py2 flex-grid borb1 borcc" >
+      <div class="w-50">
+        <p class="ga-text">{{.Site.Params.shorttitle}} is a reseller of Netistrar Limited, an ICANN Accredited Registrar.</p>
+        <div class="flex">
+
+          <div class="mb2 b-cover mr2" style="width: 90px; height: 91px;background-image: url('/images/icann-250.png');"></div>
+          <div class="b-cover" style="width: 90px; height: 98.27px;background-image: url('/images/nominet-250.png');"></div>
+
+        </div>
+
+      </div>
+      <div class="w-50 flex-grid">
+        <div class="w-50 pt2 pt0l">
+          <p class="flex justify-start"><a href="/about/how-it-works/" class="but butwh butwhbk" style="background-color: white;color: black;">{{T "howitworks"}}</a></p>
+
+
+          {{ $menu := .Site.Menus.footer1 }}
+          {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt1" "linkcss" "brand-pale-text normal inv blk pb1") }}
+
+        </div>
+        <div class="w-50 pt2 pt0l">
+          <p class="flex justify-start">
+            <a href="/signup/" class="but butbk butbrwh "><span class="flex align-center">Register  <i class="net-arrow-right"></i>
+                    </span></a>
+          </p>
+
+          {{ $menu := .Site.Menus.footer2 }}
+          {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt1" "linkcss" "brand-pale-text normal inv blk pb1") }}
+        </div>
+
+      </div>
+    </div>
+    <div class="py2 flex-grid">
+      <div class="w-50">
+        <p class="ga-text">&copy; {{ dateFormat "2006" now }} {{.Site.Params.copyright}}. All rights reserved.</p>
+
+      </div>
+      <div class="w-50 flex-grid">
+        <p class="w-50"><a class="inv brand-pale-text normal ib mr1" href="/terms/">{{T "terms"}}</a><a class="inv brand-pale-text normal" href="/terms/policies/privacy/">{{T "privacy"}}</a></p>
+        <p class="w-50 f3">{{with .Site.Params.twitter}}<a href="{{.}}" class="net-twitter brand-pale-text f4 inv "></a>{{end}}{{with .Site.Params.facebook}}<a
+            href="{{.}}" class="net-facebook brand-pale-text f4 inv "></a>{{end}}{{with .Site.Params.youtube}}<a
+            href="{{.}}" class="net-youtube brand-pale-text f4 inv "></a>{{end}}{{with .Site.Params.linkedin}}<a
+            href="{{.}}" class="net-linkedin brand-pale-text f4 inv "></a>{{end}}</p>
+      </div>
+    </div>
+  </div>
+
+
+</footer>

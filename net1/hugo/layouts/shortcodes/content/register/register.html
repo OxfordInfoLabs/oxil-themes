@@ -1,0 +1,119 @@
+
+
+<!--<div class="flex justify-center">-->
+<!--<div class="brand ib px1 py150">-->
+<!--<img src="/images/netistrar-white.svg" height="40" alt="Netistrar white logo">-->
+<!--</div>-->
+<!--</div>-->
+<div class="black white-text pt1 pb3 px1 px2l"><h1 class="f2 normal text-center white-text pb1">Register with {{.Site.Title}}</h1>
+  <div class="ge-text f5 thin px1 text-center">Safe, reliable, UK web services and domains.</div>
+</div>
+
+
+<div class="grid grid-desktop white my4 px1 px2l">
+
+  <ka-register data-activation-url="/register/activate" data-success-url="/register/activated">
+
+    <form action="">
+      <div class="pb2 pb1l flex-grid ">
+        <div class="w-50">
+          <label class="text-right-lg blk pr4l bold pb050 pb025l" for="email">What's your email address?</label>
+          <p class="vsmall g8-text pr4l text-right-lg ">We'll use this as the only authoritative email address for this account.</p>
+        </div>
+        <div class="flex1">
+          <input id="email" type="text" class="email-field w"
+                 data-email-field
+                 placeholder="e.g. maria@mydomain.uk" autocomplete="false"
+                 style="margin-bottom: 0;">
+          <div class="red-text pb1" data-state="hide" data-email-error></div>
+        </div>
+
+      </div>
+      <div class="pb2 pb1l flex-grid">
+        <div class="w-50">
+
+          <label for="password" class="text-right-lg blk pr4l bold pb050 pb025l">Choose a password</label>
+          <p class="vsmall g8-text pr4l text-right-lg">This is your main security password - keep this secret.</p>
+        </div>
+        <div class="flex1">
+          <input id="password" class="password-field bor1 w"
+                 data-password-field
+                 type="password" placeholder="**********"  autocomplete="new-password">
+          <div class="red-text pb1" data-state="hide" data-password-error></div>
+        </div>
+
+      </div>
+      <div class="pb2 pb1l flex-grid">
+        <div class="w-50">
+          <label class="text-right-lg blk pr4l bold pb050 pb025l" for="correspondencename-field">What shall we call you?</label>
+          <p class="vsmall g8-text pr4l text-right-lg">This may be a personal, department, brand or other name for us address you.</p>
+        </div>
+        <div class="flex1">
+          <input id="correspondencename-field" type="text" class="correspondencename-field w"
+                 data-name-field
+                 title="No special characters"
+                 placeholder="e.g. John Smith" autocomplete="false" >
+          <div class="red-text pb1" data-state="hide" data-name-error></div>
+        </div>
+
+      </div>
+      <div class="pb2 pb1l flex-grid">
+        <div class="w-50">
+          <label class="text-right-lg blk pr4l bold pb050 pb025l" for="accountname">Enter a name for the account</label>
+          <p class="vsmall g8-text pr4l text-right-lg">This is your personal name or company, group or organisation. You can change this later.</p>
+        </div>
+        <div class="flex1">
+          <input id="accountname" type="text" class="username-field w" title="No special characters"
+                 data-accountname-field
+                 placeholder="e.g. My Company Ltd"  >
+          <div class="red-text pb1" data-state="hide" data-accountname-error></div>
+        </div>
+
+      </div>
+
+      <div class="pb2 flex-grid">
+        <div class="w-50"></div>
+        <div class="flex1">
+          <ka-recaptcha></ka-recaptcha>
+          <div class="red-text small pt1" data-state="hide" data-recaptcha-error></div>
+        </div>
+
+      </div>
+
+      <div class="flex-grid" >
+        <div class="w-50"></div>
+        <div class="flex1 small">
+          <label class="rcheck mb2 blk aleft"><input type="checkbox" checked="checked">
+            <span class="checkmark"></span> I agree to be bound by the&nbsp;<a href="/terms/">Terms and
+              Conditions</a> and <a href="/privacy/">Privacy Policy</a>.
+          </label>
+          <!--        <label class="rcheck">In addition to receiving security and account notifications, I'd like to here about <b>new features, products, offers and other news from Oxford-->
+          <!--          Cyber.</b>-->
+
+          <!--          <input type="checkbox" >-->
+          <!--          <span class="checkmark"></span>-->
+          <!--        </label>-->
+        </div>
+      </div>
+      <div class="flex-grid ">
+        <div class="w-50"></div>
+        <div class="flex1">
+          <div class="pt2">
+            <button type="submit" class="submit-button but butgn chevron-right w" >Start using Oxford Cyber products now</button>
+            <button type="submit" class="hidden-submit" data-state="hide">Hidden</button>
+          </div>
+          <div class="red-text" data-state="hide">An error occurred during registration, please try again later.</div>
+          <div class="pt2 ">Already have an account?&nbsp;<a class="inverse" href="/sign-in/">Sign in</a>.</div>
+        </div>
+
+      </div>
+
+
+    </form>
+
+  </ka-register>
+
+
+
+
+</div>

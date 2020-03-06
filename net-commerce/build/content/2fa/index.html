@@ -1,0 +1,82 @@
+---
+title: 'Two Factor Authentication'
+date: '2018-11-19T15:55:46Z'
+description: "Two factor authentication where this is enabled in accounts."
+tags: []
+categories: []
+noindex: 'true'
+theme: brand
+css: "#closelink{position: absolute;right: 1rem;}"
+footercta: false
+
+---
+
+<div class="black white-text">
+
+    <div class="px1 px2l text-center pt1 pb3 ">
+        <h1 class="f2 normal white-text pb1">Two Factor Authentication</h1>
+        <div class="grid grid-small ge-text f5 thin px1 text-center lh12">Enter the Two Factor Authentication code from
+            your Google Authenticator App.
+        </div>
+    </div>
+
+
+</div>
+
+<div class="grid grid-desktop white my4 px1 px2l">
+
+    <ka-2fa>
+
+        <form data-2fa>
+
+            <div class="pb2 flex-grid ">
+                <div class="w-40">
+                    <label class="text-right-lg blk pr4l bold pb050 pb025l" for="2fa">Enter your two factor google
+                        authenticator code</label>
+                </div>
+                <div class="flex1">
+                    <input id="2fa" name="2fa" type="text" class="w"
+                           data-2fa-field
+                           placeholder="e.g. maria@mydomain.uk" autocomplete="username"
+                           style="margin-bottom: 0;">
+
+                    <p class="red-text small" data-state="hide" data-2fa-error></p>
+                    <p class="red-text small" data-state="hide" data-general-error></p>
+                </div>
+
+            </div>
+            <div class="pb2 flex-grid" data-state="hide">
+                <div class="w-40"></div>
+                <div class="flex1">
+                    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                </div>
+
+            </div>
+
+            <div class="flex-grid ">
+                <div class="w-40"></div>
+                <div class="flex1">
+                    <div class="flex-grid align-center">
+                        <button type="submit" class="but butgn chevron-right login-action" model="loginStatus">Submit code
+                        </button>
+                    </div>
+                    <div class="red-text" data-state="hide">An error occurred during registration, please try again
+                        later.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+    </ka-2fa>
+    <div data-state="hide">
+
+        <div class="text-center f5 lh13 mb3"><i class="net-envelope pr1"></i><span>Password reset email sent. Please check your email for further instructions</span>
+        </div>
+        <div class="f5 text-center"><a class="inv" href="/">Close <i class="net-close"></i></a></div>
+
+    </div>
+</div>

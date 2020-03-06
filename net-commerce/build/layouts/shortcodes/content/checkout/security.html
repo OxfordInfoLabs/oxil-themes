@@ -1,0 +1,25 @@
+{{partial "checkout/checkout-progress" (dict "active2" "true") }}
+<div class="">
+
+  <div class="px1 px2l text-center pb1 pt3 grid">
+
+    <h1 class="f2 normal  pb1">{{.Site.Title}}</h1>
+    <div class="grid grid-small g5-text f5 thin px1 text-center lh12">Enter your username or email address and password or click to register a new account.</div>
+  </div>
+
+
+</div>
+
+<div class="grid flex-grid white mt2 mb4 px1 px2l">
+  <div class="w-66 bor1 bordd borrt-lg borbt-sm p150">
+    <h5 class=" mb2">Already have an account?</h5>
+    {{partial "sign-in/sign-in" . }}
+
+  </div>
+  <div class="w-33 ge bor1 boree flex justify-center align-center py2">
+
+    <a href="/register/" class="but">Register a new account</a>
+  </div>
+
+</div>
+

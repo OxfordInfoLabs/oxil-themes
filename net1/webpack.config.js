@@ -1,15 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
-const ROOT = path.resolve(__dirname, 'ts');
+const ROOT = path.resolve(__dirname, 'src');
 const DESTINATION = path.resolve(__dirname, 'dist');
 
 module.exports = {
     context: ROOT,
 
     entry: {
-        'OxilThemesNet1': 'index.ts'
+        'Net1': 'net1.ts'
     },
 
     module: {
@@ -18,12 +19,17 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: ['ts-loader','uglify-template-string-loader'],
                 exclude: /node_modules/
+            },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                exclude: ["/node_modules/", "/src/blog.sass", "/assets/"],
+                use: ["style-loader", MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"]
             }
         ]
     },
 
    output: {
-        library: 'OxilThemesNet1',
+        library: 'Net1',
         libraryTarget: 'umd',
         libraryExport: 'default',
         filename: 'net1.js',
@@ -36,6 +42,11 @@ module.exports = {
             'node_modules'
         ]
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "net1.css"
+        })
+    ],
     mode: "production"
 };
 

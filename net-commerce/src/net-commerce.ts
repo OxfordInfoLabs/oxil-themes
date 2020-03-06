@@ -1,4 +1,4 @@
-import "../../net1/src/net1";
+import "../../net1/src/net1-base";
 import * as queryString from '../node_modules/query-string/index';
 import NetistrarWhiteLabel from "../../../netistrar/whitelabel/ts/index";
 
