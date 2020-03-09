@@ -1,0 +1,82 @@
+{{$tldsearch := .Get "tldSearch"}}
+{{$more := .Get "more"}}
+
+{{ if eq $tldsearch "tld" }}
+<!--<div class="flex mb4 search-group w-50"><input type="text" class="tld-filter-field flex1 f4 pl1" placeholder="Filter domain endings" net-value="tldFilterValue"  />-->
+<!--  <button class="white-text f5 tld-filter-value" >Filter</button></div>-->
+{{ end }}
+
+<net-more-loader data-url="/domains/{{ $tldsearch }}">
+
+<div class="overflow-x">
+  <table class="tiers-table table tfixed min500 cells small t-center-0111">
+    <colspan>
+      <col>
+      <col>
+      <col class="brand-lighter">
+      <col class="brand ">
+    </colspan>
+    <tr>
+      <td class="w-33 w-auto-sm gf9"></td>
+      <td class="gf9 semi">Registration</td>
+      <td class="border30 white-text semi">Renewal</td>
+      <td class="border30 white-text semi">Transfer</td>
+    </tr>
+    <tr>
+      <td class="border-b0 border-l0"></td>
+      <td class="">
+        <div class="pt150">Current registration price</div>
+        <div class="py075 f4 ">1 year</div>
+
+      </td>
+      <td class="border30 white-text py075">
+        <div class="pt150">Current renewal price</div>
+        <div class="py075 f4 ">+ 1 year</div>
+      </td>
+      <td class="border30 white-text">
+        <div class="pt150">One-off transfer fee</div>
+        <div class="py075 small gc-text">if applicable</div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="border-l0 border-t0  "><h4 class="mb025 pt3">Domain names</h4></td>
+      <td class="border30"></td>
+      <td class="border30"></td>
+    </tr>
+
+    <tr net-each-tld="moreResults">
+      <td net-if="$index | eval '==' 0" class="border-l0 border-b0 vtop">Best selling, classic domains </td>
+      <td net-if="$index | eval '>' 0" class="border-b0 border-l0"></td>
+      <td>
+        <div class="pt1"><img net-src="tld.imageAsBase64" alt="" height="42" net-if="tld.imageAsBase64"/><span
+                net-hide="tld.imageAsBase64">.{tld.tld}</span></div>
+        <div class="f4 py025 semi" net-hide="tld.originalRegistrationPrice">&pound;{tld.registrationPrice}</div>
+        <div class="red-text f4 py025 semi" net-if="tld.originalRegistrationPrice">&pound;{tld.registrationPrice}</div>
+        <div class="vsmall strike thin ga-text" net-if="tld.originalRegistrationPrice">&pound;{tld.originalRegistrationPrice}</div>
+        <div class="tiny pb050">1 Year Registration</div>
+        <div net-each-offer="tld.offers" class="red-text vsmall thin lh13 pb050">{offer}</div>
+
+      </td>
+      <td class="border30 white-text">
+        <div class="pt1"><img net-src="tld.imageAsBase64" alt="" height="42" net-if="tld.imageAsBase64" class="f-white"/><span
+                net-hide="tld.imageAsBase64">.{tld.tld}</span></div>
+        <div class="f4 py025 semi" >&pound;{tld.renewalPrice}</div>
+        <div class="tiny pb050">1 Year Renewal</div>
+      </td>
+      <td class="border30 white-text">
+        <div class="pt1"><img net-src="tld.imageAsBase64" alt="" height="42" net-if="tld.imageAsBase64" class="f-white"/><span
+                net-hide="tld.imageAsBase64">.{tld.tld}</span></div>
+        <div class="f4 py025 semi" >&pound;{tld.transferPrice}</div>
+        <div class="tiny pb050">Transfer fee</div>      </td>
+    </tr>
+    {{ if $more }}
+    <tr>
+      <td class="border-l0 border-t0 border-b0" ></td>
+      <td colspan="3" class="border-l0 border-t0 text-center "><a
+              href="javascript:void(0)" class="uppercase inv ib py150 more-results">View more prices <i class="net-chevron-down"></i></a></td>
+
+    </tr>
+    {{ end }}
+  </table>
+</div>
+</net-more-loader>
