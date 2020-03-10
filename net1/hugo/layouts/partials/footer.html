@@ -1,65 +1,58 @@
-<footer class="bk mb0 flex1">
+
+<footer class="bk mb0 flex1 pt2 pb5">
 
   <div class="grid px1 px2l">
-    <div class="flex-grid align-center pt3 pb2 " style="border-bottom: 1px solid #555">
-      <div class="w-50"><div class=" flex align-center pb2">
-        <div class="b-cover mr050" style="width: {{.Site.Params.logo_rev_width}}px; height: {{.Site.Params.logo_rev_height}}px;background-image: url('/images/{{.Site.Params.logo_rev}}');"></div>
-</div>
-
+    <div class="flex-grid flex-row-reverse ">
+      <div class="hidden-md semi white-text text-center pb1">{{with .Site.Params.footerstrap}}{{.}}{{end}}</div>
+      <div class="w-25 pt1">
+        {{if ne (.Page.Param "footercta") false}}<a href="/register/" class="but butgn w">Register a new account <i class="net-tickbox"></i></a>{{end}}
+        <p class="brandsubtle-text text-center-sm pt2">Connect with us</p>
+        <p class="f2 text-center-sm">{{with .Site.Params.twitter}}<a href="{{.}}" class="net-twitter brand-pale-text inv "></a>{{end}}{{with .Site.Params.facebook}}<a
+            href="{{.}}" class="net-facebook brand-pale-text inv "></a>{{end}}{{with .Site.Params.youtube}}<a
+            href="{{.}}" class="net-youtube brand-pale-text inv "></a>{{end}}{{with .Site.Params.linkedin}}<a
+            href="{{.}}" class="net-linkedin brand-pale-text inv "></a>{{end}}</p>
 
       </div>
-      <div class="w-50">
-        <p class="small">{{.Site.Params.contactinfofooter}}</p>
+      <div class="w-75">
+        <div class="white-text semi hidden-sm pt1 pb3">{{with .Site.Params.footerstrap}}{{.}}{{end}}</div>
+        <div class="flex flex-wrap">
+          <div class="w-33 pb2">
+            <p class="brandsubtle-text mb0 text-center-sm">{{with .Site.Params.footer1title}}{{.}}{{end}}</p>
+            {{ $menu := .Site.Menus.footer1 }}
+            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
+          </div>
+          <div class="w-33 pb2">
+            <p class="brandsubtle-text mb0 text-center-sm">{{with .Site.Params.footer2title}}{{.}}{{end}}</p>
+            {{ $menu := .Site.Menus.footer2 }}
+            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
+          </div>
+          <div class="w-33 pb2">
+            <p class="brandsubtle-text mb0 text-center-sm">{{with .Site.Params.footer3title}}{{.}}{{end}}</p>
+            {{ $menu := .Site.Menus.footer3 }}
+            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
+          </div>
+          <div class="w-33"pb2>
+            <p class="brandsubtle-text mb0 text-center-sm">{{with .Site.Params.footer4title}}{{.}}{{end}}</p>
+            {{ $menu := .Site.Menus.footer4 }}
+            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
+          </div>
 
-        <a href="/help/" class="inv wh inverse-link bold f4">{{T "contactandsupport"}} <i class="net-chevron-right"></i></a>
-      </div>
-
-    </div>
-    <div class="py2 flex-grid borb1 borcc" >
-      <div class="w-50">
-        <p class="ga-text">{{.Site.Params.shorttitle}} is a reseller of Netistrar Limited, an ICANN Accredited Registrar.</p>
-        <div class="flex">
-
-          <div class="mb2 b-cover mr2" style="width: 90px; height: 91px;background-image: url('/images/icann-250.png');"></div>
-          <div class="b-cover" style="width: 90px; height: 98.27px;background-image: url('/images/nominet-250.png');"></div>
 
         </div>
 
+
       </div>
-      <div class="w-50 flex-grid">
-        <div class="w-50 pt2 pt0l">
-          <p class="flex justify-start"><a href="/about/how-it-works/" class="but butwh butwhbk" style="background-color: white;color: black;">{{T "howitworks"}}</a></p>
 
+    </div>
 
-          {{ $menu := .Site.Menus.footer1 }}
-          {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt1" "linkcss" "brand-pale-text normal inv blk pb1") }}
-
-        </div>
-        <div class="w-50 pt2 pt0l">
-          <p class="flex justify-start">
-            <a href="/signup/" class="but butbk butbrwh "><span class="flex align-center">Register  <i class="net-arrow-right"></i>
-                    </span></a>
-          </p>
-
-          {{ $menu := .Site.Menus.footer2 }}
-          {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt1" "linkcss" "brand-pale-text normal inv blk pb1") }}
-        </div>
-
+    <div class="flex-grid justify-end">
+      <div ><div class="text-right text-center-sm pt3 pb1 pt0l"><img src="/images/{{.Site.Params.logo_mini_rev}}" height="{{.Site.Params.logo_mini_rev_height}}"></div>
+        <p class="brandsubtle-text vsmall text-right text-center-sm mb0 pb025">{{.Site.Params.contractingCompany}} &copy; {{ dateFormat "2006" now }} {{.Site.Params.copyright}}. All rights reserved.</p>
+        <p class="brandsubtle-text vsmall text-right text-center-sm">{{with .Site.Params.companyFooter}}{{.}}{{else}}{{.Site.Params.address | safeHTML}}{{end}}</p>
       </div>
     </div>
-    <div class="py2 flex-grid">
-      <div class="w-50">
-        <p class="ga-text">&copy; {{ dateFormat "2006" now }} {{.Site.Params.copyright}}. All rights reserved.</p>
 
-      </div>
-      <div class="w-50 flex-grid">
-        <p class="w-50"><a class="inv brand-pale-text normal ib mr1" href="/terms/">{{T "terms"}}</a><a class="inv brand-pale-text normal" href="/terms/policies/privacy/">{{T "privacy"}}</a></p>
-        <p class="w-50 f3">{{with .Site.Params.twitter}}<a href="{{.}}" class="net-twitter brand-pale-text f4 inv "></a>{{end}}{{with .Site.Params.facebook}}<a
-            href="{{.}}" class="net-facebook brand-pale-text f4 inv "></a>{{end}}{{with .Site.Params.youtube}}<a
-            href="{{.}}" class="net-youtube brand-pale-text f4 inv "></a>{{end}}{{with .Site.Params.linkedin}}<a
-            href="{{.}}" class="net-linkedin brand-pale-text f4 inv "></a>{{end}}</p>
-      </div>
-    </div>
+
   </div>
 
 
