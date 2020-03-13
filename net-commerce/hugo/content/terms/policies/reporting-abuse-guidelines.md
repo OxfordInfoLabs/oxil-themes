@@ -1,13 +1,12 @@
 ---
 title: "Reporting Abuse Guidelines"
-date: "2020-03-02"
+date: "2020-03-11"
+lastmod: "2020-03-11"
 description: ""
 tags: 
 categories: 
-menu: ""
 aliases: 
- - 
-   "/policies/reporting-abuse-guidelines/"
+ -  "/policies/reporting-abuse-guidelines/"
 stylefiles: 
 - sidemenu
 ---
@@ -19,7 +18,7 @@ If you are the registrant of a domain name for which Netistrar is the official r
 There are different types of abuse, and this page has some advice on the best resources to report.
 
 ## 1. Infringement of intellectual property rights.
-If you believe that a domain name or its use infringes against intellectual property rights, please contact {{< site-param "shorttitle" >}} or domain name agent.  Our Domain Name Registrar - Netistrar, as an accredited Registrar offers support to Registrants where they are unable to obtain help from their own reseller/domain name agent. If you encounter difficulty please contact legal@netistrar.com. You should also contact this address if you would like to request us to reveal the underlying registrant data behind a privacy/proxy WHOIS registration.  You will need to provide the reasons why you are requesting the data, for example that you wish to contact the registrant to make a complaint under a dispute resolution process.
+If you believe that a domain name or its use infringes against intellectual property rights, please contact {{< site-param "shorttitle" >}} or domain name agent first and we will do our best to assist you in resolving the problem.  If we are unable to resolve the issue, you may then contact legal@netistrar.com. You should also contact this address if you would like to request us to reveal the underlying registrant data behind a privacy/proxy WHOIS registration.  You will need to provide the reasons why you are requesting the data, for example that you wish to contact the registrant to make a complaint under a dispute resolution process.
 
 There are various forms of alternative dispute resolution for domain names, including the [Uniform Domain Name Dispute Resolution Process](http://www.wipo.int/amc/en/domains/), which affects .com and other generic Top Level Domains. For .uk domains, the relevant service is [Nominet’s Dispute Resolution Service](http://www.nominet.org.uk/disputes).  If you would like further information about making or defending a domain name dispute, you can get further advice by contacting .
 
