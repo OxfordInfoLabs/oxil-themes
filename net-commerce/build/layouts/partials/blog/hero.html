@@ -3,7 +3,7 @@
 
 
 
-<div class="flex flex-wrap " >
+<div class="flex flex-wrap gf9" >
 
   {{- with .Params.youtubeid -}}
   <div class="w-60" >
@@ -14,7 +14,7 @@
     </amp-youtube>
   </div>
   {{- else -}}
-<div class="w-60 with-link " >
+<div class="w-60 with-link gf9" >
   {{ $img := .Resources.GetMatch "*featured*" }}
   {{ with $img }}
   {{ $big := .Resize "2000x" }}
