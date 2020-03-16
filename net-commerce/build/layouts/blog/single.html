@@ -49,7 +49,7 @@
       {{- with $img -}}
       {{- $medium := .Resize "1200x" -}}
       <div class="blog-img ">
-        <amp-img width="2" height="1" layout="responsive" src="{{$medium.RelPermalink}}"></amp-img>
+        <amp-img width="2" height="1" layout="responsive" src="{{.RelPermalink}}"></amp-img>
       </div>
       {{- end -}}
       {{- $caption := .Params.featuredcaption -}}
