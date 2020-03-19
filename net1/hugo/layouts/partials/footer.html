@@ -5,7 +5,7 @@
     <div class="flex-grid flex-row-reverse ">
       <div class="hidden-md semi white-text text-center pb1">{{with .Site.Params.footerstrap}}{{.}}{{end}}</div>
       <div class="w-25 pt1">
-        {{if ne (.Page.Param "footercta") false}}<a href="/register/" class="but butgn w">Register a new account <i class="net-tickbox"></i></a>{{end}}
+        {{if ne (.Page.Param "footercta") "false"}}<a href="/register/" class="but butgn w">Register a new account <i class="net-tickbox"></i></a>{{end}}
         <p class="brandsubtle-text text-center-sm pt2">Connect with us</p>
         <p class="f2 text-center-sm">{{with .Site.Params.twitter}}<a href="{{.}}" class="net-twitter brand-pale-text inv "></a>{{end}}{{with .Site.Params.facebook}}<a
             href="{{.}}" class="net-facebook brand-pale-text inv "></a>{{end}}{{with .Site.Params.youtube}}<a

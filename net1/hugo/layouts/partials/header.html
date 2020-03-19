@@ -1,0 +1,114 @@
+
+
+{{.Scratch.Set "theme" "default"}}
+{{with .CurrentSection}}
+{{with .Param "theme"}}
+{{$.Scratch.Set "theme" .}}
+{{end}}
+{{end}}
+{{- with .Param "header" -}}
+{{- $.Scratch.Set "header" . -}}
+{{- end -}}
+
+{{- if eq (.Scratch.Get "header") "modal" -}}
+
+<header  class="pr1 py1 {{ if eq (.Scratch.Get "theme") "brand" }}brand{{end}} {{ if eq (.Param "noshadow") "true" }}noshadow{{end}}">
+<div class="grid px1 px2l flex justify-between">{{- partial "logo" . -}}
+    <a class="g8-text inv thin flex align-center f5" href="#" data-navigate-back>Cancel <i class="net-close "></i></a>
+</div>
+
+</header>
+{{- end -}}
+
+{{- if ne (.Scratch.Get "header") "modal" -}}
+<header  class="py1 {{ if eq (.Scratch.Get "theme") "brand" }}g46{{end}}">
+<ka-session style="width: 100%;">
+
+
+  <div class="grid flex px1 px2l justify-between align-center ">
+
+
+    <div class="flex align-center flex1 ">
+      {{- partial "logo" . -}}
+      <div class="flex flex1 justify-end align-center ">
+        {{- $menu := .Site.Menus.top_bar -}}
+        {{- $linkcss := "hidden-md hidden-sm visible-desktop mr2 inv medium" -}}
+        {{- if eq (.Scratch.Get "theme") "brand" -}}
+        {{- $linkcss = "hidden-md hidden-sm visible-desktop wh mr2 inv medium" -}}
+        {{- end -}}
+        {{- partial "linksmenu.html" (dict "page" . "site" .Site  "ctx" $ "css" $linkcss "menu" $menu) -}}
+
+
+
+      </div>
+    </div>
+
+
+
+    <div class="flex align-center justify-end">
+
+
+
+      {{partial "login-logout" .}}
+
+
+      <a ka-show="info.cartCount" href="/cart/" class="btn-cart butlk inv mr075 rel {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}" data-state="hide" ><i class="net-cart-solid f4 mr050"></i><span  class="counter counter-sm">{info.cartCount}</span></a>
+      <button id="btn-sidebar" class="butlk pr050 inv {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}" data-target="show"><i class="net-menu-alt f3"></i></button>
+
+
+    </div>
+
+
+  </div>
+
+
+  {{if eq .RelPermalink "/search/"}}
+  <div class=" pt1 px1 px2l grid flex align-center flex-wrap" >
+    <div class="flex align-center hidden-sm mr1 {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}"><span>{{.Params.search_strap}}</span></div>
+  <div class="w-33 ">
+    {{partial "searchbox-sm" .}}
+  </div>
+  <div class="w-20 ml050l mt1 mt0l"><a href="/cart/" class="but butor butsm butfullsm" style="border-width:1px;">View cart <i
+      class="net-chevron-right"></i></a></div>
+  </div>
+  {{end}}
+
+  {{if eq (.FirstSection.Permalink) "/help/"}}{{ if ne (.CurrentSection.Permalink) "/help/" }}
+  <div class=" pt1 px1 px2l grid flex align-center" >
+    <div class="flex align-center hidden-sm mr1 {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}}"><span>{{.FirstSection.Params.search_strap}}</span></div>
+  <div class="w-33 ">
+    {{ partial "help/search-header" .}}
+  </div>
+
+  </div>
+  {{end}}{{end}}
+
+
+  {{- if eq (.Page.Param "headersubmenu") true -}}
+  {{- partial "submenu" . -}}
+  {{- end -}}
+  {{- if eq (.Page.Param "headerbreadcrumb") true -}}
+  {{- $linkclass := "normal" -}}
+  {{- $leafclass := "" -}}
+  {{- if eq (.Page.Param "theme") "brand" -}}
+  {{- $linkclass = "wh normal" -}}
+  {{- $leafclass = "ga-text" -}}
+  {{- end -}}
+  <div class="breadcrumb pt1 px1 px2l grid " >
+    {{- partial "breadcrumb" (dict "p1" .Page "p2" .Page "linkclass" $linkclass "leafclass" $leafclass ) -}}
+  </div>
+  {{- end -}}
+
+  <!--    <div class="px1 px2l small flex align-center hidden-md" style="display:none;"><span class="pr050" >Your filters: National, Design, Art</span> <button class="filtersclose butlk inv ">cancel <i class="net-close"></i></button></div>-->
+  {{- partial "blognews" . -}}
+  {{- partial "login" . -}}
+  {{- partial "logout" . -}}
+
+
+
+</ka-session>
+
+
+</header>
+
+{{- end -}}
