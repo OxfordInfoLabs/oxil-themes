@@ -60,7 +60,6 @@
 
     <div class=" pb5">
 
-
       <div class="px1 px2l grid flex flex-grid flex-wrap flex-gutter-3">
 
         {{ range after 1 (where .Pages.ByLastmod.Reverse "Params.frontpageonly" "!=" "true") }}
@@ -88,9 +87,9 @@
           {{- end -}}
           <div class="gf9 p1l px1 py050 flex flex-col justify-between flex1" >
             <div>
-              <h5 class="mb050"><a class="inv brand-text" href="{{.Permalink}}">{{.Title}}</a>
+              <h5 class="mb050 lh13"><a class="inv " href="{{.Permalink}}">{{.Title}}</a>
               </h5>
-              <p class="g8-text small hidden-sm ">{{.Description}}</p>
+              <p class="g8-text small hidden-sm ellipsis">{{.Description}}</p>
             </div>
 
             <ul class="unstyled vsmall " >

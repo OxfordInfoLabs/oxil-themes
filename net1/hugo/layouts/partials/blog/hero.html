@@ -1,17 +1,18 @@
-{{ $bkImg := .Resources.GetMatch "*background*" }}
-
+{{- $bkImg := .Resources.GetMatch "*background*" -}}
+{{- $link := .Permalink -}}
 
 
 
 <div class="flex flex-wrap gf9" >
 
   {{- with .Params.youtubeid -}}
-  <div class="w-60" >
+  <div class="w-60 with-link" >
     <amp-youtube width="480"
                  height="270"
                  layout="responsive"
                  data-videoid="{{.}}">
     </amp-youtube>
+    <a href="{{$link}}"></a>
   </div>
   {{- else -}}
 <div class="w-60 with-link gf9" >
