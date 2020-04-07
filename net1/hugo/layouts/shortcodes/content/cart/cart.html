@@ -2,7 +2,7 @@
 
 <div class="grid px1 px2l pb5 pt4">
   <kc-cart>
-    <div class="flex flex-row-reverse">
+    <div class="flex flex-row-reverse vue-wrapper" >
       <div id="checkout-widget-wrap" class="pl1l" >
         {{ partial "checkout/checkout-widget" (dict "bigbuttext" "Checkout" "bigbutlink" "/checkout/") }}
       </div>
@@ -20,15 +20,15 @@
             </tr>
             <tr><td colspan="3" class="spacer"></td></tr>
             </thead>
-            <tbody ka-each-item="cart.items">
+            <tbody v-for="(item, index) in cart.items">
             <tr><td colspan="3" class="spacer"></td></tr>
             <tr>
               <td class="borr1 bordd py025">
 
                 <div class="bold">{item.title}</div>
-                <div ka-show="item.subtitle">{item.subtitle}</div>
-                <div class="tiny" ka-show="item.description">{item.description}</div>
-                <div class="tiny" ka-each-subitem="item.subItems">
+                <div v-if="item.subtitle">{item.subtitle}</div>
+                <div class="tiny" v-if="item.description">{item.description}</div>
+                <div class="tiny" v-for="subitem in item.subItems">
                   - {subitem.title}: {subitem.quantity}
                 </div>
 
@@ -39,7 +39,7 @@
               <td class="text-right borr1 bordd py025 " >{item.total}
               </td>
               <td>
-                <a ka-href="/hosting/static/configure?cartItem={$index}" class="vsmall normal" ka-if="item.type | eval '===' 'static'">edit plan</a>
+                <a v-bind:href="'/hosting/static/configure?cartItem=' + index" class="vsmall normal" v-if="item.type == 'static'">edit plan</a>
               </td>
             </tr>
             <tr><td colspan="3" class="spacer"></td></tr>

@@ -17,8 +17,14 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: ['ts-loader','uglify-template-string-loader'],
-                exclude: /node_modules/
+                use: [{
+                    loader: 'ts-loader',
+                    options: {
+                        "allowTsInNodeModules": true
+                    }
+
+                },
+                    'uglify-template-string-loader']
             },
             {
                 test: /\.(sa|sc|c)ss$/,

@@ -2,10 +2,9 @@
 
 <div class="grid px1 px2l pb3 pt2">
   <kc-checkout data-security-url="/checkout/security" data-billing-url="/billing">
-    <div id="checkout-wrapper">
+    <div id="checkout-wrapper" >
 
-
-      <div class="flex flex-wrap ">
+      <div class="flex flex-wrap vue-wrapper">
         <div class="w-75 ">
           <div class="grid pb1 ">
             <h1 class="f3 ">{{.Site.Title}}</h1>
@@ -14,13 +13,13 @@
             <div class="bort3 ge pt2l pt1 pb2 pl4l px1 mb125">
               <h4 class=" thin">Your Billing details</h4>
               <div class="flex-grid flex-row-reverse">
-                <div class="w-40" ka-html="billingContact.htmlAddressLinesString">
+                <div class="w-40" v-html="billingContact.htmlAddressLinesString">
 
                 </div>
                 <div class="w-60">
 
                   <p class="thin small">Carefully check all information provided</p>
-                  <a ka-href="billingURL" class="but butsoftwh butsm ">Change these details</a>
+                  <a v-bind:href="billingURL" class="but butsoftwh butsm ">Change these details</a>
                 </div>
 
               </div>
@@ -36,8 +35,8 @@
                 <img height="60" src="/images/payment_methods.png" alt="">
               </div>
               <div class="white p150 mb2">
-                <label class="mb050 blk" ka-each-method="paymentMethods">
-                  <input name="paymentselected" type="radio" ka-value="method.id">
+                <label class="mb050 blk" v-for="method in paymentMethods">
+                  <input name="paymentselected" type="radio" v-bind:value="method.id">
                   ending <b>{method.payment.card.last4}</b>
                   (expires {method.payment.card.exp_month}/{method.payment.card.exp_year}
                   {method.payment.card.brand})
@@ -86,12 +85,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ka-each-item="cart.items">
+                <tr v-for="item in cart.items">
                   <td>
                     <div class="bold">{item.title}</div>
-                    <div ka-show="item.subtitle">{item.subtitle}</div>
-                    <div class="tiny" ka-show="item.description">{item.description}</div>
-                    <div class="tiny" ka-each-subitem="item.subItems">
+                    <div v-if="item.subtitle">{item.subtitle}</div>
+                    <div class="tiny" v-if="item.description">{item.description}</div>
+                    <div class="tiny" v-for="subitem in item.subItems">
                       - {subitem.title}: {subitem.quantity}
                     </div>
 
@@ -151,7 +150,7 @@
             </div>
             <div class="bort1 borb1 py050 ">
               <div class="pb1 small">
-                <div class="flex" ka-each-item="cart.items">
+                <div class="flex" v-for="item in cart.items">
                   <div class="flex1">
                     <b>{item.title}</b>
                   </div>

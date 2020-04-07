@@ -1,18 +1,17 @@
-import * as queryString from '../node_modules/query-string/index';
+import * as queryString from 'query-string/index';
 
-var hljs = require('../node_modules/highlight.js/lib/highlight');
+var hljs = require('highlight.js/lib/highlight');
 
-import * as bash from '../node_modules/highlight.js/lib/languages/bash';
-import * as php from '../node_modules/highlight.js/lib/languages/php';
+import * as bash from 'highlight.js/lib/languages/bash';
+import * as php from 'highlight.js/lib/languages/php';
 
 hljs.registerLanguage('bash', bash);
 hljs.registerLanguage('php', php);
-import '../node_modules/highlight.js/styles/darkula.css';
-import tippy from '../node_modules/tippy.js/dist/tippy.esm';
+import 'highlight.js/styles/darkula.css';
+import tippy from 'tippy.js/dist/tippy.esm';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/dist/svg-arrow.css';
-import "../node_modules/cookie-notice/dist/cookie.notice.min";
-
+import "cookie-notice/dist/cookie.notice.min";
 
 declare var window: any;
 
@@ -21,18 +20,20 @@ var filtersDomainSearch: HTMLElement = document.querySelector('#filters-domain-s
 var blogNewsBtn: HTMLElement = document.querySelector('#btn-blognews');
 var blogNews: HTMLElement = document.querySelector('#blognews');
 var logoutMenuBtn: HTMLElement = document.querySelector('#btn-logout-menu');
-var logoutMenu: HTMLElement = document.querySelector('#logout-menu');
 var sidebarBtn: HTMLElement = document.querySelector('#btn-sidebar');
 
 
 function defaultState() {
 
+    var blogNews: HTMLElement = document.querySelector('#blognews');
     if (blogNews)
         blogNews.setAttribute('data-state', 'hide');
 
+    var filtersDomainSearch: HTMLElement = document.querySelector('#filters-domain-search');
     if (filtersDomainSearch)
         filtersDomainSearch.setAttribute('data-state', 'hide');
 
+    var logoutMenu: HTMLElement = document.querySelector('#logout-menu');
     if (logoutMenu)
         logoutMenu.setAttribute('data-state', 'hide');
 
@@ -155,20 +156,63 @@ var bindDropdowns = function () {
 }
 
 
-if (logoutMenuBtn)
-    logoutMenuBtn.addEventListener('click', function (e) {
+// Bind body clicks to detect clicks on dynamic elements.
+let body = document.querySelector("body");
+body.addEventListener('click', function (event) {
 
-        if (this.getAttribute('data-target') === 'show') {
-            defaultState();
-            gauze();
-            this.setAttribute('data-target', 'hide');
-            logoutMenu.setAttribute('data-state', 'show');
-        } else {
-            this.setAttribute('data-target', 'show');
-            defaultState();
+    let targetElement = <HTMLElement>event.target;
+
+    let matchedTarget = null;
+
+    if (matchedTarget = targetMatchesId(targetElement, "btn-sidebar"))
+        toggleSidebar(matchedTarget);
+
+    else if (matchedTarget = targetMatchesId(targetElement, "btn-logout-menu"))
+        toggleLogoutMenu(matchedTarget);
+
+});
+
+
+function targetMatchesId(targetElement, id) {
+
+    if (targetElement.id != id) {
+        targetElement = targetElement.parentElement;
+        if (targetElement.id != id) {
+            targetElement = null;
         }
+    }
+    return targetElement;
+}
 
-    });
+
+function toggleSidebar(targetElement) {
+
+    if (targetElement.getAttribute('data-target') === 'show') {
+        defaultState();
+        gauze();
+        targetElement.setAttribute('data-target', 'hide');
+        document.querySelector('body').setAttribute('data-sidebar', 'show');
+    } else {
+        targetElement.setAttribute('data-target', 'show');
+        defaultState();
+    }
+}
+
+function toggleLogoutMenu(targetElement) {
+
+    if (targetElement.getAttribute('data-target') === 'show') {
+        defaultState();
+        gauze();
+        targetElement.setAttribute('data-target', 'hide');
+        document.querySelector('#logout-menu').setAttribute('data-state', 'show');
+    } else {
+        targetElement.setAttribute('data-target', 'show');
+        defaultState();
+    }
+
+}
+
+
 
 
 if (blogNewsBtn)
@@ -203,18 +247,8 @@ filtersDomainSearchBtns.forEach((filtersDomainSearchBtn: HTMLElement) => {
     });
 });
 
-if (sidebarBtn)
-    sidebarBtn.addEventListener('click', function () {
-        if (this.getAttribute('data-target') === 'show') {
-            defaultState();
-            gauze();
-            this.setAttribute('data-target', 'hide');
-            document.querySelector('body').setAttribute('data-sidebar', 'show');
-        } else {
-            this.setAttribute('data-target', 'show');
-            defaultState();
-        }
-    });
+
+
 
 
 let netDomainSearch = document.querySelector('net-domain-search');

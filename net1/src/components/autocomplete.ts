@@ -1,4 +1,4 @@
-import Configuration from "../../../../kinicart/kiniauth-js/ts/configuration";
+import Configuration from "kiniauth/ts/configuration";
 
 /**
  * Reusable autocomplete components

@@ -10,25 +10,25 @@
 
 <div class="grid grid-desktop white my4 px1 px2l">
   <kc-order>
-    <div class="overflow-x">
+    <div class="overflow-x vue-wrapper">
 
       <table class="table table-cart">
         <thead>
         <tr>
           <td><h4 class="thin mb0">Order summary</h4>
-            <span class="small" ka-html="order.address"></span>
+            <span class="small" v-html="order.address"></span>
           </td>
           <td class="text-right"><img height="20" src="/images/oxfordcyber_logo-323x34.png" alt=""> <br>www.oxil.uk
             <br><span class="vsmall">Order ref: {order.id} <br>{order.date}</span></td>
         </tr>
         </thead>
         <tbody>
-        <tr ka-each-item="order.orderLines">
+        <tr v-for="item in order.orderLines">
           <td>
             <div class="bold">{item.title}</div>
             <div>{item.subtitle}</div>
             <div class="tiny">{item.description}</div>
-            <div class="tiny" ka-each-subitem="item.subItems">
+            <div class="tiny" v-for="subitem in item.subItems">
               - {subitem.title}: {subitem.quantity}
             </div>
           </td>

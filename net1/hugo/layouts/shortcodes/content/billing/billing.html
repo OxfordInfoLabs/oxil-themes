@@ -11,7 +11,7 @@
         <div class="bort3 ge pt2l pt1 pb2 px1 px2l mb125">
           <ka-contact data-success-url="/checkout" data-contact-type="BILLING">
 
-            <form>
+            <form >
               <h4 class=" thin">Billing name</h4>
               <div class="pb2 pb1l flex-grid ">
                 <div class="w-40">
@@ -97,9 +97,9 @@
                          for="country">Country</label>
 
                 </div>
-                <div class="flex1">
+                <div class="flex1 vue-wrapper">
                   <select data-country-code-field id="country" class="name-field bor1 py050 px050 w">
-                    <option ka-value="country.code" ka-each-country="countries">
+                    <option v-bind:value="country.code" v-for="country in countries">
                       {country.name}
                     </option>
                   </select>
@@ -129,7 +129,7 @@
     </div>
     <div class="w-25 pl2l ">
       <kc-cart>
-        <div class="bort3 bortbk">
+        <div class="bort3 bortbk vue-wrapper">
           <div class="flex justify-end"><a class="inv small flex align-center normal ib py050"
                                            href="/cart/">edit
             cart <i class="net-launch-out"></i></a></div>
@@ -138,7 +138,7 @@
           </div>
           <div class="bort1 borb1 py050 ">
             <div class="pb1 small">
-              <div class="flex" kb-each-item="cart.items">
+              <div class="flex" v-for="item in cart.items">
                 <div class="flex1">
                   <b>{item.title}</b>
                 </div>

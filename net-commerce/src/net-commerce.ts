@@ -1,6 +1,6 @@
-import "../../net1/src/net1-base";
-import * as queryString from '../node_modules/query-string/index';
-import NetistrarWhiteLabel from "../../../netistrar/whitelabel/ts/index";
+import "oxil-net1/src/net1-base";
+import * as queryString from 'query-string/index';
+import NetistrarWhiteLabel from "netistrar-whitelabel/ts/index";
 
 export default class NetCommerce {
 
@@ -8,7 +8,7 @@ export default class NetCommerce {
         this.init(settings);
     }
 
-    private init(settings:any) {
+    private init(settings: any) {
 
         // Enable Netistrar White Label
         new NetistrarWhiteLabel({

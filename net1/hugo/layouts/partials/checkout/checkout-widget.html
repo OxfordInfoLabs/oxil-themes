@@ -3,7 +3,7 @@
 <div id="dec" class="img-shadow text-center white-text brand hidden-md"><i class="net-chevron-up"></i></div>
 <div class="totals">
   <div class="semi uppercase white-text small pb050">Total</div>
-  <div class="white-text f3 bold pb050" data-state="hide" ka-show="cart.subtotal">{cart.subtotal}</div>
+  <div class="white-text f3 bold pb050" v-if="cart.subtotal">{cart.subtotal}</div>
 
 </div>
 <div class="ctrls pt050">
