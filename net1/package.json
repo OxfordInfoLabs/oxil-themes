@@ -1,18 +1,19 @@
 {
   "name": "oxil-net1",
-  "version": "1.0.10",
+  "version": "1.0.14",
   "description": "Oxford Information Labs Netistrar Theme",
   "main": "index.js",
   "files": [
     "dist",
-    "src"
+    "src",
+    "hugo"
   ],
   "scripts": {
     "webpack-watch": "webpack --config webpack.config.js --watch",
-    "build:production": "webpack --config webpack.config.js -p;",
-    "publish:project": "npm run build:production; ./node_modules/.bin/bump patch; npm publish",
+    "build:production": "webpack --config webpack.config.js -p --display-modules;",
+    "publish:project": "npm run update:packages; npm run build:production; ./node_modules/.bin/bump patch; npm publish",
     "update:dev": "npm run update:packages && npm run update:symlinks && npm run update:dependencies",
-    "update:packages": "npm i; npm i -D kinicart@latest",
+    "update:packages": "npm i; npm i kinicart@latest",
     "update:symlinks": "npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js",
     "update:dependencies": "cd node_modules/kinicart; npm run update:dev"
   },
@@ -34,7 +35,6 @@
   "devDependencies": {
     "@types/node": "^13.7.4",
     "css-loader": "^3.4.2",
-    "kinicart": "0.0.19",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "postcss-import": "^12.0.1",
@@ -52,6 +52,7 @@
   "dependencies": {
     "cookie-notice": "^1.2.4",
     "highlight.js": "^9.18.1",
+    "kinicart": "0.0.24",
     "query-string": "^6.10.1",
     "tippy.js": "^5.2.0"
   }
