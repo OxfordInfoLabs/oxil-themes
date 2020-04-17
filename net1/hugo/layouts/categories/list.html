@@ -1,29 +1,25 @@
 {{ define "main" }}
-<div class=" white">
-  <div class="grid px1 px2l py2l">
 
-    <h1 class="f-subheadline lh-title semi w-60 ">{{ T "categories"}}</h1>
-
+<div class="brand-2 white-text">
+ <div class="grid grid-desktop px2l px1 py1">
+  <div class="flex-grid align-center py3">
+   <div><h1 class="white-text mt0">All categories</h1></div>
+   <div>{{.Description}}</div>
   </div>
+ </div>
+</div>
+<div class="gf9">
+ <div class="grid grid-desktop px2l px1 py1">
+  <div class="breadcrumb small">{{ partial "breadcrumb" (dict "p1" .Page "p2" .Page)}}</div>
+ </div>
 </div>
 <div class="white pb4">
 
-  <div class="grid px1 px2l">
+ <div class="grid grid-desktop px1 px2l py4">
 
+  {{- partial "all-categories" . -}}
 
-
-      {{$categorypages := .Pages.ByDate.Reverse}}
-      {{ range $categorypages }}
-
-
-
-          <h4 class="mt0 "><a class="bold" href="{{.RelPermalink}}">{{ .Title}}</a></h4>
-
-
-      {{end}}
-
-
-  </div>
+ </div>
 </div>
 
 
