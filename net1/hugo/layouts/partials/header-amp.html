@@ -13,6 +13,7 @@
 
           {{ $menu := .Site.Menus.top_bar_blog}}
           {{ partial "linksmenu.html" (dict "page" . "ctx" $ "css" "hidden-sm inv semi mr2" "menu" $menu) }}
+            <button on="tap:AMP.setState({ showanalysis: !showanalysis })" class="but butlk inv semi hidden-sm mr2">Analysis</button>
             <button on="tap:sidebar.toggle" class="flex align-center but butlk inv semi {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}} " ><i class="f3 net-menu-alt"></i></button>
           </div>
       </div>
@@ -21,6 +22,6 @@
     </div>
   </div>
 
-
+  {{- partial "analysis" . -}}
 
 </header>
