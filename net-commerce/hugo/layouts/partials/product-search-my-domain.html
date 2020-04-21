@@ -7,19 +7,19 @@
     </div>
 {{- if eq (.featured) "true" -}}
     <div class="small py1 borb1 borcc g5-text">Please navigate to your control panel to <a class="bold" href="{{ .Site.Params.dashboard_url }}" target="_blank">manage your domains</a>.</div>
-    <div class="vsmall thin py050" net-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">We have some alternative suggestions available to purchase today:
-        <span net-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
-            <span net-if="$index | eval '>' 0">&bullet;</span>
-            <a class='inv' href='#' net-toggle="visibleSuggestions['{suggestion.domainName}']">{suggestion.domainName}</a>&nbsp;
+    <div class="vsmall thin py050" v-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">We have some alternative suggestions available to purchase today:
+        <span v-for="(suggestion, index) in {{with .itemSelector}}{{.}}.suggestions{{end}}">
+            <span v-if="index > 0">&bullet;</span>
+            <a class='inv' href='#' @click="toggleVisibleSuggestion(suggestion.domainName)">{suggestion.domainName}</a>&nbsp;
         </span>
     </div>
 {{- else -}}
 <div class="vsmall thin py1 g5-text">Please navigate to your control panel to <a class="bold" href="{{ .Site.Params.dashboard_url }}" target="_blank">manage your domains</a>.
-    <span net-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">
+    <span v-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">
     <br>Alternatives:
-    <span net-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
-    <span net-if="$index | eval '>' 0">&bullet;</span>
-    <a class='normal inv' href='#' net-toggle="visibleSuggestions['{suggestion.domainName}']">{suggestion.domainName}</a>&nbsp;
+    <span v-for="(suggestion, index) in {{with .itemSelector}}{{.}}.suggestions{{end}}">
+    <span v-if="index > 0">&bullet;</span>
+    <a class='normal inv' href='#' @click="toggleVisibleSuggestion(suggestion.domainName)">{suggestion.domainName}</a>&nbsp;
     </span>
     </span>
 </div>
@@ -27,3 +27,5 @@
 
 {{- end -}}
 </div>
+
+

@@ -15,12 +15,6 @@ import "cookie-notice/dist/cookie.notice.min";
 
 declare var window: any;
 
-var filtersDomainSearchBtns: NodeList = document.querySelectorAll('.btn-filters-domain-search');
-var filtersDomainSearch: HTMLElement = document.querySelector('#filters-domain-search');
-var blogNewsBtn: HTMLElement = document.querySelector('#btn-blognews');
-var blogNews: HTMLElement = document.querySelector('#blognews');
-var logoutMenuBtn: HTMLElement = document.querySelector('#btn-logout-menu');
-var sidebarBtn: HTMLElement = document.querySelector('#btn-sidebar');
 
 
 function defaultState() {
@@ -170,6 +164,22 @@ body.addEventListener('click', function (event) {
     else if (matchedTarget = targetMatchesId(targetElement, "btn-logout-menu"))
         toggleLogoutMenu(matchedTarget);
 
+    else if (matchedTarget = targetMatchesId(targetElement, 'btn-blognews'))
+        toggleBlogNews(matchedTarget);
+
+    else if (matchedTarget = targetMatchesClass(targetElement, 'btn-close-sidebar')) {
+        defaultState();
+    } else if (matchedTarget = targetMatchesClass(targetElement, 'btn-close-sidebar-logged')) {
+        defaultState();
+    } else if (matchedTarget = targetMatchesClass(targetElement, 'gauze')) {
+        defaultState();
+    } else if (matchedTarget = targetMatchesClass(targetElement, 'close-menu')) {
+        defaultState();
+    } else if (matchedTarget = targetMatchesClass(targetElement, 'btn-filters-domain-search')){
+        toggleFilters(matchedTarget);
+    }
+
+
 });
 
 
@@ -182,6 +192,19 @@ function targetMatchesId(targetElement, id) {
         }
     }
     return targetElement;
+}
+
+
+function targetMatchesClass(targetElement, className) {
+
+    if (!targetElement.classList.contains(className)) {
+        targetElement = targetElement.parentElement;
+        if (!targetElement.classList.contains(className)) {
+            targetElement = null;
+        }
+    }
+    return targetElement;
+
 }
 
 
@@ -213,56 +236,31 @@ function toggleLogoutMenu(targetElement) {
 }
 
 
+function toggleBlogNews(targetElement) {
+    if (targetElement.getAttribute('data-target') === 'show') {
+        defaultState();
+        gauze();
+        targetElement.setAttribute('data-target', 'hide');
+        document.querySelector('#blognews').setAttribute('data-state', 'show');
+    } else {
+        this.setAttribute('data-target', 'show');
+        defaultState();
+    }
+}
 
+function toggleFilters(targetElement) {
 
-if (blogNewsBtn)
-    blogNewsBtn.addEventListener('click', function (e) {
+    if (targetElement.getAttribute('data-target') === 'show') {
+        defaultState();
+        gauze();
+        targetElement.setAttribute('data-target', 'hide');
+        document.querySelector('#filters-domain-search').setAttribute('data-state', 'show');
+    } else {
+        targetElement.setAttribute('data-target', 'show');
+        defaultState();
+    }
 
-        if (this.getAttribute('data-target') === 'show') {
-            defaultState();
-            gauze();
-            this.setAttribute('data-target', 'hide');
-            blogNews.setAttribute('data-state', 'show');
-        } else {
-            this.setAttribute('data-target', 'show');
-            defaultState();
-        }
-
-    });
-
-filtersDomainSearchBtns.forEach((filtersDomainSearchBtn: HTMLElement) => {
-
-    filtersDomainSearchBtn.addEventListener('click', function (e) {
-
-        if (this.getAttribute('data-target') === 'show') {
-            defaultState();
-            gauze();
-            this.setAttribute('data-target', 'hide');
-            filtersDomainSearch.setAttribute('data-state', 'show');
-        } else {
-            this.setAttribute('data-target', 'show');
-            defaultState();
-        }
-
-    });
-});
-
-
-
-
-
-let netDomainSearch = document.querySelector('net-domain-search');
-if (netDomainSearch)
-    netDomainSearch.addEventListener('search', function () {
-
-        tippy('net-domain-search .pop', {
-            content(reference) {
-                const template = reference.nextElementSibling;
-                return template.innerHTML;
-            },
-            trigger: 'click'
-        });
-    });
+}
 
 
 document.querySelectorAll('.scroll-to-top').forEach((item: HTMLElement) => {
@@ -274,30 +272,6 @@ document.querySelectorAll('.scroll-to-top').forEach((item: HTMLElement) => {
 
 bindDropdowns();
 
-
-document.querySelectorAll('.btn-close-sidebar').forEach((item: HTMLElement) => {
-    item.addEventListener('click', function () {
-        defaultState();
-    });
-});
-
-document.querySelectorAll('.btn-close-sidebar-logged').forEach((item: HTMLElement) => {
-    item.addEventListener('click', function () {
-        defaultState();
-    });
-});
-
-document.querySelectorAll('.gauze').forEach((item: HTMLElement) => {
-    item.addEventListener('click', function () {
-        defaultState();
-    });
-});
-
-document.querySelectorAll('.close-menu').forEach((item: HTMLElement) => {
-    item.addEventListener('click', function () {
-        defaultState();
-    });
-});
 
 window.addEventListener("resize", () => {
     defaultState();

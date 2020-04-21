@@ -6,20 +6,20 @@
     <div class="{{if eq (.featured) "true"}}f3{{else}}f4{{end}} semi pt1 ga-text bw">{{with .itemSelector}}{ {{.}}.domainName }{{end}} <span class="{{if eq (.featured) "true"}}f4{{else}}f5{{end}} ga-text">is taken</span>
     </div>
 {{- if eq (.featured) "true" -}}
-    <div class="small py1 borb1 borcc g5-text">If you are the owner of this Domain Name you can <a class="bold" net-href="/transfer?transferDomain={{with .itemSelector}}{ {{.}}.domainName }{{end}}" target="_blank">Transfer it into your Netistrar Account</a> to gain all the benefits and manage your domain names in one place.</div>
-    <div class="vsmall thin py050" net-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">We have some alternative suggestions available to purchase today:
-        <span net-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
-            <span net-if="$index | eval '>' 0">&bullet;</span>
-            <a class='inv' href='#' net-toggle="visibleSuggestions['{suggestion.domainName}']">{suggestion.domainName}</a>&nbsp;
+    <div class="small py1 borb1 borcc g5-text">If you are the owner of this Domain Name you can <a class="bold" :href="'/transfer?transferDomain=' + {{with .itemSelector}}{{.}}{{end}}.domainName" target="_blank">Transfer it into your Netistrar Account</a> to gain all the benefits and manage your domain names in one place.</div>
+    <div class="vsmall thin py050" v-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">We have some alternative suggestions available to purchase today:
+        <span v-for="(suggestion, index) in {{with .itemSelector}}{{.}}.suggestions{{end}}">
+            <span v-if="index > 0">&bullet;</span>
+            <a class='inv' href='#' @click="toggleVisibleSuggestion(suggestion.domainName)">{suggestion.domainName}</a>&nbsp;
         </span>
     </div>
 {{- else -}}
-<div class="vsmall thin py1 g5-text">Owners: <a net-href="/transfer?transferDomain={{with .itemSelector}}{ {{.}}.domainName }{{end}}" target="_blank">Transfer this domain into your Netistrar Account</a>.
-    <span net-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">
+<div class="vsmall thin py1 g5-text">Owners: <a :href="'/transfer?transferDomain=' + {{with .itemSelector}}{{.}}{{end}}.domainName" target="_blank">Transfer this domain into your Netistrar Account</a>.
+    <span v-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">
     <br>Alternatives:
-    <span net-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
-    <span net-if="$index | eval '>' 0">&bullet;</span>
-    <a class='normal inv' href='#' net-toggle="visibleSuggestions['{suggestion.domainName}']">{suggestion.domainName}</a>&nbsp;
+    <span v-for="(suggestion, index) in {{with .itemSelector}}{{.}}.suggestions{{end}}">
+    <span v-if="index > 0">&bullet;</span>
+    <a class='normal inv' href='#' @click="toggleVisibleSuggestion(suggestion.domainName)">{suggestion.domainName}</a>&nbsp;
     </span>
     </span>
 </div>

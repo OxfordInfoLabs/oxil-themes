@@ -6,7 +6,8 @@
   <net-product-price data-key="netistrarProfessional" data-product-type="qboxmail" data-filter-qboxmail-plan="basic"></net-product-price>
 
 
-  <div class="grid px2l pb3" data-state="hide" net-show="items[0]">
+  <div class="grid px2l pb3 vue-wrapper" >
+
 
     <div class="flex flex-row-reverse">
       <div id="product-builder-widget-wrap" class="flex flex-col pl1l pt3" >
@@ -19,7 +20,7 @@
 
         <!--    <h5 class="uppercase">Configure your domain<span net-if="items.length | eval '>' 1">s</span></h5>-->
 
-        <div net-each-item="items" class="mb3">
+        <div v-for="item in items" class="mb3">
 
           <h4 class="bold brand white-text px175 py025 mb2"><span class="uppercase f5 normal ">Configure <i class="net-chevron-right"></i> </span>{item.label}</h4>
           <h5 class="my050">Registration period</h5>
@@ -35,9 +36,9 @@
             <div>
               <label class="flex justify-between align-center select-chevron">
 
-                <select net-value="item.quantity" data-update-item net-data-key="item.key" net-data-label="item.key" data-quantity-suffix="yrs" >
-                  <option net-each-year="item.allPrices"  net-show="year" net-value="$index">
-                    {$index} yrs - &pound;{year}
+                <select v-model="item.quantity" data-update-item :data-key="item.key" :data-label="item.key" data-quantity-suffix="yrs" >
+                  <option v-for="(year, index) in item.allPrices"  v-if="year" :value="index">
+                    {index} yrs - &pound;{year}
                   </option>
                 </select>
 
@@ -56,8 +57,8 @@
           </p>
 
 
-          <div net-class-build-item-selected="item.subItemsByKey.email.type | eval 'IN' 'undefined'"
-               data-remove-item data-key="email" net-data-parent-key="item.key"
+          <div :class="{'build-item-selected':!item.subItemsByKey.email}"
+               data-remove-item data-key="email" :data-parent-key="item.key"
                class="build-item">
             <div>
               <div class="f5 semi">Configure email later</div>
@@ -98,12 +99,11 @@
 
           <!--      </div>-->
           <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd build-item"
-               data-add-item data-type="gsuite" data-key="email" net-data-parent-key="item.key"
+               data-add-item data-type="gsuite" data-key="email" :data-parent-key="item.key"
                data-product-data-gsuite-product="Google-Apps-For-Business"
                data-label="G Suite Basic" data-quantity-suffix=" users"
-               net-data-price="prices.gsuiteBasic"
-               net-class-build-item-selected="item.subItemsByKey.email.type | eval '==' 'gsuite'"
-          >
+               :data-price="prices.gsuiteBasic"
+               :class="{'build-item-selected': item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'}">
             <div class="w-75">
               <div class="f5 semi lh13 pr2">G Suite by Google</div>
               <div class="vsmall">Full suite of business applications at discounted rates.</div>
@@ -114,7 +114,7 @@
 
 
 
-          <div net-show="item.subItemsByKey.email.type | eval '==' 'gsuite'" data-state="hide">
+          <div v-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'" >
             <h5 class="mb050 mt175">G Suite</h5>
             <p class="vsmall thin mb1">Choose a G Suite plan which we will configure to work with your business domain name. <a href="/email/gsuite/" class="normal" target="_blank">Which G Suite plan is right for you?</a>
             </p>
@@ -123,14 +123,12 @@
 
 
           <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"
-               data-state="hide"
-               net-show="item.subItemsByKey.email.type | eval '==' 'gsuite'"
-               net-class-build-item="item.subItemsByKey.email.label | eval '==' 'G Suite Basic'"
-               net-class-build-item-selected="item.subItemsByKey.email.label | eval '==' 'G Suite Basic'"
-               data-add-item data-type="gsuite" data-key="email" net-data-parent-key="item.key"
+               v-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'"
+               :class="{'build-item': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Basic', 'build-item-selected': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Basic'}"
+               data-add-item data-type="gsuite" data-key="email" :data-parent-key="item.key"
                data-product-data-gsuite-product="Google-Apps-For-Business"
                data-label="G Suite Basic" data-quantity-suffix=" users"
-               net-data-price="prices.gsuiteBasic">
+               :data-price="prices.gsuiteBasic">
             <div>
               <div class="f5 semi">G Suite Basic</div>
 
@@ -141,10 +139,10 @@
                 <net-quantity-filter class="flex align-center justify-end pl1l"
                                      data-update-item
                                      data-key="email"
-                                     net-data-parent-key="item.key"
-                                     net-show="item.subItemsByKey.email.label | eval '==' 'G Suite Basic'" data-state="hide">
+                                     :data-parent-key="item.key"
+                                     v-if="item.subItemsByKey.email.label == 'G Suite Basic'">
                   <button class="but-widget" data-minus><i class="net-minus"></i></button>
-                  <input type="text"  data-value net-value="item.subItemsByKey.email.quantity" readonly/>
+                  <input type="text"  data-value v-model="item.subItemsByKey.email.quantity" readonly/>
                   <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>
                 </net-quantity-filter>
               </div>
@@ -153,14 +151,12 @@
           </div>
 
           <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"
-               data-state="hide"
-               net-show="item.subItemsByKey.email.type | eval '==' 'gsuite'"
-               net-class-build-item="item.subItemsByKey.email.label | eval '==' 'G Suite Business'"
-               net-class-build-item-selected="item.subItemsByKey.email.label | eval '==' 'G Suite Business'"
-               data-add-item data-type="gsuite" data-key="email" net-data-parent-key="item.key"
+               v-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'"
+               :class="{'build-item': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Business', 'build-item-selected': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Business'}"
+               data-add-item data-type="gsuite" data-key="email" :data-parent-key="item.key"
                data-product-data-gsuite-product="Google-Apps-Unlimited"
                data-label="G Suite Business" data-quantity-suffix=" users"
-               net-data-price="prices.gsuiteBusiness">
+              :data-price="prices.gsuiteBusiness">
             <div>
               <div class="f5 semi">G Suite Business</div>
 
@@ -171,10 +167,10 @@
                 <net-quantity-filter class="flex align-center justify-end pl1l"
                                      data-update-item
                                      data-key="email"
-                                     net-data-parent-key="item.key"
-                                     net-show="item.subItemsByKey.email.label | eval '==' 'G Suite Business'" data-state="hide">
+                                     :data-parent-key="item.key"
+                                     v-if="item.subItemsByKey.email.label == 'G Suite Business'">
                   <button class="but-widget" data-minus><i class="net-minus"></i></button>
-                  <input type="text"  data-value net-value="item.subItemsByKey.email.quantity" readonly/>
+                  <input type="text"  data-value v-model="item.subItemsByKey.email.quantity" readonly/>
                   <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>
                 </net-quantity-filter>
               </div>
@@ -184,14 +180,12 @@
 
 
           <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"
-               data-state="hide"
-               net-show="item.subItemsByKey.email.type | eval '==' 'gsuite'"
-               net-class-build-item="item.subItemsByKey.email.label | eval '==' 'G Suite Enterprise'"
-               net-class-build-item-selected="item.subItemsByKey.email.label | eval '==' 'G Suite Enterprise'"
-               data-add-item data-type="gsuite" data-key="email" net-data-parent-key="item.key"
+               v-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'"
+               :class="{'build-item': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Enterprise', 'build-item-selected': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Enterprise'}"
+               data-add-item data-type="gsuite" data-key="email" :data-parent-key="item.key"
                data-product-data-gsuite-product="1010020020"
                data-label="G Suite Enterprise" data-quantity-suffix=" users"
-               net-data-price="prices.gsuiteEnterprise">
+               :data-price="prices.gsuiteEnterprise">
             <div>
               <div class="f5 semi">G Suite Enterprise</div>
 
@@ -202,10 +196,10 @@
                 <net-quantity-filter class="flex align-center justify-end pl1l"
                                      data-update-item
                                      data-key="email"
-                                     net-data-parent-key="item.key"
-                                     net-show="item.subItemsByKey.email.label | eval '==' 'G Suite Enterprise'" data-state="hide">
+                                     :data-parent-key="item.key"
+                                     v-if="item.subItemsByKey.email.label == 'G Suite Enterprise'">
                   <button class="but-widget" data-minus><i class="net-minus"></i></button>
-                  <input type="text"  data-value net-value="item.subItemsByKey.email.quantity" readonly/>
+                  <input type="text"  data-value v-model="item.subItemsByKey.email.quantity" readonly/>
                   <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>
                 </net-quantity-filter>
               </div>

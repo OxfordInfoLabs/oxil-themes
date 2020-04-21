@@ -1,2 +1,0 @@
-{{ $class := .Get "class"}}
-<div class="breadcrumb {{with $class}}{{.}}{{end}}">{{ partial "breadcrumb" (dict "p1" .Page "p2" .Page)}}</div>

@@ -1,6 +1,6 @@
 {
   "name": "oxil-net-commerce",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Netistrar E Commerce Theme",
   "main": "index.js",
   "files": [
@@ -18,17 +18,20 @@
     }
   },
   "scripts": {
-    "hugo:watch": "mkdir -p build; rsync -r ../net1/hugo/* build; rsync -r hugo/* build",
+    "watch": "run-p --print-label watch:**",
     "watch:webpack": "webpack --config webpack.config.js --watch",
-    "watch:npm": "npm-watch hugo:watch",
-    "watch": "rm -rf build; run-p --print-label watch:**",
-    "build:production": "webpack --config webpack.config.js -p"
+    "build:production": "webpack --config webpack.config.js -p",
+    "publish:project": "npm run update:packages; npm run build:production; ./node_modules/.bin/bump patch; npm publish",
+    "update:dev": "npm run update:packages && npm run update:symlinks && npm run update:dependencies",
+    "update:packages": "npm i; npm i netistrar-whitelabel@latest oxil-net1@latest",
+    "update:symlinks": "npm link ../net1; npm link ../../netistrar/whitelabel; npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js",
+    "update:dependencies": "cd node_modules/oxil-net1; npm run update:dev; cd ../netistrar-whitelabel; npm run update:dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "netistrar-whitelabel": "^1.1.77",
-    "oxil-net1": "^1.0.8"
+    "oxil-net1": "^1.0.14"
   },
   "devDependencies": {
     "@types/node": "^13.7.4",
@@ -46,6 +49,7 @@
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.2",
     "uglify-template-string-loader": "^1.1.1",
+    "version-bump-prompt": "^6.0.3",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
   }
