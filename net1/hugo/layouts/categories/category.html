@@ -1,8 +1,15 @@
 {{ define "main" }}
+<div class="gf9">
+  <div class="grid px1 px2l py2  " >
+    <div class="breadcrumb">
+      {{partial "breadcrumb" (dict "p1" . "p2" .) }}
+    </div>
+  </div>
+</div>
 <div class=" white">
   <div class="grid px1 px2l py2 py4l">
-
-    <h1 class="f-subheadline lh-title semi w-60 ">{{T "category"}}: {{.Title}}</h1>
+    <div class="small uppercase g5-text">Category</div>
+    <h1 class="f-subheadline lh-title semi w-60 ">{{.Title}}</h1>
 
   </div>
 </div>
@@ -10,34 +17,51 @@
 
   <div class="grid px1 px2l pb4">
 
+    <div class="flex flex-grid flex-wrap flex-gutter-3">
 
-    <div class="flex flex-wrap flex-gutter-2" >
-      {{$categorypages := .Pages.ByDate.Reverse}}
-      {{ range $categorypages }}
-
-      <div class="w-50 flex flex-col mb2" >
-
-        {{ $img := .Resources.GetMatch "*featured*" }}
-        {{ $permalink := .RelPermalink }}
-        {{ with $img }}
-        {{ $small := .Resize "1200x" }}
-        <div class="blog-img with-link" >
-          <amp-img width="16" height="9" layout="responsive" src="{{$small.RelPermalink}}"></amp-img>
-          <a href="{{$permalink}}"></a>
+      {{ range (where .Pages.ByLastmod.Reverse "Params.frontpageonly" "!=" "true") }}
+      {{$link := .Permalink}}
+      <div class="w-33  flex flex-col-md mb2" >
+        {{- with .Params.youtubeid -}}
+        <div class="thumb w with-link">
+          <amp-youtube width="480"
+                       height="270"
+                       layout="responsive"
+                       data-videoid="{{.}}">
+          </amp-youtube>
+          <a href="{{$link}}"></a>
         </div>
-        {{end}}
+        {{- else -}}
+        <div class="with-link w thumb gf9" >
+          {{ $img := .Resources.GetMatch "*featured*" }}
+          {{ with $img }}
+          {{ $small := .Resize "600x" }}
 
-        <div class="gf9 p2 flex flex-col justify-between flex1">
+          <amp-img src="{{ $small.RelPermalink }}"  alt="{{ $img.Title }}" width="16" height="9" layout="responsive"   ></amp-img>
+          {{ end }}
+          <a href="{{.Permalink}}"></a>
+        </div>
+        {{- end -}}
+        <div class="gf9 p1l px1 py050 flex flex-col justify-between flex1" >
+          <div>
+            <h5 class="mb050 lh13"><a class="inv " href="{{.Permalink}}">{{.Title}}</a>
+            </h5>
+            <p class="g8-text small hidden-sm ellipsis">{{.Description}}</p>
+          </div>
 
-
-          <h4 class="mt0 mb050"><a class="inv font-color bold" href="{{.RelPermalink}}">{{.Title}}</a></h4>
-          <ul class="unstyled small uppercase ">{{ range .Params.categories }}<li class="com"><a class="inv normal g6-text" href="/categories/{{ . | urlize }}/">{{.}}</a></li>{{ end }}</ul>
+          <ul class="unstyled vsmall " >
+            <li><time class="vsmall " datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
+              {{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
+              </time> | </li>
+            {{ range .Params.categories }}<li class="com lh1"><a class="inv thin text-colour" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>{{ end }}
+          </ul>
 
         </div>
+
       </div>
-
-      {{end}}
+      {{ end }}
     </div>
+
 
 
   </div>

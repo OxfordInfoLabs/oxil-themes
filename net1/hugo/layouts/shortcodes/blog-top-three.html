@@ -22,8 +22,8 @@
         {{ with $img }}
         {{ $small := .Resize "600x" }}
 
-
-              <img class="responsive-image cover" src="{{ $small.RelPermalink }}"  alt="{{ $img.Title }}" ></img>
+            <div class="aspect sixteen-nine">
+              <img class="abs cover" src="{{ $small.RelPermalink }}"  alt="{{ $img.Title }}" ></img></div>
               <a href="{{$permalink}}" class="link-over"></a>
           {{- end -}}
         </div>

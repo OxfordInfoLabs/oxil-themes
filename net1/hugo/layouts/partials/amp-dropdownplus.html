@@ -1,0 +1,12 @@
+{{- $site := .site -}}
+{{- $page := .page -}}
+{{- $label := .label -}}
+{{- $menu := .menu -}}
+{{- $id := .id | safeJS -}}
+
+
+<button [class]="{{$id}} ? 'dropdown-btn active' : 'dropdown-btn'" class="dropdown-btn" on="tap:AMP.setState({ {{$id}}: !{{$id}} })">{{$label}} <i class="net-dummy"></i></button>
+<div [class]="{{$id}} ? 'dropdown-container active' : 'hidden'" class="hidden">
+  {{ partial "linksmenu.html" (dict "page" $page "site" $site "ctx" $ "menu" $menu) }}
+</div>
+
