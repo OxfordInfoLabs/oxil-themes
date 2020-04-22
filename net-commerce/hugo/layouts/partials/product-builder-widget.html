@@ -1,5 +1,6 @@
 
-<div id="product-builder-widget" class="brand {{with .radius}}{{.}}{{else}}br8tl br8tr br8bl br8br{{end}} px075 pt1 pb150 ">
+<div id="product-builder-widget"
+     class="brand {{with .radius}}{{.}}{{else}}br8tl br8tr br8bl br8br{{end}} px075 pt1 pb150 ">
   <div id="dec" class="img-shadow text-center white-text brand hidden-md"><i class="net-chevron-up"></i></div>
   <div class="totals" >
     <div class="semi uppercase white-text small pb050">Total</div>
@@ -17,7 +18,7 @@
       <i class="{{with .bigbuticon}}{{.}}{{else}}net-chevron-right{{end}}"></i></a>
 
 
-      <a v-if="items.length" @click="addToCart('{{with .smallbutlink}}{{.}}{{else}}{{.Site.Params.dashboard_url}}/checkout{{end}}', $event)"
+      <a v-if="items.length" @click="addToCart('{{with .smallbutlink}}{{.}}{{else}}{{$.Site.Params.dashboard_url}}/checkout{{end}}', $event)"
       class="but butbrwh butsm butblk">Quick checkout
         <i class="{{with .smallbuticon}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
 
@@ -31,7 +32,7 @@
 </div>
 
 
-<div class="white hidden-sm vsmall px075 py150 br8bl br8br" net-if="items.length">
+<div class="white hidden-sm vsmall px075 py150 br8bl br8br" v-if="items.length > 0">
 
   <div class="bold">Domain names</div>
   <hr class="mb075">

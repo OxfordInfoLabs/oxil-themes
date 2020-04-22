@@ -2,10 +2,10 @@
 
   <div class="grid px2l pb3 vue-wrapper">
 
-    <div class="flex flex-row-reverse">
+    <div class="flex flex-row-reverse" data-state="hide" :data-state="'show'">
       <div id="product-builder-widget-wrap" class="pl1l flex flex-col pt3" >
         <div class="stick">
-          {{ partial "product-builder-widget" (dict "bigbuttext" "Continue"  "bigbuticon" "net-chevron-right" "bigbutlink" "/configure" "smallbuticon" "net-cart-solid" "radius"  "br8tl br8tr ") }}
+          {{ partial "product-builder-widget" (dict "bigbuttext" "Continue"  "bigbuticon" "net-chevron-right" "bigbutlink" "/configure" "smallbuticon" "net-cart-solid" "radius"  "br8tl br8tr " "Site" .Site) }}
         </div>
 
       </div>
@@ -20,6 +20,8 @@
         </div>
 
         <div v-if="results && results.metrics">
+
+
 
           <div class="pt150 pb1 px1 px0l" v-if="results && results.metrics">
             <span class="semi uppercase">Search results<span v-if="results.metrics.featuredMin">: </span></span>
@@ -138,10 +140,9 @@
 
             </div>
 
-
-
-
         </div>
+
+
 
 
 
