@@ -10,8 +10,8 @@
 
         <div class="pr1"><i class="net-user-round f1 orange-text"></i></div>
         <div class="flex1">
-          <div class="f3 mb050 semi">{info.loggedInUser.fullName}</div>
-          <div class="mb2">{info.loggedInUser.email}</div>
+          <div class="f3 mb050 semi">{info.loggedInUser ? info.loggedInUser.fullName : ''}</div>
+          <div class="mb2">{info.loggedInUser ? info.loggedInUser.email : ''}</div>
           <p class="flex justify-start">
             <net-signout redirect-url="/" class="netistrar-signout">Sign out <i class="net-close"></i></net-signout>
           </p>
@@ -23,7 +23,7 @@
 
       </div>
       <div class="w-50 px1 big-link-menu pt3">
-        <div class="side-menu white mb2" net-show="info.loggedInUser.email" data-state="hide">
+        <div class="side-menu white mb2" v-if="info.loggedInUser && info.loggedInUser.email" >
           <a href="{{$.Site.Params.dashboard_url}}"><span><span class=" blk mb025">My dashboard</span><span class="vsmall g6-text normal">Manage hosting, domains and more ..</span></span><i class="net-launch-out"></i></a>
           <a href="{{$.Site.Params.dashboard_url}}/account/orders/search"><span><span class=" blk mb025">My orders</span><span class="vsmall g6-text normal">View and manage your orders ..</span></span><i class="net-launch-out"></i></a>
 

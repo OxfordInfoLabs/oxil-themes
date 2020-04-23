@@ -17,14 +17,14 @@
 <div class="w-33 flex flex-col mb3" >
   <h5 class="normal py050 {{with $planColour}}{{.}}{{end}} {{with .Get "planheadingcolour"}}{{.}}{{else}}white-text{{end}} m0">{{$planpage.Params.plantitle}}</h5>
   <div class="flex1">
-    <div class="gf9 px1 py1">
+    <div class="gf9 px1 py1" v-if="plans.{{$plan}}">
       <p style="min-height: 75px;">{{$planpage.Params.plandesc}}</p>
 
-      <h2 class="semi {{with $planTextColour}}{{.}}{{end}} mt0 mb0 pb025">&pound;<span net-html="{{$plan}}.Monthly.netPrice"></span></h2>
+      <h2 class="semi {{with $planTextColour}}{{.}}{{end}} mt0 mb0 pb025">&pound;<span v-html="plans.{{$plan}}.Monthly.netPrice"></span></h2>
       <p>{{$allplans.Param "costlabel"}}</p>
 
       <p class="flex justify-center my2"><a href="{{$planpage.Permalink}}" class="inv f5 " >{{$allplans.Param "moredetails"}}<i class="net-chevron-right"></i></a></p>
-      <p class="small italic mb0 pb1">{{$allplans.Param "savelabel"}} <br>&pound; <span class="bold" net-html="{{$plan}}.Annual.netPrice | eval '/' 12"></span> / {{$allplans.Param "month"}}</p>
+      <p class="small italic mb0 pb1">{{$allplans.Param "savelabel"}} <br>&pound; <span class="bold" v-html="(plans.{{$plan}}.Annual.netPrice / 12).toFixed(2)"></span> / {{$allplans.Param "month"}}</p>
     </div>
     {{if .Get "features"}}
     {{with $features}}{{.Content}}{{end}}

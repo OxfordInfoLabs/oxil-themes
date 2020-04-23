@@ -1,27 +1,28 @@
 
-<div id="product-builder-widget" class="brand {{with .radius}}{{.}}{{else}}br8tl br8tr br8bl br8br{{end}} px075 pt1 pb150 ">
+<div id="product-builder-widget"
+     class="brand {{with .radius}}{{.}}{{else}}br8tl br8tr br8bl br8br{{end}} px075 pt1 pb150 ">
   <div id="dec" class="img-shadow text-center white-text brand hidden-md"><i class="net-chevron-up"></i></div>
   <div class="totals" >
     <div class="semi uppercase white-text small pb050">Total</div>
-    <div class="white-text semi f3 pb050" >£<span net-html="total"></span></div>
-    <div class="vsmall gc-text pb075"><span net-html="items.length"></span> items</div>
+    <div class="white-text semi f3 pb050" >£<span v-html="total"></span></div>
+    <div class="vsmall gc-text pb075"><span v-html="items.length"></span> items</div>
   </div>
   <div class="ctrls ">
 
-      <a data-state="hide" net-show="items.length" {{with .bigbutlink}}data-post-package{{else}}data-add-to-cart{{end}} href="{{with .bigbutlink}}{{.}}{{else}}/cart/{{end}}"
+      <a v-if="items.length" {{with .bigbutlink}}@click="postPackage('{{.}}')"{{else}}@click="addToCart('/cart/', $event)"{{end}} href="#"
        class="but butgn w flex justify-between align-center butlg"><span>{{with .bigbuttext}}{{.}}{{else}}Continue{{end}}</span>
         <i class="{{with .bigbuticon}}{{.}}{{else}}net-chevron-right{{end}}"></i></a>
 
-      <a net-hide="items.length"  href="#"
+      <a v-if="!items.length"  href="#"
       class="but butdisabled butgn w flex justify-between align-center butlg"><span>{{with .bigbuttext}}{{.}}{{else}}Continue{{end}}</span>
       <i class="{{with .bigbuticon}}{{.}}{{else}}net-chevron-right{{end}}"></i></a>
 
 
-      <a data-state="hide" net-show="items.length" data-add-to-cart href="{{with .smallbutlink}}{{.}}{{else}}{{.Site.Params.dashboard_url}}/checkout{{end}}"
+      <a v-if="items.length" @click="addToCart('{{with .smallbutlink}}{{.}}{{else}}{{$.Site.Params.dashboard_url}}/checkout{{end}}', $event)"
       class="but butbrwh butsm butblk">Quick checkout
         <i class="{{with .smallbuticon}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
 
-      <a net-hide="items.length"  href="#"
+      <a v-if="!items.length"  href="#"
       class="but butbrwh butdisabled butsm butblk">Quick checkout
       <i class="{{with .smallbuticon}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
 
@@ -31,16 +32,16 @@
 </div>
 
 
-<div class="white hidden-sm vsmall px075 py150 br8bl br8br" net-if="items.length">
+<div class="white hidden-sm vsmall px075 py150 br8bl br8br" v-if="items.length > 0">
 
   <div class="bold">Domain names</div>
   <hr class="mb075">
-  <div class="pb025" net-each-item="items" net-show="items" data-state="hide">
+  <div class="pb025" v-for="item in items" v-if="items">
     <div class="flex pb025">
       <div class="flex1 semi bw">{item.label} <span class="normal">{item.quantity}{item.quantitySuffix}</span></div>
       <div class="w-30 text-right">£{item.price}</div>
     </div>
-    <div class="flex pb025" net-each-subitem="item.subItems">
+    <div class="flex pb025" v-for="subitem in item.subItems">
 <!--      <div>&nbsp;-&nbsp;</div>-->
       <div class="thin flex1 lh12 pr025">{subitem.label} {subitem.quantity}{subitem.quantitySuffix}</div>
       <div class="w-30 lh12 text-right">£{subitem.price}</div>

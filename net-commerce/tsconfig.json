@@ -4,7 +4,8 @@
     "module": "es6",
     "target": "es6",
     "allowJs": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "node_modules/oxil-net1/src"

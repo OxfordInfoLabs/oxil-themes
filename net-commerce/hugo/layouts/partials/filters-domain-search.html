@@ -60,12 +60,13 @@
 
 
           <div class="f5 px1 pt150 thin">Categories</div>
-          <net-radio-set data-filter="categories"  net-bind
-               source="{{$.Site.Params.backendUrl}}/domains/tldCategories" model="categories" data-value="Popular">
+          <net-radio-set data-filter="categories"
+               data-source="/domains/tldCategories"
+                         data-model="categories" data-value="Popular">
 
-            <div data-items class="borb1 borcc px1 py150" >
-                <label net-each-category="categories" class="f5 radiocheck mb2 flex justify-between w thin"><span><span class="f5 thin blk mb050">{category}</span></span>
-                  <input type="radio"  net-value="category" name="categories">
+            <div data-items class="borb1 borcc px1 py150 vue-wrapper" >
+                <label v-for="category in categories" class="f5 radiocheck mb2 flex justify-between w thin"><span><span class="f5 thin blk mb050">{category}</span></span>
+                  <input type="radio"  :value="category" name="categories">
                   <span class="checkmark"></span>
                 </label>
             </div>

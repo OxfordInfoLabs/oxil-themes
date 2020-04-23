@@ -1,9 +1,0 @@
-{{ $currentPage := . }}
-<div class="left-bar-nav small">
-  <a href="/help/" class="level1 {{if eq $currentPage.Title "Help" }}active{{ end }}">Help {{T "home"}}</a>
-  {{ range where .Site.Home.Sections "Section" "help" }}
-  {{ range .Sections}}
-  <a href="{{ .Permalink }}" class="level1 {{if $currentPage.IsDescendant .}}active{{ end }}">{{ .Title }}</a>
-  {{ end }}
-  {{ end }}
-</div>

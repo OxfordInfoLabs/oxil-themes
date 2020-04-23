@@ -3,15 +3,19 @@
   <button class="but butlk inv carousel-left-button pr1"><i class="net-chevron-left f4"></i></button>
   <div class="flex1 overflow-x-hidden carousel-height">
 
-    <div net-bind source="{{.Site.Params.backendurl}}/marketing/feed/{{ .Get "feed" }}?imageSize=small" model="carousel" class="price-ads overflow-x-hidden flex smooth"
-     net-show="carousel" data-state="hide">
+    <net-bind data-source="/marketing/feed/{{ .Get "feed" }}?imageSize=small"
+        data-model="carousel" >
 
-      <div net-each-item="carousel" class="price-ad carouse-height flex align-center ">
-        <img class="price-img carousel-height pr025" net-src="item.imageAsBase64">
-        <span class="rrp price-font-weight price-colour price-font-size carousel-height pr1 flex align-center">£{item.price}</span>
-      </div>
+      <div class="price-ads overflow-x-hidden flex smooth vue-wrapper" data-state="hide" :data-state="'show'">
 
-    </div>
+          <div v-for="item in carousel" class="price-ad carouse-height flex align-center ">
+            <img class="price-img carousel-height pr025" :src="item.imageAsBase64">
+            <span class="rrp price-font-weight price-colour price-font-size carousel-height pr1 flex align-center">£{item.price}</span>
+          </div>
+
+        </div>
+    </net-bind>
+
   </div>
   <button class="but butlk inv carousel-more-button pl1"><i class="net-chevron-right f4"></i></button>
   </div>

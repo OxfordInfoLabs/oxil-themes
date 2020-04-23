@@ -4,6 +4,7 @@
 {{- $menuitem := .menuitem -}}
 
 {{- if eq $menuitem.URL "dashboard"}}
-<a net-show="info.loggedInUser" data-state="hide" href="{{- $site.Params.dashboard_url -}}" class="{{- $css }}">My Dashboard</a>
+<a data-state="hide" :data-state="info.loggedInUser && info.loggedInUser.displayName ? 'show' : 'hide'"  href="{{- $site.Params.dashboard_url -}}" class="{{- $css }}">My Dashboard</a>
 {{- end -}}
+
 

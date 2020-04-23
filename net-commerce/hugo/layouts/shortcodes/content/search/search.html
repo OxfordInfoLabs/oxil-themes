@@ -1,141 +1,152 @@
+<net-domain-search>
 
-<net-package-builder>
+  <div class="grid px2l pb3 vue-wrapper">
 
-  <div class="grid px2l pb3">
-
-    <div class="flex flex-row-reverse">
+    <div class="flex flex-row-reverse" data-state="hide" :data-state="'show'">
       <div id="product-builder-widget-wrap" class="pl1l flex flex-col pt3" >
         <div class="stick">
-          {{ partial "product-builder-widget" (dict "bigbuttext" "Continue"  "bigbuticon" "net-chevron-right" "bigbutlink" "/configure" "smallbuticon" "net-cart-solid" "radius"  "br8tl br8tr ") }}
+          {{ partial "product-builder-widget" (dict "bigbuttext" "Continue"  "bigbuticon" "net-chevron-right" "bigbutlink" "/configure" "smallbuticon" "net-cart-solid" "radius"  "br8tl br8tr " "Site" .Site) }}
         </div>
 
       </div>
 
-      <net-domain-search class="w-75 pr1l">
+      <div class="w-75 pr1l">
 
-        <div class="my2 pt2 text-center" data-state="show" net-hide="results">
+        <div class="my2 pt2 text-center" data-state="show" :data-state="results && results.metrics ? 'hide' : 'show'">
 
           <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
 
 
         </div>
 
-        <div data-state="hide" net-show="results">
+        <div v-if="results && results.metrics">
 
 
-          <div class="pt150 pb1 px1 px0l"><span class="semi uppercase">Search results<span net-if="results.metrics.featuredMin">: </span></span>
-            <div net-if="results.metrics.featuredMin" class="label label-gn lh1">Top names</div>
-            <span net-if="results.metrics.featuredMin"><b> available</b> from £{results.metrics.featuredMin}</span>
-          </div>
 
-          <div net-if="results.directResult">
-            <div net-if="results.directResult.availability | eval 'IN' 'HINTED_AVAILABLE,AVAILABLE'">
-              <div net-if="results.directResult.pricingType | eval '!==' 'PREMIUM'">
-                {{partial "product-search-available" (dict "itemSelector" "results.directResult" "featured" "true") }}
-              </div>
-              <div net-if="results.directResult.pricingType | eval '==' 'PREMIUM'">
-                {{partial  "product-search-premium" (dict "itemSelector" "results.directResult" "featured" "true") }}
-              </div>
-            </div>
-            <div net-if="results.directResult.availability | eval 'IN' 'HINTED_UNAVAILABLE,UNAVAILABLE'">
-              {{partial "product-search-not-available" (dict "itemSelector" "results.directResult" "featured" "true") }}
-
-              <div net-each-suggestion="results.directResult.suggestions">
-                <div net-show="visibleSuggestions['{suggestion.domainName}']" data-state="hide">
-                  {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
-                </div>
-              </div>
-
-            </div>
-
-            <div net-if="results.directResult.availability | eval 'IN' 'MY_DOMAIN'">
-              {{partial "product-search-my-domain" (dict "itemSelector" "results.directResult" "featured" "true")  }}
-
-              <div net-each-suggestion="results.directResult.suggestions">
-                <div net-show="visibleSuggestions['{suggestion.domainName}']" data-state="hide">
-                  {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
-                </div>
-              </div>
-
-            </div>
-
-
-          </div>
-
-          <div net-each-featured="results.featuredResults">
-            <div net-if="featured.availability | eval 'IN' 'HINTED_AVAILABLE,AVAILABLE'">
-              <div net-if="featured.pricingType | eval '!==' 'PREMIUM'">
-                {{partial "product-search-available" (dict "itemSelector" "featured" "featured" "true") }}
-              </div>
-              <div net-if="featured.pricingType | eval '==' 'PREMIUM'">
-                {{partial "product-search-premium" (dict "itemSelector" "featured" "featured" "true") }}
-              </div>
-            </div>
-            <div net-if="featured.availability | eval 'IN' 'HINTED_UNAVAILABLE,UNAVAILABLE'">
-              {{partial "product-search-not-available" (dict "itemSelector" "featured" "featured" "true") }}
-
-              <div net-each-suggestion="featured.suggestions">
-                <div net-show="visibleSuggestions['{suggestion.domainName}']" data-state="hide">
-                  {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
-                </div>
-              </div>
-
-            </div>
-
-
-            <div net-if="featured.availability | eval 'IN' 'MY_DOMAIN'">
-              {{partial "product-search-my-domain" (dict "itemSelector" "featured" "featured" "true") }}
-
-              <div net-each-suggestion="featured.suggestions">
-                <div net-show="visibleSuggestions['{suggestion.domainName}']" data-state="hide">
-                  {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
-                </div>
-              </div>
-
-            </div>
-
+          <div class="pt150 pb1 px1 px0l" v-if="results && results.metrics">
+            <span class="semi uppercase">Search results<span v-if="results.metrics.featuredMin">: </span></span>
+            <div v-if="results.metrics.featuredMin" class="label label-gn lh1">Top names</div>
+            <span v-if="results.metrics.featuredMin"><b> available</b> from £{results.metrics.featuredMin}</span>
           </div>
 
 
-          <div class="pt125 pb1 borb2 borbrand px1 px0l">
-            <span class="semi uppercase">Category:</span>  {filterValues.categories} -
-            <button class="butlk btn-filters-domain-search semi" data-target="show">filter</button>
-            these results</span>
-          </div>
+            <div v-if="results && results.directResult">
 
-          <div class="prod-parent" net-each-categoried="results.categoryResults" net-class-child-selected="selectedItems['{categoried.domainName}']" >
-            <div net-if="categoried.availability | eval 'IN' 'HINTED_AVAILABLE,AVAILABLE'">
-              <div net-if="categoried.pricingType | eval '!==' 'PREMIUM'">
-                {{partial "product-search-available" (dict "itemSelector" "categoried" "featured" "false") }}
-              </div>
-              <div net-if="categoried.pricingType | eval '==' 'PREMIUM'">
-                {{partial "product-search-premium" (dict "itemSelector" "categoried" "featured" "false") }}
-              </div>
-            </div>
-            <div net-if="categoried.availability | eval 'IN' 'HINTED_UNAVAILABLE,UNAVAILABLE'">
-              {{partial "product-search-not-available" (dict "itemSelector" "categoried" "featured" "false") }}
-              <div net-each-suggestion="categoried.suggestions">
-                <div net-show="visibleSuggestions['{suggestion.domainName}']" data-state="hide">
-                  {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
+                <div v-if="['HINTED_AVAILABLE','AVAILABLE'].indexOf(results.directResult.availability) >= 0">
+                    <div v-if="results.directResult.pricingType !== 'PREMIUM'">
+                        {{partial "product-search-available" (dict "itemSelector" "results.directResult" "featured" "true") }}
+                    </div>
+                    <div v-if="results.directResult.pricingType == 'PREMIUM'">
+                        {{partial  "product-search-premium" (dict "itemSelector" "results.directResult" "featured" "true") }}
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div net-if="categoried.availability | eval 'IN' 'MY_DOMAIN'">
-              {{partial "product-search-my-domain" (dict "itemSelector" "categoried" "featured" "false") }}
+                <div v-if="['HINTED_UNAVAILABLE','UNAVAILABLE'].indexOf(results.directResult.availability) >= 0">
+                    {{partial "product-search-not-available" (dict "itemSelector" "results.directResult" "featured" "true") }}
 
-              <div net-each-suggestion="categoried.suggestions">
-                <div net-show="visibleSuggestions['{suggestion.domainName}']" data-state="hide">
-                  {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
+                    <div v-for="suggestion in results.directResult.suggestions">
+                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'">
+                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
+                        </div>
+                    </div>
+
                 </div>
-              </div>
+
+                <div v-if="results.directResult.availability == 'MY_DOMAIN'">
+                    {{partial "product-search-my-domain" (dict "itemSelector" "results.directResult" "featured" "true")  }}
+
+                    <div v-for="suggestion in results.directResult.suggestions">
+                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
+                        </div>
+                    </div>
+
+                </div>
+
 
             </div>
 
-          </div>
+
+
+            <div v-for="featured in results.featuredResults">
+                <div v-if="['HINTED_AVAILABLE','AVAILABLE'].indexOf(featured.availability) >= 0 ">
+                    <div v-if="featured.pricingType !== 'PREMIUM'">
+                        {{partial "product-search-available" (dict "itemSelector" "featured" "featured" "true") }}
+                    </div>
+                    <div v-if="featured.pricingType == 'PREMIUM'">
+                        {{partial "product-search-premium" (dict "itemSelector" "featured" "featured" "true") }}
+                    </div>
+                </div>
+                <div v-if="['HINTED_UNAVAILABLE','UNAVAILABLE'].indexOf(featured.availability) >= 0">
+                    {{partial "product-search-not-available" (dict "itemSelector" "featured" "featured" "true") }}
+
+                    <div v-for="suggestion in featured.suggestions">
+                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div v-if="featured.availability == 'MY_DOMAIN'">
+                    {{partial "product-search-my-domain" (dict "itemSelector" "featured" "featured" "true") }}
+
+                    <div v-for="suggestion in featured.suggestions">
+                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="pt125 pb1 borb2 borbrand px1 px0l">
+                <span class="semi uppercase">Category:</span>  {filterValues.categories} -
+                <button class="butlk btn-filters-domain-search semi" data-target="show">filter</button>
+                these results</span>
+            </div>
+
+            <div class="prod-parent" v-for="categoried in results.categoryResults"
+                 net-class-child-selected="selectedItems['{categoried.domainName}']" >
+                <div v-if="['HINTED_AVAILABLE','AVAILABLE'].indexOf(categoried.availability) >= 0">
+                    <div v-if="categoried.pricingType !== 'PREMIUM'">
+                        {{partial "product-search-available" (dict "itemSelector" "categoried" "featured" "false") }}
+                    </div>
+                    <div v-if="categoried.pricingType == 'PREMIUM'">
+                        {{partial "product-search-premium" (dict "itemSelector" "categoried" "featured" "false") }}
+                    </div>
+                </div>
+                <div v-if="['HINTED_UNAVAILABLE','UNAVAILABLE'].indexOf(categoried.availability) >= 0 ">
+                    {{partial "product-search-not-available" (dict "itemSelector" "categoried" "featured" "false") }}
+                    <div v-for="suggestion in categoried.suggestions">
+                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
+                        </div>
+                    </div>
+                </div>
+                <div v-if="categoried.availability == 'MY_DOMAIN'">
+                    {{partial "product-search-my-domain" (dict "itemSelector" "categoried" "featured" "false") }}
+
+                    <div v-for="suggestion in categoried.suggestions">
+                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-      </net-domain-search>
+
+
+
+
+      </div>
 
       <!--    main cell-->
     </div>
@@ -146,4 +157,4 @@
 
 
 
-</net-package-builder>
+</net-domain-search>

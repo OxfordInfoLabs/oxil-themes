@@ -1,5 +1,6 @@
 import "oxil-net1/src/net1-base";
 import * as queryString from 'query-string/index';
+import tippy from 'tippy.js/dist/tippy.esm';
 import NetistrarWhiteLabel from "netistrar-whitelabel/ts/index";
 
 export default class NetCommerce {
@@ -19,10 +20,18 @@ export default class NetCommerce {
             }
         });
 
-        NetistrarWhiteLabel.kinibind.bind(document.getElementById("body"),
-            {
-                tldFilterValue: "",
-                request: queryString.parse(location.search)
+
+        let netDomainSearch = document.querySelector('net-domain-search');
+        if (netDomainSearch)
+            netDomainSearch.addEventListener('search', function () {
+
+                tippy('net-domain-search .pop', {
+                    content(reference) {
+                        const template = reference.nextElementSibling;
+                        return template.innerHTML;
+                    },
+                    trigger: 'click'
+                });
             });
 
     }

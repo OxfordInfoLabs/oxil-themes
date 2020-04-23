@@ -1,6 +1,6 @@
 
 
-<div net-class-prod-selected="selectedItems['{ {{.itemSelector}}.domainName}']" class="white px1 prod  flex justify-between {{ if eq (.featured) "true" }}featured{{end}} {{ if eq (.suggestion) "true" }}suggestion{{end}}" {{with .tippy}}id="{{.}}"{{end}} {{with .datatippycontent}}data-tippy-content="{{.}}"{{end}} >
+<div :class="{'prod-selected': selectedItems[{{.itemSelector}}.domainName]}" class="white px1 prod  flex justify-between {{ if eq (.featured) "true" }}featured{{end}} {{ if eq (.suggestion) "true" }}suggestion{{end}}" {{with .tippy}}id="{{.}}"{{end}} {{with .datatippycontent}}data-tippy-content="{{.}}"{{end}} >
   <div class="flex1 pt050 pb050">
 
     <div class="px050 vsmall green white-text hidden-md mt1 ib"><i class="net-check"></i> available</div>
@@ -11,8 +11,8 @@
       </div>
 
 
-        <div class="vsmall red-text pt050 pb050l" net-if="{{.itemSelector}}.offers.length | eval '>' 0">
-            <span net-each-offer="{{.itemSelector}}.offers">
+        <div class="vsmall red-text pt050 pb050l" v-if="{{.itemSelector}}.offers.length > 0">
+            <span v-for="offer in {{.itemSelector}}.offers">
                 {offer}.&nbsp;
             </span>
         </div>
@@ -22,10 +22,10 @@
 
       <div>
 
-        <div class="pt1 flex-grid justify-end" net-show="{{.itemSelector}}.registrationPrices[0].original | eval '==' 'N/A'">
+        <div class="pt1 flex-grid justify-end" v-if="{{.itemSelector}}.registrationPrices[0].original == 'N/A'">
 
           <span class="f5" >
-            <small net-if="{{.itemSelector}}.pricingType | eval '!==' 'STANDARD'">from</small>
+            <small v-if="{{.itemSelector}}.pricingType !== 'STANDARD'">from</small>
             &pound;{ {{.itemSelector}}.registrationPrices[0].standard }
             <button class="pop but butlk small inv text-colour super "><i class="net-help-circle"></i></button>
           <div class="hidden content" ><strong>Pricing</strong>
@@ -36,9 +36,9 @@
           </span>
         </div>
 
-        <div class="pt1 flex-grid justify-end" net-show="{{.itemSelector}}.registrationPrices[0].original | eval '!==' 'N/A'">
-            <small net-if="{{.itemSelector}}.pricingType | eval '!==' 'STANDARD'">from&nbsp;</small>
-            <span net-if="{{.itemSelector}}.pricingType | eval '==' 'STANDARD'" class="super f4 strike pr050">&pound;{ {{.itemSelector}}.registrationPrices[0].original}</span>
+        <div class="pt1 flex-grid justify-end" v-if="{{.itemSelector}}.registrationPrices[0].original !== 'N/A'">
+            <small v-if="{{.itemSelector}}.pricingType !== 'STANDARD'">from&nbsp;</small>
+            <span v-if="{{.itemSelector}}.pricingType == 'STANDARD'" class="super f4 strike pr050">&pound;{ {{.itemSelector}}.registrationPrices[0].original}</span>
             <span class="red-text {{if eq (.featured) "true"}}f4{{else}}f5{{end}}">
       &pound;{ {{.itemSelector}}.registrationPrices[0].standard }
             </span>
@@ -58,40 +58,41 @@
     </div>
 {{- if eq (.featured) "true" -}}
 <div class="mt1">
-    <div class="g5-text pb050 small " net-if="{{.itemSelector}}.tldDescription"
-         net-html="{{.itemSelector}}.tldDescription"></div>
+    <div class="g5-text pb050 small " v-if="{{.itemSelector}}.tldDescription"
+         v-html="{{.itemSelector}}.tldDescription"></div>
     <div class="vsmall bort1 borcc thin py050 ">This is a <span class='semi'>high quality</span> domain name: <span
-            class='semi'>Sought-after domain ending <span net-if="{{.itemSelector}}.prefixLength | eval '<' 15"> &bullet; <span
+            class='semi'>Sought-after domain ending <span v-if="{{.itemSelector}}.prefixLength < 15"> &bullet; <span
             class='semi'>Less than 15 characters</span></span></div>
 </div>
 {{- end -}}
 
   </div>
+
+
   <div class="pt150 spinner-sm">
-    <label class="rcheck mb0" net-if="{{.itemSelector}}.pricingType | eval '===' 'STANDARD'"><input
+    <label class="rcheck mb0" v-if="{{.itemSelector}}.pricingType === 'STANDARD'"><input
                                      class="add-domain" name="configurestaticpackage" type="checkbox"
                                      data-toggle-item
-                                     net-checked="selectedItems['{ {{.itemSelector}}.domainName}']"
+                                     v-model="selectedItems[{{.itemSelector}}.domainName]"
                                      data-type="domainname"
-                                     net-data-key="{{.itemSelector}}.domainName"
-                                     net-data-label="{ {{.itemSelector}}.domainName}"
+                                     :data-key="{{.itemSelector}}.domainName"
+                                     :data-label="{{.itemSelector}}.domainName"
                                      data-quantity-suffix="yrs"
                                      data-quantity="1"
-                                     net-data-prices="{{.itemSelector}}.allConfirmedRegistrationPricesString"
-                                      />
+                                     :data-prices="{{.itemSelector}}.allConfirmedRegistrationPricesString"/>
       <span class="checkmark"></span> <span class="g8-text select-label small hidden-md"></span>
     </label>
 
-    <label class="rcheck mbo" net-if="{{.itemSelector}}.pricingType | eval '!==' 'STANDARD'">
+    <label class="rcheck mbo" v-if="{{.itemSelector}}.pricingType !== 'STANDARD'">
 
         <input class="add-domain" name="configurestaticpackage" type="checkbox"
                data-check-item
                data-type="domainname"
                autocomplete="off"
-               net-data-key="{{.itemSelector}}.domainName"
-    net-data-label="{ {{.itemSelector}}.domainName}"
-    data-quantity-suffix="yrs"
-    data-quantity="1"/>
+               :data-key="{{.itemSelector}}.domainName"
+                :data-label="{{.itemSelector}}.domainName"
+                data-quantity-suffix="yrs"
+                data-quantity="1"/>
 
         <span class="checkmark"></span> <span class="g8-text select-label small hidden-md"></span>
 
