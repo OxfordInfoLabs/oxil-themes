@@ -1,13 +1,14 @@
-<div net-bind source="{{.Site.Params.apiurl}}/apidoc/default?format=json" model="api"
-    loading-indicator="search-loading"
+<net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-model="api">
+
+<div class="vue-wrapper"
 >
 
-    <div class="search-loading py2 text-center">
+    <div class="search-loading py2 text-center" v-if="!api.apiMetaData">
 
         <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
     </div>
 
-    <div net-show="api.apiMetaData" data-state="hide">
+    <div data-state="hide" :data-state="api.apiMetaData ? 'show' : 'hide'" v-if="api.apiMetaData" >
 
         <table class="striped-table">
             <thead>
@@ -16,9 +17,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr net-each-object="api.apiMetaData.exceptionSummaries">
+            <tr v-for="object in api.apiMetaData.exceptionSummaries">
                 <td scope="row" data-label="Object"><a
-                        net-href="{{ .Page.CurrentSection.Permalink }}exception?exception={object.path}">{object.name}</a>
+                        :href="'{{ .Page.CurrentSection.Permalink }}exception?exception=' + object.path">{object.name}</a>
                 </td>
             </tr>
             </tbody>
@@ -26,3 +27,6 @@
     </div>
 
 </div>
+
+
+</net-bind>

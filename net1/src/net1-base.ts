@@ -177,6 +177,8 @@ body.addEventListener('click', function (event) {
         defaultState();
     } else if (matchedTarget = targetMatchesClass(targetElement, 'btn-filters-domain-search')){
         toggleFilters(matchedTarget);
+    } else if (matchedTarget = targetMatchesClass(targetElement, 'tab-link')){
+        toggleTabs(matchedTarget);
     }
 
 
@@ -263,6 +265,24 @@ function toggleFilters(targetElement) {
 }
 
 
+function toggleTabs(targetElement){
+
+    var tab_id = targetElement.getAttribute('data-tab');
+
+    document.querySelectorAll('.tab-link').forEach((item: HTMLElement) => {
+        item.classList.remove('current');
+    });
+
+    document.querySelectorAll('.tab-content').forEach((item: HTMLElement) => {
+        item.classList.remove('current');
+    });
+
+    targetElement.classList.add('current');
+
+    document.querySelector("#" + tab_id).classList.add('current');
+
+}
+
 document.querySelectorAll('.scroll-to-top').forEach((item: HTMLElement) => {
     item.addEventListener('click', function () {
         topFunction();
@@ -285,24 +305,6 @@ if (toolsFiltersButton)
     });
 
 
-document.querySelectorAll('ul.tabs li').forEach((item: HTMLElement) => {
-
-    item.addEventListener("click", function () {
-        var tab_id = this.getAttribute('data-tab');
-
-        document.querySelectorAll('ul.tabs li').forEach((item: HTMLElement) => {
-            item.classList.remove('current');
-        });
-
-        document.querySelectorAll('.tab-content').forEach((item: HTMLElement) => {
-            item.classList.remove('current');
-        });
-
-        this.classList.add('current');
-
-        document.querySelector("#" + tab_id).classList.add('current');
-    });
-});
 
 document.querySelectorAll('.add-domain').forEach((item: HTMLElement) => {
     item.addEventListener('click', function () {

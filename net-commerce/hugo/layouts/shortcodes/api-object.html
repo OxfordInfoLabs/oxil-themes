@@ -1,15 +1,17 @@
-<div net-bind source="{{.Site.Params.apiurl}}/apidoc/default/object/{request.object}?format=json"
-     loading-indicator="search-loading"
-     model="object">
+<net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default/object/{request.object}?format=json"
+    data-model="object">
 
 
-    <div class="search-loading py2 text-center">
+<div class="vue-wrapper">
+
+
+    <div v-if="!object.object" class="search-loading py2 text-center">
 
         <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
     </div>
 
 
-    <div net-show="object.object" data-state="hide">
+    <div v-if="object.object" data-state="hide" :data-state="object.object ? 'show' : 'hide'">
 
         <h1 class="f-subheadline mt050 mb2">API Object: {object.object.name}</h1>
 
@@ -26,24 +28,24 @@
 
                 </tr>
                 </thead>
-                <tbody net-each-property="object.object.properties">
+                <tbody v-for="property in object.object.properties">
                 <tr>
                     <td class="semi" scope="row" data-label="Name">{property.name} <span
-                        net-show="property.required">*</span></td>
+                        v-if="property.required">*</span></td>
                     <td data-label="Type">Type:
-                        <a net-show="property.typePath"
-                           net-href="{{ .Page.CurrentSection.Permalink}}object?object={property.relativeTypePath}">{property.shortType}</a>
-                        <span net-hide="property.typePath">{property.shortType}</span>
+                        <a v-if="property.typePath"
+                           :href="'{{ .Page.CurrentSection.Permalink}}object?object=' + property.relativeTypePath">{property.shortType}</a>
+                        <span v-if="!property.typePath">{property.shortType}</span>
                     </td>
 
 
                 </tr>
                 <tr><td></td><td data-label="Access">Access:
-                    <span net-show="property.updatable">Read / Write</span>
-                    <span net-hide="property.updatable">Read Only</span>
+                    <span v-if="property.updatable">Read / Write</span>
+                    <span v-if="!property.updatable">Read Only</span>
                 </td></tr>
 
-                <tr><td></td> <td colspan="2" class="text-left-sm" data-label="Description&nbsp;" net-html="property.description"
+                <tr><td></td> <td colspan="2" class="text-left-sm" data-label="Description&nbsp;" v-html="property.description"
                                   style="word-break: break-word"></td></tr>
 
                 </tbody>
@@ -57,3 +59,5 @@
 
 
 </div>
+
+</net-bind>

@@ -1,34 +1,36 @@
-<div net-bind source="{{.Site.Params.apiurl}}/apidoc/default/api/{request.api}/{request.method}?format=json"
-     loading-indicator="search-loading"
-     model="apiMethod" data-rehighlight>
+<net-bind
+        data-rehighlight
+        data-source="{{.Site.Params.apiurl}}/apidoc/default/api/{request.api}/{request.method}?format=json"
+          data-model="apiMethod">
 
-    <div class="search-loading text-center py2 text-center">
+<div class="vue-wrapper">
+
+    <div v-if="!apiMethod.method" class="text-center py2 text-center">
 
         <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
     </div>
 
 
-    <div net-show="apiMethod.method" data-state="hide">
-
+    <div v-if="apiMethod.method" data-state="hide" :data-state="apiMethod.method ? 'show' : 'hide'" >
 
         <h1 class="f-subheadline mt050 mb2">{apiMethod.controller.title}: {apiMethod.method.name}</h1>
 
-        <p net-html="apiMethod.method.commentHTML"></p>
+        <p v-html="apiMethod.method.commentHTML"></p>
 
         <p>
-            <span net-show="apiMethod.method.httpMethodIndicator.GET" class="badge semi brand-2 white-text">{apiMethod.method.httpMethod}</span>
-            <span net-show="apiMethod.method.httpMethodIndicator.POST" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
-            <span net-show="apiMethod.method.httpMethodIndicator.PUT" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
-            <span net-show="apiMethod.method.httpMethodIndicator.PATCH" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
-            <span net-show="apiMethod.method.httpMethodIndicator.DELETE" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
+            <span v-if="apiMethod.method.httpMethodIndicator.GET" class="badge semi brand-2 white-text">{apiMethod.method.httpMethod}</span>
+            <span v-if="apiMethod.method.httpMethodIndicator.POST" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
+            <span v-if="apiMethod.method.httpMethodIndicator.PUT" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
+            <span v-if="apiMethod.method.httpMethodIndicator.PATCH" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
+            <span v-if="apiMethod.method.httpMethodIndicator.DELETE" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
             {apiMethod.method.fullRequestPath}
         </p>
 
         <p class="small"><b>Rate limit: </b>
-            <span net-show="apiMethod.method.rateLimit">{apiMethod.method.rateLimit} requests per minute</span>
-            <span net-show="apiMethod.method.rateLimitMultiplier">
+            <span v-if="apiMethod.method.rateLimit">{apiMethod.method.rateLimit} requests per minute</span>
+            <span v-if="apiMethod.method.rateLimitMultiplier">
     Your account rate limit as displayed in My Account -> API Settings
-    <span net-hide="apiMethod.method.rateLimitMultiplierIsOne" class="semi"> * {apiMethod.method.rateLimitMultiplier}</span>
+    <span v-if="!apiMethod.method.rateLimitMultiplierIsOne" class="semi"> * {apiMethod.method.rateLimitMultiplier}</span>
   </span>
         </p>
 
@@ -46,20 +48,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr net-each-param="apiMethod.apiMethodMetaData.globalParameters">
+                <tr v-for="param in apiMethod.apiMetaData.globalParameters">
                     <td class="semi" scope="row" data-label="Name">
                         <span>{param.name}</span><span>*</span>
                     </td>
                     <td data-label="Type">string</td>
-                    <td data-label="Description" net-html="param.description"></td>
+                    <td data-label="Description" v-html="param.description"></td>
                 </tr>
-                <tr net-each-param="apiMethod.method.params">
-                    <td class="semi" scope="row" data-label="Name">{param.name}<span net-hide="param.isOptional">*</span></td>
+                <tr v-for="param in apiMethod.method.params">
+                    <td class="semi" scope="row" data-label="Name">{param.name}<span v-if="!param.isOptional">*</span></td>
                     <td data-label="Type">
-                        <span net-hide="param.typePath">{param.shortType}</span>
-                        <a class="inv" net-show="param.typePath" net-href="../object/?object={param.relativeTypePath}">{param.shortType}</a>
+                        <span v-if="!param.typePath">{param.shortType}</span>
+                        <a class="inv" v-if="param.typePath" net-href="'../object/?object=' + param.relativeTypePath">{param.shortType}</a>
                     </td>
-                    <td class="text-left-sm" data-label="Description&nbsp;" net-html="param.description" ></td>
+                    <td class="text-left-sm" data-label="Description&nbsp;" v-html="param.description" ></td>
                 </tr>
 
                 </tbody>
@@ -69,21 +71,22 @@
 
         </div>
 
-        <div net-if="apiMethod.method.returnType">
+        <div v-if="apiMethod.method.returnType">
 
             <h3 class="mt2 mb1">Returns</h3>
-                <p net-hide="apiMethod.method.returnTypePath">{apiMethod.method.shortReturnType}</p>
-            <p><a net-href="../object/?object={apiMethod.method.relativeReturnTypePath}">{apiMethod.method.shortReturnType}</a></p>
+                <p v-if="!apiMethod.method.returnTypePath">{apiMethod.method.shortReturnType}</p>
+            <p><a :href="'../object/?object=' + apiMethod.method.relativeReturnTypePath">{apiMethod.method.shortReturnType}</a></p>
 
 
-            <p net-html="apiMethod.method.returnDescription"></p>
+            <p v-html="apiMethod.method.returnDescription"></p>
 
         </div>
 
-        <div net-show="apiMethod.method.exceptions">
+        <div v-if="apiMethod.method.exceptions">
         <h3 class="mt2 mb1">Exceptions</h3>
 
-            <span net-each-exception="apiMethod.method.exceptions"><a net-href="../exception/?exception={exception.relativePath}">{exception.shortType}</a>&nbsp;</span>
+            <span v-for="exception in apiMethod.method.exceptions">
+                <a :href="'../exception/?exception=' + exception.relativePath">{exception.shortType}</a>&nbsp;</span>
 
         </div>
 
@@ -91,37 +94,37 @@
 
      {{ partial "tab-header" }}
 
-<div id="tab-1"  class="tab-content overflow-x current" net-if="apiMethod.method">
+<div id="tab-1"  class="tab-content overflow-x current" v-if="apiMethod.method">
 <pre >
 <code>
 curl -H "Content-Type: application/json"
 -X {apiMethod.method.httpMethod} {apiMethod.baseURL}{apiMethod.method.fullRequestPath}?apiMethodKey=YOURAPIKEY&apiMethodSecret=YOURSECRET<span
-net-each-param="apiMethod.method.params"><span net-hide="param.payloadParam"><span net-hide="param.segmentParam">&{param.name}=VALUE</span></span></span>
-<span net-show="apiMethod.method.payloadParam">-d '{apiMethod.method.payloadParam.shortType} JSON DATA'</span>
+v-for="param in apiMethod.method.params"><span v-if="!param.payloadParam"><span v-if="!param.segmentParam">&{param.name}=VALUE</span></span></span>
+<span v-if="apiMethod.method.payloadParam">-d '{apiMethod.method.payloadParam.shortType} JSON DATA'</span>
 </code>
 </pre>
 </div>
 
-<div id="tab-2"  class="tab-content overflow-x" net-if="apiMethod.method">
+<div id="tab-2"  class="tab-content overflow-x" v-if="apiMethod.method">
 <pre><code class="php">
 
-use <span net-html="apiMethod.method.rootNamespace"></span>\APIProvider;
+use <span v-html="apiMethod.method.rootNamespace"></span>\APIProvider;
 
 $client = new APIProvider("{apiMethod.baseURL}", "YOURAPIKEY", "YOURAPISECRET");
 
-<span net-show="apiMethod.method.returnType">$result = </span>$client->{apiMethod.controller.className}()->{apiMethod.method.name}(<span
-net-each-param="apiMethod.method.params"><span net-show="param.index">, </span>${param.name}</span>)
+<span v-if="apiMethod.method.returnType">$result = </span>$client->{apiMethod.controller.className}()->{apiMethod.method.name}(<span
+v-for="param in apiMethod.method.params"><span v-if="param.index">, </span>${param.name}</span>)
 
 </code></pre>
 </div>
 
-<div id="tab-3"  class="tab-content overflow-x" net-if="apiMethod.method">
+<div id="tab-3"  class="tab-content overflow-x" v-if="apiMethod.method">
 <pre><code class="java">
 
 APIProvider client = new APIProvider("{apiMethod.baseURL}", "YOURAPIKEY", "YOURAPISECRET");
 
-<span net-show="apiMethod.method.returnType">{apiMethod.method.returnJavaType} result = </span>client.{apiMethod.controller.className}().{apiMethod.method.name}(<span
-net-each-param="apiMethod.method.params"><span net-show="param.index">, </span>{param.name}</span>)
+<span v-if="apiMethod.method.returnType">{apiMethod.method.returnJavaType} result = </span>client.{apiMethod.controller.className}().{apiMethod.method.name}(<span
+v-for="param in apiMethod.method.params"><span v-if="param.index">, </span>{param.name}</span>)
 
 
 </code></pre>
@@ -133,3 +136,4 @@ net-each-param="apiMethod.method.params"><span net-show="param.index">, </span>{
 
 </div>
 
+</net-bind>

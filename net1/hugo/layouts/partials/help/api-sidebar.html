@@ -10,39 +10,64 @@
     {{.Title}} <i class="net-chevron-down"></i>
     </button>
 
-    <div class="dropdown-container api-menu-{{.Params.apiController}}" {{if eq $currentPage .}}style="display: block"{{ end }}
-         net-bind source="{{.Site.Params.apiurl}}/apidoc/default/api/{{.Params.apiController}}?format=json" model="{{.Params.apiController}}API">
-      <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
-      <a net-each-method="{{.Params.apiController}}API.controller.methods"
-         net-class="method.name"
-         net-href="{{.CurrentSection.Permalink}}method/?api={{.Params.apiController}}&method={method.name}">{method.name}</a>
-    </div>
-    {{ else if eq .Title "Reseller API Objects" }}
+  <div class="dropdown-container api-menu-{{.Params.apiController}}" {{if eq $currentPage .}}style="display: block"{{ end }}>
+
+
+    <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default/api/{{.Params.apiController}}?format=json"
+              data-model="{{.Params.apiController}}API">
+
+
+      <div class="vue-wrapper" v-if="{{.Params.apiController}}API.controller">
+
+
+
+        <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
+        <a v-for="method in {{.Params.apiController}}API.controller.methods"
+           :class="method.name"
+           :href="'{{.CurrentSection.Permalink}}method/?api={{.Params.apiController}}&method=' + method.name">{method.name}</a>
+
+
+      </div>
+
+    </net-bind>
+
+
+</div>
+
+  {{ else if eq .Title "API Objects" }}
 
     <button class="dropdown-btn api-object {{if eq $currentPage .}}active{{ end }}">
       {{.Title}} <i class="net-chevron-down"></i>
     </button>
 
-    <div class="dropdown-container api-object" {{if eq $currentPage .}}style="display: block"{{ end }}
-         net-bind source="{{.Site.Params.apiurl}}/apidoc/default?format=json" model="apiObjects">
-      <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
-      <a net-each-object="apiObjects.apiMetaData.objectSummaries" net-path="object.path"
-         net-href="{{.CurrentSection.Permalink}}object/?object={object.path}">{object.name}</a>
+
+    <div class="dropdown-container api-object" {{if eq $currentPage .}}style="display: block"{{ end }}>
+      <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-model="apiObjects">
+        <div class="vue-wrapper" v-if="apiObjects.apiMetaData">
+          <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
+          <a v-for="object in apiObjects.apiMetaData.objectSummaries" :path="object.path"
+             :href="'{{.CurrentSection.Permalink}}object/?object=' + object.path">{object.name}</a>
+        </div>
+      </net-bind>
     </div>
 
-    {{ else if eq .Title "Reseller API Exceptions" }}
+
+  {{ else if eq .Title "API Exceptions" }}
 
     <button class="dropdown-btn api-exception {{if eq $currentPage .}}active{{ end }}">
       {{.Title}} <i class="net-chevron-down"></i>
     </button>
 
-    <div class="dropdown-container api-exception" {{if eq $currentPage .}}style="display: block"{{ end }}
-         net-bind source="{{.Site.Params.apiurl}}/apidoc/default?format=json" model="apiExceptions">
-      <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
-      <a net-each-object="apiExceptions.apiMetaData.exceptionSummaries" net-path="object.path"
-         net-href="{{.CurrentSection.Permalink}}exception/?exception={object.path}">{object.name}</a>
-    </div>
-    {{ end }}
+  <div class="dropdown-container api-exception" {{if eq $currentPage .}}style="display: block"{{ end }}>
+    <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-model="apiExceptions">
+        <div class="vue-wrapper" v-if="apiExceptions.apiMetaData">
+        <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
+        <a v-for="object in apiExceptions.apiMetaData.exceptionSummaries" :path="object.path"
+           :href="'{{.CurrentSection.Permalink}}exception/?exception=' + object.path">{object.name}</a>
+        </div>
+    </net-bind>
+  </div>
+  {{ end }}
 
   {{ end }}
   {{ end }}
