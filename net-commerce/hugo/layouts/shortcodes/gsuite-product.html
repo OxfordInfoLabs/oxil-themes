@@ -37,11 +37,10 @@
 {{end}}
 
 
-<div net-bind source="{{ .Site.Params.backendurl }}/gsuite/plans/{{ $.Scratch.Get "plan" }}"
-method="GET" model="gsuite"></div>
+<net-bind data-source="/gsuite/plans/{{ $.Scratch.Get "plan" }}" data-model="gsuite">
 
-<net-gsuite>
-  <div class="grid grid-big ">
+
+  <div class="grid grid-big vue-wrapper">
 
     <div class="white pt3">
 
@@ -57,12 +56,12 @@ method="GET" model="gsuite"></div>
                 <p>{{.Page.Description}}</p>
 
                 <hr>
-                <div class="pt2" net-show="gsuite" data-state="hide">
+                <div class="pt2">
 
                   <span class="f3 pr1 flex align-center" >&nbsp;&pound;
                     <span
-                        net-html="gsuite.Monthly.netPrice"></span>
-                    <span class="small">/user/month</span></span>
+                        v-html="gsuite.Monthly.netPrice"></span>
+                    <span class="small"> /user/month</span></span>
                 </div>
 
                 <div class="small mt2 desc">
@@ -103,7 +102,7 @@ method="GET" model="gsuite"></div>
         <div class="gf9 p1 mt2">
           <p class="thin mb050"><span class="red-text">&pound;</span>
             <span class="red-text"
-                  net-html="gsuite.Monthly.netPrice"></span>
+                  v-html="gsuite.Monthly.netPrice"></span>
             <span class="small">/user/month</span></span><span class="vsmall">(ex. VAT)</span>
           </p>
           <p class="small">Provided by Netistrar Limited (Google Authorised Reseller)</p>
@@ -123,7 +122,7 @@ method="GET" model="gsuite"></div>
     </div>
   </div>
 
-</net-gsuite>
+
 
 <div class="background py2 list">
   <div class="grid grid-big px1 px2l small">
@@ -143,3 +142,6 @@ method="GET" model="gsuite"></div>
   </div>
 
 </div>
+
+
+</net-bind>
