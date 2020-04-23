@@ -2,7 +2,7 @@
 
 <net-domain-transfer data-search-url="/search">
 
-  <div class="gf5">
+  <div class="gf5 vue-wrapper">
     <div class="grid px1 px2l pb4">
 
       <div class="flex flex-row-reverse">
@@ -24,11 +24,11 @@
             before transferring a domain. </p>
 
 
-          <p net-hide="result" data-state="hide" class="text-center"><img src="/images/loading-animation.gif" alt="Netistrar loading animation">
+          <p v-if="!result"  class="text-center"><img src="/images/loading-animation.gif" alt="Netistrar loading animation">
           </p>
 
 
-          <div class="flex-grid mb2" data-state="hide" net-show="status | eval '==' 'locked'">
+          <div class="flex-grid mb2" v-if="status == 'locked'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -41,21 +41,17 @@
 
             </div>
             <div class="w-50 gd p2 flex flex-col justify-center align-center">
-              <form data-check-lock-status class="flex flex-col justify-center align-center">
-
+              <form data-check-lock-status @submit.prevent="checkLockStatus()" class="flex flex-col justify-center align-center">
 
                 <net-recaptcha class="pb1" data-state="hide"></net-recaptcha>
                 <div class="red-text small" data-state="hide" data-recaptcha-error></div>
                 <button class="but butor py1" type="submit">Check again <i class="net-chevron-right"></i> </button>
 
-
-
-
               </form>
 
             </div>
           </div>
-          <div class="flex-grid mb2 " data-state="hide" net-show="status | eval '==' 'unlocked'">
+          <div class="flex-grid mb2 " v-if="status == 'unlocked'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -68,16 +64,16 @@
 
             </div>
             <div class="w-50 gd flex justify-center align-center p2">
-              <form data-check-auth-code>
+              <form data-check-auth-code @submit.prevent="checkAuthCode()">
                 <div class="flex justify-center">
-                  <input class="pl1 borr0 w-75" type="text" placeholder="Enter auth code" net-value="authCode">
+                  <input class="pl1 borr0 w-75" type="text" placeholder="Enter auth code" v-model="authCode">
                   <button class="but butgn" type="submit" class="br0" >
                     <i class="net-chevron-right g8-text f4 white-text"></i>
                   </button>
                 </div>
                 <div>
                   <net-recaptcha></net-recaptcha>
-                  <div class="red-text small pt1" net-html="authError"></div>
+                  <div class="red-text small pt1" v-html="authError"></div>
                 </div>
 
               </form>
@@ -85,7 +81,7 @@
             </div>
           </div>
 
-          <div class="flex-grid mb2" data-state="hide" net-show="status | eval '==' 'authorised'">
+          <div class="flex-grid mb2" v-if="status == 'authorised'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -109,7 +105,7 @@
             </div>
           </div>
 
-          <div class="flex-grid mb2" data-state="hide" net-show="status | eval '==' 'unassigned'">
+          <div class="flex-grid mb2" v-if="status == 'unassigned'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -122,7 +118,7 @@
 
             </div>
             <div class="w-50 gd flex justify-center align-center p2">
-              <form data-check-assigned>
+              <form data-check-assigned @submit.prevent="checkAssignedStatus()">
                 <div>
                   <button class="but butor" type="submit">Check again <i class="net-chevron-right"></i> </button>
                 </div>
@@ -135,7 +131,7 @@
 
             </div>
           </div>
-          <div class="flex-grid mb2" data-state="hide" net-show="status | eval '==' 'assigned'">
+          <div class="flex-grid mb2"  v-if="status == 'assigned'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
