@@ -20,28 +20,22 @@
   </div>
 
 
-  <div net-bind source="{{<param "backendurl">}}/gsuite/plans/Basic"
-  method="GET" model="basic"></div>
-<div net-bind source="{{<param "backendurl">}}/gsuite/plans/Business"
-method="GET" model="business"></div>
-<div net-bind source="{{<param "backendurl">}}/gsuite/plans/Enterprise"
-method="GET" model="enterprise"></div>
+<net-bind data-source="/gsuite/plans" data-model="plans">
 
-
-
-<div class="grid grid-desktop px1 pb5 mt3">
+<div class="grid grid-desktop px1 pb5 mt3 vue-wrapper">
 
   <div class="flex-grid text-center compare-table">
 
-    {{<gsuite-plan-item path="/email/gsuite/plans" plan="basic" features="true" buttonclass="accent-button" plancolourclass="brand-2" plantextcolourclass="brand-2-text">}}
-    {{<gsuite-plan-item path="/email/gsuite/plans" plan="business" features="true" plancolourclass="brand" plantextcolourclass="brand-text">}}
-      {{<gsuite-plan-item path="/email/gsuite/plans" plan="enterprise" features="true" buttonclass="brand-lighter-button" plancolourclass="brand-lighter" plantextcolourclass="brand-lighter-text">}}
-
+    {{<gsuite-plan-item path="/email/gsuite/plans" plan="Basic" features="true" buttonclass="accent-button" plancolourclass="brand-2" plantextcolourclass="brand-2-text">}}
+    {{<gsuite-plan-item path="/email/gsuite/plans" plan="Business" features="true" plancolourclass="brand" plantextcolourclass="brand-text">}}
+    {{<gsuite-plan-item path="/email/gsuite/plans" plan="Enterprise" features="true" buttonclass="brand-lighter-button" plancolourclass="brand-lighter" plantextcolourclass="brand-lighter-text">}}
 
 
   </div>
 
 </div>
+
+</net-bind>
 
 
 </div>

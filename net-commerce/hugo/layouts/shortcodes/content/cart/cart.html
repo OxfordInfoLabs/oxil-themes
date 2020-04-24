@@ -61,7 +61,7 @@
               </div>
               <div class="w-15 w25sm thin py050 px1 text-right">&pound;{subitem.netPrice}</div>
               <div class="w-15 hidden-sm borl1 bordd py050 px1">
-                <a net-href="/configure?cartItem={$index}" class="vsmall normal" v-if="item.domainOperation == 'registration'">edit</a>
+                <a :href="/configure?cartItem={$index}" class="vsmall normal" v-if="item.domainOperation == 'registration'">edit</a>
               </div>
             </div>
             <div class="bort1 bordd mt025"></div>

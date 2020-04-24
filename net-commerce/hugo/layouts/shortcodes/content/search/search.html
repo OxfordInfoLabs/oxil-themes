@@ -110,7 +110,7 @@
             </div>
 
             <div class="prod-parent" v-for="categoried in results.categoryResults"
-                 net-class-child-selected="selectedItems['{categoried.domainName}']" >
+                 :class="{'child-selected': selectedItems[categoried.domainName]}">
                 <div v-if="['HINTED_AVAILABLE','AVAILABLE'].indexOf(categoried.availability) >= 0">
                     <div v-if="categoried.pricingType !== 'PREMIUM'">
                         {{partial "product-search-available" (dict "itemSelector" "categoried" "featured" "false") }}
