@@ -6,11 +6,12 @@
     <net-bind data-source="/marketing/feed/{{ .Get "feed" }}?imageSize=small"
         data-model="carousel" >
 
-      <div class="price-ads overflow-x-hidden flex smooth vue-wrapper" data-state="hide" :data-state="'show'">
+      <div class="price-ads overflow-x-hidden flex smooth vue-wrapper">
 
-          <div v-for="item in carousel" class="price-ad carouse-height flex align-center ">
+          <div v-for="item in carousel" class="price-ad carouse-height flex align-center">
             <img class="price-img carousel-height pr025" :src="item.imageAsBase64">
-            <span class="rrp price-font-weight price-colour price-font-size carousel-height pr1 flex align-center">£{item.price}</span>
+            <span class="rrp price-font-weight price-colour price-font-size carousel-height pr1 flex align-center"
+                v-html="'£' + item.price"></span>
           </div>
 
         </div>

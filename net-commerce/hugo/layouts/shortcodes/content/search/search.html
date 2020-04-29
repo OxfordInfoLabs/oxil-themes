@@ -2,7 +2,7 @@
 
   <div class="grid px2l pb3 vue-wrapper">
 
-    <div class="flex flex-row-reverse" data-state="hide" :data-state="'show'">
+    <div class="flex flex-row-reverse" >
       <div id="product-builder-widget-wrap" class="pl1l flex flex-col pt3" >
         <div class="stick">
           {{ partial "product-builder-widget" (dict "bigbuttext" "Continue"  "bigbuticon" "net-chevron-right" "bigbutlink" "/configure" "smallbuticon" "net-cart-solid" "radius"  "br8tl br8tr " "Site" .Site) }}
@@ -10,16 +10,16 @@
 
       </div>
 
-      <div class="w-75 pr1l">
+      <div class="w-75 pr1l" v-cloak>
 
-        <div class="my2 pt2 text-center" data-state="show" :data-state="results && results.metrics ? 'hide' : 'show'">
+        <div class="my2 pt2 text-center"  v-if="!results || !results.metrics">
 
           <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
 
-
         </div>
 
-        <div v-if="results && results.metrics">
+
+        <div v-if="results && results.metrics" >
 
 
 
@@ -110,7 +110,7 @@
             </div>
 
             <div class="prod-parent" v-for="categoried in results.categoryResults"
-                 net-class-child-selected="selectedItems['{categoried.domainName}']" >
+                 :class="{'child-selected': selectedItems[categoried.domainName]}">
                 <div v-if="['HINTED_AVAILABLE','AVAILABLE'].indexOf(categoried.availability) >= 0">
                     <div v-if="categoried.pricingType !== 'PREMIUM'">
                         {{partial "product-search-available" (dict "itemSelector" "categoried" "featured" "false") }}

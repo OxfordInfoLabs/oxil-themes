@@ -1,9 +1,8 @@
-
-
 <div class="grid px1 px2l pb5 pt4">
   <net-cart>
     <div class="vue-wrapper">
-    <div class="flex-grid flex-row-reverse" data-state="hide" :data-state="cart">
+    <div class="flex-grid flex-row-reverse" v-if="cart" v-cloak >
+
       <div id="product-builder-widget-wrap" class="pl1l w-25" >
         <div id="product-builder-widget" class="brand br8tl br8tr br8bll br8brl px075 pt1 pb150 ">
           <div id="dec" class="img-shadow text-center white-text brand hidden-md"><i class="net-chevron-up"></i></div>
@@ -61,7 +60,7 @@
               </div>
               <div class="w-15 w25sm thin py050 px1 text-right">&pound;{subitem.netPrice}</div>
               <div class="w-15 hidden-sm borl1 bordd py050 px1">
-                <a net-href="/configure?cartItem={$index}" class="vsmall normal" v-if="item.domainOperation == 'registration'">edit</a>
+                <a :href="'/configure?cartItem=' + index" class="vsmall normal" v-if="item.domainOperation == 'registration'">edit</a>
               </div>
             </div>
             <div class="bort1 bordd mt025"></div>

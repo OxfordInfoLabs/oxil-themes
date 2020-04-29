@@ -44,7 +44,7 @@
     <div class="g5-text pb050 small " net-if="{{.itemSelector}}.tldDescription"
          :html="{{.itemSelector}}.tldDescription"></div>
     <div class="vsmall bort1 borcc thin py050 ">This is a <span class='semi'>high quality</span> domain name: <span
-            class='semi'>Sought-after domain ending <span net-if="{{.itemSelector}}.prefixLength | eval '<' 15"> &bullet; <span
+            class='semi'>Sought-after domain ending <span v-if="{{.itemSelector}}.prefixLength < 15"> &bullet; <span
             class='semi'>Less than 15 characters</span></span></div>
 </div>
 {{- end -}}

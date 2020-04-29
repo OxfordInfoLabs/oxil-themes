@@ -59,7 +59,7 @@
                     <td class="semi" scope="row" data-label="Name">{param.name}<span v-if="!param.isOptional">*</span></td>
                     <td data-label="Type">
                         <span v-if="!param.typePath">{param.shortType}</span>
-                        <a class="inv" v-if="param.typePath" net-href="'../object/?object=' + param.relativeTypePath">{param.shortType}</a>
+                        <a class="inv" v-if="param.typePath" :href="'../object/?object=' + param.relativeTypePath">{param.shortType}</a>
                     </td>
                     <td class="text-left-sm" data-label="Description&nbsp;" v-html="param.description" ></td>
                 </tr>

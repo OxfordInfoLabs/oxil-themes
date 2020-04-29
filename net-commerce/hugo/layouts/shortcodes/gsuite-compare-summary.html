@@ -6,11 +6,11 @@
       <div class=" px1 py1">
         <p style="min-height: 75px;">Professional office suite with 30GB storage.</p>
 
-        <h2 class="semi brand-2-text mt0 mb0 pb025">&pound;<span net-html="gsuites.Basic.Monthly.netPrice"></span></h2>
+        <h2 class="semi brand-2-text mt0 mb0 pb025">&pound;<span v-html="gsuites.Basic.Monthly.netPrice"></span></h2>
         <p>GBP / user / month ex.VAT</p>
 
         <p class="flex justify-center mb050"><a href="/email/gsuite/basic/" class="button accent-button inverse-button" >More details</a></p>
-        <p class="small italic mb0 pb1">Save more. Annual plan <br>&pound; <span class="bold" net-html="gsuites.Basic.Annual.netPrice | eval '/' 12"></span> / month</p>
+        <p class="small italic mb0 pb1">Save more. Annual plan <br>&pound; <span class="bold" v-html="(gsuites.Basic.Annual.netPrice / 12).toFixed(2)"></span> / month</p>
       </div>
 
     </div>
@@ -22,12 +22,12 @@
       <div class=" px1 py1">
         <p style="min-height: 75px;">Enhanced office suite with unlimited storage and archiving.</p>
 
-        <h2 class="semi brand-text mt0 mb0 pb025">&pound;<span net-html="gsuites.Business.Monthly.netPrice"></span></h2>
+        <h2 class="semi brand-text mt0 mb0 pb025">&pound;<span v-html="gsuites.Business.Monthly.netPrice"></span></h2>
         <p>GBP / user / month ex.VAT</p>
 
         <p class="flex justify-center mb050"><a href="/email/gsuite/business/" class="button inverse-button" >More details</a></p>
 
-        <p class="small italic mb0 pb1">Save more. Annual plan <br>&pound; <span class="bold" net-html="gsuites.Business.Annual.netPrice | eval '/' 12"></span> / month</p>
+        <p class="small italic mb0 pb1">Save more. Annual plan <br>&pound; <span class="bold" v-html="(gsuites.Business.Annual.netPrice / 12).toFixed(2)"></span> / month</p>
       </div>
 
     </div>
@@ -41,11 +41,11 @@
       <div class="px1 py1">
         <p style="min-height: 75px">Premium office suite with advanced controls and capabilities.</p>
 
-        <h2 class="semi brand-lighter-text mt0 mb0 pb025">&pound;<span net-html="gsuites.Enterprise.Monthly.netPrice"></span></h2>
+        <h2 class="semi brand-lighter-text mt0 mb0 pb025">&pound;<span v-html="gsuites.Enterprise.Monthly.netPrice"></span></h2>
         <p>GBP / user / month ex.VAT</p>
 
         <p class="flex justify-center mb050"><a href="/email/gsuite/enterprise/" class="button brand-lighter-button inverse-button" >More details</a></p>
-        <p class="small italic mb0 pb1">Save more. Annual plan <br>&pound; <span class="bold" net-html="gsuites.Enterprise.Annual.netPrice | eval '/' 12"></span> / month</p>
+        <p class="small italic mb0 pb1">Save more. Annual plan <br>&pound; <span class="bold" v-html="(gsuites.Enterprise.Annual.netPrice / 12).toFixed(2)"></span> / month</p>
       </div>
 
 

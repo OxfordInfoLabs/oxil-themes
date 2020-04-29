@@ -8,7 +8,7 @@
 
   </div>
 
-  <div class="flex w-sm align-center justify-between-sm pl1 pl0l mr1l"><span class="small-sm">Your search: <b >{request.domainsearch}</b> &bullet; <span v-html="filterValues.categories"></span><span :data-state="filterValues.categories ? 'show' : 'hide'" data-state="hide">Popular</span></span>
+  <div class="flex w-sm align-center justify-between-sm pl1 pl0l mr1l"><span class="small-sm">Your search: <b v-cloak>{request.domainsearch}</b> &bullet; <span v-html="filterValues.categories"></span><span data-state="hide" :data-state="filterValues.categories ? 'hide' : 'show'" >Popular</span></span>
     <button class=" hidden-md butlk inv flex align-center ml1 btn-filters-domain-search" data-target="show">Filters <span data-state="hide" :data-state="changedFilterCount > 0 ? 'show' : 'hide'">({changedFilterCount})</span><i class="net-chevron-down"></i></button></div>
 </div>
 {{- end -}}
