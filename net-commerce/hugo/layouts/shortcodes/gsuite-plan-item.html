@@ -27,7 +27,7 @@
       <p class="small italic mb0 pb1">{{$allplans.Param "savelabel"}} <br>&pound; <span class="bold" v-html="(plans.{{$plan}}.Annual.netPrice / 12).toFixed(2)"></span> / {{$allplans.Param "month"}}</p>
     </div>
     {{if .Get "features"}}
-    {{with $features}}{{.Content}}{{end}}
+    {{with $features}}{{.Content | safeHTML}}{{end}}
     {{end}}
   </div>
   {{if .Get "features"}}
