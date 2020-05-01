@@ -37,27 +37,31 @@
 
   </div>
 
-  <div class="side-menu white">
-    <a href="/about/" class="">About <i class="net-launch-out"></i></a>
-    <a href="/prices/" class="">Prices <i class="net-launch-out"></i></a>
-    <a href="/help/" class="">Help <i class="net-launch-out"></i></a>
-    <button class="dropdown-btn">For business and developers <i class="net-dummy"></i></button>
-    <div class="dropdown-container">
-      {{ $menu := .Site.Menus.about}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
-    </div>
-    <button class="dropdown-btn">Products & Services <i class="net-dummy"></i></button>
-    <div class="dropdown-container">
-      {{ $menu := .Site.Menus.services}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
-    </div>
-    <button class="dropdown-btn">Useful links <i class="net-dummy"></i></button>
-    <div class="dropdown-container">
-      {{ $menu := .Site.Menus.usefullinks}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
-    </div>
-  </div>
-
     </div>
 
   </net-session>
+
+  <net-bind data-model='{"businessDevelopers": false, "products": false, "usefulLinks": false}' class="side-menu white">
+    <div class="vue-wrapper">
+        <a href="/about/" class="">About <i class="net-launch-out"></i></a>
+        <a href="/prices/" class="">Prices <i class="net-launch-out"></i></a>
+        <a href="/help/" class="">Help <i class="net-launch-out"></i></a>
+        <button @click="businessDevelopers = !businessDevelopers" class="dropdown-btn">For business and developers <i class="net-dummy"></i></button>
+        <div v-if="businessDevelopers">
+          {{ $menu := .Site.Menus.about}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
+        </div>
+        <button @click="products = !products" class="dropdown-btn">Products & Services <i class="net-dummy"></i></button>
+        <div v-if="products">
+          {{ $menu := .Site.Menus.services}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
+        </div>
+        <button @click="usefulLinks = !usefulLinks" class="dropdown-btn">Useful links <i class="net-dummy"></i></button>
+        <div v-if="usefulLinks">
+          {{ $menu := .Site.Menus.usefullinks}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
+        </div>
+    </div>
+  </net-bind>
+
+
 
 
 </nav>
