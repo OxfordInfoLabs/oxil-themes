@@ -5,6 +5,6 @@
 {{- $model := .model -}}
 
 <button @click="{{$model}} = !{{$model}}" class="dropdown-btn ">{{$label}} <i class="net-dummy"></i></button>
-<div v-if="{{$model}}">
+<div v-if="{{$model}}" class="dropdown-container">
   {{ partial "linksmenu.html" (dict "page" $page "site" $site "ctx" $ "menu" $menu) }}
 </div>

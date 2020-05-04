@@ -47,15 +47,15 @@
         <a href="/prices/" class="">Prices <i class="net-launch-out"></i></a>
         <a href="/help/" class="">Help <i class="net-launch-out"></i></a>
         <button @click="businessDevelopers = !businessDevelopers" class="dropdown-btn">For business and developers <i class="net-dummy"></i></button>
-        <div v-if="businessDevelopers">
+        <div v-if="businessDevelopers" class="dropdown-container" data-state="show">
           {{ $menu := .Site.Menus.about}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
         </div>
         <button @click="products = !products" class="dropdown-btn">Products & Services <i class="net-dummy"></i></button>
-        <div v-if="products">
+        <div v-if="products" class="dropdown-container" data-state="show">
           {{ $menu := .Site.Menus.services}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
         </div>
         <button @click="usefulLinks = !usefulLinks" class="dropdown-btn">Useful links <i class="net-dummy"></i></button>
-        <div v-if="usefulLinks">
+        <div v-if="usefulLinks" class="dropdown-container" data-state="show">
           {{ $menu := .Site.Menus.usefullinks}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
         </div>
     </div>
