@@ -78,7 +78,8 @@ var bindDropdowns = function () {
                 document.querySelectorAll(".dropdown-btn").forEach(item => {
                     if (item !== thisButton) {
                         item.classList.remove("active");
-                        (<HTMLElement>item.nextElementSibling).style.display = 'none';
+                        let sibling = (<HTMLElement>item.nextElementSibling);
+                        if (sibling) sibling.style.display = 'none';
                     }
                 });
 

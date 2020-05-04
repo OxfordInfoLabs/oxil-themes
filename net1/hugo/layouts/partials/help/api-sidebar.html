@@ -10,7 +10,7 @@
     {{.Title}} <i class="net-chevron-down"></i>
     </button>
 
-  <div class="dropdown-container api-menu-{{.Params.apiController}}" {{if eq $currentPage .}}style="display: block"{{ end }}>
+  <div class="dropdown-container api-menu-{{.Params.apiController}}" {{if eq $currentPage .}}style="display: block"{{else}}style="display:none"{{ end }}>
 
 
     <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default/api/{{.Params.apiController}}?format=json"
@@ -41,7 +41,7 @@
     </button>
 
 
-    <div class="dropdown-container api-object" {{if eq $currentPage .}}style="display: block"{{ end }}>
+    <div class="dropdown-container api-object" {{if eq $currentPage .}}style="display: block"{{else}}style="display: none"{{ end }}>
       <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-model="apiObjects">
         <div class="vue-wrapper" v-if="apiObjects.apiMetaData">
           <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
@@ -58,7 +58,7 @@
       {{.Title}} <i class="net-chevron-down"></i>
     </button>
 
-  <div class="dropdown-container api-exception" {{if eq $currentPage .}}style="display: block"{{ end }}>
+  <div class="dropdown-container api-exception" {{if eq $currentPage .}}style="display: block"{{else}}style="display: none"{{ end }}>
     <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-model="apiExceptions">
         <div class="vue-wrapper" v-if="apiExceptions.apiMetaData">
         <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
