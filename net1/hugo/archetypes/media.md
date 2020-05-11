@@ -1,8 +1,9 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 description: "Description {{ replace .Name "-" " " | title }}"
-type: "image"
+type: "video"
 channel: ""
+event: ""
 link: ""
 youtubeid: ""
 imageaspect: "landscape"
