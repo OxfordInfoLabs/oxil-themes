@@ -23,7 +23,6 @@
 {{- $link := $item.Params.link -}}
 {{- $channel := $item.Params.channel -}}
 
-
 <div title="{{with $date}}{{ . | dateFormat "2006-01-02" }}{{end}}" id="{{$id}}" class="mitem white mb1">
   <div class="vsmall flex align-center"><time class=" timeago p075 blk" datetime="{{with $date}}{{.}}{{end}}">{{with $date}}{{ . | dateFormat "2 Jan 2006"}}{{end}}</time>
     <span class="semi uppercase">News<span class="ga-text"> | </span>Security</span>

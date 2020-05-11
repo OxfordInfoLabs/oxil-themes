@@ -12,6 +12,6 @@ categories:
 tags:
 - ""
 id: "{{ .Name | lower }}"
-publishdate: "{{ now.Format "2006-01-02 15:04 GMT" }}"
-lastmod: "{{ now.Format "2006-01-02 15:04 GMT" }}"
+publishdate: "{{ .Date }}"
+lastmod: "{{ .Date }}"
 ---
