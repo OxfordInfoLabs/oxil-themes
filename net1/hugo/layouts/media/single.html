@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ {{- $id := .File.BaseFileName -}}
+ {{- $url := printf "%s/media/%s/" .Site.BaseURL $id -}}
+ {{- $redirect := printf "%s/media/#%s" .Site.BaseURL $id -}}
+ <title>{{- $url -}}</title>
+ <link rel="canonical" href="{{- $url -}}"/>
+ <meta name="robots" content="noindex">
+ <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+ <meta http-equiv="refresh" content="0; url={{- $redirect -}}"/>
+</head>
+</html>

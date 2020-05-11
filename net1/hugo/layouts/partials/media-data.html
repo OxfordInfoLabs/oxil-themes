@@ -1,0 +1,60 @@
+
+{{- range .Pages.ByLastmod.Reverse -}}
+{{- $item := . -}}
+{{- $type := $item.Params.type -}}
+{{- $date := $item.Lastmod -}}
+{{- $text := $item.Title -}}
+{{- $id := $item.Params.id  -}}
+{{- $youtubeid := $item.Params.youtubeid -}}
+{{- $image := .Resources.GetMatch "*featured*" -}}
+{{- $imagesrc := "" -}}
+{{- with $image -}}
+{{- $image = .Resize "600x" -}}
+{{- $imagesrc = .RelPermalink -}}
+{{- end -}}
+{{- $iwidth := 500 -}}
+{{- $iheight := 281 -}}
+{{- $imageaspect := $item.Params.imageaspect -}}
+{{- with eq $imageaspect "portrait" -}}
+{{- $iwidth = 500 -}}
+{{- $iheight = 750 -}}
+{{- end -}}
+
+{{- $link := $item.Params.link -}}
+{{- $channel := $item.Params.channel -}}
+
+
+<div title="{{with $date}}{{ . | dateFormat "2006-01-02" }}{{end}}" id="{{$id}}" class="mitem white mb1">
+  <div class="vsmall flex align-center"><time class=" timeago p075 blk" datetime="{{with $date}}{{.}}{{end}}">{{with $date}}{{ . | dateFormat "2 Jan 2006"}}{{end}}</time>
+    <span class="semi uppercase">News<span class="ga-text"> | </span>Security</span>
+  </div>
+  {{- with $type -}}
+  <p class="px075 {{ if eq . "text" -}}f3{{end}}">{{with $channel}}<b>{{.}}: </b>{{end}}{{with $text}}{{. | safeHTML}}{{end}}</p>
+
+  {{- with $youtubeid -}}
+  <div class="vid">
+    <amp-youtube width="256"
+                 height="144"
+                 layout="responsive"
+                 data-videoid="{{.}}">
+    </amp-youtube>
+  </div>
+  {{- else -}}
+
+  <div class="with-link" >
+
+    <amp-img src="{{$imagesrc}}" layout="responsive" width="{{default 16 $iwidth}}" height="{{default 9 $iheight}}" alt="Media image {{with $text}}{{.}}{{end}}">
+    {{- with $link -}}<a href="{{.}}"></a>{{- end -}}
+  </div>
+  {{- end -}}
+{{- end -}}
+
+  <hr class="muted">
+  <div class="flex justify-between align-center py050 px075">
+    <div class="vsmall bor1 borbb px050 py025">Junk news, COVID-19, Online harms</div><div>{{ partial "amp-share-bar" (dict "id" $id "ctx" $) }}</div>
+  </div>
+</div>
+
+{{- end -}}
+
+

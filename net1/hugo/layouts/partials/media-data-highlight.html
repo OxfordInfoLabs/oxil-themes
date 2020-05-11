@@ -1,0 +1,48 @@
+{{$item := index .ctx.Site.Data.media .item -}}
+{{- $type := $item.type -}}
+{{- $date := $item.date -}}
+{{- $title := (default $item.title $item.headline) -}}
+{{- $anchor := printf "#%s" ($item.id ) -}}
+{{- $youtube := $item.youtubeid -}}
+{{- $image := printf "/images/media/%s" (default $item.image $item.highlightimage) -}}
+{{- $channel := $item.channel -}}
+
+<div class="highlight mr1 flex flex-col ">
+{{- with $youtube -}}
+
+  <div class=" w with-link ">
+    <amp-youtube width="220"
+                 height="124"
+                 layout="fixed"
+                 data-videoid="{{.}}">
+    </amp-youtube>
+    <a href="{{$anchor}}"></a>
+  </div>
+  {{- else -}}
+
+  <div class="with-link w  gf9">
+
+    <amp-img src="{{ $image }}" alt="Image {{ $title }}" width="220" height="124" layout="fixed"></amp-img>
+
+    <a href="{{$anchor}}"></a>
+  </div>
+
+  {{- end -}}
+  <div class="gf9 flex1 p1 flex flex-col justify-between">
+
+
+    <h5 class="mt0 lh13"><a class="inv font-color bold" href="{{$anchor}}">{{$title}}</a></h5>
+    <ul class="unstyled small ">
+      <li>
+        <time class="small " datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" $date }}">
+        {{ dateFormat "2 Jan, 2006" $date }}
+        </time> |
+      </li>
+      {{ with $channel }}
+      <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  </div>
+</div>
+
+

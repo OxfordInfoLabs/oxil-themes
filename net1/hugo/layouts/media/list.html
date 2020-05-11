@@ -1,0 +1,132 @@
+
+{{- define "schema" -}}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{.Title}}" />
+<meta name="twitter:site" content="@oxfordinfolabs" />
+<meta name="twitter:creator" content="{{ if .Params.authors }}{{ range first 1 .Params.authors }}{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}{{ $param := .Params.twitter }}{{if $param }}{{$param}}{{else}}{{"@oxfordinfolabs"}}{{end}}{{ end }}{{end}}{{ else }}{{"@oxfordinfolabs"}}{{end}}" />
+<meta property="og:url"                content="{{.Permalink}}" />
+<meta property="fb:app_id"             content="{{.Site.Params.facebookappid}}" />
+<meta property="og:type"               content="{{if .IsHome}}website{{else}}article{{end}}" />
+<meta property="og:title"              content="{{.Title}}" />
+<meta property="og:description"        content="{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}" />
+<meta property="og:image" content="{{ if $match := .Resources.GetMatch "*featured*" }}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}{{ $permalink }}{{else}}{{.Site.BaseURL}}images/oxil_logo_horizontal.png{{end}}" />
+{{if and (ne .Section "categories") (ne .Section "authors") }}
+
+<script type="application/ld+json">
+ {
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "mainEntityOfPage": {
+   "@type": "WebPage",
+   "@id": "{{.Permalink}}"
+  },
+  "headline":"{{.Title}}",
+  "datePublished": "{{.Date.Format "2006-01-02T15:04:05Z0700"}}",
+  "dateModified": "{{.Lastmod.Format "2006-01-02T15:04:05Z0700"}}",
+  "publisher": {
+   "@type": "Organization",
+   "name": "Oxford Information Labs Limited",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "{{.Site.BaseURL}}images/oxil_logo_horizontal.png"
+   }
+  },
+  "description": "{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}",
+ {{ if $match := .Resources.GetMatch "*featured*" }}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}"image": ["{{$permalink}}"]{{end}},
+ "author": {
+ {{ if .Params.authors }}
+ {{ range first 1 .Params.authors }}{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}"@type": "Person",
+ "name": "{{.Params.name}}"{{end}}{{end}}{{else}}"@type": "Organization",
+ "name": "Oxford Information Labs"{{end}}
+ }
+ }
+</script>
+
+{{end}}
+
+{{- end -}}
+
+
+{{- define "main" -}}
+<div class="brand pb1 py2l">
+ <h1 class="white-text text-center">{{ .Title }}</h1>
+ <h4 class="normal gc-text text-center">Review our latest TV & Radio appearances and Media contributions.</h4>
+</div>
+
+<div style="border-bottom: 1px solid #eee">
+ <div class="grid flex justify-between px1 px2l py150" >
+ <div class="breadcrumb hidden-sm ">{{ partial "breadcrumb" (dict "p1" .Page "p2" .Page )}}</div>
+ <a href="/" class="inv hidden-md inverse flex align-center " style="font-size: inherit"><i class="net-chevron-left" ></i> Home</a>
+ <a href="/test/" class="inv flex align-center  " style="font-size: inherit">Test <i class="net-chevron-right" ></i></a>
+ </div>
+</div>
+<div class="ge pb5">
+ <div class="grid grid-desktop px1 pt4" style="max-width: 860px;">
+  <div class="flex flex-wrap flex-row-reverse">
+   <div class="sidebar w-33 pt5l ">
+    <h4 class="gf9 py025 px125">TV & Media work</h4>
+    <section class="gf9 p075 mb1">
+     <h6 class="uppercase">Contact Information</h6>
+     <p class="small">Journalists and Media Researchers - please contact our media team at <a href="mailto:media@oxil.uk">media@oxil.uk</a>.  Visit our
+      <a href="/news/">Newsroom</a> for latest Press Releases and further information.
+     </p>
+
+    </section>
+    <section class="gf9 mb1 sticky highlights" >
+     <h6 class="p075 uppercase">Highlights</h6>
+
+
+     <div class="pl075 flex" >
+     {{- range .Params.highlights -}}
+      {{- partial "media-data-highlight" (dict "item" . "ctx" $) -}}
+      {{- end -}}
+
+     </div>
+    </section>
+
+    <section class="gf9 p075 mb1">
+     <h5>How we work</h5>
+     <p class="small">CEO Emily Taylor and her colleagues Stacie Hoffman and Samantha Bradshaw offer expert
+      commentary for TV and Radio and articles for Media
+      <a href="#" class="sh inv" tabindex="1" title="more &#x25BE;"></a>
+      <span class="msg">as specialist in a range of cyber subjects below. <span class="blk mb050"></span> They are always interested in promoting women in tech, findings from their latest research, and work for The Journal of Cyber Policy (Chatham House) and the Oxford Internet Institute.</span>
+      <a href="#" class="hd inv" tabindex="1" title="less &#x25B4;"></a>
+     </p>
+
+    </section>
+    <section class="gf9 p075 mb1">
+     <h5>Areas of expertise.</h5>
+     <p class="small">The team have expert knowledge in the following subjects: Cyber Security, Huawei, 5G,
+      Internet Governance & Law, Facebook, Google, Amazon, DCMS and more.
+     </p>
+
+    </section>
+
+   </div>
+   <div class="flex1 pr1l">
+    <h5 class="uppercase normal">Media Latest</h5>
+    <div class=" mediastack" >
+
+     {{- partial "media-data" . -}}
+
+    </div>
+    <!--        end mediastack-->
+
+
+   </div>
+
+
+  </div>
+
+
+ </div>
+</div>
+
+<div class="brand-lighter ">
+ <div class="grid flex-grid flex-row-reverse px1 px2l py3">
+ <a href="/" class="inv white-text white-text-hover flex align-center flex1 mb3 mb0l" ><span class="flex1 text-right "><span class="normal">Next</span><br><span class="f4 semi">Home</span></span><i class="net-chevron-right ml1 f4" ></i></a>
+ <a href="/" class="inv white-text white-text-hover flex align-center flex1 " ><i class="net-chevron-left mr1 f4" ></i> <span class="flex1"><span class="normal">Previous</span><br><span class="f4 semi">Home</span></span></a>
+</div>
+</div>
+
+{{- end -}}

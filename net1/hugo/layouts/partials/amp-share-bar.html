@@ -1,0 +1,14 @@
+
+{{- $url := printf "%s/media/#%s" .ctx.Site.BaseURL .id -}}
+{{- $facebookappid := .ctx.Site.Params.facebookAppId -}}
+<div class="" >
+  <amp-social-share type="twitter"
+                    width="40"
+                    height="29"
+                    data-param-url="{{- $url -}}"></amp-social-share>
+  <amp-social-share type="facebook"
+                    width="40"
+                    height="29"
+                    data-param-app_id="{{- $facebookappid -}}"
+                    data-param-href="{{- $url -}}"></amp-social-share>
+</div>
