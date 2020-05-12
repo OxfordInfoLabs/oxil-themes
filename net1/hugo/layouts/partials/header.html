@@ -24,8 +24,9 @@
 <header  class="py1 {{ if eq (.Scratch.Get "theme") "brand" }}g46{{end}}">
 <ka-session style="width: 100%;">
 
+  <div class="vue-wrapper">
 
-  <div class="grid flex px1 px2l justify-between align-center ">
+  <div class="grid flex px1 px2l justify-between align-center">
 
 
     <div class="flex align-center flex1 ">
@@ -104,7 +105,7 @@
   {{- partial "login" . -}}
   {{- partial "logout" . -}}
 
-
+  </div>
 
 </ka-session>
 
