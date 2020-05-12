@@ -48,9 +48,9 @@
 
 
 {{- define "main" -}}
-<div class="brand pb1 py2l">
+<div class="brand p1 pt2 pt3l pb2l flex flex-col align-center">
  <h1 class="white-text text-center">{{ .Title }}</h1>
- <h4 class="normal gc-text text-center">Review our latest TV & Radio appearances and Media contributions.</h4>
+ <h4 class="w-60 thin gc-text text-center">{{- .Description -}}</h4>
 </div>
 
 <div style="border-bottom: 1px solid #eee">
@@ -77,9 +77,8 @@
 
 
      <div class="pl075 flex" >
-     {{- range .Params.highlights -}}
-      {{- partial "media-data-highlight" (dict "item" . "ctx" $) -}}
-      {{- end -}}
+
+     {{- partial "media-data-highlight" . -}}
 
      </div>
     </section>

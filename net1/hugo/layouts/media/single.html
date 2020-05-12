@@ -1,14 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
+{{- define "schema" -}}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{.Title}}" />
+<meta name="twitter:site" content="@oxfordinfolabs" />
+<meta name="twitter:creator" content="{{ if .Params.authors }}{{ range first 1 .Params.authors }}{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}{{ $param := .Params.twitter }}{{if $param }}{{$param}}{{else}}{{"@oxfordinfolabs"}}{{end}}{{ end }}{{end}}{{ else }}{{"@oxfordinfolabs"}}{{end}}" />
+<meta property="og:url"                content="{{.Permalink}}" />
+<meta property="fb:app_id"             content="{{.Site.Params.facebookappid}}" />
+<meta property="og:type"               content="{{if .IsHome}}website{{else}}article{{end}}" />
+<meta property="og:title"              content="{{.Title}}" />
+<meta property="og:description"        content="{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}" />
+<meta property="og:image" content="{{ if $match := .Resources.GetMatch "*featured*" }}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}{{ $permalink }}{{else}}{{.Site.BaseURL}}images/oxil_logo_horizontal.png{{end}}" />
+{{if and (ne .Section "categories") (ne .Section "authors") }}
 
- {{- $id := .File.BaseFileName -}}
- {{- $url := printf "%s/media/%s/" .Site.BaseURL $id -}}
- {{- $redirect := printf "%s/media/#%s" .Site.BaseURL $id -}}
- <title>{{- $url -}}</title>
- <link rel="canonical" href="{{- $url -}}"/>
- <meta name="robots" content="noindex">
- <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
- <meta http-equiv="refresh" content="0; url={{- $redirect -}}"/>
-</head>
-</html>
+<script type="application/ld+json">
+ {
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "mainEntityOfPage": {
+   "@type": "WebPage",
+   "@id": "{{.Permalink}}"
+  },
+  "headline":"{{.Title}}",
+  "datePublished": "{{.Date.Format "2006-01-02T15:04:05Z0700"}}",
+  "dateModified": "{{.Lastmod.Format "2006-01-02T15:04:05Z0700"}}",
+  "publisher": {
+   "@type": "Organization",
+   "name": "Oxford Information Labs Limited",
+   "logo": {
+    "@type": "ImageObject",
+    "url": "{{.Site.BaseURL}}images/oxil_logo_horizontal.png"
+   }
+  },
+  "description": "{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}",
+ {{ if $match := .Resources.GetMatch "*featured*" }}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}"image": ["{{$permalink}}"]{{end}},
+ "author": {
+ {{ if .Params.authors }}
+ {{ range first 1 .Params.authors }}{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}"@type": "Person",
+ "name": "{{.Params.name}}"{{end}}{{end}}{{else}}"@type": "Organization",
+ "name": "Oxford Information Labs"{{end}}
+ }
+ }
+</script>
+
+{{end}}
+
+{{- end -}}
+
+
+{{- define "main" -}}
+<h1>hello darkness my old friend
+
+this</h1>
+{{- end -}}
