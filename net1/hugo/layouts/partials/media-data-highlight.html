@@ -1,11 +1,27 @@
-{{$item := index .ctx.Site.Data.media .item -}}
-{{- $type := $item.type -}}
-{{- $date := $item.date -}}
-{{- $title := (default $item.title $item.headline) -}}
-{{- $anchor := printf "#%s" ($item.id ) -}}
-{{- $youtube := $item.youtubeid -}}
-{{- $image := printf "/images/media/%s" (default $item.image $item.highlightimage) -}}
-{{- $channel := $item.channel -}}
+{{- range .Params.highlights -}}
+{{$item := $.Site.GetPage . -}}
+{{- $type := $item.Params.type -}}
+{{- $date := $item.Lastmod -}}
+{{- $title := $item.Title -}}
+{{- $anchor := printf "#%s" $item.Params.id -}}
+{{- $youtube := $item.Params.youtubeid -}}
+{{- $imagesrc := "" -}}
+{{- $image := $item.Resources.GetMatch "*highlight*" -}}
+{{- with $image -}}
+{{- $imagesrc = .RelPermalink -}}
+{{- $image = $image.Resize "220x" -}}
+{{- else -}}
+{{- $image = $item.Resources.GetMatch "*featured*" -}}
+{{- with $image -}}
+{{- $imagesrc = .RelPermalink -}}
+{{- $image = .Resize "220x" -}}
+{{- end -}}
+{{- end -}}
+{{- $tags := $item.Params.tags -}}
+
+
+
+{{- $channel := $item.Params.channel -}}
 
 <div class="highlight mr1 flex flex-col ">
 {{- with $youtube -}}
@@ -18,31 +34,30 @@
     </amp-youtube>
     <a href="{{$anchor}}"></a>
   </div>
-  {{- else -}}
+  {{- end -}}
+  {{- with $image -}}
 
   <div class="with-link w  gf9">
 
-    <amp-img src="{{ $image }}" alt="Image {{ $title }}" width="220" height="124" layout="fixed"></amp-img>
+    <amp-img src="{{ $imagesrc }}" alt="Image {{ $title }}" width="220" height="124" layout="fixed"></amp-img>
 
     <a href="{{$anchor}}"></a>
   </div>
-
-  {{- end -}}
+{{- end -}}
   <div class="gf9 flex1 p1 flex flex-col justify-between">
 
-
-    <h5 class="mt0 lh13"><a class="inv font-color bold" href="{{$anchor}}">{{$title}}</a></h5>
-    <ul class="unstyled small ">
-      <li>
-        <time class="small " datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" $date }}">
-        {{ dateFormat "2 Jan, 2006" $date }}
-        </time> |
-      </li>
-      {{ with $channel }}
-      <li>{{ . }}</li>
-      {{ end }}
-    </ul>
+    <div class="mb050">
+      <p class="m0 lh13"><a class="inv font-color semi" href="{{$anchor}}"><b>{{- $channel -}}: </b><br>{{$title}}</a></p>
+      <time class="vsmall g8-text" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" $date }}">
+      {{ dateFormat "2 Jan, 2006" $date }}
+      </time>
+    </div>
+    <p class="small">
+    {{- range $tags -}}
+    <span class="pipe">{{- . -}}</span>
+    {{- end -}}
+    </p>
   </div>
 </div>
 
-
+{{- end -}}

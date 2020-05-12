@@ -1,0 +1,8 @@
+<h1>Test partial</h1>
+
+{{- range .Params.highlights -}}
+{{- $t := $.Site.GetPage . -}}
+
+{{- $t.Title -}}
+
+{{- end -}}
