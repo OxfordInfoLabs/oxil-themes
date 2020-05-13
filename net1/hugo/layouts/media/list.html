@@ -42,12 +42,18 @@
  }
 </script>
 
-{{end}}
+{{- end -}}
 
 {{- end -}}
 
 
+{{ define "bodytag"}}
+<body id="body" class="mediabody">
+
+{{ end }}
+
 {{- define "main" -}}
+
 <div class="brand p1 pt2 pt3l pb2l flex flex-col align-center">
  <h1 class="white-text text-center">{{ .Title }}</h1>
  <h4 class="w-60 thin gc-text text-center">{{- .Description -}}</h4>

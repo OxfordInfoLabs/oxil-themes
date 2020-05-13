@@ -1,7 +1,7 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 description: "Description {{ replace .Name "-" " " | title }}"
-type: "video"
+mediatype: "video"
 channel: ""
 event: ""
 link: ""
@@ -14,4 +14,5 @@ tags:
 id: "{{ .Name | lower }}"
 publishdate: "{{ .Date }}"
 lastmod: "{{ .Date }}"
+type: "media"
 ---
