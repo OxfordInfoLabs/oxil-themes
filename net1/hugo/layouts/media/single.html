@@ -63,6 +63,13 @@
       <div class="white p1"><h4>Meta data</h4>
         <p><b>Title:</b><br>{{- .Title -}}</p>
         <p><b>Description:</b><br>{{- .Description -}}</p>
+       {{- with .Params.link -}}
+       <p><b>Link to:</b><br>{{- . | safeHTML -}}</p>
+       {{- end -}}
+       <p><b>Published:</b><br>{{- .PublishDate | dateFormat "2 Jan, 2006" -}}</p>
+       {{- with .Lastmod -}}
+       <p><b>Modified:</b><br>{{- . | dateFormat "2 Jan, 2006" -}}</p>
+       {{- end -}}
        <p class="mb0"><b>Categories:</b></p>
         <ul class="unstyled pb1">
          {{ range .Params.categories }}
@@ -75,13 +82,7 @@
         <li class="com lh1"><a class="inv" href="/tags/{{ . | urlize }}/">{{ . }}</a></li>
         {{ end }}
        </ul>
-       {{- with .Params.link -}}
-       <p><b>Link to:</b><br>{{- . | safeHTML -}}</p>
-       {{- end -}}
-       <p><b>Published:</b><br>{{- .PublishDate | dateFormat "2 Jan, 2006" -}}</p>
-       {{- with .Lastmod -}}
-       <p><b>Modified:</b><br>{{- . | dateFormat "2 Jan, 2006" -}}</p>
-       {{- end -}}
+
       </div>
      </div>
    </div>
