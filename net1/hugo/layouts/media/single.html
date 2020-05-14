@@ -17,7 +17,7 @@
   "@type":"Article",
   "mainEntityOfPage": {
    "@type": "WebPage",
-   "@id": "{{.Permalink}}"
+   "@id": {{.Permalink}}
   },
   "headline":"{{.Title}}",
   "datePublished": "{{.Date.Format "2006-01-02T15:04:05Z0700"}}",
@@ -27,7 +27,7 @@
    "name": "Oxford Information Labs Limited",
    "logo": {
     "@type": "ImageObject",
-    "url": "{{.Site.BaseURL}}images/oxil_logo_horizontal.png"
+    "url": {{- printf "%s/images/oxford_information_labs_logo_sm-320x95.png" .Site.BaseURL -}}
    }
   },
   "description": "{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}",
@@ -45,9 +45,55 @@
 
 {{- end -}}
 
+{{ define "bodytag"}}
+<body id="body" class="mediabody">
+
+{{ end }}
 
 {{- define "main" -}}
-<h1>hello darkness my old friend
+<div class="ge">
+ <div class="grid px1 px2l pt1 pb2">
+  <div class="breadcrumb">{{- partial "breadcrumb" (dict "p1" .Page "p2" .Page) -}}</div>
+   <h1 class="py2">{{- .Title -}}</h1>
+   <div class="flex-grid">
+     <div class="w-60">
+  {{- partial "media-item" . -}}
+     </div>
+     <div class="w-40 pl3l">
+      <div class="white p1"><h4>Meta data</h4>
+        <p><b>Title:</b><br>{{- .Title -}}</p>
+        <p><b>Description:</b><br>{{- .Description -}}</p>
+       {{- with .Params.link -}}
+       <p><b>Link to:</b><br>{{- . | safeHTML -}}</p>
+       {{- end -}}
+       <p><b>Published:</b><br>{{- .PublishDate | dateFormat "2 Jan, 2006" -}}</p>
+       {{- with .Lastmod -}}
+       <p><b>Modified:</b><br>{{- . | dateFormat "2 Jan, 2006" -}}</p>
+       {{- end -}}
+       <p class="mb0"><b>Categories:</b></p>
+        <ul class="unstyled pb1">
+         {{ range .Params.categories }}
+         <li class="com lh1"><a class="inv" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>
+         {{ end }}
+        </ul>
+       <p class="mb0"><b>Tags:</b></p>
+       <ul class="unstyled pb1">
+        {{ range .Params.tags }}
+        <li class="com lh1"><a class="inv" href="/tags/{{ . | urlize }}/">{{ . }}</a></li>
+        {{ end }}
+       </ul>
 
-this</h1>
+      </div>
+     </div>
+   </div>
+ </div>
+</div>
+
+<div id="relatedtags" class="white py3">
+ <div class="grid">
+  <h5 class="px1 px2l uppercase">Related</h5>
+  {{- partial "related-by-tags" . -}}
+ </div>
+</div>
+
 {{- end -}}

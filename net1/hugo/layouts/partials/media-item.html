@@ -1,0 +1,63 @@
+
+
+{{- $item := . -}}
+{{- $type := $item.Params.mediatype -}}
+{{- $date := $item.Lastmod -}}
+{{- $text := $item.Description -}}
+{{- $id := $item.Params.id  -}}
+{{- $youtubeid := $item.Params.youtubeid -}}
+{{- $image := .Resources.GetMatch "*featured*" -}}
+{{- $imagesrc := "" -}}
+{{- with $image -}}
+{{- $image = .Resize "600x" -}}
+{{- $imagesrc = .RelPermalink -}}
+{{- end -}}
+{{- $iwidth := 500 -}}
+{{- $iheight := 281 -}}
+{{- $imageaspect := $item.Params.imageaspect -}}
+{{- with eq $imageaspect "portrait" -}}
+{{- $iwidth = 500 -}}
+{{- $iheight = 750 -}}
+{{- end -}}
+
+{{- $link := $item.Params.link -}}
+{{- $channel := $item.Params.channel -}}
+
+
+<div title="{{with $date}}{{ . | dateFormat "2006-01-02" }}{{end}}" id="{{$id}}" class="mitem white mb1">
+<div class="vsmall flex align-center"><time class=" timeago p075 blk" datetime="{{with $date}}{{.}}{{end}}">{{with $date}}{{ . | dateFormat "2 Jan 2006"}}{{end}}</time>
+ <span class="semi uppercase">{{ range .Params.categories }}<span class="pipe">{{ . }}</span>{{ end }}</span>
+</div>
+
+<p class="px075 {{ with eq $type "text" -}}f3{{end}}">{{with $channel}}<b>{{.}}: </b>{{end}}{{with $text}}{{. | safeHTML}}{{end}}</p>
+
+{{- with $youtubeid -}}
+<div class="vid">
+ <amp-youtube width="256"
+              height="144"
+              layout="responsive"
+              data-videoid="{{.}}">
+ </amp-youtube>
+</div>
+{{- end -}}
+{{- with $image -}}
+<div class="with-link" >
+
+ <amp-img src="{{$imagesrc}}" layout="responsive" width="{{default 16 $iwidth}}" height="{{default 9 $iheight}}" alt="Media image {{with $text}}{{.}}{{end}}"></amp-img>
+ {{- with $link -}}<a href="{{.}}"></a>{{- end -}}
+</div>
+{{- end -}}
+{{ with eq $type "text" -}}
+{{- with $link -}}
+<p class="px075"><a href="{{.}}">Related link <i class="net-chevron-right"></i></a></p>
+{{- end -}}
+{{- end -}}
+<hr class="muted">
+<div class="flex justify-between align-center py050 px075">
+ <div class="vsmall bor1 borbb px050 py025">{{ range .Params.tags }}<span class="com">{{ . }}</span>{{ end }}<a href="{{- .RelPermalink -}}" class="com inv normal">related ..</a></div><div>{{ partial "amp-share-bar" (dict "id" $id "ctx" $) }}  </div>
+</div>
+</div>
+
+
+
+

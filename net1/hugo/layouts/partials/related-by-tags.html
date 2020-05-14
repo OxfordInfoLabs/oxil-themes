@@ -1,0 +1,41 @@
+
+
+{{- $page_link := .Permalink -}}
+{{- $channel := .Params.channel -}}
+{{- $tags := .Params.tags -}}
+{{- $c := 0 -}}
+
+
+<div class="px1 px2l grid flex flex-grid flex-wrap flex-gutter-3">
+ {{- range $page := .Site.Pages -}}
+ {{- $has_common_tags := intersect $tags .Params.tags | len | lt 0 -}}
+ {{- if and $has_common_tags (ne $page_link $page.Permalink) (lt ($.Scratch.Get "$c") 20)}}
+ {{- $.Scratch.Add "$c" 1 -}}
+
+ <div class="w-33  flex flex-col-md mb2" >
+  {{- $permalink := $page.RelPermalink -}}
+  {{- with $page.Params.youtubeid -}}
+  <div class="with-link gf9 thumb" >
+   <div class="aspect sixteen-nine">
+    <iframe src="https://www.youtube.com/embed/{{.}}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube Video"></iframe>
+   </div>
+   <a href="{{$permalink}}" class="link-over"></a>
+  </div>
+  {{- else -}}
+  <div class="with-link gf9 thumb" >
+   {{- $img := .Resources.GetMatch "*featured*" -}}
+   {{- with $img -}}
+   {{- $small := .Resize "600x" -}}
+   <div class="aspect sixteen-nine ">
+    <div><img class="abs cover" src="{{- $small.RelPermalink -}}" alt="{{- $img.Title -}}"></img></div>
+   </div>
+   <a href="{{$permalink}}" class="link-over"></a>
+   {{- end -}}
+  </div>
+  {{- end -}}
+
+
+ </div>
+{{- end -}}
+{{- end -}}
+</div>

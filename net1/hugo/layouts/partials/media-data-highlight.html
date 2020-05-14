@@ -1,6 +1,6 @@
 {{- range .Params.highlights -}}
 {{$item := $.Site.GetPage . -}}
-{{- $type := $item.Params.type -}}
+{{- $type := $item.Params.mediatype -}}
 {{- $date := $item.Lastmod -}}
 {{- $title := $item.Title -}}
 {{- $anchor := printf "#%s" $item.Params.id -}}
