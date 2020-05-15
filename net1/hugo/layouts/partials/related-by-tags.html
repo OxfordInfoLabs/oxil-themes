@@ -33,7 +33,21 @@
    {{- end -}}
   </div>
   {{- end -}}
+  <div class="gf9 p1l px1 py050 flex flex-col justify-between flex1" >
+   <div>
+    <h5 class="mb050 lh13"><a class="inv " href="{{.Permalink}}">{{.Title}}</a>
+    </h5>
+    <p class="g8-text small hidden-sm ellipsis">{{.Description}}</p>
+   </div>
 
+   <ul class="unstyled vsmall " >
+    <li><time class="vsmall " datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
+     {{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
+     </time> | </li>
+    {{ range .Params.categories }}<li class="com lh1"><a class="inv thin text-colour" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>{{ end }}
+   </ul>
+
+  </div>
 
  </div>
 {{- end -}}
