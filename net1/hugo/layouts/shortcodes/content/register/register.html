@@ -1,17 +1,14 @@
 
+{{- if not (.Get "fieldsonly") -}}
 
-<!--<div class="flex justify-center">-->
-<!--<div class="brand ib px1 py150">-->
-<!--<img src="/images/netistrar-white.svg" height="40" alt="Netistrar white logo">-->
-<!--</div>-->
-<!--</div>-->
+
 <div class="black white-text pt1 pb3 px1 px2l"><h1 class="f2 normal text-center white-text pb1">Register with {{.Site.Title}}</h1>
   <div class="ge-text f5 thin px1 text-center">Safe, reliable, UK web services and domains.</div>
 </div>
 
 
 <div class="grid grid-desktop white my4 px1 px2l">
-
+  {{- end -}}
   <ka-register data-activation-url="/register/activate" data-success-url="/register/activated">
 
     <form action="">
@@ -99,7 +96,7 @@
         <div class="w-50"></div>
         <div class="flex1">
           <div class="pt2">
-            <button type="submit" class="submit-button but butgn chevron-right w" >Start using Oxford Cyber products now</button>
+            <button type="submit" class="submit-button but butgn chevron-right w {{ with .Get "submitcss"}}{{ . }}{{end}}" >{{- with .Get "submittext" -}}{{- . -}}{{- else -}}Register {{- end -}}</button>
             <button type="submit" class="hidden-submit" data-state="hide">Hidden</button>
           </div>
           <div class="red-text" data-state="hide">An error occurred during registration, please try again later.</div>
@@ -113,7 +110,8 @@
 
   </ka-register>
 
-
+  {{- if not (.Get "fieldsonly") -}}
 
 
 </div>
+{{- end -}}
