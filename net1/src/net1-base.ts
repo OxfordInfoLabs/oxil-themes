@@ -16,7 +16,6 @@ import "cookie-notice/dist/cookie.notice.min";
 declare var window: any;
 
 
-
 function defaultState() {
 
     var blogNews: HTMLElement = document.querySelector('#blognews');
@@ -176,9 +175,9 @@ body.addEventListener('click', function (event) {
         defaultState();
     } else if (matchedTarget = targetMatchesClass(targetElement, 'close-menu')) {
         defaultState();
-    } else if (matchedTarget = targetMatchesClass(targetElement, 'btn-filters-domain-search')){
+    } else if (matchedTarget = targetMatchesClass(targetElement, 'btn-filters-domain-search')) {
         toggleFilters(matchedTarget);
-    } else if (matchedTarget = targetMatchesClass(targetElement, 'tab-link')){
+    } else if (matchedTarget = targetMatchesClass(targetElement, 'tab-link')) {
         toggleTabs(matchedTarget);
     }
 
@@ -266,7 +265,7 @@ function toggleFilters(targetElement) {
 }
 
 
-function toggleTabs(targetElement){
+function toggleTabs(targetElement) {
 
     var tab_id = targetElement.getAttribute('data-tab');
 
@@ -306,7 +305,6 @@ if (toolsFiltersButton)
     });
 
 
-
 document.querySelectorAll('.add-domain').forEach((item: HTMLElement) => {
     item.addEventListener('click', function () {
         this.closest('.prod').classList.add('prod-selected');
@@ -324,6 +322,7 @@ tippy('[data-tippy-content]', {
     trigger: 'click'
 });
 
+(<any>window).tippy = tippy;
 
 // Handle rehighlight situations
 let rehighliters = document.querySelectorAll("[data-rehighlight]");
