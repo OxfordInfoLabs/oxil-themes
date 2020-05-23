@@ -1,5 +1,5 @@
 <ul class="unstyled ">
-  {{ range .Site.Taxonomies.categories }}
+  {{ range .Site.Taxonomies.tags }}
   <li class="com"><a class="inv" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
   {{ end }}
 </ul>

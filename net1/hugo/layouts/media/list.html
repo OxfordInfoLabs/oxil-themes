@@ -28,17 +28,25 @@
    "name": "Oxford Information Labs Limited",
    "logo": {
     "@type": "ImageObject",
-    "url": "{{.Site.BaseURL}}images/oxil_logo_horizontal.png"
+    "url": {{printf "%simages/%s" .Site.BaseURL .Site.Params.logo}}
    }
   },
   "description": "{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}",
- {{ if $match := .Resources.GetMatch "*featured*" }}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}"image": ["{{$permalink}}"]{{end}},
- "author": {
- {{ if .Params.authors }}
- {{ range first 1 .Params.authors }}{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}"@type": "Person",
- "name": "{{.Params.name}}"{{end}}{{end}}{{else}}"@type": "Organization",
- "name": "Oxford Information Labs"{{end}}
- }
+ {{- if $match := .Resources.GetMatch "*featured*" -}}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}"image": ["{{$permalink}}"],{{end}}
+  "author": {
+ {{- if $authors := .Params.authors -}}
+ {{- $len := (len $authors) -}}
+   {{- $len -}}
+     
+ {{- range $authors }}
+   "@type": "Person",
+   "name": "{{.}}",
+   "sameAs": {{printf "%sauthors/%s" $.Site.BaseURL (urlize .)}}{{- end -}}
+ {{- else -}}
+  "@type": "Organization",
+  "name": "Oxford Information Labs"
+ {{- end }}
+  }
  }
 </script>
 
@@ -53,19 +61,9 @@
 {{ end }}
 
 {{- define "main" -}}
+{{- .Content -}}
 
-<div class="brand p1 pt2 pt3l pb2l flex flex-col align-center">
- <h1 class="white-text text-center">{{ .Title }}</h1>
- <h4 class="w-60 thin gc-text text-center">{{- .Description -}}</h4>
-</div>
 
-<div style="border-bottom: 1px solid #eee">
- <div class="grid flex justify-between px1 px2l py150" >
- <div class="breadcrumb hidden-sm ">{{ partial "breadcrumb" (dict "p1" .Page "p2" .Page )}}</div>
- <a href="/" class="inv hidden-md inverse flex align-center " style="font-size: inherit"><i class="net-chevron-left" ></i> Home</a>
- <a href="/test/" class="inv flex align-center  " style="font-size: inherit">Test <i class="net-chevron-right" ></i></a>
- </div>
-</div>
 <div class="ge pb5">
  <div class="grid grid-desktop px1 pt4" style="max-width: 860px;">
   <div class="flex flex-wrap flex-row-reverse">
@@ -127,11 +125,6 @@
  </div>
 </div>
 
-<div class="brand-lighter ">
- <div class="grid flex-grid flex-row-reverse px1 px2l py3">
- <a href="/" class="inv white-text white-text-hover flex align-center flex1 mb3 mb0l" ><span class="flex1 text-right "><span class="normal">Next</span><br><span class="f4 semi">Home</span></span><i class="net-chevron-right ml1 f4" ></i></a>
- <a href="/" class="inv white-text white-text-hover flex align-center flex1 " ><i class="net-chevron-left mr1 f4" ></i> <span class="flex1"><span class="normal">Previous</span><br><span class="f4 semi">Home</span></span></a>
-</div>
-</div>
+
 
 {{- end -}}

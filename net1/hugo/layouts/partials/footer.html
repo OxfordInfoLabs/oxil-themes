@@ -31,7 +31,7 @@
             {{ $menu := .Site.Menus.footer3 }}
             {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
           </div>
-          <div class="w-33"pb2>
+          <div class="w-33 pb2">
             <p class="brandsubtle-text mb0 text-center-sm">{{with .Site.Params.footer4title}}{{.}}{{end}}</p>
             {{ $menu := .Site.Menus.footer4 }}
             {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
@@ -46,7 +46,13 @@
     </div>
 
     <div class="flex-grid justify-end">
-      <div ><div class="text-right text-center-sm pt3 pb1 pt0l"><img src="/images/{{.Site.Params.logo_mini_rev}}" height="{{.Site.Params.logo_mini_rev_height}}"></div>
+      <div ><div class="text-right text-center-sm pt3 pb1 pt0l">
+       {{- if eq (.Scratch.Get "amp") true -}}
+       <amp-img src="/images/{{.Site.Params.logo_mini_rev}}" height="{{.Site.Params.logo_mini_rev_height}}" width="{{.Site.Params.logo_mini_rev_width}}" ></amp-img>
+       {{- else -}}
+       <img src="/images/{{.Site.Params.logo_mini_rev}}" height="{{.Site.Params.logo_mini_rev_height}}" >
+      {{- end -}}
+      </div>
         <p class="brandsubtle-text vsmall text-right text-center-sm mb0 pb025">{{.Site.Params.contractingCompany}} &copy; {{ dateFormat "2006" now }} {{.Site.Params.copyright}}. All rights reserved.</p>
         <p class="brandsubtle-text vsmall text-right text-center-sm">{{with .Site.Params.companyFooter}}{{.}}{{else}}{{.Site.Params.address | safeHTML}}{{end}}</p>
       </div>

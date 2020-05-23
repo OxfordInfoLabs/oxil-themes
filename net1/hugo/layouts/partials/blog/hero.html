@@ -30,21 +30,15 @@
 
       <div class="w-40 px1 px4l py1 py2l flex-grid flex-col justify-between gf9">
 
-        <div>
+        <div class="mb1">
 
-          <div class="f2 mb1 "><a class="inv " href="{{.Permalink}}">{{.Title}}</a>
+          <div class="f2 lh11 mb050"><a class="inv medium" href="{{.Permalink}}">{{.Title}}</a>
           </div>
-          {{ $subtitle := cond (isset .Params "hero_subtitle") .Params.hero_subtitle .Description }}
-          {{with $subtitle}}
-          <p class="hidden-sm g8-text">{{.}}</p>
-          {{end}}
+         <time class="small g8-text" datetime="{{ dateFormat " 2006-01-02T15:04:05-07:00" .Lastmod }}">
+         {{ dateFormat "2 Jan, 2006" .Lastmod }}
+         </time>
         </div>
-        <ul class="unstyled small" >
-          <li><time class="small " datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
-            {{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
-            </time> | </li>
-          {{ range .Params.categories }}<li class="com lh1"><a class="inv thin text-colour" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>{{ end }}
-        </ul>
+       <div >{{ range .Params.categories }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}: {{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
 
       </div>
 

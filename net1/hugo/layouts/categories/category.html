@@ -33,7 +33,7 @@
         </div>
         {{- else -}}
         <div class="with-link w thumb gf9" >
-          {{ $img := .Resources.GetMatch "*featured*" }}
+          {{ $img := default (.Resources.GetMatch "*featured*") (.Resources.GetMatch "*highlight*") }}
           {{ with $img }}
           {{ $small := .Resize "600x" }}
 
@@ -43,18 +43,15 @@
         </div>
         {{- end -}}
         <div class="gf9 p1l px1 py050 flex flex-col justify-between flex1" >
-          <div>
-            <h5 class="mb050 lh13"><a class="inv " href="{{.Permalink}}">{{.Title}}</a>
-            </h5>
-            <p class="g8-text small hidden-sm ellipsis">{{.Description}}</p>
-          </div>
+         <div class="mb1">
 
-          <ul class="unstyled vsmall " >
-            <li><time class="vsmall " datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
-              {{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
-              </time> | </li>
-            {{ range .Params.categories }}<li class="com lh1"><a class="inv thin text-colour" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>{{ end }}
-          </ul>
+          <h5 class="m0 lh13"><a class="inv font-color semi" href="{{$link}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h5>
+
+          <time class="vsmall g8-text" datetime="{{ dateFormat " 2006-01-02T15:04:05-07:00" .Lastmod }}">
+          {{ dateFormat "2 Jan, 2006" .Lastmod }}
+          </time>
+         </div>
+         <div class="small">{{ range .Params.categories }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}: {{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
 
         </div>
 

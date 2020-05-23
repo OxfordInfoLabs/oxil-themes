@@ -1,0 +1,45 @@
+<div class="w-50 flex flex-col" >
+
+
+ {{ $permalink := .RelPermalink }}
+ {{- with .Params.youtubeid -}}
+ <div class="with-link gf9" >
+  <div class="aspect sixteen-nine">
+   <iframe src="https://www.youtube.com/embed/{{.}}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube Video"></iframe>
+  </div>
+  <a href="{{$permalink}}" class="link-over"></a>
+ </div>
+ {{- else -}}
+ <div class="with-link gf9" >
+  {{ $img := .Resources.GetMatch "*featured*" }}
+
+  {{ with $img }}
+  {{ $small := .Resize "300x" }}
+
+  <div class="aspect sixteen-nine ">
+
+
+   <img class="cover abs" src="{{ $small.RelPermalink }}" alt="{{ $img.Title }}"></img>
+
+
+   <a href="{{$permalink}}" class="link-over"></a>
+  </div>
+  {{- end -}}
+ </div>
+ {{- end -}}
+ <div class="gf9 flex1 p1 flex flex-col justify-between">
+
+
+  <div class="mb1">
+
+   <h5 class="m0 lh13"><a class="inv font-color semi" href="{{$permalink}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h5>
+
+   <time class="vsmall g8-text" datetime="{{ dateFormat " 2006-01-02T15:04:05-07:00" .Lastmod }}">
+   {{ dateFormat "2 Jan, 2006" .Lastmod }}
+   </time>
+  </div>
+  <div class="small">{{ range .Params.categories }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}: {{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
+
+
+ </div>
+</div>
