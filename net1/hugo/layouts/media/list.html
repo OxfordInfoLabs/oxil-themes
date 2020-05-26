@@ -9,23 +9,31 @@
 <meta property="og:type"               content="{{if .IsHome}}website{{else}}article{{end}}" />
 <meta property="og:title"              content="{{.Title}}" />
 <meta property="og:description"        content="{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}" />
-<meta property="og:image" content="{{ if $match := .Resources.GetMatch "*featured*" }}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}{{ $permalink }}{{else}}{{.Site.BaseURL}}images/oxil_logo_horizontal.png{{end}}" />
-{{if and (ne .Section "categories") (ne .Section "authors") }}
-
+{{- $m := where .Site.RegularPages.ByLastmod.Reverse "Section" "media" -}}
+{{- range $m | first 1 }}
+{{- $i := . -}}
+{{- with eq $i.Params.mediatype "video" }}
+<meta property="og:image" content="https://i.ytimg.com/vi/{{$i.Params.youtubeid}}/hqdefault.jpg" />
+{{- end -}}
+{{- with eq $i.Params.mediatype "image" }}
+{{- $image := $i.Resources.GetMatch "*featured*" }}
+<meta property="og:image" content="{{$image.Permalink}}" />
+{{- end -}}
+{{- end }}
 <script type="application/ld+json">
  {
   "@context":"https://schema.org",
   "@type":"Article",
   "mainEntityOfPage": {
    "@type": "WebPage",
-   "@id": "{{.Permalink}}"
+   "@id": {{.Permalink}}
   },
-  "headline":"{{.Title}}",
-  "datePublished": "{{.Date.Format "2006-01-02T15:04:05Z0700"}}",
-  "dateModified": "{{.Lastmod.Format "2006-01-02T15:04:05Z0700"}}",
+  "headline": {{ .Title }},
+  "datePublished": "{{.Date.Format "2006-01-02T15:04:05" | plainify}}",
+  "dateModified": "{{.Lastmod.Format "2006-01-02T15:04:05" | plainify }}",
   "publisher": {
    "@type": "Organization",
-   "name": "Oxford Information Labs Limited",
+   "name": "{{.Site.Params.org_official_name}}",
    "logo": {
     "@type": "ImageObject",
     "url": {{printf "%simages/%s" .Site.BaseURL .Site.Params.logo}}
@@ -33,24 +41,55 @@
   },
   "description": "{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}",
  {{- if $match := .Resources.GetMatch "*featured*" -}}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}"image": ["{{$permalink}}"],{{end}}
-  "author": {
- {{- if $authors := .Params.authors -}}
+ {{- if $authors := .Params.authors }}
+  "author":
  {{- $len := (len $authors) -}}
-   {{- $len -}}
-     
- {{- range $authors }}
+
+     [{
+ {{- range $index, $item := $authors }}
    "@type": "Person",
-   "name": "{{.}}",
-   "sameAs": {{printf "%sauthors/%s" $.Site.BaseURL (urlize .)}}{{- end -}}
- {{- else -}}
-  "@type": "Organization",
-  "name": "Oxford Information Labs"
+   "name": "{{$item}}",
+   "sameAs": {{printf "%sauthors/%s/" $.Site.BaseURL (urlize $item)}}
+     {{- if ne (add $index 1) $len -}} },{ {{- end -}}
  {{- end }}
+    }],
+ {{- end }}
+ {{- $m := where .Site.RegularPages.ByLastmod.Reverse "Section" "media" -}}
+ {{- range $m | first 1 }}
+ {{- $i := . -}}
+ {{- with eq $i.Params.mediatype "video" }}
+  "video": {
+    "@type": "VideoObject",
+    "name": {{$i.Title}},
+    "description": {{$i.Description}},
+    "thumbnailUrl": "https://i.ytimg.com/vi/{{$i.Params.youtubeid}}/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/{{$i.Params.youtubeid}}",
+    "uploadDate": {{$i.Lastmod}}
+  },
+  "image": "https://i.ytimg.com/vi/{{$i.Params.youtubeid}}/hqdefault.jpg",
+  {{- end -}}
+  {{- with eq $i.Params.mediatype "image" }}
+ {{- $image := $i.Resources.GetMatch "*featured*" }}
+  "image": {{- $image.Permalink -}},
+  {{- end -}}
+ {{- end }}
+  "about": {
+   "@type":"ItemList",
+   "itemListElement":[{
+ {{- $len := (len $m) -}}
+ {{- range $index, $i := $m }}
+   "@type":"ListItem",
+   "position":{{add $index 1}},
+   "url": {{$i.Permalink}}
+ {{- if ne (add $index 1) $len -}} },{ {{- end -}}
+   {{- end -}}
+   }]
   }
+
  }
 </script>
 
-{{- end -}}
+
 
 {{- end -}}
 
@@ -65,7 +104,7 @@
 
 
 <div class="ge pb5">
- <div class="grid grid-desktop px1 pt4" style="max-width: 860px;">
+ <div id="mediawrap" class="grid grid-desktop px1 pt4 " >
   <div class="flex flex-wrap flex-row-reverse">
    <div class="sidebar w-33 pt5l ">
     <h4 class="gf9 py025 px125">TV & Media work</h4>

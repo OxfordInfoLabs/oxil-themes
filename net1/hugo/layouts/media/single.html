@@ -9,39 +9,89 @@
 <meta property="og:title"              content="{{.Title}}" />
 <meta property="og:description"        content="{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}" />
 <meta property="og:image" content="{{ if $match := .Resources.GetMatch "*featured*" }}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}{{ $permalink }}{{else}}{{.Site.BaseURL}}images/oxil_logo_horizontal.png{{end}}" />
-{{if and (ne .Section "categories") (ne .Section "authors") }}
+
 
 <script type="application/ld+json">
  {
   "@context":"https://schema.org",
-  "@type":"Article",
+  "@type":"WebPage",
   "mainEntityOfPage": {
-   "@type": "WebPage",
+   "@type": "NewArticle",
    "@id": {{.Permalink}}
-  },
-  "headline":"{{.Title}}",
-  "datePublished": "{{.Date.Format "2006-01-02T15:04:05Z0700"}}",
-  "dateModified": "{{.Lastmod.Format "2006-01-02T15:04:05Z0700"}}",
-  "publisher": {
-   "@type": "Organization",
-   "name": "Oxford Information Labs Limited",
-   "logo": {
-    "@type": "ImageObject",
-    "url": {{- printf "%s/images/oxford_information_labs_logo_sm-320x95.png" .Site.BaseURL -}}
-   }
-  },
-  "description": "{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}",
- {{ if $match := .Resources.GetMatch "*featured*" }}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}"image": ["{{$permalink}}"]{{end}},
- "author": {
- {{ if .Params.authors }}
- {{ range first 1 .Params.authors }}{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}"@type": "Person",
- "name": "{{.Params.name}}"{{end}}{{end}}{{else}}"@type": "Organization",
- "name": "Oxford Information Labs"{{end}}
+ },
+ "headline": {{ .Title }},
+ "datePublished": "{{.Date.Format "2006-01-02T15:04:05" | plainify}}",
+ "dateModified": "{{.Lastmod.Format "2006-01-02T15:04:05" | plainify }}",
+ "publisher": {
+ "@type": "Organization",
+ "name": "{{.Site.Params.org_official_name}}",
+ "logo": {
+ "@type": "ImageObject",
+ "url": {{printf "%simages/%s" .Site.BaseURL .Site.Params.logo}}
  }
+ },
+ "description": "{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}",
+ {{- $keywords := .Params.tags}}
+ {{- $len := (len $keywords) -}}
+ {{- $keystr := "" -}}
+ {{- range $index, $item := $keywords -}}
+ {{- if (eq $index 1) -}}
+ {{- $keystr = $item -}}
+ {{- else -}}
+ {{- $keystr = (printf "%s,%s" $keystr $item) -}}
+ {{- end -}}
+ {{- end }}
+ "keywords": "{{$keystr}}",
+ {{- if $authors := .Params.authors }}
+ "author":
+ {{- $len := (len $authors) -}}
+
+ [{
+ {{- range $index, $item := $authors }}
+ "@type": "Person",
+ "name": "{{$item}}",
+ "sameAs": {{printf "%sauthors/%s/" $.Site.BaseURL (urlize $item)}}
+ {{- if ne (add $index 1) $len -}} },{ {{- end -}}
+ {{- end }}
+ }],
+ {{- end }}
+
+ {{- if eq .Params.mediatype "video" }}
+ "video": {
+ "@type": "VideoObject",
+ "name": {{.Title}},
+ "description": {{.Description}},
+ "thumbnailUrl": "https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg",
+ "embedUrl": "https://www.youtube.com/embed/{{.Params.youtubeid}}",
+ "uploadDate": {{.Lastmod}}
+ },
+ "image": "https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg",
+ {{- end -}}
+ {{- with eq .Params.mediatype "image" }}
+ {{- $image := .Resources.GetMatch "*featured*" }}
+ "image": {{- $image.Permalink -}},
+ {{- end -}}
+ {{- $m := where .Site.RegularPages.ByLastmod.Reverse "Section" "media" }}
+ "relatedLink": {
+ "@type":"ItemList",
+
+ {{- $len := (len $m) -}}
+
+ "itemListElement":[{
+
+ {{- range $index, $i := $m }}
+ "@type":"ListItem",
+ "position":{{add $index 1}},
+ "url": {{$i.Permalink}}
+ {{- if ne (add $index 1) $len -}} },{ {{- end -}}
+ {{- end -}}
+ }]
+ }
+
+
  }
 </script>
 
-{{end}}
 
 {{- end -}}
 
