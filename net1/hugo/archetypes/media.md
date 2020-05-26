@@ -7,6 +7,8 @@ event: ""
 link: ""
 youtubeid: ""
 imageaspect: "landscape"
+authors:
+- "Emily Taylor"
 categories:
 - "News"
 tags:

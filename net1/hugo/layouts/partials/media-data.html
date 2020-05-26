@@ -26,7 +26,7 @@
 
 <div title="{{with $date}}{{ .  }}{{end}}" id="{{$id}}" class="mitem white mb1">
   <div class="vsmall flex align-center"><time class=" timeago p075 blk" datetime="{{with $date}}{{.}}{{end}}">{{with $date}}{{ . | dateFormat "02 Jan 2006"}}{{end}}</time>
-    <span class="semi uppercase">{{ range .Params.categories }}<span class="pipe">{{ . }}</span>{{ end }}</span>
+    <span class=" uppercase">{{ range .Params.categories }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv ">{{ . }}</a>{{ end }}</span>
   </div>
 
   <p class="px075 {{ with eq $type "text" -}}f3{{end}}">{{with $channel}}<b>{{.}}: </b>{{end}}{{with $text}}{{. | safeHTML}}{{end}}</p>
@@ -54,7 +54,7 @@
 {{- end -}}
   <hr class="muted">
   <div class="flex justify-between align-center py050 px075">
-    <div class="vsmall bor1 borbb px050 py025">{{ range .Params.tags }}<span class="com">{{ . }}</span>{{ end }}<a href="{{- .RelPermalink -}}" class="com inv normal">related ..</a></div><div>{{ partial "amp-share-bar" (dict "id" $id "ctx" $) }}  </div>
+   <div class="vsmall bor1 borbb px050 py025">{{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}<a href="{{- .RelPermalink -}}" class="com inv normal">related ..</a></div><div>{{ partial "amp-share-bar" $item }}  </div>
   </div>
 </div>
 

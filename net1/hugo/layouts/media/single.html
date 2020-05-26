@@ -14,9 +14,9 @@
 <script type="application/ld+json">
  {
   "@context":"https://schema.org",
-  "@type":"WebPage",
+  "@type":"NewsArticle",
   "mainEntityOfPage": {
-   "@type": "NewArticle",
+   "@type": "WebPage",
    "@id": {{.Permalink}}
  },
  "headline": {{ .Title }},
@@ -30,12 +30,12 @@
  "url": {{printf "%simages/%s" .Site.BaseURL .Site.Params.logo}}
  }
  },
- "description": "{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}",
+ "description": {{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}},
  {{- $keywords := .Params.tags}}
  {{- $len := (len $keywords) -}}
  {{- $keystr := "" -}}
  {{- range $index, $item := $keywords -}}
- {{- if (eq $index 1) -}}
+ {{- if (eq $index 0) -}}
  {{- $keystr = $item -}}
  {{- else -}}
  {{- $keystr = (printf "%s,%s" $keystr $item) -}}
@@ -65,30 +65,12 @@
  "embedUrl": "https://www.youtube.com/embed/{{.Params.youtubeid}}",
  "uploadDate": {{.Lastmod}}
  },
- "image": "https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg",
+ "image": "https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg"
  {{- end -}}
- {{- with eq .Params.mediatype "image" }}
+ {{- if eq .Params.mediatype "image" }}
  {{- $image := .Resources.GetMatch "*featured*" }}
  "image": {{- $image.Permalink -}},
- {{- end -}}
- {{- $m := where .Site.RegularPages.ByLastmod.Reverse "Section" "media" }}
- "relatedLink": {
- "@type":"ItemList",
-
- {{- $len := (len $m) -}}
-
- "itemListElement":[{
-
- {{- range $index, $i := $m }}
- "@type":"ListItem",
- "position":{{add $index 1}},
- "url": {{$i.Permalink}}
- {{- if ne (add $index 1) $len -}} },{ {{- end -}}
- {{- end -}}
- }]
- }
-
-
+ {{- end }}
  }
 </script>
 

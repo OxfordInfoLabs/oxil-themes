@@ -1,6 +1,5 @@
-
-{{- $url := printf "%s/media/#%s" .ctx.Site.BaseURL .id -}}
-{{- $facebookappid := .ctx.Site.Params.facebookAppId -}}
+{{- $url := .Permalink -}}
+{{- $facebookappid := .Site.Params.facebookAppId -}}
 <div class="" >
   <amp-social-share type="twitter"
                     width="40"
