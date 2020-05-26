@@ -20,26 +20,26 @@
             </tr>
             <tr><td colspan="3" class="spacer"></td></tr>
             </thead>
-            <tbody v-for="(item, index) in cart.items">
+            <tbody kb-each-item="cart.items">
             <tr><td colspan="3" class="spacer"></td></tr>
             <tr>
               <td class="borr1 bordd py025">
 
                 <div class="bold">{item.title}</div>
-                <div v-if="item.subtitle">{item.subtitle}</div>
-                <div class="tiny" v-if="item.description">{item.description}</div>
-                <div class="tiny" v-for="subitem in item.subItems">
+                <div kb-if="item.subtitle">{item.subtitle}</div>
+                <div class="tiny" kb-if="item.description">{item.description}</div>
+                <div class="tiny" kb-each-subitem="item.subItems">
                   - {subitem.title}: {subitem.quantity}
                 </div>
 
 
-                <div class="pt050"><button class="delete" @click="removeCartItem(index)" >delete x</button></div>
+                <div class="pt050"><button class="delete" kb-on-click="removeCartItem" >delete x</button></div>
 
               </td>
               <td class="text-right borr1 bordd py025 " >{item.total}
               </td>
               <td>
-                <a v-bind:href="'/hosting/static/configure?cartItem=' + index" class="vsmall normal" v-if="item.type == 'static'">edit plan</a>
+                <a kb-href="'/hosting/static/configure?cartItem=' | concat $index" class="vsmall normal" kb-if="item.type == 'static'">edit plan</a>
               </td>
             </tr>
             <tr><td colspan="3" class="spacer"></td></tr>
