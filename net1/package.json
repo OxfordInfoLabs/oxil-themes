@@ -1,6 +1,6 @@
 {
   "name": "oxil-net1",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Oxford Information Labs Netistrar Theme",
   "main": "index.js",
   "files": [
@@ -52,7 +52,7 @@
   "dependencies": {
     "cookie-notice": "^1.2.4",
     "highlight.js": "^9.18.1",
-    "kinicart": "0.0.24",
+    "kinicart": "0.0.25",
     "query-string": "^6.10.1",
     "tippy.js": "^5.2.0"
   }
