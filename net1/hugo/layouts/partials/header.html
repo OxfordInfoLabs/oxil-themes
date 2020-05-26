@@ -22,9 +22,7 @@
 
 {{- if ne (.Scratch.Get "header") "modal" -}}
 <header  class="py1 {{ if eq (.Scratch.Get "theme") "brand" }}g46{{end}}">
-<ka-session style="width: 100%;">
-
-  <div class="vue-wrapper">
+<ka-bind style="width: 100%;">
 
   <div class="grid flex px1 px2l justify-between align-center">
 
@@ -105,9 +103,9 @@
   {{- partial "login" . -}}
   {{- partial "logout" . -}}
 
-  </div>
 
-</ka-session>
+
+</ka-bind>
 
 
 </header>

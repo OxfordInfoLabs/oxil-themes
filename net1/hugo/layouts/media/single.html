@@ -68,8 +68,7 @@
  "image": "https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg",
  {{- end -}}
  {{- with eq .Params.mediatype "image" }}
- {{- $image := .Resources.GetMatch "*featured*" }}
- "image": {{- $image.Permalink -}},
+
  {{- end -}}
  {{- $m := where .Site.RegularPages.ByLastmod.Reverse "Section" "media" }}
  "relatedLink": {
