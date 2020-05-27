@@ -12,7 +12,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
- {{- if ne (.Scratch.Get "amp") true -}}
+ {{- if eq .Site.Params.meta_csp "true" -}}
  {{- with .Site.Params.csp}}
  <meta http-equiv="Content-Security-Policy" content="{{. | safeHTML}}" >
  {{- end -}}
@@ -107,7 +107,7 @@
       "vars" : {
         "gtag_id": "{{.Site.Params.ga_code}}",
         "config" : {
-          "{{.}}": { "groups": "default" }
+          "{{.Site.Params.ga_code}}": { "groups": "default" }
         }
       }
     }
