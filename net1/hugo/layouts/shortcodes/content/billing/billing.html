@@ -99,7 +99,7 @@
                 </div>
                 <div class="flex1 vue-wrapper">
                   <select data-country-code-field id="country" class="name-field bor1 py050 px050 w">
-                    <option v-bind:value="country.code" v-for="country in countries">
+                    <option kb-each-country="countries" kb-value="country.code" >
                       {country.name}
                     </option>
                   </select>

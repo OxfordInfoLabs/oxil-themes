@@ -23,12 +23,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="item in order.orderLines">
+        <tr kb-each-item="order.orderLines">
           <td>
             <div class="bold">{item.title}</div>
             <div>{item.subtitle}</div>
             <div class="tiny">{item.description}</div>
-            <div class="tiny" v-for="subitem in item.subItems">
+            <div class="tiny" kb-each-subitem="item.subItems">
               - {subitem.title}: {subitem.quantity}
             </div>
           </td>
