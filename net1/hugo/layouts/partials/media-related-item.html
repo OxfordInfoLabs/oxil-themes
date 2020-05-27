@@ -1,0 +1,36 @@
+{{$link := .Permalink}}
+<div class="w-33  flex flex-col-md mb2" >
+ {{- with .Params.youtubeid -}}
+ <div class="thumb w with-link">
+  <amp-youtube width="480"
+               height="270"
+               layout="responsive"
+               data-videoid="{{.}}">
+  </amp-youtube>
+  <a href="{{$link}}"></a>
+ </div>
+ {{- else -}}
+ <div class="with-link w thumb gf9" >
+  {{ $img := default (.Resources.GetMatch "*featured*") (.Resources.GetMatch "*highlight*") }}
+  {{ with $img }}
+  {{ $small := .Resize "600x" }}
+
+  <amp-img src="{{ $small.RelPermalink }}"  alt="{{ $img.Title }}" width="16" height="9" layout="responsive"   ></amp-img>
+  {{ end }}
+  <a href="{{.Permalink}}"></a>
+ </div>
+ {{- end -}}
+ <div class="gf9 p1l px1 py050 flex flex-col justify-between flex1" >
+  <div class="mb1">
+
+   <h4 class="m0 lh13"><a class="inv font-color semi" href="{{$link}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h4>
+
+   <time class="vsmall g8-text" datetime="{{ dateFormat " 2006-01-02T15:04:05-07:00" .Lastmod }}">
+   {{ dateFormat "2 Jan, 2006" .Lastmod }}
+   </time>
+  </div>
+  <div class="vsmall">{{ range .Params.categories }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}: {{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
+
+ </div>
+
+</div>
