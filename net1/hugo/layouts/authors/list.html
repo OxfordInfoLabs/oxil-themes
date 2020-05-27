@@ -29,47 +29,18 @@
 
   </div>
 </div>
-<main class=" pt3 pb5 ">
-  <div class="grid grid-medium px1 px4l">
-    <h2>{{ with .Params.name }}{{ index (split . " ") 0 }}{{ end }}'s articles</h2>
-    <div class="flex flex-wrap flex-gutter-2-050">
+<main class="px1 px2l grid  pt3 pb5 ">
 
-
-      {{ range .Data.Pages }}
-
-
-      <div class="w-50 flex flex-col mb2">
-
-        {{ $img := .Resources.GetMatch "*featured*" }}
-        {{ $permalink := .RelPermalink }}
-        {{ with $img }}
-        {{ $small := .Resize "600x" }}
-        <div class="blog-img with-link object-fit">
-          <amp-img width="16" height="9" layout="responsive" src="{{$small.RelPermalink}}"></amp-img>
-          <a href="{{$permalink}}"></a>
-        </div>
-        {{end}}
-
-        <div class="gf9 p2 flex flex-col justify-between flex1">
-
-
-          <h4 class="mt0 mb050"><a class="inv font-color bold" href="{{.RelPermalink}}">{{.Title}}</a></h4>
-          <ul class="unstyled small  ">
-            {{ range .Params.categories }}
-            <li class="com"><a class="inv normal g6-text" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>
-            {{ end }}
-          </ul>
-
-        </div>
-
-      </div>
-
-      {{ end }}
-    </div>
+  <h2>{{- with .Params.name -}}{{- index (split . " ") 0 -}}{{- end -}}'s articles</h2>
+  <div class="flex flex-grid flex-wrap flex-gutter-3">
+    {{- range .Data.Pages -}}
+   {{- partial "media-related-item" . -}}
+    {{- end -}}
   </div>
-</main>
-{{ end }}
 
-{{ define "bodyclose" }}
+</main>
+{{- end -}}
+
+{{- define "bodyclose" -}}
 </body>
-{{ end }}
+{{- end -}}

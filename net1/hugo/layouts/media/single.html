@@ -8,7 +8,15 @@
 <meta property="og:type"               content="{{if .IsHome}}website{{else}}article{{end}}" />
 <meta property="og:title"              content="{{.Title}}" />
 <meta property="og:description"        content="{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}" />
-<meta property="og:image" content="{{ if $match := .Resources.GetMatch "*featured*" }}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}{{ $permalink }}{{else}}{{.Site.BaseURL}}images/oxil_logo_horizontal.png{{end}}" />
+<meta property="og:image" content="
+{{- if eq .Params.mediatype "image" -}}
+{{- $image := .Resources.GetMatch "*featured*" -}}
+{{- $image.Permalink -}}
+{{- end -}}
+{{- if eq .Params.mediatype "video" -}}
+https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg
+{{- end -}}
+" />
 
 
 <script type="application/ld+json">
