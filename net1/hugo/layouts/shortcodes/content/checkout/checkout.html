@@ -13,13 +13,13 @@
             <div class="bort3 ge pt2l pt1 pb2 pl4l px1 mb125">
               <h4 class=" thin">Your Billing details</h4>
               <div class="flex-grid flex-row-reverse">
-                <div class="w-40" v-html="billingContact.htmlAddressLinesString">
+                <div class="w-40" kb-html="billingContact.htmlAddressLinesString">
 
                 </div>
                 <div class="w-60">
 
                   <p class="thin small">Carefully check all information provided</p>
-                  <a v-bind:href="billingURL" class="but butsoftwh butsm ">Change these details</a>
+                  <a kb-href="billingURL" class="but butsoftwh butsm ">Change these details</a>
                 </div>
 
               </div>
@@ -35,8 +35,8 @@
                 <img height="60" src="/images/payment_methods.png" alt="">
               </div>
               <div class="white p150 mb2">
-                <label class="mb050 blk" v-for="method in paymentMethods">
-                  <input name="paymentselected" type="radio" v-bind:value="method.id">
+                <label class="mb050 blk" kb-each-method="paymentMethods">
+                  <input name="paymentselected" type="radio" kb-value="method.id">
                   ending <b>{method.payment.card.last4}</b>
                   (expires {method.payment.card.exp_month}/{method.payment.card.exp_year}
                   {method.payment.card.brand})
@@ -85,12 +85,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="item in cart.items">
+                <tr kb-each-item="cart.items">
                   <td>
                     <div class="bold">{item.title}</div>
-                    <div v-if="item.subtitle">{item.subtitle}</div>
-                    <div class="tiny" v-if="item.description">{item.description}</div>
-                    <div class="tiny" v-for="subitem in item.subItems">
+                    <div kb-if="item.subtitle">{item.subtitle}</div>
+                    <div class="tiny"kb-if="item.description">{item.description}</div>
+                    <div class="tiny" kb-each-subitem="item.subItems">
                       - {subitem.title}: {subitem.quantity}
                     </div>
 
