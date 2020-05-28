@@ -39,6 +39,7 @@ https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg
  }
  },
  "description": {{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}},
+ {{- if .Params.tags -}}
  {{- $keywords := .Params.tags}}
  {{- $len := (len $keywords) -}}
  {{- $keystr := "" -}}
@@ -50,6 +51,7 @@ https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg
  {{- end -}}
  {{- end }}
  "keywords": "{{$keystr}}",
+ {{- end -}}
  {{- if $authors := .Params.authors }}
  "author":
  {{- $len := (len $authors) -}}
