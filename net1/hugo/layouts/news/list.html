@@ -1,60 +1,169 @@
 
+{{- define "schema" -}}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{.Title}}" />
+<meta name="twitter:site" content="@oxfordinfolabs" />
+<meta name="twitter:creator" content="{{ if .Params.authors }}{{ range first 1 .Params.authors }}{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}{{ $param := .Params.twitter }}{{if $param }}{{$param}}{{else}}{{"@oxfordinfolabs"}}{{end}}{{ end }}{{end}}{{ else }}{{"@oxfordinfolabs"}}{{end}}" />
+<meta property="og:url"                content="{{.Permalink}}" />
+<meta property="fb:app_id"             content="{{.Site.Params.facebookappid}}" />
+<meta property="og:type"               content="{{if .IsHome}}website{{else}}article{{end}}" />
+<meta property="og:title"              content="{{.Title}}" />
+<meta property="og:description"        content="{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}" />
+{{- $m := where .Site.RegularPages.ByLastmod.Reverse "Section" "media" -}}
+{{- range $m | first 1 }}
+{{- $i := . -}}
+{{- with eq $i.Params.mediatype "video" }}
+<meta property="og:image" content="https://i.ytimg.com/vi/{{$i.Params.youtubeid}}/hqdefault.jpg" />
+{{- end -}}
+{{- with eq $i.Params.mediatype "image" }}
+{{- $image := $i.Resources.GetMatch "*featured*" }}
+<meta property="og:image" content="{{$image.Permalink}}" />
+{{- end -}}
+{{- end }}
+<script type="application/ld+json">
+ {
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ .Permalink }}
+  },
+  "headline": {{ .Title }},
+  "datePublished": "{{.Date.Format "2006-01-02T15:04:05" | plainify}}",
+  "dateModified": "{{.Lastmod.Format "2006-01-02T15:04:05" | plainify }}",
+  "publisher": {
+   "@type": "Organization",
+   "name": "{{.Site.Params.org_official_name}}",
+   "logo": {
+    "@type": "ImageObject",
+    "url": {{printf "%simages/%s" .Site.BaseURL .Site.Params.logo}}
+   }
+  },
+  "description": "{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}",
+ {{- if $match := .Resources.GetMatch "*featured*" -}}{{ $medium := $match.Resize "1200x" }}{{ $permalink := $medium.Permalink }}"image": ["{{$permalink}}"],{{end}}
+ {{- if $authors := .Params.authors }}
+  "author":
+ {{- $len := (len $authors) -}}
+
+     [{
+ {{- range $index, $item := $authors }}
+   "@type": "Person",
+   "name": "{{$item}}",
+   "sameAs": {{printf "%sauthors/%s/" $.Site.BaseURL (urlize $item)}}
+     {{- if ne (add $index 1) $len -}} },{ {{- end -}}
+ {{- end }}
+    }],
+ {{- end }}
+ {{- $m := where .Site.RegularPages.ByLastmod.Reverse "Section" "news" -}}
+ {{- range $m | first 1 }}
+ {{- $i := . -}}
+ {{- with eq $i.Params.mediatype "video" }}
+  "video": {
+    "@type": "VideoObject",
+    "name": {{$i.Title}},
+    "description": {{$i.Description}},
+    "thumbnailUrl": "https://i.ytimg.com/vi/{{$i.Params.youtubeid}}/hqdefault.jpg",
+    "embedUrl": "https://www.youtube.com/embed/{{$i.Params.youtubeid}}",
+    "uploadDate": {{$i.Lastmod}}
+  },
+  "image": "https://i.ytimg.com/vi/{{$i.Params.youtubeid}}/hqdefault.jpg",
+  {{- end -}}
+  {{- with eq $i.Params.mediatype "image" }}
+ {{- $image := $i.Resources.GetMatch "*featured*" }}
+  "image": {{- $image.Permalink -}},
+  {{- end -}}
+ {{- end }}
+  "about": {
+   "@type":"ItemList",
+   "itemListElement":[{
+ {{- $len := (len $m) -}}
+ {{- range $index, $i := $m }}
+   "@type":"ListItem",
+   "position":{{add $index 1}},
+   "url": {{$i.Permalink}}
+ {{- if ne (add $index 1) $len -}} },{ {{- end -}}
+   {{- end -}}
+   }]
+  }
+
+ }
+</script>
 
 
-{{ define "main" }}
-<div class="brand">
-  <h1 class="white-text text-center py2">{{.Title}}</h1>
+
+{{- end -}}
+
+
+{{ define "bodytag"}}
+<body id="body" class="newsbody">
+
+{{ end }}
+
+{{- define "main" -}}
+{{- .Content -}}
+
+
+<div class="ge pb5">
+ <div id="mediawrap" class="grid grid-desktop px1 pt4 " >
+  <div class="flex flex-wrap flex-row-reverse">
+   <div class="sidebar w-33 pt5l ">
+    <h4 class="gf9 py025 px125">TV & Media work</h4>
+    <section class="gf9 p075 mb1">
+     <h6 class="uppercase">Contact Information</h6>
+     <p class="small">Journalists and Media Researchers - please contact our media team at <a href="mailto:media@oxil.uk">media@oxil.uk</a>.  Visit our
+      <a href="/news/">Newsroom</a> for latest Press Releases and further information.
+     </p>
+
+    </section>
+    <section class="gf9 mb1 sticky highlights" >
+     <h6 class="p075 uppercase">Highlights</h6>
+
+
+     <div class="pl075 flex" >
+
+     {{- partial "news-data-highlight" . -}}
+
+     </div>
+    </section>
+
+    <section class="gf9 p075 mb1">
+     <h5>How we work</h5>
+     <p class="small">CEO Emily Taylor and her colleagues Stacie Hoffman and Samantha Bradshaw offer expert
+      commentary for TV and Radio and articles for Media
+      <a href="#" class="sh inv" tabindex="1" title="more &#x25BE;"></a>
+      <span class="msg">as specialist in a range of cyber subjects below. <span class="blk mb050"></span> They are always interested in promoting women in tech, findings from their latest research, and work for The Journal of Cyber Policy (Chatham House) and the Oxford Internet Institute.</span>
+      <a href="#" class="hd inv" tabindex="1" title="less &#x25B4;"></a>
+     </p>
+
+    </section>
+    <section class="gf9 p075 mb1">
+     <h5>Areas of expertise.</h5>
+     <p class="small">The team have expert knowledge in the following subjects: Cyber Security, Huawei, 5G,
+      Internet Governance & Law, Facebook, Google, Amazon, DCMS and more.
+     </p>
+
+    </section>
+
+   </div>
+   <div class="flex1 pr1l">
+    <h5 class="uppercase normal">Media Latest</h5>
+    <div class=" mediastack" >
+
+     {{- partial "news-data" . -}}
+
+    </div>
+    <!--        end mediastack-->
+
+
+   </div>
+
+
+  </div>
+
+
+ </div>
 </div>
 
-    <div class="grid grid-medium px1 py2">
-
-      {{.Content}}
-
-    </div>
 
 
-
-    <div class=" pb5">
-
-<h4 class="grid grid-medium px1 uppercase semi mt2 mb0">{{.Params.pagestitle}}</h4>
-      <div class=" px1 grid grid-medium flex-grid flex-gutter-2">
-
-        {{ range first 10 (where .Pages.ByLastmod.Reverse "Params.frontpageonly" "!=" "true") }}
-        <div class="w-50 flex flex-col mt2" >
-
-          {{ $img := .Resources.GetMatch "*featured*" }}
-          {{ $permalink := .Permalink }}
-          {{ with $img }}
-          {{ $small := .Resize "600x" }}
-
-          <div class="aspect sixteen-nine two-one-sm">
-            <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
-
-              <a href="{{$permalink}}" class="link-over"></a>
-            </div>
-          </div>
-          {{end}}
-          <div class="gf9 p2 flex flex-col justify-between flex1" >
-
-            <div>
-              <ul class="unstyled small uppercase" style="margin-bottom: -.25rem;">
-                {{ range .Params.categories }}<li class="com"><a class="inv normal text-colour" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>{{ end }}
-              </ul>
-              <div class="f4 semi mb1 lh-title"><a class="inv text-colour" href="{{.Permalink}}">{{.Title}}</a>
-              </div>
-            </div>
-            <time class="small muted-text" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
-            {{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
-            </time>
-          </div>
-
-        </div>
-        {{ end }}
-      </div>
-
-
-    </div>
-
-  {{ end }}
-
-
+{{- end -}}

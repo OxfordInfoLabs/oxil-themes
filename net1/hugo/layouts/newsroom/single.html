@@ -1,0 +1,62 @@
+
+
+{{ define "main" }}
+<div class="gf9">
+  <div class="grid px1 px2l py2  " >
+    <div class="breadcrumb">
+      {{partial "breadcrumb" (dict "p1" . "p2" .) }}
+    </div>
+  </div>
+</div>
+
+
+    <div class="grid grid-medium px1  pt3 pb1" style="width: 100%;">
+      <ul class="unstyled small uppercase">{{ range .Params.categories }}<li class="mb0 com"><a class="inv normal" href="{{ "/categories/" | relLangURL }}{{ . | urlize }}/">{{.}}</a></li>{{ end }}</ul>
+
+
+      <h1 class=" mt0">{{ .Title }}</h1>
+      <div class="flex-grid align-center justify-between pt1 pb1">
+        <div class="flex align-center pb1 pb0l">
+          <time class="small ga-text" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
+          {{ if ne .PublishDate .Lastmod }}Updated: {{end}}{{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
+          </time>
+        </div>
+        {{ partial "share-bar" }}
+
+      </div>
+
+
+    </div>
+{{- if ne .Params.nohero true}}
+    <div class=" grid grid-medium px1 pb4">
+
+      {{ $img := .Resources.GetMatch "*featured*" }}
+      {{ $permalink := .Permalink }}
+      {{ with $img }}
+      {{ $medium := .Resize "1200x" }}
+      <div class="aspect sixteen-nine two-one-sm">
+        <div class="b-cover" style="background-image: url({{$medium.RelPermalink}});">
+
+          <a href="{{$permalink}}" class="link-over"></a>
+        </div>
+      </div>
+      {{end}}
+
+      {{ $caption := .Params.featuredcaption}}
+      {{with $caption}}
+      <p class="grid grid-medium px1 px4l small italic mt050 px1">{{$caption}}</p>
+      {{end}}
+
+    </div>
+{{- end -}}
+<div class="grid grid-medium px1 pb4">{{ .Content }}</div>
+
+
+
+
+
+
+
+
+{{ end }}
+

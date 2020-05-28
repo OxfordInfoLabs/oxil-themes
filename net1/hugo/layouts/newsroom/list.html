@@ -1,0 +1,60 @@
+
+
+
+{{ define "main" }}
+<div class="brand">
+  <h1 class="white-text text-center py2">{{.Title}}</h1>
+</div>
+
+    <div class="grid grid-medium px1 py2">
+
+      {{.Content}}
+
+    </div>
+
+
+
+    <div class=" pb5">
+
+<h4 class="grid grid-medium px1 uppercase semi mt2 mb0">{{.Params.pagestitle}}</h4>
+      <div class=" px1 grid grid-medium flex-grid flex-gutter-2">
+
+        {{ range first 10 (where .Pages.ByLastmod.Reverse "Params.frontpageonly" "!=" "true") }}
+        <div class="w-50 flex flex-col mt2" >
+
+          {{ $img := .Resources.GetMatch "*featured*" }}
+          {{ $permalink := .Permalink }}
+          {{ with $img }}
+          {{ $small := .Resize "600x" }}
+
+          <div class="aspect sixteen-nine two-one-sm">
+            <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
+
+              <a href="{{$permalink}}" class="link-over"></a>
+            </div>
+          </div>
+          {{end}}
+          <div class="gf9 p2 flex flex-col justify-between flex1" >
+
+            <div>
+              <ul class="unstyled small uppercase" style="margin-bottom: -.25rem;">
+                {{ range .Params.categories }}<li class="com"><a class="inv normal text-colour" href="/categories/{{ . | urlize }}/">{{ . }}</a></li>{{ end }}
+              </ul>
+              <div class="f4 semi mb1 lh-title"><a class="inv text-colour" href="{{.Permalink}}">{{.Title}}</a>
+              </div>
+            </div>
+            <time class="small muted-text" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
+            {{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) }}
+            </time>
+          </div>
+
+        </div>
+        {{ end }}
+      </div>
+
+
+    </div>
+
+  {{ end }}
+
+

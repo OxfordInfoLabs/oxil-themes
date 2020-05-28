@@ -12,7 +12,7 @@
  {{- if and $has_common_tags (ne $page_link $page.Permalink) (lt ($.Scratch.Get "$c") 20)}}
  {{- $.Scratch.Add "$c" 1 -}}
 
- {{- partial "media-related-item" . -}}
+ {{- partial "news-related-item" . -}}
 
 
 {{- end -}}
