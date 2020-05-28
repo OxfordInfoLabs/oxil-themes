@@ -20,7 +20,7 @@
     <div class="flex flex-grid flex-wrap flex-gutter-3">
 
       {{ range (where .Pages.ByLastmod.Reverse "Params.frontpageonly" "!=" "true") }}
-     {{- partial "media-related-item" . -}}
+     {{- partial "news-related-item" . -}}
       {{ end }}
     </div>
 

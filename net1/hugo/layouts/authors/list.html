@@ -34,7 +34,7 @@
   <h2>{{- with .Params.name -}}{{- index (split . " ") 0 -}}{{- end -}}'s articles</h2>
   <div class="flex flex-grid flex-wrap flex-gutter-3">
     {{- range .Data.Pages -}}
-   {{- partial "media-related-item" . -}}
+   {{- partial "news-related-item" . -}}
     {{- end -}}
   </div>
 
