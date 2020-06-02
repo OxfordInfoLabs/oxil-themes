@@ -21,6 +21,15 @@
    <div class="breadcrumb small">{{ partial "breadcrumb" (dict "p1" . "p2" .)}}</div>
    {{ end }}
    <article id="main-article">
+    {{- $img := .Resources.GetMatch "*featured*" -}}
+    {{- $permalink := .Permalink -}}
+    {{- with $img -}}
+    {{- $medium := .Resize "1200x" -}}
+    <div class="py2">
+     <img class="responsive-image" src="{{.RelPermalink}}"></img>
+    </div>
+    {{- end -}}
+
     {{ .Content }}
 
 
@@ -29,7 +38,7 @@
    <hr class="my4">
    {{if gt (len .Parent.Pages) 1}}
    <aside class="simple-menu">
-    <h3 class="normal">{{ with .Site.GetPage "section" .Section }}{{.Params.moresection}}{{end}}</h3>
+    <h3 class="normal">{{ with .Site.GetPage "section" .Section }}{{default .Params.moresection .Site.Params.section_more}}{{end}}</h3>
     {{ range .Parent.Pages }}
     {{if ne . $}}
     <a class="normal inv blk mb050" href="{{ .Permalink }}">{{ .Title }}</a>
