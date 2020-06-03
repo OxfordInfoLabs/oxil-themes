@@ -16,5 +16,5 @@ tags:
 id: "{{ .Name | lower }}"
 publishdate: "{{ .Date }}"
 lastmod: "{{ .Date }}"
-type: "media"
+type: "news"
 ---
