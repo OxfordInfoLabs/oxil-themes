@@ -1,9 +1,9 @@
 {{- $currentPage := . -}}
 <div class="left-bar-nav small">
-  <a href="/help/" class="level1 {{if eq $currentPage.Title "Help" }}active{{ end }}">Help {{T "home"}}</a>
-  {{- range where .Site.Home.Sections "Section" "help" -}}
-  {{- range where .Sections ".Draft" "ne" true -}}
-  <a href="{{ .Permalink }}" class="level1 {{if $currentPage.IsDescendant .}}active{{ end }}">{{ .Title }}</a>
-  {{- end -}}
-  {{- end -}}
+ <a href="{{ .FirstSection.RelPermalink }}" class="level1 {{if eq $currentPage.Title .FirstSection.Title }}active{{ end }}">{{- default .FirstSection.Title .FirstSection.Params.linktitle  -}}</a>
+
+ {{- range where .FirstSection.Sections ".Draft" "ne" true -}}
+ <a href="{{ .Permalink }}" class="level1 {{if $currentPage.IsDescendant .}}active{{ end }}">{{ .Title }}</a>
+ {{- end -}}
+
 </div>

@@ -70,7 +70,7 @@
        <div class="">
          <h4 >{{- .Title -}}</h4>
 
-         {{- range .Pages -}}
+         {{- range .RegularPages -}}
          {{- if ne .Params.noList "1" -}}
 
          <a class="normal blk inv mb050" href="{{- .Permalink -}}">{{- .Title -}}</a>
