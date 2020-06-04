@@ -30,8 +30,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "netistrar-whitelabel": "^1.1.77",
-    "oxil-net1": "^1.0.14"
+    "netistrar-whitelabel": "^1.1.79",
+    "oxil-net1": "^1.0.15"
   },
   "devDependencies": {
     "@types/node": "^13.7.4",
