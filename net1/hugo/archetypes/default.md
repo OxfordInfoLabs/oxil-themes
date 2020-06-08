@@ -1,13 +1,13 @@
 ---
-title: "{{replace .Name "-" " " | title }}"
-publishdate: "{{ now.Format "2006-01-02" }}"
-lastmod": {{ now.Format "2006-01-02" }}"
-description: "About {{ replace .Name "-" " " | title }}"
+title: "{{ replace .Name "-" " " | title }}"
+description: "Description {{ replace .Name "-" " " | title }}"
+authors:
+- "Oxford Information Labs"
 categories:
 - ""
-canonical_part: "{{.File.Dir}}{{.Name}}/"
+tags:
+- ""
+publishdate: "{{ .Date }}"
+lastmod: "{{ .Date }}"
 
 ---
-
-
-
