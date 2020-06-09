@@ -14,7 +14,7 @@
     "publish:project": "npm run update:packages; npm run build:production; ./node_modules/.bin/bump patch; npm publish",
     "update:dev": "npm run update:packages && npm run update:symlinks && npm run update:dependencies",
     "update:packages": "npm i; npm i kinicart@latest",
-    "update:symlinks": "npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js",
+    "update:symlinks": "npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js; npm link ../../kinibind",
     "update:dependencies": "cd node_modules/kinicart; npm run update:dev"
   },
   "repository": {
