@@ -1,15 +1,18 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
-publishdate: "{{ now.Format "2006-01-02" }}"
-lastmod: "{{ now.Format "2006-01-02" }}"
+description: "{{ replace .Name "-" " " | title }}  | {{ .Site.Title }} Blog & News"
 categories:
 - ""
-description: "About {{ replace .Name "-" " " | title }}"
-authors:
-- 'Lucien Taylor'
-weight: 10
-aliases: 
+tags:
 - ""
+authors:
+- 'Emily Taylor'
+weight: 10
+youtubeid: ""
+publishdate: "{{ .Date }}"
+lastmod: "{{ .Date }}"
+
+
 ---
 
 ## {{ replace .Name "-" " " | title }}

@@ -107,14 +107,10 @@
  <div id="mediawrap" class="grid grid-desktop px1 pt4 " >
   <div class="flex flex-wrap flex-row-reverse">
    <div class="sidebar w-33 pt5l ">
-    <h4 class="gf9 py025 px125">TV & Media work</h4>
-    <section class="gf9 p075 mb1">
-     <h6 class="uppercase">Contact Information</h6>
-     <p class="small">Journalists and Media Researchers - please contact our media team at <a href="mailto:media@oxil.uk">media@oxil.uk</a>.  Visit our
-      <a href="/news/">Newsroom</a> for latest Press Releases and further information.
-     </p>
+    <h4 class="gf9 py025 px125">{{- with .Params.sidebartitle -}}{{.}}{{- end -}}</h4>
 
-    </section>
+     {{- partial "news-panel-contact" -}}
+
     <section class="gf9 mb1 sticky highlights" >
      <h6 class="p075 uppercase">Highlights</h6>
 
@@ -126,23 +122,10 @@
      </div>
     </section>
 
-    <section class="gf9 p075 mb1">
-     <h5>How we work</h5>
-     <p class="small">CEO Emily Taylor and her colleagues Stacie Hoffman and Samantha Bradshaw offer expert
-      commentary for TV and Radio and articles for Media
-      <a href="#" class="sh inv" tabindex="1" title="more &#x25BE;"></a>
-      <span class="msg">as specialist in a range of cyber subjects below. <span class="blk mb050"></span> They are always interested in promoting women in tech, findings from their latest research, and work for The Journal of Cyber Policy (Chatham House) and the Oxford Internet Institute.</span>
-      <a href="#" class="hd inv" tabindex="1" title="less &#x25B4;"></a>
-     </p>
 
-    </section>
-    <section class="gf9 p075 mb1">
-     <h5>Areas of expertise.</h5>
-     <p class="small">The team have expert knowledge in the following subjects: Cyber Security, Huawei, 5G,
-      Internet Governance & Law, Facebook, Google, Amazon, DCMS and more.
-     </p>
+     {{- partial "news-panel-about" -}}
 
-    </section>
+   {{- partial "news-panel-more-info" -}}
 
    </div>
    <div class="flex1 pr1l">
