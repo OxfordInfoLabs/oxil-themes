@@ -46,7 +46,10 @@ module.exports = {
         modules: [
             ROOT,
             'node_modules'
-        ]
+        ],
+        alias: {
+            'tippy.js': path.resolve(path.join(__dirname, 'node_modules', 'tippy.js'))
+        }
     },
     plugins: [
         new MiniCssExtractPlugin({

@@ -1,16 +1,16 @@
 <nav id="nav-main" class="sidenav gf5" >
 
-  <net-session>
+  <net-bind>
 
     <div class="vue-wrapper">
 
   <div class="flex justify-between pt1 pb125" >
 
-    <div class="flex px050" v-if="!info.loggedInUser"><i class="net-user-round ga-text f1"></i></div>
+    <div class="flex px050" kb-if="session.loggedInUser | not"><i class="net-user-round ga-text f1"></i></div>
 
-    <div class="flex1 flex" v-if="info.loggedInUser">
+    <div class="flex1 flex" kb-if="session.loggedInUser">
       <div class="px050"><i class="net-user-round orange-text f1"></i></div>
-      <div class="flex1"><div class="f4 wrbr mb050">{info.loggedInUser.displayName}</div><div class="vsmall wrbr lh11">{info.loggedInUser.email}</div></div>
+      <div class="flex1"><div class="f4 wrbr mb050">{session.loggedInUser.displayName}</div><div class="vsmall wrbr lh11">{session.loggedInUser.email}</div></div>
 
 
     </div>
@@ -18,18 +18,18 @@
     <div class="pr1"><button class="btn-close-sidebar butlk inv text-colour"><i class="net-close f4"></i></button></div>
 
   </div>
-  <div class="side-menu white mb2" v-if="!info.loggedInUser">
+  <div class="side-menu white mb2" kb-if="session.loggedInUser | not">
     <a href="/login/" class="">Sign in <i class="net-chevron-right muted-text"></i></a>
 
 
   </div>
 
-  <div class="side-menu white mb2" v-if="!info.loggedInUser">
+  <div class="side-menu white mb2" kb-if="session.loggedInUser | not">
     <a href="/signup/" class=""><span><span class=" blk mb025">Register</span><span class="vsmall g6-text normal">Register a new trade account</span></span><i class="net-tickbox muted-text"></i></a>
 
   </div>
 
-  <div class="side-menu white mb2" v-if="info.loggedInUser">
+  <div class="side-menu white mb2" kb-if="session.loggedInUser">
     <a href="{{$.Site.Params.dashboard_url}}"><span><span class=" blk mb025">My dashboard</span><span class="vsmall g6-text normal">Manage domains, websites ..</span></span><i class="net-launch-out"></i></a>
     <a href="{{$.Site.Params.dashboard_url}}/account/orders/search"><span><span class=" blk mb025">My orders</span><span class="vsmall g6-text normal">View and manage your orders ..</span></span><i class="net-launch-out"></i></a>
     <net-signout redirect-url="/"><span class="red-text normal">Sign out</span>
@@ -39,26 +39,26 @@
 
     </div>
 
-  </net-session>
+  </net-bind>
 
-  <net-bind data-model='{"businessDevelopers": false, "products": false, "usefulLinks": false}' class="side-menu white">
-    <div class="vue-wrapper">
+  <net-bind class="side-menu white">
+
         <a href="/about/" class="">About <i class="net-launch-out"></i></a>
         <a href="/prices/" class="">Prices <i class="net-launch-out"></i></a>
         <a href="/help/" class="">Help <i class="net-launch-out"></i></a>
-        <button @click="businessDevelopers = !businessDevelopers" class="dropdown-btn">For business and developers <i class="net-dummy"></i></button>
-        <div v-if="businessDevelopers" class="dropdown-container" >
+        <button  class="dropdown-btn">For business and developers <i class="net-dummy"></i></button>
+        <div class="dropdown-container" data-state="hide">
           {{ $menu := .Site.Menus.about}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
         </div>
-        <button @click="products = !products" class="dropdown-btn">Products & Services <i class="net-dummy"></i></button>
-        <div v-if="products" class="dropdown-container" >
+        <button class="dropdown-btn">Products & Services <i class="net-dummy"></i></button>
+        <div  class="dropdown-container" data-state="hide">
           {{ $menu := .Site.Menus.services}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
         </div>
-        <button @click="usefulLinks = !usefulLinks" class="dropdown-btn">Useful links <i class="net-dummy"></i></button>
-        <div v-if="usefulLinks" class="dropdown-container" >
+        <button class="dropdown-btn">Useful links <i class="net-dummy"></i></button>
+        <div  class="dropdown-container" data-state="hide">
           {{ $menu := .Site.Menus.usefullinks}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
         </div>
-    </div>
+
   </net-bind>
 
 

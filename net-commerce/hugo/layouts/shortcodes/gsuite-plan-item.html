@@ -17,7 +17,7 @@
 <div class="w-33 flex flex-col mb3" >
   <h5 class="normal py050 {{with $planColour}}{{.}}{{end}} {{with .Get "planheadingcolour"}}{{.}}{{else}}white-text{{end}} m0">{{$planpage.Params.plantitle}}</h5>
   <div class="flex1">
-    <div class="gf9 px1 py1" v-if="plans.{{$plan}}">
+    <div class="gf9 px1 py1" kb-if="plans.{{$plan}}">
       <p style="min-height: 75px;">{{$planpage.Params.plandesc}}</p>
 
       <h2 class="semi {{with $planTextColour}}{{.}}{{end}} mt0 mb0 pb025">&pound;<span v-html="plans.{{$plan}}.Monthly.netPrice"></span></h2>

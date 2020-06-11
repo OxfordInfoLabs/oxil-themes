@@ -8,7 +8,7 @@
 
 <net-more-loader data-url="/domains/{{ $tldsearch }}">
 
-<div class="overflow-x vue-wrapper">
+<div class="overflow-x">
   <table class="tiers-table table min500 cells small t-center-0111">
     <colgroup>
       <col>
@@ -44,28 +44,29 @@
       <td class="border30"></td>
     </tr>
 
-    <tr v-for="(tld, index) in moreResults">
-      <td v-if="index == 0" class="border-l0 border-b0 vtop">Best selling, classic domains </td>
-      <td v-if="index > 0" class="border-b0 border-l0"></td>
+
+    <tr kb-each-tld="moreResults">
+      <td kb-if="$index | equals 0" class="border-l0 border-b0 vtop">Best selling, classic domains </td>
+      <td kb-if="$index | gt 0" class="border-b0 border-l0"></td>
       <td>
-        <div class="pt1"><img :src="tld.imageAsBase64" alt="" height="42" v-if="tld.imageAsBase64"/><span
-                v-if="!tld.imageAsBase64">.{tld.tld}</span></div>
-        <div class="f4 py025 semi" v-if="!tld.originalRegistrationPrice">&pound;{tld.registrationPrice}</div>
-        <div class="red-text f4 py025 semi" v-if="tld.originalRegistrationPrice">&pound;{tld.registrationPrice}</div>
-        <div class="vsmall strike thin ga-text" v-if="tld.originalRegistrationPrice">&pound;{tld.originalRegistrationPrice}</div>
+        <div class="pt1"><img kb-src="tld.imageAsBase64" alt="" height="42" kb-if="tld.imageAsBase64"/><span
+                kb-if="tld.imageAsBase64 | not">.{tld.tld}</span></div>
+        <div class="f4 py025 semi" kb-if="tld.originalRegistrationPrice | not">&pound;{tld.registrationPrice}</div>
+        <div class="red-text f4 py025 semi" kb-if="tld.originalRegistrationPrice">&pound;{tld.registrationPrice}</div>
+        <div class="vsmall strike thin ga-text" kb-if="tld.originalRegistrationPrice">&pound;{tld.originalRegistrationPrice}</div>
         <div class="tiny pb050">1 Year Registration</div>
-        <div v-for="offer in tld.offers" class="red-text vsmall thin lh13 pb050">{offer}</div>
+        <div kb-each="offer in tld.offers" class="red-text vsmall thin lh13 pb050">{offer}</div>
 
       </td>
       <td class="border30 white-text">
-        <div class="pt1"><img :src="tld.imageAsBase64" alt="" height="42" v-if="tld.imageAsBase64" class="f-white"/><span
-                v-if="!tld.imageAsBase64">.{tld.tld}</span></div>
+        <div class="pt1"><img kb-src="tld.imageAsBase64" alt="" height="42" kb-if="tld.imageAsBase64" class="f-white"/><span
+                kb-if="tld.imageAsBase64 | not">.{tld.tld}</span></div>
         <div class="f4 py025 semi" >&pound;{tld.renewalPrice}</div>
         <div class="tiny pb050">1 Year Renewal</div>
       </td>
       <td class="border30 white-text">
-        <div class="pt1"><img :src="tld.imageAsBase64" alt="" height="42" v-if="tld.imageAsBase64" class="f-white"/><span
-                v-if="!tld.imageAsBase64">.{tld.tld}</span></div>
+        <div class="pt1"><img :src="tld.imageAsBase64" alt="" height="42" kb-if="tld.imageAsBase64" class="f-white"/><span
+                kb-if="tld.imageAsBase64 | not">.{tld.tld}</span></div>
         <div class="f4 py025 semi" >&pound;{tld.transferPrice}</div>
         <div class="tiny pb050">Transfer fee</div>      </td>
     </tr>

@@ -1,5 +1,4 @@
 import "oxil-net1/src/net1-base";
-import * as queryString from 'query-string/index';
 import tippy from 'tippy.js/dist/tippy.esm';
 import NetistrarWhiteLabel from "netistrar-whitelabel/ts/index";
 

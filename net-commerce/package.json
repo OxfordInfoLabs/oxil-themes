@@ -24,7 +24,7 @@
     "publish:project": "npm run update:packages; npm run build:production; ./node_modules/.bin/bump patch; npm publish",
     "update:dev": "npm run update:packages && npm run update:symlinks && npm run update:dependencies",
     "update:packages": "npm i; npm i netistrar-whitelabel@latest oxil-net1@latest",
-    "update:symlinks": "npm link ../net1; npm link ../../netistrar/whitelabel; npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js",
+    "update:symlinks": "npm link ../net1; npm link ../../netistrar/whitelabel; npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js; npm link ../../kinibind",
     "update:dependencies": "cd node_modules/oxil-net1; npm run update:dev; cd ../netistrar-whitelabel; npm run update:dev"
   },
   "author": "",

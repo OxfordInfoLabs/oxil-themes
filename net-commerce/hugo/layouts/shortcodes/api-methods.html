@@ -3,13 +3,13 @@
 
   <div class="vue-wrapper">
 
-      <div class="py2 text-center" v-if="!api.controller">
+      <div class="py2 text-center" kb-if="!api.controller">
 
         <img src="/images/loading-animation.gif" alt="Loading animation icon">
       </div>
 
 
-      <div v-if="api.controller">
+      <div kb-if="api.controller">
 
     <p v-html="api.controller.commentHTML"></p>
 

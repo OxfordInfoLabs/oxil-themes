@@ -7,19 +7,19 @@
     </div>
 {{- if eq (.featured) "true" -}}
     <div class="small py1 borb1 borcc g5-text">If you are the owner of this Domain Name you can <a class="bold" :href="'/transfer?transferDomain=' + {{with .itemSelector}}{{.}}{{end}}.domainName" target="_blank">Transfer it into your Netistrar Account</a> to gain all the benefits and manage your domain names in one place.</div>
-    <div class="vsmall thin py050" v-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">We have some alternative suggestions available to purchase today:
-        <span v-for="(suggestion, index) in {{with .itemSelector}}{{.}}.suggestions{{end}}">
-            <span v-if="index > 0">&bullet;</span>
-            <a class='inv' href='#' @click="toggleVisibleSuggestion(suggestion.domainName)">{suggestion.domainName}</a>&nbsp;
+    <div class="vsmall thin py050" kb-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">We have some alternative suggestions available to purchase today:
+        <span kb-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
+            <span kb-if="$index | gt 0">&bullet;</span>
+            <a class='inv' href='#' kb-on-click="toggleVisibleSuggestion | args suggestion.domainName">{suggestion.domainName}</a>&nbsp;
         </span>
     </div>
 {{- else -}}
 <div class="vsmall thin py1 g5-text">Owners: <a :href="'/transfer?transferDomain=' + {{with .itemSelector}}{{.}}{{end}}.domainName" target="_blank">Transfer this domain into your Netistrar Account</a>.
-    <span v-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">
+    <span kb-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">
     <br>Alternatives:
-    <span v-for="(suggestion, index) in {{with .itemSelector}}{{.}}.suggestions{{end}}">
-    <span v-if="index > 0">&bullet;</span>
-    <a class='normal inv' href='#' @click="toggleVisibleSuggestion(suggestion.domainName)">{suggestion.domainName}</a>&nbsp;
+    <span kb-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
+    <span kb-if="$index gt; 0">&bullet;</span>
+    <a class='normal inv' href='#' kb-on-click="toggleVisibleSuggestion | args suggestion.domainName">{suggestion.domainName}</a>&nbsp;
     </span>
     </span>
 </div>

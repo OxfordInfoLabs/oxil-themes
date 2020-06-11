@@ -5,32 +5,32 @@
 
 <div class="vue-wrapper">
 
-    <div v-if="!apiMethod.method" class="text-center py2 text-center">
+    <div kb-if="!apiMethod.method" class="text-center py2 text-center">
 
         <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
     </div>
 
 
-    <div v-if="apiMethod.method" data-state="hide" :data-state="apiMethod.method ? 'show' : 'hide'" >
+    <div kb-if="apiMethod.method" data-state="hide" :data-state="apiMethod.method ? 'show' : 'hide'" >
 
         <h1 class="f-subheadline mt050 mb2">{apiMethod.controller.title}: {apiMethod.method.name}</h1>
 
         <p v-html="apiMethod.method.commentHTML"></p>
 
         <p>
-            <span v-if="apiMethod.method.httpMethodIndicator.GET" class="badge semi brand-2 white-text">{apiMethod.method.httpMethod}</span>
-            <span v-if="apiMethod.method.httpMethodIndicator.POST" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
-            <span v-if="apiMethod.method.httpMethodIndicator.PUT" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
-            <span v-if="apiMethod.method.httpMethodIndicator.PATCH" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
-            <span v-if="apiMethod.method.httpMethodIndicator.DELETE" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
+            <span kb-if="apiMethod.method.httpMethodIndicator.GET" class="badge semi brand-2 white-text">{apiMethod.method.httpMethod}</span>
+            <span kb-if="apiMethod.method.httpMethodIndicator.POST" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
+            <span kb-if="apiMethod.method.httpMethodIndicator.PUT" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
+            <span kb-if="apiMethod.method.httpMethodIndicator.PATCH" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
+            <span kb-if="apiMethod.method.httpMethodIndicator.DELETE" class="badge semi brand white-text">{apiMethod.method.httpMethod}</span>
             {apiMethod.method.fullRequestPath}
         </p>
 
         <p class="small"><b>Rate limit: </b>
-            <span v-if="apiMethod.method.rateLimit">{apiMethod.method.rateLimit} requests per minute</span>
-            <span v-if="apiMethod.method.rateLimitMultiplier">
+            <span kb-if="apiMethod.method.rateLimit">{apiMethod.method.rateLimit} requests per minute</span>
+            <span kb-if="apiMethod.method.rateLimitMultiplier">
     Your account rate limit as displayed in My Account -> API Settings
-    <span v-if="!apiMethod.method.rateLimitMultiplierIsOne" class="semi"> * {apiMethod.method.rateLimitMultiplier}</span>
+    <span kb-if="!apiMethod.method.rateLimitMultiplierIsOne" class="semi"> * {apiMethod.method.rateLimitMultiplier}</span>
   </span>
         </p>
 
@@ -56,10 +56,10 @@
                     <td data-label="Description" v-html="param.description"></td>
                 </tr>
                 <tr v-for="param in apiMethod.method.params">
-                    <td class="semi" scope="row" data-label="Name">{param.name}<span v-if="!param.isOptional">*</span></td>
+                    <td class="semi" scope="row" data-label="Name">{param.name}<span kb-if="!param.isOptional">*</span></td>
                     <td data-label="Type">
-                        <span v-if="!param.typePath">{param.shortType}</span>
-                        <a class="inv" v-if="param.typePath" :href="'../object/?object=' + param.relativeTypePath">{param.shortType}</a>
+                        <span kb-if="!param.typePath">{param.shortType}</span>
+                        <a class="inv" kb-if="param.typePath" :href="'../object/?object=' + param.relativeTypePath">{param.shortType}</a>
                     </td>
                     <td class="text-left-sm" data-label="Description&nbsp;" v-html="param.description" ></td>
                 </tr>
@@ -71,10 +71,10 @@
 
         </div>
 
-        <div v-if="apiMethod.method.returnType">
+        <div kb-if="apiMethod.method.returnType">
 
             <h3 class="mt2 mb1">Returns</h3>
-                <p v-if="!apiMethod.method.returnTypePath">{apiMethod.method.shortReturnType}</p>
+                <p kb-if="!apiMethod.method.returnTypePath">{apiMethod.method.shortReturnType}</p>
             <p><a :href="'../object/?object=' + apiMethod.method.relativeReturnTypePath">{apiMethod.method.shortReturnType}</a></p>
 
 
@@ -82,7 +82,7 @@
 
         </div>
 
-        <div v-if="apiMethod.method.exceptions">
+        <div kb-if="apiMethod.method.exceptions">
         <h3 class="mt2 mb1">Exceptions</h3>
 
             <span v-for="exception in apiMethod.method.exceptions">
@@ -94,37 +94,37 @@
 
      {{ partial "tab-header" }}
 
-<div id="tab-1"  class="tab-content overflow-x current" v-if="apiMethod.method">
+<div id="tab-1"  class="tab-content overflow-x current" kb-if="apiMethod.method">
 <pre >
 <code>
 curl -H "Content-Type: application/json"
 -X {apiMethod.method.httpMethod} {apiMethod.baseURL}{apiMethod.method.fullRequestPath}?apiMethodKey=YOURAPIKEY&apiMethodSecret=YOURSECRET<span
-v-for="param in apiMethod.method.params"><span v-if="!param.payloadParam"><span v-if="!param.segmentParam">&{param.name}=VALUE</span></span></span>
-<span v-if="apiMethod.method.payloadParam">-d '{apiMethod.method.payloadParam.shortType} JSON DATA'</span>
+v-for="param in apiMethod.method.params"><span kb-if="!param.payloadParam"><span kb-if="!param.segmentParam">&{param.name}=VALUE</span></span></span>
+<span kb-if="apiMethod.method.payloadParam">-d '{apiMethod.method.payloadParam.shortType} JSON DATA'</span>
 </code>
 </pre>
 </div>
 
-<div id="tab-2"  class="tab-content overflow-x" v-if="apiMethod.method">
+<div id="tab-2"  class="tab-content overflow-x" kb-if="apiMethod.method">
 <pre><code class="php">
 
 use <span v-html="apiMethod.method.rootNamespace"></span>\APIProvider;
 
 $client = new APIProvider("{apiMethod.baseURL}", "YOURAPIKEY", "YOURAPISECRET");
 
-<span v-if="apiMethod.method.returnType">$result = </span>$client->{apiMethod.controller.className}()->{apiMethod.method.name}(<span
-v-for="param in apiMethod.method.params"><span v-if="param.index">, </span>${param.name}</span>)
+<span kb-if="apiMethod.method.returnType">$result = </span>$client->{apiMethod.controller.className}()->{apiMethod.method.name}(<span
+v-for="param in apiMethod.method.params"><span kb-if="param.index">, </span>${param.name}</span>)
 
 </code></pre>
 </div>
 
-<div id="tab-3"  class="tab-content overflow-x" v-if="apiMethod.method">
+<div id="tab-3"  class="tab-content overflow-x" kb-if="apiMethod.method">
 <pre><code class="java">
 
 APIProvider client = new APIProvider("{apiMethod.baseURL}", "YOURAPIKEY", "YOURAPISECRET");
 
-<span v-if="apiMethod.method.returnType">{apiMethod.method.returnJavaType} result = </span>client.{apiMethod.controller.className}().{apiMethod.method.name}(<span
-v-for="param in apiMethod.method.params"><span v-if="param.index">, </span>{param.name}</span>)
+<span kb-if="apiMethod.method.returnType">{apiMethod.method.returnJavaType} result = </span>client.{apiMethod.controller.className}().{apiMethod.method.name}(<span
+v-for="param in apiMethod.method.params"><span kb-if="param.index">, </span>{param.name}</span>)
 
 
 </code></pre>

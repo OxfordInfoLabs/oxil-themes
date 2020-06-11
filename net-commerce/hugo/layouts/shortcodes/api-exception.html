@@ -4,12 +4,12 @@
 <div class="vue-wrapper">
 
 
-    <div class="search-loading py2 text-center" v-if="!api.exception">
+    <div class="search-loading py2 text-center" kb-if="!api.exception">
 
         <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
     </div>
 
-    <div v-if="api.exception" data-state="hide" :data-state="api.exception ? 'show' : 'hide'" >
+    <div kb-if="api.exception" data-state="hide" :data-state="api.exception ? 'show' : 'hide'" >
 
         <h1 class="f-subheadline mt050 mb2">API Exception: {api.exception.name}</h1>
 
@@ -31,16 +31,16 @@
             <tr>
                 <td class="semi" scope="row" data-label="Name">{property.name}</td>
                 <td data-label="Type">Type:
-                    <a class="inv" v-if="property.typePath"
+                    <a class="inv" kb-if="property.typePath"
                        :href="'{{ .Page.CurrentSection.Permalink}}object?object=' + property.typePath">{property.shortType}</a>
-                    <span v-if="!property.typePath">{property.shortType}</span>
+                    <span kb-if="!property.typePath">{property.shortType}</span>
                 </td>
 
 
             </tr>
             <tr><td></td><td data-label="Access">Access:
-                <span v-if="property.updatable">Read / Write</span>
-                <span v-if="!property.updatable">Read Only</span>
+                <span kb-if="property.updatable">Read / Write</span>
+                <span kb-if="!property.updatable">Read Only</span>
             </td></tr>
             <tr> <td></td><td class="text-left-sm" data-label="Description&nbsp;" v-html="property.description" style="word-break: break-word;"></td></tr>
             </tbody>

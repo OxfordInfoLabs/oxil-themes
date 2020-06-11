@@ -1,6 +1,7 @@
 <net-domain-search>
 
-  <div class="grid px2l pb3 vue-wrapper">
+
+  <div class="grid px2l pb3">
 
     <div class="flex flex-row-reverse" >
       <div id="product-builder-widget-wrap" class="pl1l flex flex-col pt3" >
@@ -10,52 +11,50 @@
 
       </div>
 
-      <div class="w-75 pr1l" v-cloak>
+      <div class="w-75 pr1l" kb-cloak>
 
-        <div class="my2 pt2 text-center"  v-if="!results || !results.metrics">
+        <div class="my2 pt2 text-center"  kb-if="results.metrics | not">
 
           <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
 
         </div>
 
 
-        <div v-if="results && results.metrics" >
+        <div kb-if="results.metrics" >
 
-
-
-          <div class="pt150 pb1 px1 px0l" v-if="results && results.metrics">
-            <span class="semi uppercase">Search results<span v-if="results.metrics.featuredMin">: </span></span>
-            <div v-if="results.metrics.featuredMin" class="label label-gn lh1">Top names</div>
-            <span v-if="results.metrics.featuredMin"><b> available</b> from £{results.metrics.featuredMin}</span>
+          <div class="pt150 pb1 px1 px0l" kb-if="results.metrics">
+            <span class="semi uppercase">Search results<span kb-if="results.metrics.featuredMin">: </span></span>
+            <div kb-if="results.metrics.featuredMin" class="label label-gn lh1">Top names</div>
+            <span kb-if="results.metrics.featuredMin"><b> available</b> from £{results.metrics.featuredMin}</span>
           </div>
 
 
-            <div v-if="results && results.directResult">
+            <div kb-if="results.directResult">
 
-                <div v-if="['HINTED_AVAILABLE','AVAILABLE'].indexOf(results.directResult.availability) >= 0">
-                    <div v-if="results.directResult.pricingType !== 'PREMIUM'">
+                <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains results.directResult.availability">
+                    <div kb-if="results.directResult.pricingType | notequals 'PREMIUM'">
                         {{partial "product-search-available" (dict "itemSelector" "results.directResult" "featured" "true") }}
                     </div>
-                    <div v-if="results.directResult.pricingType == 'PREMIUM'">
+                    <div kb-if="results.directResult.pricingType | equals 'PREMIUM'">
                         {{partial  "product-search-premium" (dict "itemSelector" "results.directResult" "featured" "true") }}
                     </div>
                 </div>
-                <div v-if="['HINTED_UNAVAILABLE','UNAVAILABLE'].indexOf(results.directResult.availability) >= 0">
+                <div kb-if="'HINTED_UNAVAILABLE,UNAVAILABLE' | split | contains results.directResult.availability">
                     {{partial "product-search-not-available" (dict "itemSelector" "results.directResult" "featured" "true") }}
 
                     <div v-for="suggestion in results.directResult.suggestions">
-                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'">
+                        <div kb-if="visibleSuggestions | keys | contains suggestion.domainName">
                             {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
                         </div>
                     </div>
 
                 </div>
 
-                <div v-if="results.directResult.availability == 'MY_DOMAIN'">
+                <div kb-if="results.directResult.availability | equals 'MY_DOMAIN'">
                     {{partial "product-search-my-domain" (dict "itemSelector" "results.directResult" "featured" "true")  }}
 
-                    <div v-for="suggestion in results.directResult.suggestions">
-                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                    <div kb-each-suggestion="results.directResult.suggestions">
+                        <div kb-if="visibleSuggestions | member suggestion.domainName" >
                             {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
                         </div>
                     </div>
@@ -67,20 +66,20 @@
 
 
 
-            <div v-for="featured in results.featuredResults">
-                <div v-if="['HINTED_AVAILABLE','AVAILABLE'].indexOf(featured.availability) >= 0 ">
-                    <div v-if="featured.pricingType !== 'PREMIUM'">
+            <div kb-each-featured="results.featuredResults">
+                <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains featured.availability">
+                    <div kb-if="featured.pricingType | notequals 'PREMIUM'">
                         {{partial "product-search-available" (dict "itemSelector" "featured" "featured" "true") }}
                     </div>
-                    <div v-if="featured.pricingType == 'PREMIUM'">
+                    <div kb-if="featured.pricingType | equals 'PREMIUM'">
                         {{partial "product-search-premium" (dict "itemSelector" "featured" "featured" "true") }}
                     </div>
                 </div>
-                <div v-if="['HINTED_UNAVAILABLE','UNAVAILABLE'].indexOf(featured.availability) >= 0">
+                <div kb-if="'HINTED_UNAVAILABLE,UNAVAILABLE' | split | contains featured.availability">
                     {{partial "product-search-not-available" (dict "itemSelector" "featured" "featured" "true") }}
 
-                    <div v-for="suggestion in featured.suggestions">
-                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                    <div kb-each-suggestion="featured.suggestions">
+                        <div kb-if="visibleSuggestions | member suggestion.domainName">
                             {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
                         </div>
                     </div>
@@ -88,11 +87,11 @@
                 </div>
 
 
-                <div v-if="featured.availability == 'MY_DOMAIN'">
+                <div kb-if="featured.availability | equals 'MY_DOMAIN'">
                     {{partial "product-search-my-domain" (dict "itemSelector" "featured" "featured" "true") }}
 
-                    <div v-for="suggestion in featured.suggestions">
-                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                    <div kb-each-suggestion="featured.suggestions">
+                        <div kb-if="visibleSuggestions | member suggestion.domainName">
                             {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
                         </div>
                     </div>
@@ -109,29 +108,29 @@
                 these results</span>
             </div>
 
-            <div class="prod-parent" v-for="categoried in results.categoryResults"
-                 :class="{'child-selected': selectedItems[categoried.domainName]}">
-                <div v-if="['HINTED_AVAILABLE','AVAILABLE'].indexOf(categoried.availability) >= 0">
-                    <div v-if="categoried.pricingType !== 'PREMIUM'">
+            <div class="prod-parent" kb-each-categoried="results.categoryResults"
+                 kb-class-child-selected="selectedItems | keys | contains categoried.domainName}">
+                <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains categoried.availability">
+                    <div kb-if="categoried.pricingType | notequals 'PREMIUM'">
                         {{partial "product-search-available" (dict "itemSelector" "categoried" "featured" "false") }}
                     </div>
-                    <div v-if="categoried.pricingType == 'PREMIUM'">
+                    <div kb-if="categoried.pricingType | equals 'PREMIUM'">
                         {{partial "product-search-premium" (dict "itemSelector" "categoried" "featured" "false") }}
                     </div>
                 </div>
-                <div v-if="['HINTED_UNAVAILABLE','UNAVAILABLE'].indexOf(categoried.availability) >= 0 ">
+                <div kb-if="'HINTED_UNAVAILABLE,UNAVAILABLE' | split | contains categoried.availability">
                     {{partial "product-search-not-available" (dict "itemSelector" "categoried" "featured" "false") }}
-                    <div v-for="suggestion in categoried.suggestions">
-                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                    <div kb-each-suggestion="categoried.suggestions">
+                        <div kb-if="visibleSuggestions | member suggestion.domainName">
                             {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
                         </div>
                     </div>
                 </div>
-                <div v-if="categoried.availability == 'MY_DOMAIN'">
+                <div kb-if="categoried.availability | equals 'MY_DOMAIN'">
                     {{partial "product-search-my-domain" (dict "itemSelector" "categoried" "featured" "false") }}
 
-                    <div v-for="suggestion in categoried.suggestions">
-                        <div :data-state="visibleSuggestions[suggestion.domainName] ? 'show' : 'hide'" >
+                    <div kb-each-suggestion="categoried.suggestions">
+                        <div kb-if="visibleSuggestions | member suggestion.domainName" >
                             {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
                         </div>
                     </div>
@@ -141,8 +140,6 @@
             </div>
 
         </div>
-
-
 
 
 

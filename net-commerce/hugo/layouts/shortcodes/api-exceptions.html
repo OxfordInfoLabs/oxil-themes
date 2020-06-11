@@ -3,12 +3,12 @@
 <div class="vue-wrapper"
 >
 
-    <div class="search-loading py2 text-center" v-if="!api.apiMetaData">
+    <div class="search-loading py2 text-center" kb-if="!api.apiMetaData">
 
         <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
     </div>
 
-    <div data-state="hide" :data-state="api.apiMetaData ? 'show' : 'hide'" v-if="api.apiMetaData" >
+    <div data-state="hide" :data-state="api.apiMetaData ? 'show' : 'hide'" kb-if="api.apiMetaData" >
 
         <table class="striped-table">
             <thead>

@@ -4,13 +4,13 @@
 <div class="vue-wrapper">
 
 
-    <div class="search-loading py2 text-center" v-if="!objects.apiMetaData">
+    <div class="search-loading py2 text-center" kb-if="!objects.apiMetaData">
 
         <img src="/images/loading-animation.gif" alt="Loading animation icon">
     </div>
 
 
-    <div data-state="hide" :data-state="objects.apiMetaData ? 'show' : 'hide'" v-if="objects.apiMetaData">
+    <div data-state="hide" :data-state="objects.apiMetaData ? 'show' : 'hide'" kb-if="objects.apiMetaData">
 
         <table class="table small">
             <thead>

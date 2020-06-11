@@ -9,7 +9,7 @@
   <div class="grid px2l pb3 vue-wrapper" >
 
 
-    <div class="flex flex-row-reverse" v-cloak>
+    <div class="flex flex-row-reverse" kb-cloak>
       <div id="product-builder-widget-wrap" class="flex flex-col pl1l pt3" >
         <div class="stick">
           {{ partial "product-builder-widget" (dict "bigbuttext" "Add to cart"  "bigbuticon" "net-chevron-right" "smallbuticon" "net-cart-solid" "radius"  "br8tl br8tr " "Site" .Site) }}
@@ -37,7 +37,7 @@
               <label class="flex justify-between align-center select-chevron">
 
                 <select v-model="item.quantity" data-update-item :data-key="item.key" :data-label="item.key" data-quantity-suffix="yrs" >
-                  <option v-for="(year, index) in item.allPrices"  v-if="year" :value="index">
+                  <option v-for="(year, index) in item.allPrices"  kb-if="year" :value="index">
                     {index} yrs - &pound;{year}
                   </option>
                 </select>
@@ -114,7 +114,7 @@
 
 
 
-          <div v-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'" >
+          <div kb-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'" >
             <h5 class="mb050 mt175">G Suite</h5>
             <p class="vsmall thin mb1">Choose a G Suite plan which we will configure to work with your business domain name. <a href="/email/gsuite/" class="normal" target="_blank">Which G Suite plan is right for you?</a>
             </p>
@@ -123,7 +123,7 @@
 
 
           <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"
-               v-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'"
+               kb-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'"
                :class="{'build-item': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Basic', 'build-item-selected': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Basic'}"
                data-add-item data-type="gsuite" data-key="email" :data-parent-key="item.key"
                data-product-data-gsuite-product="Google-Apps-For-Business"
@@ -140,7 +140,7 @@
                                      data-update-item
                                      data-key="email"
                                      :data-parent-key="item.key"
-                                     v-if="item.subItemsByKey.email.label == 'G Suite Basic'">
+                                     kb-if="item.subItemsByKey.email.label == 'G Suite Basic'">
                   <button class="but-widget" data-minus><i class="net-minus"></i></button>
                   <input type="text"  data-value v-model="item.subItemsByKey.email.quantity" readonly/>
                   <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>
@@ -151,7 +151,7 @@
           </div>
 
           <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"
-               v-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'"
+               kb-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'"
                :class="{'build-item': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Business', 'build-item-selected': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Business'}"
                data-add-item data-type="gsuite" data-key="email" :data-parent-key="item.key"
                data-product-data-gsuite-product="Google-Apps-Unlimited"
@@ -168,7 +168,7 @@
                                      data-update-item
                                      data-key="email"
                                      :data-parent-key="item.key"
-                                     v-if="item.subItemsByKey.email.label == 'G Suite Business'">
+                                     kb-if="item.subItemsByKey.email.label == 'G Suite Business'">
                   <button class="but-widget" data-minus><i class="net-minus"></i></button>
                   <input type="text"  data-value v-model="item.subItemsByKey.email.quantity" readonly/>
                   <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>
@@ -180,7 +180,7 @@
 
 
           <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"
-               v-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'"
+               kb-if="item.subItemsByKey.email && item.subItemsByKey.email.type == 'gsuite'"
                :class="{'build-item': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Enterprise', 'build-item-selected': item.subItemsByKey.email && item.subItemsByKey.email.label == 'G Suite Enterprise'}"
                data-add-item data-type="gsuite" data-key="email" :data-parent-key="item.key"
                data-product-data-gsuite-product="1010020020"
@@ -197,7 +197,7 @@
                                      data-update-item
                                      data-key="email"
                                      :data-parent-key="item.key"
-                                     v-if="item.subItemsByKey.email.label == 'G Suite Enterprise'">
+                                     kb-if="item.subItemsByKey.email.label == 'G Suite Enterprise'">
                   <button class="but-widget" data-minus><i class="net-minus"></i></button>
                   <input type="text"  data-value v-model="item.subItemsByKey.email.quantity" readonly/>
                   <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>

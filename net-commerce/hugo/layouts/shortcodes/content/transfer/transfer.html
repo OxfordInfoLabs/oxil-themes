@@ -24,11 +24,11 @@
             before transferring a domain. </p>
 
 
-          <p v-if="!result"  class="text-center"><img src="/images/loading-animation.gif" alt="Netistrar loading animation">
+          <p kb-if="!result"  class="text-center"><img src="/images/loading-animation.gif" alt="Netistrar loading animation">
           </p>
 
 
-          <div class="flex-grid mb2" v-if="status == 'locked'">
+          <div class="flex-grid mb2" kb-if="status == 'locked'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -51,7 +51,7 @@
 
             </div>
           </div>
-          <div class="flex-grid mb2 " v-if="status == 'unlocked'">
+          <div class="flex-grid mb2 " kb-if="status == 'unlocked'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -81,7 +81,7 @@
             </div>
           </div>
 
-          <div class="flex-grid mb2" v-if="status == 'authorised'">
+          <div class="flex-grid mb2" kb-if="status == 'authorised'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -105,7 +105,7 @@
             </div>
           </div>
 
-          <div class="flex-grid mb2" v-if="status == 'unassigned'">
+          <div class="flex-grid mb2" kb-if="status == 'unassigned'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -131,7 +131,7 @@
 
             </div>
           </div>
-          <div class="flex-grid mb2"  v-if="status == 'assigned'">
+          <div class="flex-grid mb2"  kb-if="status == 'assigned'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
