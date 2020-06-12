@@ -4,12 +4,12 @@
 
   <div class="w-40 flex mb050 mb0l">
     {{ partial "searchbox-sm" (dict "context" . "inputcss" "borr0") }}
-    <button class="butlk inv flex align-center ml1 hidden-sm btn-filters-domain-search"  data-target="show">Filters <span :data-state="changedFilterCount > 0 ? 'show' : 'hide'">(<span v-html="changedFilterCount"></span>)</span><i class="net-chevron-down"></i></button>
+    <button class="butlk inv flex align-center ml1 hidden-sm btn-filters-domain-search"  data-target="show">Filters <span kb-if="changedFilterCount">(<span kb-text="changedFilterCount"></span>)</span><i class="net-chevron-down"></i></button>
 
   </div>
 
-  <div class="flex w-sm align-center justify-between-sm pl1 pl0l mr1l"><span class="small-sm">Your search: <b kb-cloak>{request.domainsearch}</b> &bullet; <span v-html="filterValues.categories"></span><span data-state="hide" :data-state="filterValues.categories ? 'hide' : 'show'" >Popular</span></span>
-    <button class=" hidden-md butlk inv flex align-center ml1 btn-filters-domain-search" data-target="show">Filters <span data-state="hide" :data-state="changedFilterCount > 0 ? 'show' : 'hide'">({changedFilterCount})</span><i class="net-chevron-down"></i></button></div>
+  <div class="flex w-sm align-center justify-between-sm pl1 pl0l mr1l"><span class="small-sm">Your search: <b kb-cloak>{request.domainsearch}</b> &bullet; <span kb-text="filterValues.categories"></span><span  kb-if="filterValues.categories | not" >Popular</span></span>
+    <button class=" hidden-md butlk inv flex align-center ml1 btn-filters-domain-search" data-target="show">Filters <span kb-if="changedFilterCount">({changedFilterCount})</span><i class="net-chevron-down"></i></button></div>
 </div>
 {{- end -}}
 {{- end -}}
