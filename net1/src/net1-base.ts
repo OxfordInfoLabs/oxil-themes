@@ -43,18 +43,6 @@ function gauze() {
 }
 
 
-function scrollFunction(scrollElementA, scrollElementB) {
-    if (scrollElementA.scrollTop > 150 || (scrollElementB && scrollElementB.scrollTop > 150)) {
-
-        (<HTMLElement>document.querySelector('.scroll-to-top')).style.display = 'block';
-
-    } else {
-        (<HTMLElement>document.querySelector('.scroll-to-top')).style.display = 'none';
-
-
-    }
-}
-
 function topFunction() {
     var scrollElement = document.querySelector('#fixedwrap');
     if (scrollElement) scrollElement.scrollTo({top: 0, behavior: 'smooth'});
@@ -282,6 +270,21 @@ function toggleTabs(targetElement) {
     document.querySelector("#" + tab_id).classList.add('current');
 
 }
+
+document.querySelector("#fixedwrap").addEventListener("scroll", () => {
+
+    document.querySelectorAll('.scroll-to-top').forEach((item: HTMLElement) => {
+
+        let fixedWrap = document.querySelector("#fixedwrap");
+
+        if (fixedWrap.scrollTop > 100) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
+    });
+
+});
 
 document.querySelectorAll('.scroll-to-top').forEach((item: HTMLElement) => {
     item.addEventListener('click', function () {
