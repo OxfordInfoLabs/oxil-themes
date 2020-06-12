@@ -13,11 +13,11 @@
           </div>
           <div class="ctrls pt050">
 
-            <a kb-if="cart.items && cart.items.length > 0" href="{{.Site.Params.dashboard_url}}/checkout" class="but butlg butgn butblk w"><span>Checkout</span>
+            <a kb-if="cart.items.length" href="{{.Site.Params.dashboard_url}}/checkout" class="but butlg butgn butblk w"><span>Checkout</span>
 
               <i class="net-chevron-right"></i></a>
 
-            <a kb-if="cart.items && cart.items.length == 0" href="#" class="but butlg butdisabled butgn butblk w"><span>Checkout</span>
+            <a kb-if="cart.items.length | not" href="#" class="but butlg butdisabled butgn butblk w"><span>Checkout</span>
 
               <i class="net-chevron-right"></i></a>
 
@@ -36,22 +36,22 @@
         </div>
         <div class="bort2 bordd mt025"></div>
 
-        <div v-for="(item, index) in cart.items">
+        <div kb-each-item="cart.items">
           <div class="flex mt025">
             <div class="w-70 w75sm thin borr1 bordd py050 pl1l pr1">
               <div class="bold "><span class="pr050">{item.productTitle}</span>
               </div>
               <div class="vsmall" kb-if="item.productShortDescription">{item.productShortDescription}</div>
               <div class="vsmall" kb-if="item.productDescription">{item.productDescription}</div>
-              <div class="pt050"><button class="butctrl pr1 delete" @click="removeCartItem(index)" kb-if="item.domainName" >delete x</button> <a :href="'/configure?cartItem=' + index" class="butctrl inv px1 hidden-md" kb-if="item.domainOperation == 'registration'">edit <i class="net-edit"></i></a> </div>
+              <div class="pt050"><button class="butctrl pr1 delete" kb-on-click="removeCartItem | args $index" kb-if="item.domainName" >delete x</button> <a kb-href="'/configure?cartItem=' | concat $index" class="butctrl inv px1 hidden-md" kb-if="item.domainOperation | equals 'registration'">edit <i class="net-edit"></i></a> </div>
             </div>
             <div class="w-15 w25sm thin py050 px1 text-right">&pound;{item.netPrice}</div>
             <div class="w-15 hidden-sm borl1 bordd py050 px1">
-              <a :href="'/configure?cartItem=' + index" class="vsmall normal" kb-if="item.domainOperation == 'registration'">edit</a>
+              <a kb-href="'/configure?cartItem=' | concat $index" class="vsmall normal" kb-if="item.domainOperation | equals 'registration'">edit</a>
             </div>
           </div>
           <div class="bort1 bordd mt025"></div>
-          <div v-for="subitem in item.subItems">
+          <div kb-each-subitem="item.subItems">
             <div class="flex mt025">
               <div class="w-70 w75sm thin borr1 bordd py050 pl1l pr1">
                 <div class="bold">{subitem.productTitle}</div>
@@ -60,7 +60,7 @@
               </div>
               <div class="w-15 w25sm thin py050 px1 text-right">&pound;{subitem.netPrice}</div>
               <div class="w-15 hidden-sm borl1 bordd py050 px1">
-                <a :href="'/configure?cartItem=' + index" class="vsmall normal" kb-if="item.domainOperation == 'registration'">edit</a>
+                <a kb-href="'/configure?cartItem=' | concat $index" class="vsmall normal" kb-if="item.domainOperation | equals 'registration'">edit</a>
               </div>
             </div>
             <div class="bort1 bordd mt025"></div>
