@@ -2,7 +2,7 @@
 
 <net-domain-transfer data-search-url="/search">
 
-  <div class="gf5 vue-wrapper">
+  <div class="gf5">
     <div class="grid px1 px2l pb4">
 
       <div class="flex flex-row-reverse">
@@ -15,7 +15,7 @@
           </div>
 
         </div>
-        <div class="w-75 pr1l pt3">
+        <div class="w-75 pr1l pt3" kb-cloak>
 
 
           <h1>Transfer your domain</h1>
@@ -24,11 +24,11 @@
             before transferring a domain. </p>
 
 
-          <p kb-if="!result"  class="text-center"><img src="/images/loading-animation.gif" alt="Netistrar loading animation">
+          <p kb-if="result | not"  class="text-center"><img src="/images/loading-animation.gif" alt="Netistrar loading animation">
           </p>
 
 
-          <div class="flex-grid mb2" kb-if="status == 'locked'">
+          <div class="flex-grid mb2" kb-if="status | equals 'locked'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -41,7 +41,7 @@
 
             </div>
             <div class="w-50 gd p2 flex flex-col justify-center align-center">
-              <form data-check-lock-status @submit.prevent="checkLockStatus()" class="flex flex-col justify-center align-center">
+              <form data-check-lock-status kb-on-click="checkLockStatus" class="flex flex-col justify-center align-center">
 
                 <net-recaptcha class="pb1" data-state="hide"></net-recaptcha>
                 <div class="red-text small" data-state="hide" data-recaptcha-error></div>
@@ -51,7 +51,7 @@
 
             </div>
           </div>
-          <div class="flex-grid mb2 " kb-if="status == 'unlocked'">
+          <div class="flex-grid mb2 " kb-if="status | equals 'unlocked'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -64,16 +64,16 @@
 
             </div>
             <div class="w-50 gd flex justify-center align-center p2">
-              <form data-check-auth-code @submit.prevent="checkAuthCode()">
+              <form data-check-auth-code kb-on-submit="checkAuthCode">
                 <div class="flex justify-center">
-                  <input class="pl1 borr0 w-75" type="text" placeholder="Enter auth code" v-model="authCode">
+                  <input class="pl1 borr0 w-75" type="text" placeholder="Enter auth code" kb-value="authCode">
                   <button class="but butgn" type="submit" class="br0" >
                     <i class="net-chevron-right g8-text f4 white-text"></i>
                   </button>
                 </div>
                 <div>
                   <net-recaptcha></net-recaptcha>
-                  <div class="red-text small pt1" v-html="authError"></div>
+                  <div class="red-text small pt1" kb-text="authError"></div>
                 </div>
 
               </form>
@@ -81,7 +81,7 @@
             </div>
           </div>
 
-          <div class="flex-grid mb2" kb-if="status == 'authorised'">
+          <div class="flex-grid mb2" kb-if="status | equals 'authorised'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -105,7 +105,7 @@
             </div>
           </div>
 
-          <div class="flex-grid mb2" kb-if="status == 'unassigned'">
+          <div class="flex-grid mb2" kb-if="status | equals 'unassigned'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>
@@ -118,7 +118,7 @@
 
             </div>
             <div class="w-50 gd flex justify-center align-center p2">
-              <form data-check-assigned @submit.prevent="checkAssignedStatus()">
+              <form data-check-assigned kb-on-click="checkAssignedStatus">
                 <div>
                   <button class="but butor" type="submit">Check again <i class="net-chevron-right"></i> </button>
                 </div>
@@ -131,7 +131,7 @@
 
             </div>
           </div>
-          <div class="flex-grid mb2"  kb-if="status == 'assigned'">
+          <div class="flex-grid mb2"  kb-if="status | equals 'assigned'">
             <div class="w-50 white py2 px1">
               <dl class="small">
                 <dt>Transferring:</dt>

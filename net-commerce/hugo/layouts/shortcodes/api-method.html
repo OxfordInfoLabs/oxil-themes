@@ -5,17 +5,17 @@
 
 <div class="vue-wrapper">
 
-    <div kb-if="!apiMethod.method" class="text-center py2 text-center">
+    <div kb-if="apiMethod.method | not" class="text-center py2 text-center">
 
         <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
     </div>
 
 
-    <div kb-if="apiMethod.method" data-state="hide" :data-state="apiMethod.method ? 'show' : 'hide'" >
+    <div kb-if="apiMethod.method">
 
         <h1 class="f-subheadline mt050 mb2">{apiMethod.controller.title}: {apiMethod.method.name}</h1>
 
-        <p v-html="apiMethod.method.commentHTML"></p>
+        <p kb-html="apiMethod.method.commentHTML"></p>
 
         <p>
             <span kb-if="apiMethod.method.httpMethodIndicator.GET" class="badge semi brand-2 white-text">{apiMethod.method.httpMethod}</span>
@@ -48,20 +48,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="param in apiMethod.apiMetaData.globalParameters">
+                <tr kb-each-param="apiMethod.apiMetaData.globalParameters">
                     <td class="semi" scope="row" data-label="Name">
                         <span>{param.name}</span><span>*</span>
                     </td>
                     <td data-label="Type">string</td>
-                    <td data-label="Description" v-html="param.description"></td>
+                    <td data-label="Description" kb-text="param.description"></td>
                 </tr>
-                <tr v-for="param in apiMethod.method.params">
-                    <td class="semi" scope="row" data-label="Name">{param.name}<span kb-if="!param.isOptional">*</span></td>
+                <tr kb-each-param="apiMethod.method.params">
+                    <td class="semi" scope="row" data-label="Name">{param.name}<span kb-if="param.isOptional | not">*</span></td>
                     <td data-label="Type">
-                        <span kb-if="!param.typePath">{param.shortType}</span>
-                        <a class="inv" kb-if="param.typePath" :href="'../object/?object=' + param.relativeTypePath">{param.shortType}</a>
+                        <span kb-if="param.typePath | not">{param.shortType}</span>
+                        <a class="inv" kb-if="param.typePath" kb-href="'../object/?object=' | concat param.relativeTypePath">{param.shortType}</a>
                     </td>
-                    <td class="text-left-sm" data-label="Description&nbsp;" v-html="param.description" ></td>
+                    <td class="text-left-sm" data-label="Description&nbsp;" kb-text="param.description" ></td>
                 </tr>
 
                 </tbody>
@@ -74,19 +74,19 @@
         <div kb-if="apiMethod.method.returnType">
 
             <h3 class="mt2 mb1">Returns</h3>
-                <p kb-if="!apiMethod.method.returnTypePath">{apiMethod.method.shortReturnType}</p>
-            <p><a :href="'../object/?object=' + apiMethod.method.relativeReturnTypePath">{apiMethod.method.shortReturnType}</a></p>
+                <p kb-if="apiMethod.method.returnTypePath | not">{apiMethod.method.shortReturnType}</p>
+            <p><a kb-href="'../object/?object=' | concat apiMethod.method.relativeReturnTypePath">{apiMethod.method.shortReturnType}</a></p>
 
 
-            <p v-html="apiMethod.method.returnDescription"></p>
+            <p kb-text="apiMethod.method.returnDescription"></p>
 
         </div>
 
         <div kb-if="apiMethod.method.exceptions">
         <h3 class="mt2 mb1">Exceptions</h3>
 
-            <span v-for="exception in apiMethod.method.exceptions">
-                <a :href="'../exception/?exception=' + exception.relativePath">{exception.shortType}</a>&nbsp;</span>
+            <span kb-each-exception="apiMethod.method.exceptions">
+                <a kb-href="'../exception/?exception=' | concat exception.relativePath">{exception.shortType}</a>&nbsp;</span>
 
         </div>
 
@@ -99,7 +99,7 @@
 <code>
 curl -H "Content-Type: application/json"
 -X {apiMethod.method.httpMethod} {apiMethod.baseURL}{apiMethod.method.fullRequestPath}?apiMethodKey=YOURAPIKEY&apiMethodSecret=YOURSECRET<span
-v-for="param in apiMethod.method.params"><span kb-if="!param.payloadParam"><span kb-if="!param.segmentParam">&{param.name}=VALUE</span></span></span>
+kb-each-param="apiMethod.method.params"><span kb-if="param.payloadParam | not"><span kb-if="param.segmentParam | not">&{param.name}=VALUE</span></span></span>
 <span kb-if="apiMethod.method.payloadParam">-d '{apiMethod.method.payloadParam.shortType} JSON DATA'</span>
 </code>
 </pre>
@@ -108,12 +108,12 @@ v-for="param in apiMethod.method.params"><span kb-if="!param.payloadParam"><span
 <div id="tab-2"  class="tab-content overflow-x" kb-if="apiMethod.method">
 <pre><code class="php">
 
-use <span v-html="apiMethod.method.rootNamespace"></span>\APIProvider;
+use <span kb-text="apiMethod.method.rootNamespace"></span>\APIProvider;
 
 $client = new APIProvider("{apiMethod.baseURL}", "YOURAPIKEY", "YOURAPISECRET");
 
 <span kb-if="apiMethod.method.returnType">$result = </span>$client->{apiMethod.controller.className}()->{apiMethod.method.name}(<span
-v-for="param in apiMethod.method.params"><span kb-if="param.index">, </span>${param.name}</span>)
+kb-each-param="apiMethod.method.params"><span kb-if="param.index">, </span>${param.name}</span>)
 
 </code></pre>
 </div>
@@ -124,7 +124,7 @@ v-for="param in apiMethod.method.params"><span kb-if="param.index">, </span>${pa
 APIProvider client = new APIProvider("{apiMethod.baseURL}", "YOURAPIKEY", "YOURAPISECRET");
 
 <span kb-if="apiMethod.method.returnType">{apiMethod.method.returnJavaType} result = </span>client.{apiMethod.controller.className}().{apiMethod.method.name}(<span
-v-for="param in apiMethod.method.params"><span kb-if="param.index">, </span>{param.name}</span>)
+kb-each-param="apiMethod.method.params"><span kb-if="param.index">, </span>{param.name}</span>)
 
 
 </code></pre>

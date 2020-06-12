@@ -41,7 +41,7 @@
                 <div kb-if="'HINTED_UNAVAILABLE,UNAVAILABLE' | split | contains results.directResult.availability">
                     {{partial "product-search-not-available" (dict "itemSelector" "results.directResult" "featured" "true") }}
 
-                    <div v-for="suggestion in results.directResult.suggestions">
+                    <div kb-each-suggestion="results.directResult.suggestions">
                         <div kb-if="visibleSuggestions | keys | contains suggestion.domainName">
                             {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
                         </div>

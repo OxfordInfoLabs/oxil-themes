@@ -6,7 +6,7 @@
     <div class="{{if eq (.featured) "true"}}f3{{else}}f4{{end}} semi pt1 ga-text bw">{{with .itemSelector}}{ {{.}}.domainName }{{end}} <span class="{{if eq (.featured) "true"}}f4{{else}}f5{{end}} ga-text">is taken</span>
     </div>
 {{- if eq (.featured) "true" -}}
-    <div class="small py1 borb1 borcc g5-text">If you are the owner of this Domain Name you can <a class="bold" :href="'/transfer?transferDomain=' + {{with .itemSelector}}{{.}}{{end}}.domainName" target="_blank">Transfer it into your Netistrar Account</a> to gain all the benefits and manage your domain names in one place.</div>
+    <div class="small py1 borb1 borcc g5-text">If you are the owner of this Domain Name you can <a class="bold" kb-href="'/transfer?transferDomain=' | concat {{with .itemSelector}}{{.}}{{end}}.domainName" target="_blank">Transfer it into your Netistrar Account</a> to gain all the benefits and manage your domain names in one place.</div>
     <div class="vsmall thin py050" kb-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">We have some alternative suggestions available to purchase today:
         <span kb-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
             <span kb-if="$index | gt 0">&bullet;</span>

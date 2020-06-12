@@ -3,12 +3,12 @@
 <div class="vue-wrapper"
 >
 
-    <div class="search-loading py2 text-center" kb-if="!api.apiMetaData">
+    <div class="search-loading py2 text-center" kb-if="api.apiMetaData | not">
 
         <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
     </div>
 
-    <div data-state="hide" :data-state="api.apiMetaData ? 'show' : 'hide'" kb-if="api.apiMetaData" >
+    <div  kb-if="api.apiMetaData" >
 
         <table class="striped-table">
             <thead>
@@ -17,9 +17,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="object in api.apiMetaData.exceptionSummaries">
+            <tr kb-each-object="api.apiMetaData.exceptionSummaries">
                 <td scope="row" data-label="Object"><a
-                        :href="'{{ .Page.CurrentSection.Permalink }}exception?exception=' + object.path">{object.name}</a>
+                        kb-href="'{{ .Page.CurrentSection.Permalink }}exception?exception=' | concat object.path">{object.name}</a>
                 </td>
             </tr>
             </tbody>

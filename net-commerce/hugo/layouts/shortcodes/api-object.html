@@ -5,17 +5,17 @@
 <div class="vue-wrapper">
 
 
-    <div kb-if="!object.object" class="search-loading py2 text-center">
+    <div kb-if="object.object | not" class="search-loading py2 text-center">
 
         <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
     </div>
 
 
-    <div kb-if="object.object" data-state="hide" :data-state="object.object ? 'show' : 'hide'">
+    <div kb-if="object.object" >
 
         <h1 class="f-subheadline mt050 mb2">API Object: {object.object.name}</h1>
 
-        <p v-html="object.object.commentHTML">
+        <p kb-html="object.object.commentHTML">
         </p>
 
         <h4>Properties</h4>
@@ -28,24 +28,24 @@
 
                 </tr>
                 </thead>
-                <tbody v-for="property in object.object.properties">
+                <tbody kb-each-property="object.object.properties">
                 <tr>
                     <td class="semi" scope="row" data-label="Name">{property.name} <span
                         kb-if="property.required">*</span></td>
                     <td data-label="Type">Type:
                         <a kb-if="property.typePath"
-                           :href="'{{ .Page.CurrentSection.Permalink}}object?object=' + property.relativeTypePath">{property.shortType}</a>
-                        <span kb-if="!property.typePath">{property.shortType}</span>
+                           kb-href="'{{ .Page.CurrentSection.Permalink}}object?object=' | concat property.relativeTypePath">{property.shortType}</a>
+                        <span kb-if="property.typePath | not">{property.shortType}</span>
                     </td>
 
 
                 </tr>
                 <tr><td></td><td data-label="Access">Access:
                     <span kb-if="property.updatable">Read / Write</span>
-                    <span kb-if="!property.updatable">Read Only</span>
+                    <span kb-if="property.updatable | not">Read Only</span>
                 </td></tr>
 
-                <tr><td></td> <td colspan="2" class="text-left-sm" data-label="Description&nbsp;" v-html="property.description"
+                <tr><td></td> <td colspan="2" class="text-left-sm" data-label="Description&nbsp;" kb-html="property.description"
                                   style="word-break: break-word"></td></tr>
 
                 </tbody>

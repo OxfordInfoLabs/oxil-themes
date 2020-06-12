@@ -4,13 +4,13 @@
 <div class="vue-wrapper">
 
 
-    <div class="search-loading py2 text-center" kb-if="!objects.apiMetaData">
+    <div class="search-loading py2 text-center" kb-if="objects.apiMetaData | not">
 
         <img src="/images/loading-animation.gif" alt="Loading animation icon">
     </div>
 
 
-    <div data-state="hide" :data-state="objects.apiMetaData ? 'show' : 'hide'" kb-if="objects.apiMetaData">
+    <div kb-if="objects.apiMetaData">
 
         <table class="table small">
             <thead>
@@ -19,9 +19,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="object in objects.apiMetaData.objectSummaries">
+            <tr kb-each-object="objects.apiMetaData.objectSummaries">
                 <td scope="row" data-label="Object"><a class="inv"
-                       :href="'{{ .Page.CurrentSection.Permalink }}object?object=' + object.path">{object.name}</a></td>
+                       kb-href="'{{ .Page.CurrentSection.Permalink }}object?object=' | concat object.path">{object.name}</a></td>
             </tr>
             </tbody>
         </table>
