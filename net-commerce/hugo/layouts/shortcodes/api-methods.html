@@ -1,7 +1,7 @@
 <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default/api/{{.Page.Params.apiController}}?format=json"
           data-model="api">
 
-  <div class="vue-wrapper">
+  <div class="vue-wrapper" kb-cloak>
 
       <div class="py2 text-center" kb-if="!api.controller">
 
