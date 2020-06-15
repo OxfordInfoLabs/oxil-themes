@@ -5,7 +5,7 @@
     <div class="flex-grid flex-row-reverse ">
       <div class="hidden-md semi white-text text-center pb1">{{with .Site.Params.footerstrap}}{{.}}{{end}}</div>
       <div class="w-25 pt1">
-        {{if ne (.Page.Param "footercta") "false"}}<a href="/register/" class="but butgn w">Register a new account <i class="net-tickbox"></i></a>{{end}}
+        {{if ne (.Page.Param "footercta") "false"}}<a href="{{with .Site.Params.footerCta}}{{.}}{{else}}/register/{{end}}" class="but butgn w">{{with .Site.Params.footerCtaText}}{{.}}{{else}}Register a new account{{end}} <i class="net-tickbox"></i></a>{{end}}
         <p class="brandsubtle-text text-center-sm pt2">Connect with us</p>
         <p class="f2 text-center-sm">{{with .Site.Params.twitter}}<a href="{{.}}" class="net-twitter brand-pale-text inv "></a>{{end}}{{with .Site.Params.facebook}}<a
             href="{{.}}" class="net-facebook brand-pale-text inv "></a>{{end}}{{with .Site.Params.youtube}}<a
@@ -19,22 +19,22 @@
           <div class="w-33 pb2">
             <p class="brandsubtle-text mb0 text-center-sm">{{with .Site.Params.footer1title}}{{.}}{{end}}</p>
             {{ $menu := .Site.Menus.footer1 }}
-            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
+            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" " inv blk pb050") }}
           </div>
           <div class="w-33 pb2">
             <p class="brandsubtle-text mb0 text-center-sm">{{with .Site.Params.footer2title}}{{.}}{{end}}</p>
             {{ $menu := .Site.Menus.footer2 }}
-            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
+            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "inv blk pb050") }}
           </div>
           <div class="w-33 pb2">
             <p class="brandsubtle-text mb0 text-center-sm">{{with .Site.Params.footer3title}}{{.}}{{end}}</p>
             {{ $menu := .Site.Menus.footer3 }}
-            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
+            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "inv blk pb050") }}
           </div>
           <div class="w-33 pb2">
             <p class="brandsubtle-text mb0 text-center-sm">{{with .Site.Params.footer4title}}{{.}}{{end}}</p>
             {{ $menu := .Site.Menus.footer4 }}
-            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "brand90-text inv blk pb050") }}
+            {{ partial "simplemenu.html" (dict "page" . "ctx" $ "menu" $menu "css" "pt050 text-center-sm" "linkcss" "inv blk pb050") }}
           </div>
 
 
