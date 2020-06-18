@@ -31,7 +31,7 @@
   "license": "ISC",
   "dependencies": {
     "netistrar-whitelabel": "^1.1.80",
-    "oxil-net1": "^1.0.16"
+    "oxil-net1": "^1.0.19"
   },
   "devDependencies": {
     "@types/node": "^13.7.4",
