@@ -1,4 +1,4 @@
-import * as lunr from '../node_modules/lunr/lunr.js';
+import * as lunr from 'lunr/lunr.js';
 
 var lunrIndex, $results, $search, pagesIndex;
 

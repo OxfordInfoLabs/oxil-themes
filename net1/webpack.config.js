@@ -29,7 +29,7 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 exclude: ["/node_modules/", "/src/blog.sass", "/assets/"],
-                use: ["style-loader", MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"]
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
             }
         ]
     },
