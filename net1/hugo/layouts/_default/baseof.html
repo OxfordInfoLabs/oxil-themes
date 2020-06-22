@@ -47,7 +47,7 @@
 </head>
 {{- block "bodytag" . }}<body id="body" data-gauze="hide" data-modal="hide" data-sidebar="hide" class="{{- with .Params.bodyclass}}{{.}}{{end }} {{ if eq (.Scratch.Get "amp") true -}}bk{{- end -}}">{{- end }}
 {{- if ne (.Scratch.Get "amp") true -}}{{partial "sidenav" . }}{{- else -}}{{partial "amp-sidenav" . }}{{- end -}}
-{{ partial "ote" .}}
+{{- partial "ote" . -}}
 {{ if ne .Params.noheader true -}}
 {{ if ne (.Scratch.Get "amp") true -}}
 {{- partial "header" . -}}

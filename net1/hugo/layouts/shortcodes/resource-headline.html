@@ -17,7 +17,7 @@
     <div class="flex flex-col justify-between">
       <div class="f3 semi lh-copy mb075"> {{.Title}}</div>
       <p class="small mb075">{{.Description}}</p>
-      <a class="cta-link" href="{{.Permalink}}" style="font-size: 1rem;">{{with .Params.cta_text}}{{.}}{{else}}{{T "learnmore"}}{{end}}</a>
+      <a class="cta-link" href="{{.Permalink}}" >{{with .Params.cta_text}}{{.}}{{else}}{{T "learnmore"}}{{end}}</a>
     </div>
 
 

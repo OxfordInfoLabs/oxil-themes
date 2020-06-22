@@ -1,8 +1,8 @@
 <footer class="bk mb0 flex1">
 
   <div class="grid px1 px2l">
-    <div class="flex-grid align-center pt3 pb2 " style="border-bottom: 1px solid #555">
-      <div class="w-50"><div class=" flex align-center">{{with .Site.Params.logo_rev}}<img class="responsive-image mr050" src="images/{{.}}" width="200" alt="">{{end}}<span
+    <div class="flex-grid align-center pt3 pb2 borb1 borbb" >
+     <div class="w-50 mb2 mb0l"><div class=" flex align-center">{{- if eq (.Scratch.Get "amp") true -}}{{with .Site.Params.logo_rev}}<amp-img height="50" width="200" class="mr050" src="/images/{{.}}"></amp-img>{{- end -}}{{else}}{{with .Site.Params.logo_rev}}<img class="responsive-image mr050" src="/images/{{.}}" width="200" alt="">{{end}}{{- end -}}<span
           class="semi white-text f2" >Help</span></div>
 
 
@@ -21,9 +21,14 @@
     <div class="py2 flex-grid" style="border-bottom: 1px solid #555">
       <div class="w-50">
 
+       <div class="mb2">
+        {{- if eq (.Scratch.Get "amp") true -}}<amp-img height="91" width="90" src="/images/icann-250.png"></amp-img>{{else}}<img class="responsive-image" src="/images/icann-250.png" width="90" alt="">{{- end -}}
+       </div>
 
-        <div class="mb2 b-cover" style="width: 90px; height: 91px;background-image: url('/images/icann-250.png');"></div>
-        <div class="b-cover" style="width: 90px; height: 98.27px;background-image: url('/images/nominet-250.png');"></div>
+       <div class="mb2">
+        {{- if eq (.Scratch.Get "amp") true -}}<amp-img height="98.27" width="90" src="/images/nominet-250.png"></amp-img>{{else}}<img class="responsive-image" src="/images/nominet-250.png" width="90" alt="">{{- end -}}
+       </div>
+
 
 
       </div>

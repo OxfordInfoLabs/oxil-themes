@@ -12,10 +12,8 @@
     {{- with $img -}}
     {{- $small := .Resize "600x" -}}
     <div class="aspect sixteen-nine two-one-sm">
-      <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
-
-        <a href="{{$permalink}}" class="link-over"></a>
-      </div>
+     <img class="cover abs" src="{{ $small.RelPermalink }}" alt="{{ $img.Title }}"></img>
+      <a href="{{$permalink}}" class="link-over"></a>
     </div>
     {{- end -}}
 
