@@ -46,7 +46,7 @@
   "dependencies": {
     "cookie-notice": "^1.2.4",
     "highlight.js": "^9.18.1",
-    "kinicart": "0.0.31",
+    "kinicart": "0.0.33",
     "lunr": "^2.3.8",
     "query-string": "^6.10.1",
     "tippy.js": "^5.2.0"
