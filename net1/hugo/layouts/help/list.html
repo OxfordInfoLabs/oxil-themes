@@ -89,7 +89,27 @@
 
       </div>
       {{- end -}}
+     {{- if .Params.links -}}
+     <div class="w-50 simple-menu pb3 flex">
+      {{- if .Params.linkicon -}}
+      {{- $thumb := .Resources.GetMatch "*-icon*" -}}
+      {{- with $thumb -}}
+      <div class="pr2">
+       <div class="help-svg">
+        {{- .Content | safeHTML -}}
+       </div>
+      </div>
+      {{- end -}}
+      {{- end -}}
+      <div>
+       <h4 >{{- .Params.linkstitle -}}</h4>
+       {{- range .Params.links -}}
+       <a class="normal blk inv mb050" href="{{- .url -}}">{{- .text -}}</a>
 
+       {{- end -}}
+      </div>
+     </div>
+     {{- end -}}
     </div>
   </div>
 </div>
