@@ -7,7 +7,7 @@
           class="net-chevron-down"></i></a></p>
       <div class="breadcrumb small">{{ partial "breadcrumb" (dict "p1" . "p2" .)}}</div>
       <h1>{{.Title}}</h1>
-      <p><i>{{T "lastupdated"}} {{dateFormat "Monday, Jan 2, 2006" .Date}}</i>
+      <p><i>{{- with .Params.version -}}Version {{.}}, {{ end }}Effective from {{dateFormat "January 2006" .Lastmod}}. {{ with eq .Section "terms" -}}(<a href="/terms-archive/">View previous versions</a>).{{- end -}}</i>
       </p>
       {{ .Content }}
     </div>

@@ -1,8 +1,9 @@
 {{ $currentPage := . }}
+{{ $section := .Section}}
 {{ $currentSection := .CurrentSection}}
 <div class="side-menu">
-  {{ range where $.Site.Sections "Section" "terms" }}
-  <a href="{{.Permalink}}" class="{{if eq $currentPage .}}active{{ end }}">{{.Title}}</a>
+  {{ range where $.Site.Sections "Section" $section }}
+
   {{ range .RegularPages}}
   <a href="{{.Permalink}}" class="{{if eq $currentPage .}}active{{ end }}">{{.Title}}</a>
   {{ end }}
@@ -16,10 +17,10 @@
     {{.Title}} <i class="net-dummy"></i>
     </button>
   {{ end }}
-    <div class="dropdown-container" {{if eq $currentSection .}}style="display: block"{{ end }}>
+    <div class="dropdown-container" data-state="{{if eq $currentSection .}}show{{else}}hide{{end}}">
       <!--<a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>-->
       {{ range .Pages}}
-      <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>{{.Title}}</a>
+      <a href="{{.Permalink}}" class="{{if eq $currentPage .}}active{{ end }} pl1">{{.Title}}</a>
       {{ end }}
 
     </div>
