@@ -48,7 +48,10 @@ module.exports = {
             'node_modules'
         ],
         alias: {
-            'tippy.js': path.resolve(path.join(__dirname, 'node_modules', 'tippy.js'))
+            'tippy.js': path.resolve(path.join(__dirname, 'node_modules', 'tippy.js')),
+            'kinibind': path.resolve(path.join(__dirname, 'node_modules', 'kinibind')),
+            'kiniauth': path.resolve(path.join(__dirname, 'node_modules', 'kiniauth')),
+            'kinicart': path.resolve(path.join(__dirname, 'node_modules', 'kinicart'))
         }
     },
     plugins: [
