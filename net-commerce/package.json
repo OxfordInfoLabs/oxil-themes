@@ -1,6 +1,6 @@
 {
   "name": "oxil-net-commerce",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Netistrar E Commerce Theme",
   "main": "index.js",
   "files": [
@@ -23,15 +23,14 @@
     "watch:webpack": "webpack --config webpack.config.js --watch",
     "build:production": "webpack --config webpack.config.js -p",
     "publish:project": "npm run build:production; ./node_modules/.bin/bump patch; npm publish",
-    "update:dev": "npm run update:packages && npm run update:symlinks && npm run update:dependencies",
+    "update:dev": "npm run update:packages && npm run update:symlinks",
     "update:packages": "npm i; npm i oxil-net1@latest",
-    "update:symlinks": "npm link ../net1;  npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js; npm link ../../kinibind",
-    "update:dependencies": "cd node_modules/oxil-net1; npm run update:dev;"
+    "update:symlinks": "npm link ../net1;  npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js; npm link ../../kinibind"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "oxil-net1": "^1.0.23"
+    "oxil-net1": "^1.0.24"
   },
   "devDependencies": {
     "@types/node": "^13.7.4",
