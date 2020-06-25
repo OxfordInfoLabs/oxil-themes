@@ -11,19 +11,19 @@
   <div class="grid px1 px2l">
 
 
-    <div class="flex flex-wrap flex-gutter-2-050 " style="height: 100%;">
+    <div class="flex flex-wrap flex-gutter-2-050 " >
       {{$categorypages := .Pages.ByDate.Reverse}}
       {{ range $categorypages }}
 
-      <div class="w-50 flex flex-col" style="height: 100%;">
+      <div class="w-50 flex flex-col" >
 
         {{ $img := .Resources.GetMatch "*featured*" }}
         {{ $permalink := .RelPermalink }}
         {{ with $img }}
         {{ $small := .Resize "600x" }}
         <div class="aspect sixteen-nine ">
-          <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
-
+          <div class="b-cover" >
+           <img src="{{$small.RelPermalink}}" alt="">
             <a href="{{$permalink}}" class="link-over"></a>
           </div>
         </div>

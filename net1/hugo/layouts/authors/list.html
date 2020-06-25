@@ -16,11 +16,11 @@
 <div class="brand white-text">
   <div class="grid grid-medium px1 px4l py3 text-center">
     {{ $hash := md5 .Params.gravatar }}
-    <span class="ib mr050 b-cover"
-       style="height:82px;width:82px;border-radius: 50%;background-image: url('https://www.gravatar.com/avatar/{{ $hash }}?s=82&d=identicon');"></span>
+
+   <amp-img src="https://www.gravatar.com/avatar/{{ $hash }}?s=82&d=identicon" alt="Mark Robertshaw" height="82" width="82" class="br50"></amp-img>
   <h1 class="white-text f2 mt0 pt1">{{ .Params.name }}</h1>
     <p>{{.Description}}</p>
-    <p>{{with .Params.twitter}}<a href="https://twitter.com/{{.}}" class="ib" style="height: 1rem;width: 2rem;display: inline-block"><amp-img width="75" height="59" layout="responsive" src="/images/twitter-white.png"></amp-img></a>{{end}}{{with .Params.facebook}}<a href="https://facebook.com/{{.}}" class="ib" style="height: 1rem;width: 2rem;display: inline-block"><amp-img width="75" height="59" layout="responsive" src="/images/facebook-white.png"></amp-img></a>{{end}}{{with .Params.linkedin}}<a href="https://linkedin.com/{{.}}" class="ib" style="height: 1rem;width: 2rem;display: inline-block"><amp-img width="75" height="59" layout="responsive" src="/images/linkedin-white.png"></amp-img></a>{{end}}{{with .Params.home}}<a href="{{.}}" class="ib" style="height: 1rem;width: 2rem;display: inline-block"><amp-img width="75" height="59" layout="responsive" src="/images/home-white.png"></amp-img></a>{{end}}</p>
+    <p>{{with .Params.twitter}}<a href="https://twitter.com/{{.}}" class="ib" ><amp-img width="75" height="59" layout="responsive" src="/images/twitter-white.png"></amp-img></a>{{end}}{{with .Params.facebook}}<a href="https://facebook.com/{{.}}" class="ib" style="height: 1rem;width: 2rem;display: inline-block"><amp-img width="75" height="59" layout="responsive" src="/images/facebook-white.png"></amp-img></a>{{end}}{{with .Params.linkedin}}<a href="https://linkedin.com/{{.}}" class="ib" style="height: 1rem;width: 2rem;display: inline-block"><amp-img width="75" height="59" layout="responsive" src="/images/linkedin-white.png"></amp-img></a>{{end}}{{with .Params.home}}<a href="{{.}}" class="ib" style="height: 1rem;width: 2rem;display: inline-block"><amp-img width="75" height="59" layout="responsive" src="/images/home-white.png"></amp-img></a>{{end}}</p>
   </div>
 </div>
 <div class="white">
