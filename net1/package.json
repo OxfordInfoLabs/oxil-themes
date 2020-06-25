@@ -1,6 +1,6 @@
 {
   "name": "oxil-net1",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "Oxford Information Labs Netistrar Theme",
   "main": "index.js",
   "files": [
@@ -12,6 +12,8 @@
     "webpack-watch": "webpack --config webpack.config.js --watch",
     "build:production": "webpack --config webpack.config.js -p --display-modules;",
     "publish:project": "npm run build:production; ./node_modules/.bin/bump patch; npm publish",
+    "publish:tree": "npm run update:dev; npm run publish:dependent:tree; npm run update:packages; npm run publish:project",
+    "publish:dependent:tree": "cd node_modules/kinicart; npm run publish:tree",
     "update:dev": "npm run update:packages && npm run update:symlinks",
     "update:packages": "npm i; npm i kinicart@latest",
     "update:symlinks": "npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js; npm link ../../kinibind"
@@ -45,7 +47,7 @@
   "dependencies": {
     "cookie-notice": "^1.2.4",
     "highlight.js": "^9.18.1",
-    "kinicart": "0.0.34",
+    "kinicart": "0.0.35",
     "lunr": "^2.3.8",
     "query-string": "^6.10.1",
     "tippy.js": "^5.2.0"

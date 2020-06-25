@@ -10,21 +10,21 @@
     {{.Title}} <i class="net-chevron-down"></i>
     </button>
 
-  <div class="dropdown-container api-menu-{{.Params.apiController}}" {{if eq $currentPage .}}style="display: block"{{else}}style="display:none"{{ end }}>
+  <div class="dropdown-container api-menu-{{.Params.apiController}}" {{if eq $currentPage .}}data-state="show"{{else}}data-state="hide"{{ end }}>
 
 
     <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default/api/{{.Params.apiController}}?format=json"
               data-model="{{.Params.apiController}}API">
 
 
-      <div class="vue-wrapper" v-if="{{.Params.apiController}}API.controller">
+      <div kb-if="{{.Params.apiController}}API.controller">
 
 
 
         <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
-        <a v-for="method in {{.Params.apiController}}API.controller.methods"
-           :class="method.name"
-           :href="'{{.CurrentSection.Permalink}}method/?api={{.Params.apiController}}&method=' + method.name">{method.name}</a>
+        <a kb-each-method="{{.Params.apiController}}API.controller.methods"
+           kb-class="method.name"
+           kb-href="'{{.CurrentSection.Permalink}}method/?api={{.Params.apiController}}&method=' | concat method.name">{method.name}</a>
 
 
       </div>
@@ -41,12 +41,12 @@
     </button>
 
 
-    <div class="dropdown-container api-object" {{if eq $currentPage .}}style="display: block"{{else}}style="display: none"{{ end }}>
+    <div class="dropdown-container api-object" {{if eq $currentPage .}}data-state="show"{{else}}data-state="hide"{{ end }}>
       <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-model="apiObjects">
-        <div class="vue-wrapper" v-if="apiObjects.apiMetaData">
+        <div  kb-if="apiObjects.apiMetaData">
           <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
-          <a v-for="object in apiObjects.apiMetaData.objectSummaries" :path="object.path"
-             :href="'{{.CurrentSection.Permalink}}object/?object=' + object.path">{object.name}</a>
+          <a kb-each-object="apiObjects.apiMetaData.objectSummaries" kb-path="object.path"
+             kb-href="'{{.CurrentSection.Permalink}}object/?object=' | concat object.path">{object.name}</a>
         </div>
       </net-bind>
     </div>
@@ -58,12 +58,12 @@
       {{.Title}} <i class="net-chevron-down"></i>
     </button>
 
-  <div class="dropdown-container api-exception" {{if eq $currentPage .}}style="display: block"{{else}}style="display: none"{{ end }}>
+  <div class="dropdown-container api-exception" {{if eq $currentPage .}}data-state="show"{{else}}data-state="hide"{{ end }}>
     <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-model="apiExceptions">
-        <div class="vue-wrapper" v-if="apiExceptions.apiMetaData">
+        <div kb-if="apiExceptions.apiMetaData">
         <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
-        <a v-for="object in apiExceptions.apiMetaData.exceptionSummaries" :path="object.path"
-           :href="'{{.CurrentSection.Permalink}}exception/?exception=' + object.path">{object.name}</a>
+        <a kb-each-object="apiExceptions.apiMetaData.exceptionSummaries" kb-path="object.path"
+           kb-href="'{{.CurrentSection.Permalink}}exception/?exception=' | concat object.path">{object.name}</a>
         </div>
     </net-bind>
   </div>
