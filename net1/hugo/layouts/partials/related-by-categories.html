@@ -1,0 +1,18 @@
+
+
+{{- $page_link := .Permalink -}}
+{{- $categories := .Params.categories -}}
+{{- $c := 0 -}}
+
+<div class="px1 px2l grid flex flex-grid flex-wrap flex-gutter-3">
+ {{- range $page := .Site.Pages -}}
+ {{- $has_common_categories := intersect $categories .Params.categories | len | lt 0 -}}
+ {{- if and $has_common_categories (ne $page_link $page.Permalink) (lt ($.Scratch.Get "$c") 500)}}
+ {{- $.Scratch.Add "$c" 1 -}}
+
+ {{- partial "news-related-item" . -}}
+
+
+{{- end -}}
+{{- end -}}
+</div>

@@ -3,8 +3,8 @@
     <span
       class="btn-text hidden-sm ellipsis " style="max-width: 130px;" kb-cloak>{session.loggedInUser.displayName}</span><i class="net-user hidden-md f3"></i>
   </button>
-  <a href="/register/" id="btn-user-menu" kb-if="session.loggedInUser | not"  class="hidden-sm {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}} inv mr150 medium" >Register</a>
-  <span class="hidden-sm ib mr1"><a href="/sign-in/" class="but but{{ if eq (.Scratch.Get "theme") "brand" }}br{{end}}wh inv " kb-if="session.loggedInUser | not" >{{T "signin"}}</a></span>
+  <a href="/register/" id="btn-user-menu" kb-if="session.loggedInUser | not"  class="hidden-sm {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}} inv mr150 semi" >Register</a>
+  <span class="hidden-sm ib mr1"><a href="/sign-in/" class="but butlk {{ if eq (.Scratch.Get "theme") "brand" }}white-text{{end}} semi inv " kb-if="session.loggedInUser | not" >{{T "signin"}}</a></span>
 
 
 

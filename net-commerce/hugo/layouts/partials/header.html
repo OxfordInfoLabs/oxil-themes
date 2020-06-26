@@ -35,9 +35,9 @@
           {{- partial "logo" . -}}
           <div class="flex flex1 justify-end align-center ">
               {{- $menu := .Site.Menus.top_bar -}}
-              {{- $linkcss := "hidden-md hidden-sm visible-desktop mr2 inv medium" -}}
+              {{- $linkcss := "hidden-md hidden-sm visible-desktop mr2 inv " -}}
               {{- if eq (.Scratch.Get "theme") "brand" -}}
-                {{- $linkcss = "hidden-md hidden-sm visible-desktop wh mr2 inv medium" -}}
+                {{- $linkcss = "hidden-md hidden-sm visible-desktop wh mr2 inv " -}}
               {{- end -}}
               {{- partial "linksmenu.html" (dict "page" . "site" .Site  "ctx" $ "css" $linkcss "menu" $menu) -}}
 
@@ -80,7 +80,6 @@
 
 <net-bind>
 
-  {{- partial "blognews" . -}}
 
   {{-  partial "logout" . -}}
 

@@ -3,20 +3,23 @@
 {{- $img := .Resources.GetMatch "*featured*" -}}
 {{- with $img -}}
 {{- $medium := .Resize "1000x" -}}
-<div class="flex b-cover"
-     style="background-image: url({{$medium.RelPermalink}});background-position: center 30%;height: 400px;">
-  <div class="grid w flex justify-start align-center">
-    <div class="p2l px1 w-50">
-      <div class="f1 white-text shadow semi mb050">{{- $.Page.Params.title -}}</div>
-      <div class="f2 white-text normal mb2 mt050">{{- $.Page.Params.subtitle -}}</div>
+<div class="maxh400 rel">
+ <img class="cover abs z2" src="{{$medium.RelPermalink}}" alt="Mountaineers helping each other">
+ <div class="z3 rel">
+  <div class="grid w flex justify-start align-center px1 px2l">
+   <div class="py3 w-50">
+    <div class="f1 white-text shadow semi mb2 mb050l">{{- $.Page.Params.subtitle -}}</div>
+    <div class="f2 white-text normal mb2 mt050 hidden-sm">{{- $.Page.Params.subtitle2 -}}</div>
 
-      <div class="flex align-center search-group white py050 ">
-        <i class="net-search ga-text f4 pl075 "></i><input id="search" class="bortrans w" type="text" placeholder="{{- $.Page.Params.searchtext -}}">
+    <div class="flex align-center search-group white py050 ">
+     <i class="net-search ga-text f4 pl075 "></i><input id="search" class="bortrans w" type="text"
+                                                        placeholder="{{- $.Page.Params.searchtext -}}">
 
-      </div>
-      {{- partial "help/search-results" . -}}
     </div>
+    {{- partial "help/search-results" . -}}
+   </div>
   </div>
+ </div>
 </div>
 {{- end -}}
 {{- end -}}
@@ -26,7 +29,7 @@
 
 
 <div class="grid px1 px2l flex mt3 pb5">
-  <div class="w-25 hidden-sm" style="background: transparent;">
+  <div class="w-25 hidden-sm" >
     {{- partial "help/sidenav" . -}}
   </div>
   <div class="w-75 px2l px1" >

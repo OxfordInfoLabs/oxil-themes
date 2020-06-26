@@ -12,17 +12,19 @@
     </ul>
     <h2 class="w-75"><a class="inv font-color bold" href="{{.RelPermalink}}">{{.Title}}</a></h2>
 
-      <time class="my2 blk ga-text" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
+
+      <time class="tiny ga-text my2 blk" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" (default .Date (.Lastmod)) }}">
       {{- if ne .PublishDate .Lastmod }}Updated: {{end}}{{ dateFormat "2 Jan, 2006" (default .Date (.Lastmod)) -}}
       </time>
 
+
+
 {{- with $img -}}
 {{- $small := .Resize "600x" -}}
-    <div class="aspect sixteen-nine two-one-sm">
-      <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
-        <a href="{{$permalink}}" class="link-over"></a>
-      </div>
-    </div>
+ <div class="aspect sixteen-nine ">
+  <img class="cover abs" src="{{ $small.RelPermalink }}" alt="{{ $img.Title }}"></img>
+  <a href="{{$permalink}}" class="link-over"></a>
+ </div>
     {{- end -}}
   {{- with .Params.featuredcaption -}}
   <p class="tiny">{{.}}</p>
@@ -49,12 +51,10 @@
       {{ with $img }}
       {{ $small := .Resize "600x" }}
 
-      <div class="aspect sixteen-nine two-one-sm">
-        <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
-
-          <a href="{{$permalink}}" class="link-over"></a>
-        </div>
-      </div>
+     <div class="aspect sixteen-nine ">
+      <img class="cover abs" src="{{ $small.RelPermalink }}" alt="{{ $img.Title }}"></img>
+      <a href="{{$permalink}}" class="link-over"></a>
+     </div>
       {{end}}
       {{with .Params.featuredcaption}}
       <p class="tiny">{{.}}</p>

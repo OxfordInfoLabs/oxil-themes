@@ -9,7 +9,7 @@
     </div>
   </div>
 </div>
-    <div class="grid grid-medium px1  pt3 pb1" style="width: 100%;">
+    <div class="grid grid-medium px1  pt3 pb1 w" >
       <ul class="unstyled small uppercase">{{ range .Params.categories }}<li class="mb0 com"><a class="inv normal" href="{{ "/categories/" | relLangURL }}{{ . | urlize }}/">{{.}}</a></li>{{ end }}</ul>
 
 
@@ -133,7 +133,7 @@
       <a href="{{.NextInSection.Permalink}}" class="inv white-text white-text-hover flex align-center flex1 mb3 mb0l" ><span class="flex1 text-right "><span class="normal">{{T "next"}}</span><br><span class="f4 bold">{{.NextInSection.Title}}</span></span><i class="net-chevron-right ml1" ></i></a>
       {{- end -}}
       {{- if .PrevInSection -}}
-      <a href="{{.PrevInSection.Permalink}}" class="inv white-text white-text-hover flex align-center flex1 " style=""><i class="net-chevron-left mr1" ></i> <span class="flex1"><span class="normal">{{T "previous"}}</span><br><span class="f4 bold">{{.PrevInSection.Title}}</span></span></a>
+      <a href="{{.PrevInSection.Permalink}}" class="inv white-text white-text-hover flex align-center flex1 " ><i class="net-chevron-left mr1" ></i> <span class="flex1"><span class="normal">{{T "previous"}}</span><br><span class="f4 bold">{{.PrevInSection.Title}}</span></span></a>
       {{- end -}}
     </div>
   </div>

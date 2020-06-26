@@ -17,11 +17,10 @@
     {{- $permalink := .RelPermalink -}}
     {{- with $img -}}
     {{- $small := .Resize "300x" -}}
-    <div class="aspect sixteen-nine " >
-      <div class="b-cover" style="background-image: url({{$small.RelPermalink}});">
-        <a href="{{$permalink}}" class="link-over"></a>
-      </div>
-    </div>
+   <div class="aspect sixteen-nine ">
+    <img class="cover abs" src="{{ $small.RelPermalink }}" alt="{{ $img.Title }}"></img>
+    <a href="{{$permalink}}" class="link-over"></a>
+   </div>
     {{- end -}}
     <div class="ge flex1 p1 flex flex-col justify-between">
       <h5 class="mt0"><a class="inv font-color bold" href="{{.RelPermalink}}">{{.Title}}</a></h5>
