@@ -14,7 +14,7 @@
 
 
     <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default/api/{{.Params.apiController}}?format=json"
-              data-model="{{.Params.apiController}}API">
+              data-source-key="{{.Params.apiController}}API">
 
 
       <div kb-if="{{.Params.apiController}}API.controller">
@@ -42,7 +42,7 @@
 
 
     <div class="dropdown-container api-object" {{if eq $currentPage .}}data-state="show"{{else}}data-state="hide"{{ end }}>
-      <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-model="apiObjects">
+      <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-source-key="apiObjects">
         <div  kb-if="apiObjects.apiMetaData">
           <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
           <a kb-each-object="apiObjects.apiMetaData.objectSummaries" kb-path="object.path"
@@ -59,7 +59,7 @@
     </button>
 
   <div class="dropdown-container api-exception" {{if eq $currentPage .}}data-state="show"{{else}}data-state="hide"{{ end }}>
-    <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-model="apiExceptions">
+    <net-bind data-source="{{.Site.Params.apiurl}}/apidoc/default?format=json" data-source-key="apiExceptions">
         <div kb-if="apiExceptions.apiMetaData">
         <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
         <a kb-each-object="apiExceptions.apiMetaData.exceptionSummaries" kb-path="object.path"

@@ -73,7 +73,8 @@
     <label class="rcheck mb0" kb-if="{{.itemSelector}}.pricingType | equals 'STANDARD'"><input
                                      class="add-domain" name="configurestaticpackage" type="checkbox"
                                      data-toggle-item
-                                     kb-checked-if="selectedItems | member {{.itemSelector}}.domainName"
+                                     kb-checked="selectedItems | member {{.itemSelector}}.domainName"
+                                     one-way
                                      kb-on-click="toggleSelectedResult | args {{.itemSelector}}.domainName"
                                      data-type="domainname"
                                      kb-data-key="{{.itemSelector}}.domainName"
