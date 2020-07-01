@@ -58,7 +58,7 @@ If the domain name is currently under management by Netistrar a JSON response wi
 
 e.g. for **netistrar.com** <a href="javascript:kinibindView.models.expandResponse = true;">click here</a> to show the full response
 
-<div style="display:none;" kb-show="expandResponse">
+<div kb-if="expandResponse">
 <pre>
 <code>
 
