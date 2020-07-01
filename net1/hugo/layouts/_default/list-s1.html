@@ -9,7 +9,7 @@
 
 <div class="white py3">
  <div class="grid">
-  <h5 class="px1 px2l uppercase">Related</h5>
+  <h5 class="px1 px2l uppercase">{{- with .Params.relatedbycategorytitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
   {{- partial "related-by-categories" . -}}
  </div>
 </div>
