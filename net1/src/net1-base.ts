@@ -167,6 +167,8 @@ body.addEventListener('click', function (event) {
         toggleFilters(matchedTarget);
     } else if (matchedTarget = targetMatchesClass(targetElement, 'tab-link')) {
         toggleTabs(matchedTarget);
+    } else if (matchedTarget = targetMatchesCSS(targetElement, '[data-copy-to-clipboard]')) {
+        copyToClipboard(targetElement);
     }
 
 
@@ -195,6 +197,11 @@ function targetMatchesClass(targetElement, className) {
     }
     return targetElement;
 
+}
+
+
+function targetMatchesCSS(targetElement, css) {
+    return targetElement.matches(css);
 }
 
 
@@ -271,6 +278,24 @@ function toggleTabs(targetElement) {
 
 }
 
+
+function copyToClipboard(copyElement) {
+
+    let element = document.querySelector(copyElement.getAttribute("data-copy-to-clipboard"));
+
+    var selection = window.getSelection();
+    var range = document.createRange();
+    range.selectNodeContents(element);
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    document.execCommand("copy");
+
+    selection.removeAllRanges();
+
+}
+
+
 document.querySelector("#fixedwrap").addEventListener("scroll", () => {
 
     document.querySelectorAll('.scroll-to-top').forEach((item: HTMLElement) => {
@@ -345,4 +370,5 @@ if (rehighliters.length == 0) {
     }));
 
 }
+
 
