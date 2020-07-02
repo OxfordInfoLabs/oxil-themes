@@ -6,21 +6,25 @@
     </div>
   </div>
 </div>
+<div class="white">
+ <div class="grid px1 px2l py4">
+  <div class="flex flex-wrap ">
+   <div class="w-80"><h1>{{- .Title -}}</h1>
+    {{- .Content -}}
+   </div>
+
+  </div>
+ </div>
+</div>
+
 
 <div class="white py3">
  <div class="grid">
-  <h5 class="px1 px2l uppercase">Related</h5>
+  <h5 class="px1 px2l uppercase">{{- with .Params.relatedbycategorytitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
   {{- partial "related-by-categories" . -}}
  </div>
 </div>
 
-<div class="grid px1 px2l py4">
-  <div class="flex flex-wrap ">
-    <div class="w-80"><h1>{{- .Title -}}</h1>
-      {{- .Content -}}</div>
-
-  </div>
-</div>
 
 {{- partial "prev-next" . -}}
 {{- end -}}

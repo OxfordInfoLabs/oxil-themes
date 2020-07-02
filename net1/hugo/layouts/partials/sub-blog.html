@@ -27,12 +27,12 @@
   {{- end -}}
  </div>
  {{- end -}}
- <div class="gf9 flex1 p1 flex flex-col justify-between">
+ <div class="white flex1 p1 flex flex-col justify-between">
 
 
   <div class="mb1">
 
-   <h5 class="m0 lh13"><a class="inv font-color semi" href="{{$permalink}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h5>
+   <h5 class="m0 lh13"><a class="inv font-color bold" href="{{$permalink}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h5>
 
    <time class="vsmall g8-text" datetime="{{ dateFormat " 2006-01-02T15:04:05-07:00" .Lastmod }}">
    {{ dateFormat "2 Jan, 2006" .Lastmod }}
