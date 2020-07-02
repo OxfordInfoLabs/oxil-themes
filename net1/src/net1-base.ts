@@ -1,5 +1,3 @@
-import * as queryString from 'query-string/index';
-
 var hljs = require('highlight.js/lib/highlight');
 
 import * as bash from 'highlight.js/lib/languages/bash';
@@ -45,7 +43,12 @@ function gauze() {
 
 function topFunction() {
     var scrollElement = document.querySelector('#fixedwrap');
-    if (scrollElement) scrollElement.scrollTo({top: 0, behavior: 'smooth'});
+    if (scrollElement) {
+        if (scrollElement.scrollTo)
+            scrollElement.scrollTo({top: 0, behavior: 'smooth'});
+        else
+            scrollElement.scrollTop = 0;
+    }
 }
 
 
@@ -84,7 +87,17 @@ var bindDropdowns = function () {
 
 
             dropdown[i].nextElementSibling.addEventListener("sourceLoaded", function () {
-                var queryParams = queryString.parse(location.search);
+
+                var queryParamsSplit = window.location.href.split("?");
+                queryParamsSplit = queryParamsSplit.pop().split("&");
+
+                let queryParams: any = {};
+                queryParamsSplit.forEach(function (item) {
+                    let splitParam = item.split("=");
+                    queryParams[splitParam[0]] = splitParam[1];
+                });
+
+
                 if (queryParams.api) {
                     if (queryParams.method) {
                         document.querySelectorAll('.dropdown-btn.api-menu-' + queryParams.api).forEach(item => {

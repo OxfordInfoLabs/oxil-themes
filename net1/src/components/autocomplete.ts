@@ -130,9 +130,13 @@ export default class Autocomplete extends HTMLElement {
         Configuration.elementVisibilityFunction(resultsDiv, visible);
 
         if (visible) {
-            this.dispatchEvent(new Event("resultsShow"));
+            let event = document.createEvent("Event");
+            event.initEvent("resultsShow", false, true);
+            this.dispatchEvent(event);
         } else {
-            this.dispatchEvent(new Event("resultsHide"));
+            let event = document.createEvent("Event");
+            event.initEvent("resultsHide", false, true);
+            this.dispatchEvent(event);
         }
 
     }
@@ -174,16 +178,24 @@ export default class Autocomplete extends HTMLElement {
 
         // Dispatch an autocomplete event
         this.value = selectedElement.getAttribute("data-result-value");
-        this.dispatchEvent(new Event("input"));
+        let event = document.createEvent("Event");
+        event.initEvent("input", false, true);
+        this.dispatchEvent(event);
 
         // // Dispatch an input event
         input.value = selectedElement.getAttribute("data-result-label");
         this._updateLoop = true;
-        input.dispatchEvent(new Event("input"));
+        event = document.createEvent("Event");
+        event.initEvent("input", false, true);
+        input.dispatchEvent(event);
+
 
 
         // Dispatch the change event
-        this.dispatchEvent(new Event("change"));
+        event = document.createEvent("Event");
+        event.initEvent("change", false, true);
+        this.dispatchEvent(event);
+
 
 
 
