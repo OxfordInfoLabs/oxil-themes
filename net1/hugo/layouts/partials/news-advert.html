@@ -1,0 +1,66 @@
+
+
+{{- $item := . -}}
+{{- $type := $item.Params.mediatype -}}
+{{- $date := $item.Lastmod -}}
+{{- $desc := $item.Description -}}
+{{- $id := $item.Params.id  -}}
+{{- $youtubeid := $item.Params.youtubeid -}}
+{{- $image := .Resources.GetMatch "*featured*" -}}
+{{- $imagesrc := "" -}}
+{{- with $image -}}
+{{- $image = .Resize "600x" -}}
+{{- $imagesrc = .RelPermalink -}}
+{{- end -}}
+{{- $iwidth := 500 -}}
+{{- $iheight := 281 -}}
+{{- $imageaspect := $item.Params.imageaspect -}}
+{{- with eq $imageaspect "portrait" -}}
+{{- $iwidth = 500 -}}
+{{- $iheight = 750 -}}
+{{- end -}}
+
+{{- $link := $item.Params.link -}}
+{{- $channel := $item.Params.channel -}}
+
+<h1 class="h2 bold">{{- .Title -}}</h1>
+
+<div class="flex justify-between align-center pb1 ">
+ <time class=" timeago blk vsmall" datetime="{{with $date}}{{.}}{{end}}">{{with $date}}{{ . | dateFormat "2 Jan 2006"}}{{end}}</time>
+ <div>{{ partial "amp-share-bar" $item }}  </div>
+</div>
+
+
+<div class="vsmall bor1 borbb px050 py025 ib">{{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
+
+<hr class="muted mt1 mb2">
+
+{{- with $youtubeid -}}
+<div class="vid">
+ <amp-youtube width="256"
+              height="144"
+              layout="responsive"
+              data-videoid="{{.}}"
+              autoplay>
+ </amp-youtube>
+</div>
+{{- end -}}
+{{- with $image -}}
+<div class="with-link" >
+
+ <amp-img src="{{$imagesrc}}" layout="responsive" width="{{default 16 $iwidth}}" height="{{default 9 $iheight}}" alt="Media image {{with $desc}}{{.}}{{end}}"></amp-img>
+ {{- with $link -}}<a href="{{.}}"></a>{{- end -}}
+</div>
+{{- end -}}
+
+{{- with $desc -}}
+<p class="bold mt2">{{- . -}}</p>
+{{- end -}}
+<div class="mb2">{{- .Content -}}</div>
+
+
+
+
+
+
+

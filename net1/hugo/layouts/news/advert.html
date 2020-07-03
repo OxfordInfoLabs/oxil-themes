@@ -1,0 +1,126 @@
+{{- define "schema" -}}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{.Title}}" />
+<meta name="twitter:site" content="@oxfordinfolabs" />
+<meta name="twitter:creator" content="{{ if .Params.authors }}{{ range first 1 .Params.authors }}{{ with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}{{ $param := .Params.twitter }}{{if $param }}{{$param}}{{else}}{{"@oxfordinfolabs"}}{{end}}{{ end }}{{end}}{{ else }}{{"@oxfordinfolabs"}}{{end}}" />
+<meta property="og:url"                content="{{.Permalink}}" />
+<meta property="fb:app_id"             content="{{.Site.Params.facebookappid}}" />
+<meta property="og:type"               content="{{if .IsHome}}website{{else}}article{{end}}" />
+<meta property="og:title"              content="{{.Title}}" />
+<meta property="og:description"        content="{{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}}" />
+<meta property="og:image" content="
+{{- if eq .Params.mediatype "image" -}}
+{{- $image := .Resources.GetMatch "*featured*" -}}
+{{- $image.Permalink -}}
+{{- end -}}
+{{- if eq .Params.mediatype "video" -}}
+https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg
+{{- end -}}
+" />
+
+
+<script type="application/ld+json">
+ {
+  "@context":"https://schema.org",
+  "@type":"NewsArticle",
+  "mainEntityOfPage": {
+   "@type": "WebPage",
+   "@id": {{.Permalink}}
+ },
+ "headline": {{ .Title }},
+ "datePublished": "{{.Date.Format "2006-01-02T15:04:05" | plainify}}",
+ "dateModified": "{{.Lastmod.Format "2006-01-02T15:04:05" | plainify }}",
+ "publisher": {
+ "@type": "Organization",
+ "name": "{{.Site.Params.org_official_name}}",
+ "logo": {
+ "@type": "ImageObject",
+ "url": {{printf "%simages/%s" .Site.BaseURL .Site.Params.logo}}
+ }
+ },
+ "description": {{ if .Description }}{{ .Description }}{{ else }}Oxford Information Labs {{.Section}} section: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}},
+ {{- if .Params.tags -}}
+ {{- $keywords := .Params.tags}}
+ {{- $len := (len $keywords) -}}
+ {{- $keystr := "" -}}
+ {{- range $index, $item := $keywords -}}
+ {{- if (eq $index 0) -}}
+ {{- $keystr = $item -}}
+ {{- else -}}
+ {{- $keystr = (printf "%s,%s" $keystr $item) -}}
+ {{- end -}}
+ {{- end }}
+ "keywords": "{{$keystr}}",
+ {{- end -}}
+ {{- if $authors := .Params.authors }}
+ "author":
+ {{- $len := (len $authors) -}}
+
+ [{
+ {{- range $index, $item := $authors }}
+ "@type": "Person",
+ "name": "{{$item}}",
+ "sameAs": {{printf "%sauthors/%s/" $.Site.BaseURL (urlize $item)}}
+ {{- if ne (add $index 1) $len -}} },{ {{- end -}}
+ {{- end }}
+ }],
+ {{- end }}
+
+ {{- if eq .Params.mediatype "video" }}
+ "video": {
+ "@type": "VideoObject",
+ "name": {{.Title}},
+ "description": {{.Description}},
+ "thumbnailUrl": "https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg",
+ "embedUrl": "https://www.youtube.com/embed/{{.Params.youtubeid}}",
+ "uploadDate": {{.Lastmod}}
+ },
+ "image": "https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg"
+ {{- end -}}
+ {{- if eq .Params.mediatype "image" }}
+ {{- $image := .Resources.GetMatch "*featured*" }}
+ "image": {{- $image.Permalink -}},
+ {{- end }}
+ }
+</script>
+
+
+{{- end -}}
+
+{{ define "bodytag"}}
+<body id="body" class="mediabody">
+
+{{ end }}
+
+{{- define "main" -}}
+<div class="gf9">
+ <div class="grid px1 px2l py075">
+  <div class="breadcrumb">{{- partial "breadcrumb" (dict "p1" .Page "p2" .Page) -}}</div>
+ </div>
+</div>
+
+<div class="pt3">
+ <div class="grid px1 px2l w-80">
+
+
+
+  {{- partial "news-advert" . -}}
+
+ </div>
+</div>
+
+{{- with .Params.cta -}}
+{{- if eq "search" . -}}
+<div class="grid px1 px2l w-80">
+
+ <h1>Search here</h1>
+</div>
+{{- end -}}
+{{- if eq "link" . -}}
+<div class="grid px1 px2l w-80">
+<h1>link here</h1>
+</div>
+{{- end -}}
+
+{{- end -}}
+{{- end -}}
