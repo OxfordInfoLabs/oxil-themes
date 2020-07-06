@@ -62,6 +62,13 @@ export default class Autocomplete extends HTMLElement {
                 this.setResultVisibility(false);
             } else if (event.key == "Enter") {
                 event.preventDefault();
+
+                let resultsDiv = <HTMLElement>this.querySelector("[data-results]");
+                let activeDiv = resultsDiv.querySelector(".active");
+                if (activeDiv) {
+                    this.processResultSelection(activeDiv);
+                }
+
                 this.setResultVisibility(false);
             } else if (event.key == "ArrowUp") {
                 this.moveSelection(-1);
@@ -163,7 +170,6 @@ export default class Autocomplete extends HTMLElement {
 
         if (activeDiv) {
             activeDiv.classList.add("active");
-            this.processResultSelection(activeDiv);
         }
 
 
@@ -190,13 +196,10 @@ export default class Autocomplete extends HTMLElement {
         input.dispatchEvent(event);
 
 
-
         // Dispatch the change event
         event = document.createEvent("Event");
         event.initEvent("change", false, true);
         this.dispatchEvent(event);
-
-
 
 
     }
