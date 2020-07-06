@@ -29,7 +29,7 @@
 </div>
 {{- end -}}
 
-<div class="mt3">
+<div class="my3">
  <div class="grid px1 px2l w-80">
   {{- .Content -}}
  </div>
@@ -43,14 +43,14 @@
  </div>
 </div>
 
-
+{{- if eq .Params.relatedbycategory "true" -}}
 <div class="white py3">
  <div class="grid">
   <h5 class="px1 px2l uppercase">{{- with .Params.relatedbycategorytitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
   {{- partial "related-by-categories" . -}}
  </div>
 </div>
-
+{{- end -}}
 
 {{- partial "prev-next" . -}}
 {{- end -}}
