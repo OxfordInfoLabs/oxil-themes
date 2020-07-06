@@ -72,9 +72,9 @@ export default class Autocomplete extends HTMLElement {
                 }
 
                 this.setResultVisibility(false);
-            } else if (event.key == "ArrowUp") {
+            } else if (event.key == "ArrowUp" || event.key == 'Up') {
                 this.moveSelection(-1);
-            } else if (event.key == "ArrowDown") {
+            } else if (event.key == "ArrowDown" || event.key == 'Down') {
                 this.moveSelection(1);
             } else if (event.key == "Tab"){
                 this.setResultVisibility(false);
