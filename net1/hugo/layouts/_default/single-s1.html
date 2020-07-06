@@ -6,14 +6,40 @@
     </div>
   </div>
 </div>
-<div class="white">
- <div class="grid px1 px2l py4">
-  <div class="flex flex-wrap ">
-   <div class="w-80"><h1>{{- .Title -}}</h1>
-    {{- .Content -}}
-   </div>
 
-  </div>
+
+
+<div class="white">
+ <div class="grid px1 px2l pt4 mb2">
+  <h1 class="text-center">{{- .Title -}}</h1>
+ </div>
+</div>
+
+{{- $image := .Resources.GetMatch "*featured*" -}}
+{{- $imagesrc := "" -}}
+{{- with $image -}}
+{{- $image = .Resize "600x" -}}
+{{- $imagesrc = .RelPermalink -}}
+{{- end -}}
+{{- with $imagesrc -}}
+<div class="">
+ <div class="grid px1 px2l ">
+  <img class="responsive-image" src="{{- . -}}" alt="Hero image">
+ </div>
+</div>
+{{- end -}}
+
+<div class="mt3">
+ <div class="grid px1 px2l w-80">
+  {{- .Content -}}
+ </div>
+</div>
+
+<div>
+ <div class="flex-grid flex-wrap flex-gutter-3 px1 px2l">
+  {{- range .Pages -}}
+  {{- partial "sub" . -}}
+  {{- end -}}
  </div>
 </div>
 
