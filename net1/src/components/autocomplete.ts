@@ -58,6 +58,8 @@ export default class Autocomplete extends HTMLElement {
         // Process special keys
         input.addEventListener("keydown", (event) => {
 
+            this.value = "";
+
             if (event.key == "Escape") {
                 this.setResultVisibility(false);
             } else if (event.key == "Enter") {
@@ -70,10 +72,12 @@ export default class Autocomplete extends HTMLElement {
                 }
 
                 this.setResultVisibility(false);
-            } else if (event.key == "ArrowUp") {
+            } else if (event.key == "ArrowUp" || event.key == 'Up') {
                 this.moveSelection(-1);
-            } else if (event.key == "ArrowDown") {
+            } else if (event.key == "ArrowDown" || event.key == 'Down') {
                 this.moveSelection(1);
+            } else if (event.key == "Tab"){
+                this.setResultVisibility(false);
             }
 
         });
@@ -141,6 +145,12 @@ export default class Autocomplete extends HTMLElement {
             event.initEvent("resultsShow", false, true);
             this.dispatchEvent(event);
         } else {
+
+            if (!this.value){
+                let input = this.querySelector("input");
+                input.value = "";
+            }
+
             let event = document.createEvent("Event");
             event.initEvent("resultsHide", false, true);
             this.dispatchEvent(event);
