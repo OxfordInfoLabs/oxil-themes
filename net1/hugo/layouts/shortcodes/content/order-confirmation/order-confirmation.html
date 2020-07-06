@@ -18,7 +18,7 @@
           <td><h4 class="thin mb0">Order summary</h4>
             <span class="small" v-html="order.address"></span>
           </td>
-          <td class="text-right"><img height="20" src="/images/oxfordcyber_logo-323x34.png" alt=""> <br>www.oxil.uk
+          <td class="text-right"><img src="/images/{{.Site.Params.logo_mini}}" height="{{.Site.Params.logo_mini_height}}" > <br>{{- .Site.BaseURL -}}
             <br><span class="vsmall">Order ref: {order.id} <br>{order.date}</span></td>
         </tr>
         </thead>
@@ -54,7 +54,8 @@
     </div>
   </kc-order>
   <div class="text-center g8-text vsmall pt2 bort3 bortdd">
-    Registered office: Oxford Information Labs Limited, 37 Market Square, Witney, Oxfordshire OX28 6RE. <br>Registered in England and Wales No. 04520925. VAT No. 799526263
+   {{- with .Site.Params.orderconfirmation -}}{{- . -}}<br>{{- end -}}
+   {{- with .Site.Params.companyFooter -}}{{- . -}}<br>{{- end -}}
   </div>
 
 </div>
