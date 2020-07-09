@@ -130,13 +130,13 @@ export default class Autocomplete extends HTMLElement {
         let minChars = this.getAttribute("data-min-chars") ? this.getAttribute("data-min-chars") : 2;
 
         // Show / hide according to length of value.
-        this.setResultVisibility(input.value.length >= minChars);
+        this.setResultVisibility(input.value.length >= minChars, false);
 
     }
 
 
     // Set result visibility
-    private setResultVisibility(visible: boolean) {
+    private setResultVisibility(visible: boolean, clearSelection = true) {
         let resultsDiv = <HTMLElement>this.querySelector("[data-results]");
         Configuration.elementVisibilityFunction(resultsDiv, visible);
 
@@ -146,7 +146,7 @@ export default class Autocomplete extends HTMLElement {
             this.dispatchEvent(event);
         } else {
 
-            if (!this.value){
+            if (!this.value && clearSelection){
                 let input = this.querySelector("input");
                 input.value = "";
             }
