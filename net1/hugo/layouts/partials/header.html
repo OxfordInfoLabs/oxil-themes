@@ -36,8 +36,7 @@
         {{- $linkcss = "hidden-md hidden-sm visible-desktop wh mr2 inv medium" -}}
         {{- end -}}
         {{- partial "linksmenu.html" (dict "page" . "site" .Site  "ctx" $ "css" $linkcss "menu" $menu) -}}
-
-
+        {{- range .Site.Params.links -}}<a class="{{- $linkcss -}}" href="{{- .url -}}">{{- .name -}}</a>{{- end -}}
 
       </div>
     </div>
