@@ -24,7 +24,7 @@
         <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
         <a kb-each-method="{{.Params.apiController}}API.controller.methods"
            kb-class="method.name"
-           kb-href="'{{.CurrentSection.Permalink}}method/?api={{.Params.apiController}}&method=' | concat method.name">{method.name}</a>
+           kb-href="'{{.CurrentSection.Permalink}}method/?api={{.Params.apiController}}&method=' | append method.name">{method.name}</a>
 
 
       </div>
@@ -46,7 +46,7 @@
         <div  kb-if="apiObjects.apiMetaData">
           <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
           <a kb-each-object="apiObjects.apiMetaData.objectSummaries" kb-path="object.path"
-             kb-href="'{{.CurrentSection.Permalink}}object/?object=' | concat object.path">{object.name}</a>
+             kb-href="'{{.CurrentSection.Permalink}}object/?object=' | append object.path">{object.name}</a>
         </div>
       </net-bind>
     </div>
@@ -63,7 +63,7 @@
         <div kb-if="apiExceptions.apiMetaData">
         <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
         <a kb-each-object="apiExceptions.apiMetaData.exceptionSummaries" kb-path="object.path"
-           kb-href="'{{.CurrentSection.Permalink}}exception/?exception=' | concat object.path">{object.name}</a>
+           kb-href="'{{.CurrentSection.Permalink}}exception/?exception=' | append object.path">{object.name}</a>
         </div>
     </net-bind>
   </div>

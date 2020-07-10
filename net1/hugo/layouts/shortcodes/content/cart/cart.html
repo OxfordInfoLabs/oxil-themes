@@ -39,7 +39,7 @@
               <td class="text-right borr1 bordd py025 " >{item.total}
               </td>
               <td>
-                <a kb-href="'/hosting/static/configure?cartItem=' | concat $index" class="vsmall normal" kb-if="item.type == 'static'">edit plan</a>
+                <a kb-href="'/hosting/static/configure?cartItem=' | append $index" class="vsmall normal" kb-if="item.type == 'static'">edit plan</a>
               </td>
             </tr>
             <tr><td colspan="3" class="spacer"></td></tr>

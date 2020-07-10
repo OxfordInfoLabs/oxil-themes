@@ -34,7 +34,7 @@
                         kb-if="property.required">*</span></td>
                     <td data-label="Type">Type:
                         <a kb-if="property.typePath"
-                           kb-href="'{{ .Page.CurrentSection.Permalink}}object?object=' | concat property.relativeTypePath">{property.shortType}</a>
+                           kb-href="'{{ .Page.CurrentSection.Permalink}}object?object=' | append property.relativeTypePath">{property.shortType}</a>
                         <span kb-if="property.typePath | not">{property.shortType}</span>
                     </td>
 
