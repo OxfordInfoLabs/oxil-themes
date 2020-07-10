@@ -59,7 +59,7 @@
                     <td class="semi" scope="row" data-label="Name">{param.name}<span kb-if="param.isOptional | not">*</span></td>
                     <td data-label="Type">
                         <span kb-if="param.typePath | not">{param.shortType}</span>
-                        <a class="inv" kb-if="param.typePath" kb-href="'../object/?object=' | concat param.relativeTypePath">{param.shortType}</a>
+                        <a class="inv" kb-if="param.typePath" kb-href="'../object/?object=' | append param.relativeTypePath">{param.shortType}</a>
                     </td>
                     <td class="text-left-sm" data-label="Description&nbsp;" kb-text="param.description" ></td>
                 </tr>
@@ -75,7 +75,7 @@
 
             <h3 class="mt2 mb1">Returns</h3>
                 <p kb-if="apiMethod.method.returnTypePath | not">{apiMethod.method.shortReturnType}</p>
-            <p><a kb-href="'../object/?object=' | concat apiMethod.method.relativeReturnTypePath">{apiMethod.method.shortReturnType}</a></p>
+            <p><a kb-href="'../object/?object=' | append apiMethod.method.relativeReturnTypePath">{apiMethod.method.shortReturnType}</a></p>
 
 
             <p kb-text="apiMethod.method.returnDescription"></p>
@@ -86,7 +86,7 @@
         <h3 class="mt2 mb1">Exceptions</h3>
 
             <span kb-each-exception="apiMethod.method.exceptions">
-                <a kb-href="'../exception/?exception=' | concat exception.relativePath">{exception.shortType}</a>&nbsp;</span>
+                <a kb-href="'../exception/?exception=' | append exception.relativePath">{exception.shortType}</a>&nbsp;</span>
 
         </div>
 

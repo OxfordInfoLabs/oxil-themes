@@ -21,7 +21,7 @@
             <tbody>
             <tr kb-each-object="objects.apiMetaData.objectSummaries">
                 <td scope="row" data-label="Object"><a class="inv"
-                       kb-href="'{{ .Page.CurrentSection.Permalink }}object?object=' | concat object.path">{object.name}</a></td>
+                       kb-href="'{{ .Page.CurrentSection.Permalink }}object?object=' | append object.path">{object.name}</a></td>
             </tr>
             </tbody>
         </table>

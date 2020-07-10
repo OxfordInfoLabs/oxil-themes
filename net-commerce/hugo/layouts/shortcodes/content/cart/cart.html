@@ -43,11 +43,11 @@
               </div>
               <div class="vsmall" kb-if="item.productShortDescription">{item.productShortDescription}</div>
               <div class="vsmall" kb-if="item.productDescription">{item.productDescription}</div>
-              <div class="pt050"><button class="butctrl pr1 delete" kb-on-click="removeCartItem | args $index" kb-if="item.domainName" >delete x</button> <a kb-href="'/configure?cartItem=' | concat $index" class="butctrl inv px1 hidden-md" kb-if="item.domainOperation | equals 'registration'">edit <i class="net-edit"></i></a> </div>
+              <div class="pt050"><button class="butctrl pr1 delete" kb-on-click="removeCartItem | args $index" kb-if="item.domainName" >delete x</button> <a kb-href="'/configure?cartItem=' | append $index" class="butctrl inv px1 hidden-md" kb-if="item.domainOperation | equals 'registration'">edit <i class="net-edit"></i></a> </div>
             </div>
             <div class="w-15 w25sm thin py050 px1 text-right">&pound;{item.netPrice}</div>
             <div class="w-15 hidden-sm borl1 bordd py050 px1">
-              <a kb-href="'/configure?cartItem=' | concat $index" class="vsmall normal" kb-if="item.domainOperation | equals 'registration'">edit</a>
+              <a kb-href="'/configure?cartItem=' | append $index" class="vsmall normal" kb-if="item.domainOperation | equals 'registration'">edit</a>
             </div>
           </div>
           <div class="bort1 bordd mt025"></div>
@@ -60,7 +60,7 @@
               </div>
               <div class="w-15 w25sm thin py050 px1 text-right">&pound;{subitem.netPrice}</div>
               <div class="w-15 hidden-sm borl1 bordd py050 px1">
-                <a kb-href="'/configure?cartItem=' | concat $index" class="vsmall normal" kb-if="item.domainOperation | equals 'registration'">edit</a>
+                <a kb-href="'/configure?cartItem=' | append $index" class="vsmall normal" kb-if="item.domainOperation | equals 'registration'">edit</a>
               </div>
             </div>
             <div class="bort1 bordd mt025"></div>
