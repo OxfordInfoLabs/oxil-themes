@@ -58,8 +58,6 @@ export default class Autocomplete extends HTMLElement {
         // Process special keys
         input.addEventListener("keydown", (event) => {
 
-            this.value = "";
-
             if (event.key == "Escape") {
                 this.setResultVisibility(false);
             } else if (event.key == "Enter") {
@@ -78,6 +76,8 @@ export default class Autocomplete extends HTMLElement {
                 this.moveSelection(1);
             } else if (event.key == "Tab"){
                 this.setResultVisibility(false);
+            } else {
+                this.value = "";
             }
 
         });
