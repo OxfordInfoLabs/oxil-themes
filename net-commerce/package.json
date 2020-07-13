@@ -1,6 +1,6 @@
 {
   "name": "oxil-net-commerce",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Netistrar E Commerce Theme",
   "main": "index.js",
   "files": [
@@ -32,7 +32,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "oxil-net1": "^1.0.36"
+    "oxil-net1": "^1.0.37"
   },
   "devDependencies": {
     "@types/node": "^13.7.4",
