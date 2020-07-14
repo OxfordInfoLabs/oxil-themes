@@ -103,7 +103,10 @@ export default class NetDomainSearch extends NetPackageBuilder {
         api.getHintedAvailability(RequestParams.get()["domainsearch"], searchFilters).then((response) => {
             this._view.model.results = response;
             this._view.model.filterValues = searchFilters;
-            this.dispatchEvent(new Event("search"));
+
+            let event = document.createEvent("Event");
+            event.initEvent("search", false, true);
+            this.dispatchEvent(event);
 
             // Process initial results to apply rules
             this.processInitialResults(response);
@@ -198,7 +201,9 @@ export default class NetDomainSearch extends NetPackageBuilder {
             }
         });
 
-        this.dispatchEvent(new Event("search"));
+        let event = document.createEvent("Event");
+        event.initEvent("search", false, true);
+        this.dispatchEvent(event);
 
     }
 

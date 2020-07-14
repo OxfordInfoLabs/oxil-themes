@@ -76,7 +76,9 @@ export default class NetQuantityFilter extends HTMLElement {
 
         let element = this.querySelector("[data-value]");
 
-        element.dispatchEvent(new Event("input"));
+        let event = document.createEvent("Event");
+        event.initEvent("input", false, true);
+        element.dispatchEvent(event);
 
 
     }
