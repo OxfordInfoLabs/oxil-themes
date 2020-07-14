@@ -22,7 +22,7 @@ import NetDomainFilters from "./components/net-domain-filters";
 import NetQuantityFilter from "./components/filters/net-quantity-filter";
 import NetProductPrice from "./components/net-product-price";
 import NetMoreLoader from "./components/net-more-loader";
-import KaDynamicForm from "../../../kinicart/kiniauth-js/ts/components/ka-dynamic-form";
+import KaDynamicForm from "kiniauth/ts/components/ka-dynamic-form";
 
 export default class NetCommerce extends Kiniauth {
 

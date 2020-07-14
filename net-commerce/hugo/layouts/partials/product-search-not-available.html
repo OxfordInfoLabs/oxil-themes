@@ -14,7 +14,7 @@
         </span>
     </div>
 {{- else -}}
-<div class="vsmall thin py1 g5-text">Owners: <a :href="'/transfer?transferDomain=' + {{with .itemSelector}}{{.}}{{end}}.domainName" target="_blank">Transfer this domain into your Netistrar Account</a>.
+<div class="vsmall thin py1 g5-text">Owners: <a kb-href="'/transfer?transferDomain=' | append {{with .itemSelector}}{{.}}{{end}}.domainName" target="_blank">Transfer this domain into your Netistrar Account</a>.
     <span kb-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">
     <br>Alternatives:
     <span kb-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
