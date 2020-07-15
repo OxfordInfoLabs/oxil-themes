@@ -8,6 +8,9 @@ export default class Autocomplete extends HTMLElement {
     // Update loop variable
     private _updateLoop = false;
 
+    // Cancel input flag
+    private _cancelInput = false;
+
     // Constructor
     constructor() {
         super();
@@ -43,14 +46,17 @@ export default class Autocomplete extends HTMLElement {
 
             let myCounter = keyCounter;
 
-            let container = this;
             setTimeout(() => {
 
-                console.log(container._updateLoop);
-
                 if (myCounter == keyCounter) {
-                    this.processInput();
+                    if (!this._cancelInput) {
+                        this.processInput();
+                    } else {
+                        this._cancelInput = false;
+                    }
+
                 }
+
             }, 500);
 
         });
@@ -94,7 +100,7 @@ export default class Autocomplete extends HTMLElement {
 
         // Process blur
         input.addEventListener("blur", () => {
-            //this.setResultVisibility(false);
+            this._cancelInput = true;
         });
 
 
