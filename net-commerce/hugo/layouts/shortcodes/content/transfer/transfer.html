@@ -23,6 +23,7 @@
             here to Register an account</a>
             before transferring a domain. </p>
 
+         {{- partial "searchbox-sm" (dict "inputclass" "py075" "class" "white mb2" "action" "/transfer/" "function" "transfer" "placeholder" "Enter a domain name that you own, e.g. mydomain.com") -}}
 
           <p kb-if="result | not"  class="text-center"><img src="/images/loading-animation.gif" alt="Netistrar loading animation">
           </p>
