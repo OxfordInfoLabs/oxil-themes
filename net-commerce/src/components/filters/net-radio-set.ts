@@ -27,7 +27,7 @@ export default class NetRadioSet extends HTMLElement {
             api.callAPI(this.getAttribute("data-source")).then((results) => {
 
                 let data = {};
-                data[this.getAttribute("data-model")] = results;
+                data[this.getAttribute("data-source-key")] = results;
 
                 new AuthKinibind(this,
                     data);

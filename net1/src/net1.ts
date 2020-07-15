@@ -1,7 +1,6 @@
-import "net1-base";
 import Kinicart from "kinicart/ts/index";
 import Autocomplete from "./components/autocomplete";
-
+import "net1-base";
 
 export default class Net1 {
 

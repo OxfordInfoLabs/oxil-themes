@@ -58,6 +58,8 @@ export default class NetDomainSearch extends NetPackageBuilder {
 
         this.filters.addEventListener("filterChange", () => {
 
+            this.filters = document.querySelector("net-domain-filters");
+
             this.currentChangedFilters = this.filters.changes;
 
             if (Object.keys(this.currentChangedFilters).length == 0) {
