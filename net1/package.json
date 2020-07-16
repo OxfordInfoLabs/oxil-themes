@@ -13,7 +13,7 @@
     "build:production": "webpack --config webpack.config.js -p --display-modules;",
     "publish:project": "npm run build:production; ./node_modules/.bin/bump patch; npm publish",
     "publish:tree": "npm run update:dev; npm run publish:dependent:tree; npm run update:packages; npm run publish:project",
-    "publish:dependent:tree": "cd node_modules/kinicart/webcomponents; npm run publish:tree",
+    "publish:dependent:tree": "cd node_modules/kinicart; npm run publish:tree",
     "update:dev": "npm run update:packages && npm run update:symlinks",
     "update:packages": "npm i; npm i kinicart@latest",
     "update:symlinks": "npm link ../../kinicart/webcomponents; npm link ../../kiniauth/webcomponents; npm link ../../kinibind"
