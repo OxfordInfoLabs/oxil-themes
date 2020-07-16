@@ -27,7 +27,7 @@
     "publish:dependent:tree": "cd node_modules/oxil-net1; npm run publish:tree",
     "update:dev": "npm run update:packages && npm run update:symlinks",
     "update:packages": "npm i; npm i oxil-net1@latest",
-    "update:symlinks": "npm link ../net1;  npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js; npm link ../../kinibind"
+    "update:symlinks": "npm link ../net1;  npm link ../../kinicart/webcomponents; npm link ../../kiniauth/webcomponents; npm link ../../kinibind"
   },
   "author": "",
   "license": "ISC",

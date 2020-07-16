@@ -16,7 +16,7 @@
     "publish:dependent:tree": "cd node_modules/kinicart; npm run publish:tree",
     "update:dev": "npm run update:packages && npm run update:symlinks",
     "update:packages": "npm i; npm i kinicart@latest",
-    "update:symlinks": "npm link ../../kinicart/kinicart-js; npm link ../../kinicart/kiniauth-js; npm link ../../kinibind"
+    "update:symlinks": "npm link ../../kinicart/webcomponents; npm link ../../kiniauth/webcomponents; npm link ../../kinibind"
   },
   "repository": {
     "type": "git",
