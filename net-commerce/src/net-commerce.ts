@@ -1,4 +1,3 @@
-import "oxil-net1/src/net1-base";
 import tippy from 'tippy.js/dist/tippy.esm';
 import Kiniauth from "kiniauth/ts";
 import KaBind from "kiniauth/ts/components/ka-bind";
@@ -23,6 +22,7 @@ import NetQuantityFilter from "./components/filters/net-quantity-filter";
 import NetProductPrice from "./components/net-product-price";
 import NetMoreLoader from "./components/net-more-loader";
 import KaDynamicForm from "kiniauth/ts/components/ka-dynamic-form";
+import "oxil-net1/src/net1-base";
 
 export default class NetCommerce extends Kiniauth {
 
