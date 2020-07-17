@@ -68,15 +68,18 @@
 
 
   </net-bind>
+{{- with .Param "filters"}}
 
-    <net-domain-filters>
+<net-domain-filters>
+ {{if eq "domain" .}}
+ {{- partial "filters-domain-search" . -}}
+ {{- end -}}
+ {{if eq "prices" .}}
+ {{- partial "filters-prices" . -}}
+ {{- end -}}
+</net-domain-filters>
+{{- end -}}
 
-          {{- partial "header-extras" . -}}
-
-
-          {{- partial "filters-domain-search" . -}}
-
-    </net-domain-filters>
 
 <net-bind>
 
