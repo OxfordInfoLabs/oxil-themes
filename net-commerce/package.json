@@ -1,6 +1,6 @@
 {
   "name": "oxil-net-commerce",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Netistrar E Commerce Theme",
   "main": "index.js",
   "files": [
@@ -21,7 +21,7 @@
   "scripts": {
     "watch": "run-p --print-label watch:**",
     "watch:webpack": "webpack --config webpack.config.js --watch",
-    "build:production": "webpack --config webpack.config.js -p",
+    "build:production": "webpack --config webpack.config.js -p --display-modules;",
     "publish:project": "npm run build:production; ./node_modules/.bin/bump patch; npm publish",
     "publish:tree": "npm run update:dev; npm run publish:dependent:tree; npm run update:packages; npm run publish:project",
     "publish:dependent:tree": "cd node_modules/oxil-net1; npm run publish:tree",
@@ -32,7 +32,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "oxil-net1": "^1.0.40"
+    "oxil-net1": "^1.0.41"
   },
   "devDependencies": {
     "@types/node": "^13.7.4",
