@@ -50,7 +50,7 @@
 
 
 {{- block "bodytag" . }}<body id="body" data-gauze="hide" data-modal="hide" data-sidebar="hide" class="{{- with .Params.bodyclass}}{{.}}{{end }} {{ if eq (.Scratch.Get "amp") true -}}bk{{- end -}}">{{- end }}
-<ka-bind>
+
 {{- if ne (.Scratch.Get "amp") true -}}{{partial "sidenav" . }}{{- else -}}{{partial "amp-sidenav" . }}{{- end -}}
 {{- partial "ote" . -}}
 {{ if ne .Params.noheader true -}}
@@ -88,7 +88,7 @@
   {{- block "fixedheaderwrapend" . }}</div>{{- end }}
 
 
-</ka-bind>
+
 
 <div class="gauze block-body-scroll"></div>
 {{- if ne (.Scratch.Get "amp") true -}}
@@ -139,6 +139,9 @@
 
 
 {{- block "bodyclose" . }}
+
+</ka-bind>
+
 </body>
 {{- end }}
 </html>

@@ -3,7 +3,7 @@
 {{- $item := . -}}
 {{- $type := $item.Params.mediatype -}}
 {{- $date := $item.Lastmod -}}
-{{- $text := $item.Description -}}
+{{- $text := (index $item.Params "mdtext" | markdownify) | default ($item.Description  | safeHTML) -}}
 {{- $id := $item.Params.id -}}
 {{- $youtubeid := $item.Params.youtubeid -}}
 {{- $image := .Resources.GetMatch "*featured*" -}}
@@ -29,8 +29,8 @@
     <span class=" uppercase">{{ range .Params.categories }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv ">{{ . }}</a>{{ end }}</span>
   </div>
 
-  <p class="px075 {{ with eq $type "text" -}}f3{{end}}">{{with $channel}}<b>{{.}}: </b>{{end}}{{with $text}}{{. | safeHTML}}{{end}}</p>
-
+  <p class="px075 {{ with eq $type "text" -}}f3{{end}}">{{with $channel}}<b>{{.}}: </b>{{end}}{{with $text}}{{.}}{{end}}</p>
+ {{- with .Params.expirestext -}}<p class="px075 mt-1  red-text small thin">{{- . -}}</p>{{- end -}}
   {{- with $youtubeid -}}
   <div class="vid">
     <amp-youtube width="256"

@@ -34,7 +34,7 @@
   <div class="p1">
 
    <h5 class="m0 lh13"><a class="inv font-color bold" href="{{$anchor}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h5>
-
+   {{- with .Params.expirestext -}}<p class="small red-text thin">{{- . -}}</p>{{- end -}}
    <time class="vsmall g8-text" datetime="{{ dateFormat " 2006-01-02T15:04:05-07:00" .Lastmod }}">
      {{ dateFormat "2 Jan, 2006" .Lastmod }}
      </time>

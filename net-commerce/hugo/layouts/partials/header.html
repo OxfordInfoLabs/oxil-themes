@@ -27,6 +27,7 @@
 
 <header  class="pr1 py1 {{ if eq (.Scratch.Get "theme") "brand" }}brand{{end}} {{ if eq (.Param "noshadow") "true" }}noshadow{{end}}">
 
+  <net-bind id="header-bind">
 
       <div class="grid flex px1 px2l justify-between align-center">
 
@@ -67,18 +68,22 @@
 
 
 
-    <net-domain-filters>
+{{- with .Param "filters"}}
 
-          {{- partial "header-extras" . -}}
-
-
-          {{- partial "filters-domain-search" . -}}
-
-    </net-domain-filters>
+<net-domain-filters>
+ {{if eq "domain" .}}
+ {{- partial "filters-domain-search" . -}}
+ {{- end -}}
+ {{if eq "prices" .}}
+ {{- partial "filters-prices" . -}}
+ {{- end -}}
+</net-domain-filters>
+{{- end -}}
 
 
   {{-  partial "logout" . -}}
 
+</net-bind>
 
 </header>
 
