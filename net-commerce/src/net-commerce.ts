@@ -24,6 +24,7 @@ import NetProductPrice from "./components/net-product-price";
 import NetMoreLoader from "./components/net-more-loader";
 import KaDynamicForm from "kiniauth/ts/components/ka-dynamic-form";
 import "oxil-net1/src/net1-base";
+import Autocomplete from "oxil-net1/src/components/autocomplete";
 
 
 export default class NetCommerce extends Kiniauth {
@@ -46,8 +47,7 @@ export default class NetCommerce extends Kiniauth {
     public bindElements() {
 
         // Core elements from Kiniauth
-        customElements.define('ka-bind', KaBind);
-        customElements.define('net-bind', NetBind);
+        customElements.define('net-bind', KaBind);
         customElements.define('net-recaptcha', KaRecaptcha);
         customElements.define('net-signin', KaSignin);
         customElements.define('net-signout', KaSignout);
@@ -76,6 +76,9 @@ export default class NetCommerce extends Kiniauth {
         customElements.define('net-product-price', NetProductPrice);
         customElements.define('net-more-loader', NetMoreLoader);
 
+
+        // Net1 components
+        customElements.define("net1-autocomplete", Autocomplete);
 
     }
 
