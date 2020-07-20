@@ -51,8 +51,9 @@ export default class NetMultiSelectFilter extends HTMLElement {
                 this.value = this.currentValue;
             }
 
-            let filterLoadedEvent = new Event("filterLoaded");
-            this.dispatchEvent(filterLoadedEvent);
+            let dispatchEvent = document.createEvent("Event");
+            dispatchEvent.initEvent("filterLoaded", false, true);
+            this.dispatchEvent(dispatchEvent);
 
         })
 

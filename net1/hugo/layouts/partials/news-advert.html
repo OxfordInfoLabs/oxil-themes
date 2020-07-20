@@ -24,7 +24,7 @@
 {{- $channel := $item.Params.channel -}}
 
 <h1 class="h2 bold">{{- .Title -}}</h1>
-
+{{- with .Params.expirestext -}}<p class="red-text thin">{{- . -}}</p>{{- end -}}
 <div class="flex justify-between align-center pb1 ">
  <time class=" timeago blk vsmall" datetime="{{with $date}}{{.}}{{end}}">{{with $date}}{{ . | dateFormat "2 Jan 2006"}}{{end}}</time>
  <div>{{ partial "amp-share-bar" $item }}  </div>

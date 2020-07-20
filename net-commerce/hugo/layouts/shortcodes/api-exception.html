@@ -32,7 +32,7 @@
                 <td class="semi" scope="row" data-label="Name">{property.name}</td>
                 <td data-label="Type">Type:
                     <a class="inv" kb-if="property.typePath"
-                       kb-href="'{{ .Page.CurrentSection.Permalink}}object?object=' | concat property.typePath">{property.shortType}</a>
+                       kb-href="'{{ .Page.CurrentSection.Permalink}}object?object=' | append property.typePath">{property.shortType}</a>
                     <span kb-if="property.typePath | not">{property.shortType}</span>
                 </td>
 

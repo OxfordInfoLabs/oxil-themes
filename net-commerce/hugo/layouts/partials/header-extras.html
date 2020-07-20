@@ -1,9 +1,9 @@
 {{- with .Param "header-extras"}}
 {{- if eq "searchtools" . -}}
-<div id="searchtools" class=" pt1 px1 px2l grid flex align-center flex-wrap flex-row-reverse justify-end" >
+<div id="searchtools" class=" pt1 px1 px2l grid flex-grid align-center  flex-row-reverse justify-end" >
 
-  <div class="w-40 flex mb050 mb0l">
-    {{ partial "searchbox-sm" (dict "context" . "inputcss" "borr0") }}
+  <div class="w-50 flex mb050 mb0l">
+    {{ partial "searchbox-sm" (dict "context" . "inputclass" "py050" "placeholder" "New domain search ..") }}
     <button class="butlk inv flex align-center ml1 hidden-sm btn-filters-domain-search"  data-target="show">Filters <span kb-if="changedFilterCount">(<span kb-text="changedFilterCount"></span>)</span><i class="net-chevron-down"></i></button>
 
   </div>

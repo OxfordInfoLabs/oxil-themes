@@ -24,7 +24,7 @@
       <tbody>
       <tr kb-each-method="api.controller.methods">
         <td  scope="row" data-label="Param">
-          <a class="inv" kb-href="'{{ .Page.CurrentSection.Permalink }}method/?api=' | concat api.controller.path  '&method='  method.name">{method.name}</a></td>
+          <a class="inv" kb-href="'{{ .Page.CurrentSection.Permalink }}method/?api=' | append api.controller.path  '&method='  method.name">{method.name}</a></td>
         <td data-label="Method">{method.httpMethod}</td>
         <td data-label="Path">{method.fullRequestPath}</td>
       </tr>

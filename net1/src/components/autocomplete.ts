@@ -8,6 +8,9 @@ export default class Autocomplete extends HTMLElement {
     // Update loop variable
     private _updateLoop = false;
 
+    // Cancel input flag
+    private _cancelInput = false;
+
     // Constructor
     constructor() {
         super();
@@ -27,7 +30,6 @@ export default class Autocomplete extends HTMLElement {
     private init() {
 
         let input = this.querySelector("input");
-        let resultsDiv = <HTMLElement>this.querySelector("[data-results]");
 
         let keyCounter = 0;
 
@@ -39,8 +41,6 @@ export default class Autocomplete extends HTMLElement {
                 return;
             }
 
-            let me = <HTMLInputElement>event.target;
-
             // Increment global key counter
             keyCounter++;
 
@@ -49,8 +49,14 @@ export default class Autocomplete extends HTMLElement {
             setTimeout(() => {
 
                 if (myCounter == keyCounter) {
-                    this.processInput();
+                    if (!this._cancelInput) {
+                        this.processInput();
+                    } else {
+                        this._cancelInput = false;
+                    }
+
                 }
+
             }, 500);
 
         });
@@ -62,11 +68,22 @@ export default class Autocomplete extends HTMLElement {
                 this.setResultVisibility(false);
             } else if (event.key == "Enter") {
                 event.preventDefault();
+
+                let resultsDiv = <HTMLElement>this.querySelector("[data-results]");
+                let activeDiv = resultsDiv.querySelector(".active");
+                if (activeDiv) {
+                    this.processResultSelection(activeDiv);
+                }
+
                 this.setResultVisibility(false);
-            } else if (event.key == "ArrowUp") {
+            } else if (event.key == "ArrowUp" || event.key == 'Up') {
                 this.moveSelection(-1);
-            } else if (event.key == "ArrowDown") {
+            } else if (event.key == "ArrowDown" || event.key == 'Down') {
                 this.moveSelection(1);
+            } else if (event.key == "Tab") {
+                this.setResultVisibility(false);
+            } else {
+                this.value = "";
             }
 
         });
@@ -74,12 +91,16 @@ export default class Autocomplete extends HTMLElement {
 
         // Process focus
         input.addEventListener("focus", () => {
+
+            if (this._updateLoop)
+                return;
+
             this.processInput();
         });
 
         // Process blur
         input.addEventListener("blur", () => {
-            //this.setResultVisibility(false);
+            this._cancelInput = true;
         });
 
 
@@ -87,6 +108,10 @@ export default class Autocomplete extends HTMLElement {
         this.addEventListener("click", (event) => {
 
             event.stopPropagation();
+
+            if (this._updateLoop)
+                return;
+
 
             let element = <HTMLElement>event.target;
             while (!element.hasAttribute("data-result-value") && element.parentElement) {
@@ -105,7 +130,8 @@ export default class Autocomplete extends HTMLElement {
 
         // Ensure we close the results on body clicks outside of our component
         document.body.addEventListener("click", () => {
-            this.setResultVisibility(false);
+            if (!this._updateLoop)
+                this.setResultVisibility(false);
         });
 
 
@@ -119,13 +145,18 @@ export default class Autocomplete extends HTMLElement {
         let minChars = this.getAttribute("data-min-chars") ? this.getAttribute("data-min-chars") : 2;
 
         // Show / hide according to length of value.
-        this.setResultVisibility(input.value.length >= minChars);
+        this.setResultVisibility(input.value.length >= minChars, false);
+
+        let noSelectionMessage = <HTMLElement>this.querySelector("[data-no-selection-message]");
+        if (noSelectionMessage) {
+            Configuration.elementVisibilityFunction(noSelectionMessage, false);
+        }
 
     }
 
 
     // Set result visibility
-    private setResultVisibility(visible: boolean) {
+    private setResultVisibility(visible: boolean, clearSelection = true) {
         let resultsDiv = <HTMLElement>this.querySelector("[data-results]");
         Configuration.elementVisibilityFunction(resultsDiv, visible);
 
@@ -134,6 +165,23 @@ export default class Autocomplete extends HTMLElement {
             event.initEvent("resultsShow", false, true);
             this.dispatchEvent(event);
         } else {
+
+            if (!this.value && clearSelection) {
+                let input = this.querySelector("input");
+                input.value = "";
+
+                // Ensure model gets updated
+                this._updateLoop = true;
+                let event = document.createEvent("Event");
+                event.initEvent("input", false, true);
+                input.dispatchEvent(event);
+
+                let noSelectionMessage = <HTMLElement>this.querySelector("[data-no-selection-message]");
+                if (noSelectionMessage) {
+                    Configuration.elementVisibilityFunction(noSelectionMessage, true);
+                }
+            }
+
             let event = document.createEvent("Event");
             event.initEvent("resultsHide", false, true);
             this.dispatchEvent(event);
@@ -163,7 +211,6 @@ export default class Autocomplete extends HTMLElement {
 
         if (activeDiv) {
             activeDiv.classList.add("active");
-            this.processResultSelection(activeDiv);
         }
 
 
@@ -190,13 +237,10 @@ export default class Autocomplete extends HTMLElement {
         input.dispatchEvent(event);
 
 
-
         // Dispatch the change event
         event = document.createEvent("Event");
         event.initEvent("change", false, true);
         this.dispatchEvent(event);
-
-
 
 
     }

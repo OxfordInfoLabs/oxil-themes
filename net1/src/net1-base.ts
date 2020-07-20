@@ -354,7 +354,9 @@ document.querySelectorAll('.add-domain').forEach((item: HTMLElement) => {
 
 
 document.querySelectorAll('[data-navigate-back]').forEach((item: HTMLElement) => {
-    item.addEventListener('click', function () {
+    item.addEventListener('click', function (e) {
+      
+      e.preventDefault();
         window.history.back();
     });
 });

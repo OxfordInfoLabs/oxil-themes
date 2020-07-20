@@ -36,8 +36,11 @@ export default class NetDomainFilters extends HTMLElement {
 
                 this.updateCurrentData(this.values);
 
-                let event = new Event("filterChange");
+                let event = document.createEvent("Event");
+                event.initEvent("filterChange", false, true);
                 this.dispatchEvent(event);
+
+
             });
         });
 
@@ -85,7 +88,10 @@ export default class NetDomainFilters extends HTMLElement {
                 switch (field.getAttribute("type")) {
                     case "checkbox":
                         (<HTMLInputElement>field).checked = (filterValues[key] === 1 || filterValues[key] === "1");
-                        field.dispatchEvent(new Event("change"));
+                        let event = document.createEvent("Event");
+                        event.initEvent("change", false, true);
+                        field.dispatchEvent(event);
+
                         break;
                 }
             } else {

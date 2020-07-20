@@ -27,12 +27,15 @@ export default class NetRadioSet extends HTMLElement {
             api.callAPI(this.getAttribute("data-source")).then((results) => {
 
                 let data = {};
-                data[this.getAttribute("data-model")] = results;
+                data[this.getAttribute("data-source-key")] = results;
 
                 new AuthKinibind(this,
                     data);
 
-                this.dispatchEvent(new Event("sourceLoaded"));
+
+                let event = document.createEvent("Event");
+                event.initEvent("sourceLoaded", false, true);
+                this.dispatchEvent(event);
 
 
             });
@@ -44,8 +47,9 @@ export default class NetRadioSet extends HTMLElement {
                 this.value = this.currentValue;
             }
 
-            let filterLoadedEvent = new Event("filterLoaded");
-            this.dispatchEvent(filterLoadedEvent);
+            let dispatchEvent = document.createEvent("Event");
+            dispatchEvent.initEvent("filterLoaded", false, true);
+            this.dispatchEvent(dispatchEvent);
 
         });
 
