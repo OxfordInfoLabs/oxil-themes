@@ -1,6 +1,7 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 description: "Description {{ replace .Name "-" " " | title }}"
+mdtext: "{{ replace .Name "-" " " | title }}"
 mediatype: "video"
 channel: ""
 event: ""
