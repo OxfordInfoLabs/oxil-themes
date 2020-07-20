@@ -1,6 +1,6 @@
 <nav id="nav-main" class="sidenav gf5" >
 
-  <net-bind>
+
 
     <div class="vue-wrapper">
 
@@ -39,9 +39,10 @@
 
     </div>
 
-  </net-bind>
 
-  <net-bind class="side-menu white">
+
+
+  <div class="side-menu white">
 
         <a href="/about/" class="">About <i class="net-launch-out"></i></a>
         <a href="/prices/" class="">Prices <i class="net-launch-out"></i></a>
@@ -59,7 +60,7 @@
           {{ $menu := .Site.Menus.usefullinks}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
         </div>
 
-  </net-bind>
+  </div>
 
 
 

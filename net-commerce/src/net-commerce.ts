@@ -1,6 +1,7 @@
 import tippy from 'tippy.js/dist/tippy.esm';
 import Kiniauth from "kiniauth/ts";
 import KaBind from "kiniauth/ts/components/ka-bind";
+import NetBind from "./components/net-bind";
 import KaPasswordReset from "kiniauth/ts/components/ka-password-reset";
 import KaNewPassword from "kiniauth/ts/components/ka-new-password";
 import KaRegister from "kiniauth/ts/components/ka-register";
@@ -24,6 +25,7 @@ import NetMoreLoader from "./components/net-more-loader";
 import KaDynamicForm from "kiniauth/ts/components/ka-dynamic-form";
 import "oxil-net1/src/net1-base";
 
+
 export default class NetCommerce extends Kiniauth {
 
     constructor(settings: any) {
@@ -44,7 +46,8 @@ export default class NetCommerce extends Kiniauth {
     public bindElements() {
 
         // Core elements from Kiniauth
-        customElements.define('net-bind', KaBind);
+        customElements.define('ka-bind', KaBind);
+        customElements.define('net-bind', NetBind);
         customElements.define('net-recaptcha', KaRecaptcha);
         customElements.define('net-signin', KaSignin);
         customElements.define('net-signout', KaSignout);
