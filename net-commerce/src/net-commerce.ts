@@ -1,7 +1,6 @@
 import tippy from 'tippy.js/dist/tippy.esm';
 import Kiniauth from "kiniauth/ts";
 import KaBind from "kiniauth/ts/components/ka-bind";
-import NetBind from "./components/net-bind";
 import KaPasswordReset from "kiniauth/ts/components/ka-password-reset";
 import KaNewPassword from "kiniauth/ts/components/ka-new-password";
 import KaRegister from "kiniauth/ts/components/ka-register";

@@ -1,4 +1,5 @@
 import Configuration from "kiniauth/ts/configuration";
+import KaBind from "../../../../kiniauth/webcomponents/ts/components/ka-bind";
 
 /**
  * Reusable autocomplete components
@@ -10,6 +11,9 @@ export default class Autocomplete extends HTMLElement {
 
     // Cancel input flag
     private _cancelInput = false;
+
+
+    private _initialisedBind = false;
 
     // Constructor
     constructor() {
@@ -141,6 +145,12 @@ export default class Autocomplete extends HTMLElement {
     // Process input
     private processInput() {
 
+        // Initialise bind if required
+        if (!this._initialisedBind && this.getAttribute("data-related-bind")) {
+            this._initialisedBind = true;
+            (<KaBind>document.querySelector(this.getAttribute("data-related-bind"))).load();
+        }
+
         let input = this.querySelector("input");
         let minChars = this.getAttribute("data-min-chars") ? this.getAttribute("data-min-chars") : 2;
 
@@ -242,6 +252,9 @@ export default class Autocomplete extends HTMLElement {
         event.initEvent("change", false, true);
         this.dispatchEvent(event);
 
+        if (this.hasAttribute("data-submit-on-select")) {
+            this.closest("form").submit();
+        }
 
     }
 
