@@ -1,5 +1,5 @@
 import Configuration from "kiniauth/ts/configuration";
-import KaBind from "../../../../kiniauth/webcomponents/ts/components/ka-bind";
+import KaBind from "kiniauth/ts/components/ka-bind";
 
 /**
  * Reusable autocomplete components
