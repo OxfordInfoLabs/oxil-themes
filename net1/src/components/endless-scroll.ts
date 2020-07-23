@@ -53,7 +53,7 @@ export default class EndlessScroll extends HTMLElement {
             let innerHeight = scrollContainer.getBoundingClientRect().bottom;
 
             let pageSize = this.hasAttribute("data-page-size-increment") ? Number(this.getAttribute("data-page-size-increment")) : 10;
-            
+
             if (myBottom < innerHeight && this._currentResults != this._lastResults) {
                 this._lastResults = this._currentResults;
                 view.model[pageSizeParam] = Number(view.model[pageSizeParam]) + Number(pageSize);
