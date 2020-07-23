@@ -71,7 +71,9 @@ export default class Autocomplete extends HTMLElement {
             if (event.key == "Escape") {
                 this.setResultVisibility(false);
             } else if (event.key == "Enter") {
-                event.preventDefault();
+
+                let submitOnSelect = this.hasAttribute("data-submit-on-select");
+
 
                 let resultsDiv = <HTMLElement>this.querySelector("[data-results]");
                 let activeDiv = resultsDiv.querySelector(".active");
@@ -79,7 +81,11 @@ export default class Autocomplete extends HTMLElement {
                     this.processResultSelection(activeDiv);
                 }
 
-                this.setResultVisibility(false);
+                this.setResultVisibility(false, !submitOnSelect);
+
+                if (!submitOnSelect)
+                    event.preventDefault();
+
             } else if (event.key == "ArrowUp" || event.key == 'Up') {
                 this.moveSelection(-1);
             } else if (event.key == "ArrowDown" || event.key == 'Down') {

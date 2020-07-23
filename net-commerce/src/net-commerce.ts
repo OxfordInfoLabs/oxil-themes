@@ -24,6 +24,7 @@ import NetMoreLoader from "./components/net-more-loader";
 import KaDynamicForm from "kiniauth/ts/components/ka-dynamic-form";
 import "oxil-net1/src/net1-base";
 import Autocomplete from "oxil-net1/src/components/autocomplete";
+import EndlessScroll from "oxil-net1/src/components/endless-scroll";
 
 
 export default class NetCommerce extends Kiniauth {
@@ -78,6 +79,7 @@ export default class NetCommerce extends Kiniauth {
 
         // Net1 components
         customElements.define("net1-autocomplete", Autocomplete);
+        customElements.define("net1-endless-scroll", EndlessScroll);
 
     }
 
