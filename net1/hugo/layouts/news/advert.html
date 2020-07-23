@@ -111,9 +111,15 @@ https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg
 
 {{- with .Params.cta -}}
 {{- if eq "search" . -}}
-<div class="grid px1 px2l w-80">
+<div class="grid px1 px2l pt2 pb4 w-80 flex flex-col justify-center ">
 
- <h1>Search here</h1>
+ {{- with $.Page.Params.ctatitle -}}<h2 class="text-center mb2">{{- . -}}</h2>{{- end -}}
+ {{- $placeholder := "Search for a domain name .." -}}
+ {{- with $.Page.Params.ctatext -}}
+ {{- $placeholder = . -}}
+ {{- end -}}
+ <div class="px4l mb2">{{- partial "searchbox" (dict "placeholder" $placeholder "inputclass" "white") -}}</div>
+
 </div>
 {{- end -}}
 {{- if eq "link" . -}}
