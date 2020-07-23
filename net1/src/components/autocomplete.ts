@@ -242,7 +242,7 @@ export default class Autocomplete extends HTMLElement {
         // Dispatch an autocomplete event
         this.value = selectedElement.getAttribute("data-result-value");
         let event = document.createEvent("Event");
-        event.initEvent("input", false, true);
+        event.initEvent("input", true, true);
         this.dispatchEvent(event);
 
         // // Dispatch an input event
