@@ -8,7 +8,7 @@
 
 __Type:__ Software as a service
 
-__Period:__ Annual or monthly
+__Period:__ Monthly
 
 __Third-party terms:__ [Google Terms](https://gsuite.google.com/intl/en_uk/terms/2013/1/premier_terms.html)
 

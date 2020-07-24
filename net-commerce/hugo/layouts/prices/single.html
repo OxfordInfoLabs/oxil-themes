@@ -1,0 +1,25 @@
+{{- define "main" -}}
+<div class="gf9">
+ <div class="grid px1 px2l py150">
+  <div class="breadcrumb">
+   {{- partial "breadcrumb" (dict "p1" . "p2" .) -}}
+  </div>
+ </div>
+</div>
+
+
+
+<div class="white">
+ <div class="grid px1 px2l pt4 mb2">
+  <h1 class="text-center">{{- .Title -}}</h1>
+ </div>
+</div>
+
+
+<div class="my3">
+ <div class="grid px1 px2l w-80">
+  {{- .Content -}}
+ </div>
+</div>
+
+{{- end -}}

@@ -1,0 +1,47 @@
+{{- $inputclass := .inputclass -}}
+{{- $formclass := .formclass -}}
+{{- $buttonclass := .buttonclass -}}
+{{- $frompricepath := .frompricepath -}}
+<div class="pt150 pb025 bold ">Search domain prices:</div>
+
+
+<form action="/prices/domain-names" >
+    <net-bind id="tld-search-bind"
+            data-source="/guest/domain/tlds" data-source-key="tldQuickSearchResults" data-proxy="true"
+            data-model='{"tldQuickSearch": ""}' defer-load="true" class="rel">
+
+
+        <net1-autocomplete data-min-chars="0" data-submit-on-select data-related-bind="#tld-search-bind"
+                           class="rel autocomplete pl025 flex bor1 borbb br8tr br8br br8bl br8tl {{ with $formclass -}}{{ . }}{{ else }}vsmall{{- end -}} ">
+
+            <input class="w small flex1 pl050 bor0 br8bl br8tl {{ with $inputclass -}}{{ . }}{{ else }}py025{{ end -}}"
+                   autocomplete="off" type="text" name="tldSearch"
+                   kb-placeholder="'.' | append prices[0].tld ' from &pound' prices[0].{{ $frompricepath }}"
+                   kb-value="tldQuickSearch">
+
+            <button type="submit"
+                    class="px1 bor0 ge br8tr br8br {{ with $buttonclass -}}{{ . }}{{ else }}f5{{- end -}}"><i
+                    class="net-search g5-text g3-text "></i></button>
+
+            <div data-results data-state="hide" class="abs bort1 boree">
+
+                <div class="borb1 borr1 borl1 boree rel p050"
+                     kb-each-quick="tldQuickSearchResults | filter 'tld' tldQuickSearch | slice 0 5"
+                     kb-data-result-label="quick.tld" kb-data-result-value="quick.tld">
+                    <span>.{quick.tld} from &pound;{quick.{{ $frompricepath }} }</span>
+                </div>
+
+            </div>
+
+
+
+        </net1-autocomplete>
+
+    </net-bind>
+</form>
+
+
+
+
+
+

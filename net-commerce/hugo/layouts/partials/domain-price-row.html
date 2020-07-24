@@ -1,0 +1,32 @@
+{{- $model := .model -}}
+{{- $class := .class -}}
+
+
+<div class="{{- with $class -}}{{- . -}}{{- else -}}w-25{{- end }} o2 flex flex-col justify-center bordd borb1md pb050" kb-if="{{ $model }}.tld">
+    <div class="pt1"><img kb-src="{{ $model }}.imageAsBase64" alt="" height="42" kb-if="{{ $model }}.imageAsBase64"/><span
+            kb-if="{{ $model }}.imageAsBase64 | not" class="f4 semi mb050 ib">.{ {{ $model }}.tld}</span></div>
+    <div class="f4 py025 " kb-if="{{ $model }}.originalRegistrationPrice | not">&pound;{ {{ $model }}.registrationPrice}</div>
+    <div class="red-text f4 py025 " kb-if="{{ $model }}.originalRegistrationPrice">&pound;{ {{ $model }}.registrationPrice}</div>
+    <div class="vsmall strike thin ga-text" kb-if="{{ $model }}.originalRegistrationPrice">&pound;{ {{ $model }}.originalRegistrationPrice}</div>
+    <div class="tiny " kb-if="{{ $model }}.originalRegistrationPrice | not">1 Year Registration</div>
+    <div kb-each-offer="{{ $model }}.offers" class="red-text tiny thin lh13 ">{offer}</div>
+</div>
+<div class="{{- with $class -}}{{- . -}}{{- else -}}w-25{{- end }} o3 brand-lighter white-text flex flex-col justify-center bordd borb1md pb050" kb-if="{{ $model }}.tld">
+    <div class="pt1"><img kb-src="{{ $model }}.imageAsBase64" alt="" height="42" kb-if="{{ $model }}.imageAsBase64"
+                          class="f-white"/><span
+            kb-if="{{ $model }}.imageAsBase64 | not" class="f4 semi mb050 ib">.{ {{ $model }}.tld}</span></div>
+    <div class="f4 py025 ">&pound;{ {{ $model }}.renewalPrice}</div>
+    <div class="tiny gc-text">1 Year Renewal</div>
+    <div kb-each-offer="{{ $model }}.offers" class="brightred-text tiny thin lh13 ">{offer}</div>
+</div>
+<div class="{{- with $class -}}{{- . -}}{{- else -}}w-25{{- end }} o4 brand white-text flex flex-col justify-center bordd borb1md pb050" kb-if="{{ $model }}.tld">
+    <div class="pt1"><img kb-src="{{ $model }}.imageAsBase64" alt="" height="42" kb-if="{{ $model }}.imageAsBase64"
+                          class="f-white"/><span
+            kb-if="{{ $model }}.imageAsBase64 | not" class="f4 semi mb050 ib">.{ {{ $model }}.tld}</span></div>
+    <div class="f4 py025 ">&pound;{ {{ $model }}.transferPrice}</div>
+    <div class="tiny gc-text">Transfer fee</div>
+    <div kb-each-offer="{{ $model }}.offers" class="brightred-text tiny thin lh13 ">{offer}</div>
+</div>
+
+
+

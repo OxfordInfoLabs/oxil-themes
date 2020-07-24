@@ -1,0 +1,59 @@
+{{ $key := .Site.Params.siteKey }}
+<net-bind data-source="/domains/tld/promoted?key={{ $key }}" data-source-key="prices">
+
+    <div class="overflow-x">
+        <div class="ft flex minwxsm">
+            <div class="ge o1 w-25 hidden-sm"></div>
+            <div class="py025 white o2 w-25 ">Registration</div>
+            <div class="py025 white-text brand-lighter o3 w-25 ">Renewal</div>
+            <div class="py025 white-text brand o4 w-25 ">Transfer</div>
+        </div>
+        <div class="ft flex minwxsm borl0m1md borb1sm bordd ge mb1 mb0l">
+            <div class="o1 white w-25 hidden-sm"></div>
+            <div class="o2 white w-25 flex flex-col justify-center borb1md bordd">
+                <div class="semi pt150">Current Registration Price</div>
+                <div class="py075 f4 semi">1 year</div>
+            </div>
+            <div class="o3 brand-lighter white-text w-25 flex flex-col justify-center borb1md">
+                <div class="semi">Current Renewal Price</div>
+                <div class="py075 f4 semi">+ 1 year</div>
+            </div>
+            <div class="o4 brand w-25 white-text flex flex-col justify-center borb1md">
+                <div class="semi">One-off transfer fee</div>
+                <div class="py075 f4 semi">if applicable</div>
+            </div>
+        </div>
+
+        <div class="ft flex minwxsm borl0m1md" kb-set-firsttld="prices | item 0">
+
+            <div class="o1 white w-25 hidden-sm text-left pt075 pr1 flex flex-col">
+
+                <div>
+                    <div class="small">Best selling, classic domains</div>
+                    <div class="small "><a class="thin" href="/prices/domain-names">All domain prices</a>&nbsp;|&nbsp;<a
+                            class="thin" href="/prices/domain-names">Filters</a></div>
+                    {{- partial "search-domain-prices" (dict "frompricepath" "registrationPrice") -}}
+                </div>
+
+            </div>
+
+
+            {{- partial "domain-price-row" (dict "model" "firsttld") -}}
+
+        </div>
+
+        <div kb-each-tld="prices">
+
+            <div class="ft flex minwxsm borl0m1md bort0md" kb-if="$index | gt 0">
+
+                <div class="o1 white w-25 hidden-sm text-left pt075 pr1 flex flex-col"></div>
+
+                {{- partial "domain-price-row" (dict "model" "tld") -}}
+
+            </div>
+        </div>
+
+
+    </div>
+
+</net-bind>

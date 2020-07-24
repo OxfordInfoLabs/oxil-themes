@@ -1,83 +1,85 @@
-{{$tldsearch := .Get "tldSearch"}}
-{{$more := .Get "more"}}
+<net-bind id="searchbind" data-source="/guest/domain/tlds" data-model='{"pageSize": 10}' data-source-key="tlds"
+          data-proxy="true" data-join-element="#header-bind" ka-cloak>
 
-{{ if eq $tldsearch "tld" }}
-<!--<div class="flex mb4 search-group w-50"><input type="text" class="tld-filter-field flex1 f4 pl1" placeholder="Filter domain endings" net-value="tldFilterValue"  />-->
-<!--  <button class="white-text f5 tld-filter-value" >Filter</button></div>-->
-{{ end }}
+  <div kb-set-prices="tlds | filter 'tld' request.tldSearch | filter filterValues | slice 0 pageSize">
 
-<net-more-loader data-url="/domains/{{ $tldsearch }}">
+    <div class="overflow-x">
 
-<div class="overflow-x">
-  <table class="tiers-table table min500 cells small t-center-0111">
-    <colgroup>
-      <col>
-      <col>
-      <col class="brand-lighter">
-      <col class="brand ">
-    </colgroup>
-    <tr>
-      <td class="w-31 w25sm gf9"></td>
-      <td class="w-23 w25sm gf9 semi">Registration</td>
-      <td class="w-23 w25sm border30 white-text semi">Renewal</td>
-      <td class="w-23 w25sm border30 white-text semi">Transfer</td>
-    </tr>
-    <tr>
-      <td class="border-b0 border-l0"></td>
-      <td class="">
-        <div class="pt150">Current registration price</div>
-        <div class="py075 f4 ">1 year</div>
+      <div class="ft flex minwxsm borl0m1md">
+        <div class="py025 white o1 w-33 ">Registration</div>
+        <div class="py025 white-text brand-lighter o2 w-33 ">Renewal</div>
+        <div class="py025 white-text brand o3 w-33 ">Transfer</div>
+      </div>
+      <div class="ft flex minwxsm borl0m1md borb1sm bordd ge mb1 mb0l">
+        <div class="o1 white w-33 flex flex-col justify-center borb1md bordd">
+          <div class="semi pt150">Current Registration Price</div>
+          <div class="py075 f4 semi">1 year</div>
+        </div>
+        <div class="o2 brand-lighter white-text w-33 flex flex-col justify-center borb1md">
+          <div class="semi">Current Renewal Price</div>
+          <div class="py075 f4 semi">+ 1 year</div>
 
-      </td>
-      <td class="border30 white-text py075">
-        <div class="pt150">Current renewal price</div>
-        <div class="py075 f4 ">+ 1 year</div>
-      </td>
-      <td class="border30 white-text">
-        <div class="pt150">One-off transfer fee</div>
-        <div class="py075 small gc-text">if applicable</div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2" class="border-l0 border-t0  "><h4 class="mb025 pt3">Domain names</h4></td>
-      <td class="border30"></td>
-      <td class="border30"></td>
-    </tr>
+        </div>
+        <div class="o3 brand w-33 white-text flex flex-col justify-center borb1md">
+          <div class="semi">One-off transfer fee</div>
+          <div class="py075 f4 semi">if applicable</div>
+        </div>
+      </div>
+
+      <div class="ft flex minwxsm bor0 borb1 bordd">
+        <div id="searchtools"
+             class="borr0 py1 px1 px2l grid flex-grid align-center  flex-row-reverse justify-end">
+
+          <div class="w-50 flex mb050 mb0l">
+            {{ partial "searchbox-sm" (dict "context" . "inputclass" "py050" "placeholder" "e.g. .com" "noform" "1" "modelkey" "request.tldSearch") }}
+            <button class="butlk inv flex align-center ml1 hidden-sm btn-filters-domain-search"
+                    data-target="show">Filters <span kb-if="changedFilterCount">(<span
+                    kb-text="changedFilterCount"></span>)</span><i class="net-chevron-down"></i></button>
+
+          </div>
+
+          <div class="flex w-sm align-center justify-between-sm pl1 pl0l mr1l"><span class="small-sm"
+                                                                                     kb-if="filterValues.categories.length | or tldSearch | not">Search or filter&nbsp;</span><span
+                  class="small-sm"><span
+                  kb-if="filterValues.categories.length | or tldSearch">Your search:</span> <b kb-cloak>{request.domainsearch}</b> &bullet; <span
+                  kb-text="filterValues.categories"></span><span
+                  kb-if="filterValues.categories | not">Popular</span></span>
+            <button class=" hidden-md butlk inv flex align-center ml1 btn-filters-domain-search"
+                    data-target="show">Filters <span
+                    kb-if="changedFilterCount">({changedFilterCount})</span><i class="net-chevron-down"></i>
+            </button>
+          </div>
+        </div>
+      </div>
 
 
-    <tr kb-each-tld="moreResults">
-      <td kb-if="$index | equals 0" class="border-l0 border-b0 vtop">Best selling, classic domains </td>
-      <td kb-if="$index | gt 0" class="border-b0 border-l0"></td>
-      <td>
-        <div class="pt1"><img kb-src="tld.imageAsBase64" alt="" height="42" kb-if="tld.imageAsBase64"/><span
-                kb-if="tld.imageAsBase64 | not">.{tld.tld}</span></div>
-        <div class="f4 py025 semi" kb-if="tld.originalRegistrationPrice | not">&pound;{tld.registrationPrice}</div>
-        <div class="red-text f4 py025 semi" kb-if="tld.originalRegistrationPrice">&pound;{tld.registrationPrice}</div>
-        <div class="vsmall strike thin ga-text" kb-if="tld.originalRegistrationPrice">&pound;{tld.originalRegistrationPrice}</div>
-        <div class="tiny pb050">1 Year Registration</div>
-        <div kb-each="offer in tld.offers" class="red-text vsmall thin lh13 pb050">{offer}</div>
+      <net1-endless-scroll  kb-data-last-results="tlds.lastResults" data-page-size-param="pageSize" data-page-size-increment="10" data-scroll-container="#fixedwrap">
 
-      </td>
-      <td class="border30 white-text">
-        <div class="pt1"><img kb-src="tld.imageAsBase64" alt="" height="42" kb-if="tld.imageAsBase64" class="f-white"/><span
-                kb-if="tld.imageAsBase64 | not">.{tld.tld}</span></div>
-        <div class="f4 py025 semi" >&pound;{tld.renewalPrice}</div>
-        <div class="tiny pb050">1 Year Renewal</div>
-      </td>
-      <td class="border30 white-text">
-        <div class="pt1"><img :src="tld.imageAsBase64" alt="" height="42" kb-if="tld.imageAsBase64" class="f-white"/><span
-                kb-if="tld.imageAsBase64 | not">.{tld.tld}</span></div>
-        <div class="f4 py025 semi" >&pound;{tld.transferPrice}</div>
-        <div class="tiny pb050">Transfer fee</div>      </td>
-    </tr>
-    {{ if $more }}
-    <tr>
-      <td class="border-l0 border-t0 border-b0" ></td>
-      <td colspan="3" class="border-l0 border-t0 text-center "><a
-              href="javascript:void(0)" class="uppercase inv ib py150 more-results">View more prices <i class="net-chevron-down"></i></a></td>
+        <div kb-each-tld="prices | length | ternary prices tlds.lastResults">
 
-    </tr>
-    {{ end }}
-  </table>
-</div>
-</net-more-loader>
+          <div class="ft flex minwxsm borl0m1md bort0md">
+
+            {{- partial "domain-price-row" (dict "model" "tld" "class" "w-33") -}}
+
+          </div>
+        </div>
+      </net1-endless-scroll>
+
+
+      <div kb-if="prices.status | equals 'LOADED'">
+        <h3 kb-if="prices | length | equals 0" kb-cloak>
+          There are no results matching your filters
+        </h3>
+      </div>
+
+      <div kb-if="prices.status | equals 'LOADING'">
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHdpZHRoPSI0MHB4IiBoZWlnaHQ9IjQwcHgiIHZpZXdCb3g9IjAgMCA0MCA0MCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjEuNDE0MjE7IiB4PSIwcHgiIHk9IjBweCI+CiAgICA8ZGVmcz4KICAgICAgICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWwogICAgICAgICAgICBALXdlYmtpdC1rZXlmcmFtZXMgc3BpbiB7CiAgICAgICAgICAgICAgZnJvbSB7CiAgICAgICAgICAgICAgICAtd2Via2l0LXRyYW5zZm9ybTogcm90YXRlKDBkZWcpCiAgICAgICAgICAgICAgfQogICAgICAgICAgICAgIHRvIHsKICAgICAgICAgICAgICAgIC13ZWJraXQtdHJhbnNmb3JtOiByb3RhdGUoLTM1OWRlZykKICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICAgICAgQGtleWZyYW1lcyBzcGluIHsKICAgICAgICAgICAgICBmcm9tIHsKICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKDBkZWcpCiAgICAgICAgICAgICAgfQogICAgICAgICAgICAgIHRvIHsKICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogcm90YXRlKC0zNTlkZWcpCiAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAgICAgIHN2ZyB7CiAgICAgICAgICAgICAgICAtd2Via2l0LXRyYW5zZm9ybS1vcmlnaW46IDUwJSA1MCU7CiAgICAgICAgICAgICAgICAtd2Via2l0LWFuaW1hdGlvbjogc3BpbiAxLjVzIGxpbmVhciBpbmZpbml0ZTsKICAgICAgICAgICAgICAgIC13ZWJraXQtYmFja2ZhY2UtdmlzaWJpbGl0eTogaGlkZGVuOwogICAgICAgICAgICAgICAgYW5pbWF0aW9uOiBzcGluIDEuNXMgbGluZWFyIGluZmluaXRlOwogICAgICAgICAgICB9CiAgICAgICAgXV0+PC9zdHlsZT4KICAgIDwvZGVmcz4KICAgIDxnIGlkPSJvdXRlciI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMCwwQzIyLjIwNTgsMCAyMy45OTM5LDEuNzg4MTMgMjMuOTkzOSwzLjk5MzlDMjMuOTkzOSw2LjE5OTY4IDIyLjIwNTgsNy45ODc4MSAyMCw3Ljk4NzgxQzE3Ljc5NDIsNy45ODc4MSAxNi4wMDYxLDYuMTk5NjggMTYuMDA2MSwzLjk5MzlDMTYuMDA2MSwxLjc4ODEzIDE3Ljc5NDIsMCAyMCwwWiIgc3R5bGU9ImZpbGw6YmxhY2s7Ii8+CiAgICAgICAgPC9nPgogICAgICAgIDxnPgogICAgICAgICAgICA8cGF0aCBkPSJNNS44NTc4Niw1Ljg1Nzg2QzcuNDE3NTgsNC4yOTgxNSA5Ljk0NjM4LDQuMjk4MTUgMTEuNTA2MSw1Ljg1Nzg2QzEzLjA2NTgsNy40MTc1OCAxMy4wNjU4LDkuOTQ2MzggMTEuNTA2MSwxMS41MDYxQzkuOTQ2MzgsMTMuMDY1OCA3LjQxNzU4LDEzLjA2NTggNS44NTc4NiwxMS41MDYxQzQuMjk4MTUsOS45NDYzOCA0LjI5ODE1LDcuNDE3NTggNS44NTc4Niw1Ljg1Nzg2WiIgc3R5bGU9ImZpbGw6cmdiKDIxMCwyMTAsMjEwKTsiLz4KICAgICAgICA8L2c+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMCwzMi4wMTIyQzIyLjIwNTgsMzIuMDEyMiAyMy45OTM5LDMzLjgwMDMgMjMuOTkzOSwzNi4wMDYxQzIzLjk5MzksMzguMjExOSAyMi4yMDU4LDQwIDIwLDQwQzE3Ljc5NDIsNDAgMTYuMDA2MSwzOC4yMTE5IDE2LjAwNjEsMzYuMDA2MUMxNi4wMDYxLDMzLjgwMDMgMTcuNzk0MiwzMi4wMTIyIDIwLDMyLjAxMjJaIiBzdHlsZT0iZmlsbDpyZ2IoMTMwLDEzMCwxMzApOyIvPgogICAgICAgIDwvZz4KICAgICAgICA8Zz4KICAgICAgICAgICAgPHBhdGggZD0iTTI4LjQ5MzksMjguNDkzOUMzMC4wNTM2LDI2LjkzNDIgMzIuNTgyNCwyNi45MzQyIDM0LjE0MjEsMjguNDkzOUMzNS43MDE5LDMwLjA1MzYgMzUuNzAxOSwzMi41ODI0IDM0LjE0MjEsMzQuMTQyMUMzMi41ODI0LDM1LjcwMTkgMzAuMDUzNiwzNS43MDE5IDI4LjQ5MzksMzQuMTQyMUMyNi45MzQyLDMyLjU4MjQgMjYuOTM0MiwzMC4wNTM2IDI4LjQ5MzksMjguNDkzOVoiIHN0eWxlPSJmaWxsOnJnYigxMDEsMTAxLDEwMSk7Ii8+CiAgICAgICAgPC9nPgogICAgICAgIDxnPgogICAgICAgICAgICA8cGF0aCBkPSJNMy45OTM5LDE2LjAwNjFDNi4xOTk2OCwxNi4wMDYxIDcuOTg3ODEsMTcuNzk0MiA3Ljk4NzgxLDIwQzcuOTg3ODEsMjIuMjA1OCA2LjE5OTY4LDIzLjk5MzkgMy45OTM5LDIzLjk5MzlDMS43ODgxMywyMy45OTM5IDAsMjIuMjA1OCAwLDIwQzAsMTcuNzk0MiAxLjc4ODEzLDE2LjAwNjEgMy45OTM5LDE2LjAwNjFaIiBzdHlsZT0iZmlsbDpyZ2IoMTg3LDE4NywxODcpOyIvPgogICAgICAgIDwvZz4KICAgICAgICA8Zz4KICAgICAgICAgICAgPHBhdGggZD0iTTUuODU3ODYsMjguNDkzOUM3LjQxNzU4LDI2LjkzNDIgOS45NDYzOCwyNi45MzQyIDExLjUwNjEsMjguNDkzOUMxMy4wNjU4LDMwLjA1MzYgMTMuMDY1OCwzMi41ODI0IDExLjUwNjEsMzQuMTQyMUM5Ljk0NjM4LDM1LjcwMTkgNy40MTc1OCwzNS43MDE5IDUuODU3ODYsMzQuMTQyMUM0LjI5ODE1LDMyLjU4MjQgNC4yOTgxNSwzMC4wNTM2IDUuODU3ODYsMjguNDkzOVoiIHN0eWxlPSJmaWxsOnJnYigxNjQsMTY0LDE2NCk7Ii8+CiAgICAgICAgPC9nPgogICAgICAgIDxnPgogICAgICAgICAgICA8cGF0aCBkPSJNMzYuMDA2MSwxNi4wMDYxQzM4LjIxMTksMTYuMDA2MSA0MCwxNy43OTQyIDQwLDIwQzQwLDIyLjIwNTggMzguMjExOSwyMy45OTM5IDM2LjAwNjEsMjMuOTkzOUMzMy44MDAzLDIzLjk5MzkgMzIuMDEyMiwyMi4yMDU4IDMyLjAxMjIsMjBDMzIuMDEyMiwxNy43OTQyIDMzLjgwMDMsMTYuMDA2MSAzNi4wMDYxLDE2LjAwNjFaIiBzdHlsZT0iZmlsbDpyZ2IoNzQsNzQsNzQpOyIvPgogICAgICAgIDwvZz4KICAgICAgICA8Zz4KICAgICAgICAgICAgPHBhdGggZD0iTTI4LjQ5MzksNS44NTc4NkMzMC4wNTM2LDQuMjk4MTUgMzIuNTgyNCw0LjI5ODE1IDM0LjE0MjEsNS44NTc4NkMzNS43MDE5LDcuNDE3NTggMzUuNzAxOSw5Ljk0NjM4IDM0LjE0MjEsMTEuNTA2MUMzMi41ODI0LDEzLjA2NTggMzAuMDUzNiwxMy4wNjU4IDI4LjQ5MzksMTEuNTA2MUMyNi45MzQyLDkuOTQ2MzggMjYuOTM0Miw3LjQxNzU4IDI4LjQ5MzksNS44NTc4NloiIHN0eWxlPSJmaWxsOnJnYig1MCw1MCw1MCk7Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
+             alt=""/>
+      </div>
+
+
+    </div>
+
+
+  </div>
+</net-bind>

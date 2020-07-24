@@ -24,7 +24,7 @@
       <p>{{$allplans.Param "costlabel"}}</p>
 
       <p class="flex justify-center my2"><a href="{{$planpage.Permalink}}" class="inv f5 " >{{$allplans.Param "moredetails"}}<i class="net-chevron-right"></i></a></p>
-      <p class="small italic mb0 pb1">{{$allplans.Param "savelabel"}} <br>&pound; <span class="bold" kb-text="plans.{{$plan}}.Annual.netPrice | divide 12 | decimalplaces 2"></span> / {{$allplans.Param "month"}}</p>
+<!--      <p class="small italic mb0 pb1">{{$allplans.Param "savelabel"}} <br>&pound; <span class="bold" kb-text="plans.{{$plan}}.Annual.netPrice | divide 12 | decimalplaces 2"></span> / {{$allplans.Param "month"}}</p>-->
     </div>
     {{if .Get "features"}}
     {{with $features}}{{.Content | safeHTML}}{{end}}

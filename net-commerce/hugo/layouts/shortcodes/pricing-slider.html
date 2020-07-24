@@ -3,7 +3,7 @@
   <button class="but butlk inv carousel-left-button pr1"><i class="net-chevron-left f4"></i></button>
   <div class="flex1 overflow-x-hidden carousel-height">
 
-    <net-bind data-source="/marketing/feed/{{ .Get "feed" }}?imageSize=small"
+    <net-bind data-source="/marketing/feed/{{ .Get "feed" }}?imageSize=small&key={{ .Site.Params.siteKey }}"
         data-source-key="carousel" >
 
       <div class="price-ads overflow-x-hidden flex smooth">
