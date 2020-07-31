@@ -1,5 +1,16 @@
 
-<div id="searchtools" class=" pt1 px1 px2l grid flex-grid align-center  flex-row-reverse justify-end" >
+<div class="grid px1 px2l flex pt2 pb050">
+ <button class="uppercase but butsm butwh butwhbrand"><span class="uppercase ib px150">Sort by</span><i class="net-plus ib pr4"></i></button>
+ <button class="but butsm justify-start flex1 flex align-center"><span class="uppercase ib px150">Filter by</span><i class="net-plus ib pr4"></i></button>
+</div>
+<div class="grid px1 px3l small flex align-center justify-between">
+ <div class="">
+  <span class="thin ib pr025">Category:</span><span class="bold ib pr025">Popular</span><button class="butlk inv"><i class="net-close vsmall g8-text"></i></button>
+ </div>
+ <button
+   class="butlk inv"><span class="g8-text normal">Clear all</span></button>
+</div>
+<div id="searchtools" class=" pt1 px1 px2l grid flex-grid align-center  flex-row-reverse justify-end hidden" >
 
  <div class="w-50 flex mb050 mb0l">
   {{ partial "searchbox-sm" (dict "context" . "inputclass" "py050" "placeholder" "New domain search ..") }}

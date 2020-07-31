@@ -1,13 +1,13 @@
 
 <div id="product-builder-widget"
-     class="brand {{with .radius}}{{.}}{{else}}br8tl br8tr br8bl br8br{{end}} px075 pt1 pb150 ">
+     class="brand {{with .radius}}{{.}}{{else}}br8tl br8tr br8bl br8br{{end}} pt1 ">
   <div id="dec" class="img-shadow text-center white-text brand hidden-md"><i class="net-chevron-up"></i></div>
-  <div class="totals" >
+  <div class="totals pl075 pr075l " >
     <div class="semi uppercase white-text small pb050">Total</div>
     <div class="white-text semi f3 pb050" >£<span kb-html="total"></span></div>
     <div class="vsmall gc-text pb075"><span kb-html="items.length"></span> items</div>
   </div>
-  <div class="ctrls ">
+  <div class="ctrls pb150 pr075 pl075l">
 
       <a kb-if="items.length" {{with .bigbutlink}}kb-on-click="postPackage | args '{{.}}'"{{else}}kb-on-click="addToCart | args '/cart/'"{{end}} href="#"
        class="but butgn w flex justify-between align-center butlg"><span>{{with .bigbuttext}}{{.}}{{else}}Continue{{end}}</span>
@@ -23,16 +23,14 @@
         <i class="{{with .smallbuticon}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
 
       <a kb-if="items.length | not"  href="#"
-      class="but butbrwh butdisabled butsm butblk">Quick checkout
+      class="but bor2 boree butdisabled butsm butblk">Quick checkout
       <i class="{{with .smallbuticon}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
 
   </div>
 
 
-</div>
 
-
-<div class="white hidden-sm vsmall px075 py150 br8bl br8br" kb-if="items.length">
+<div class="white hidden-sm vsmall px075 py150 br8bl br8br" kb-i="items.length">
 
   <div class="bold">Domain names</div>
   <hr class="mb075">
@@ -50,4 +48,6 @@
 
 </div>
 
+
+</div>
 

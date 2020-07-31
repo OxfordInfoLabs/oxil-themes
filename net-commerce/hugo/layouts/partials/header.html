@@ -33,8 +33,8 @@
 
 
           {{- partial "logo" . -}}
-
-       {{- partial "searchbox" (dict "placeholder" "Find new domain .." "class" "white ml050 ml1l" "inputclass" "py050 small" "buttonclass" "white" "buttonpadding" "px050" "iconclass" "f5") -}}
+{{- $class :=  cond (eq (.Scratch.Get "theme") "brand") "white ml050 ml1l" "white ml050 ml1l bor1 borbrand" -}}
+       {{- partial "searchbox" (dict "placeholder" "Find new domain .." "class" $class "inputclass" "py050 small" "buttonclass" "white" "buttonpadding" "px050" "iconclass" "f5") -}}
 
           <div class="flex flex1 justify-end align-center ">
               {{- $menu := .Site.Menus.top_bar -}}
