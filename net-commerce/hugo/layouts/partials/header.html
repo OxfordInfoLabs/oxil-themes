@@ -33,6 +33,9 @@
 
 
           {{- partial "logo" . -}}
+
+       {{- partial "searchbox" (dict "placeholder" "Find new domain .." "class" "white ml050 ml1l" "inputclass" "py050 small" "buttonclass" "white" "buttonpadding" "px050" "iconclass" "f5") -}}
+
           <div class="flex flex1 justify-end align-center ">
               {{- $menu := .Site.Menus.top_bar -}}
               {{- $linkcss := "hidden-md hidden-sm visible-desktop mr2 inv " -}}

@@ -1,4 +1,5 @@
 {{- define "main" -}}
+<div class="white">
 <div class="gf9">
   <div class="grid px1 px2l py150">
     <div class="breadcrumb">
@@ -30,7 +31,7 @@
 {{- end -}}
 
 <div class="my3">
- <div class="grid px1 px2l w-80">
+ <div class="grid px1 px2l">
   {{- .Content -}}
  </div>
 </div>
@@ -53,4 +54,5 @@
 {{- end -}}
 
 {{- partial "prev-next" . -}}
+</div>
 {{- end -}}

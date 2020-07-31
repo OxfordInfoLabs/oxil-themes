@@ -2,7 +2,10 @@
 {{- $placeholder := .Get "placeholder" -}}
 {{- $class := .Get "class" -}}
 {{- $inputclass := .Get "inputclass" -}}
+{{- $buttonclass := .Get "buttonclass" -}}
+{{- $buttonpadding := .Get "buttonpadding" -}}
+{{- $iconclass := .Get "iconclass" -}}
 
-{{- partial "searchbox" (dict "action" $action "placeholder" $placeholder "class" $class "inputclass" $inputclass) -}}
+{{- partial "searchbox" (dict "action" $action "placeholder" $placeholder "class" $class "inputclass" $inputclass "buttonclass" $buttonclass "buttonpadding" $buttonpadding "iconclass" $iconclass) -}}
 
 
