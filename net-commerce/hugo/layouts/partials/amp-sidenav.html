@@ -1,6 +1,11 @@
-<nav id="nav-main" class="sidenav gf5" >
+<amp-sidebar id="nav-main" class=" gf5 white" layout="nodisplay" side="left" >
+ <div class="side-menu">
+  <a href="/about/" class="">About <i class="net-launch-out"></i></a>
+  <a href="/prices/" class="">Prices <i class="net-launch-out"></i></a>
+  <a href="/help/" class="">Help <i class="net-launch-out"></i></a>
+  {{ $menu := .Site.Menus.about}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
+  {{ $menu := .Site.Menus.services}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
+  {{ $menu := .Site.Menus.usefullinks}}{{ partial "linksmenu.html" (dict "page" . "site" .Site "ctx" $ "menu" $menu) }}
+ </div>
 
- <h4>To be completed.</h4>
-
-
-</nav>
+</amp-sidebar>

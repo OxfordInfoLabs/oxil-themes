@@ -33,14 +33,14 @@
 
 
           {{- partial "logo" . -}}
-{{- $class :=  cond (eq (.Scratch.Get "theme") "brand") "white ml050 ml1l" "white ml050 ml1l bor1 borbrand" -}}
+{{- $class :=  cond (eq (.Scratch.Get "theme") "brand") "white mx050 mx1l" "white mx050 mx1l bor1 borbrand" -}}
        {{- partial "searchbox" (dict "placeholder" "Find new domain .." "class" $class "inputclass" "py050 small" "buttonclass" "white" "buttonpadding" "px050" "iconclass" "f5") -}}
 
           <div class="flex flex1 justify-end align-center ">
               {{- $menu := .Site.Menus.top_bar -}}
-              {{- $linkcss := "hidden-md hidden-sm visible-desktop mr2 inv " -}}
+              {{- $linkcss := "hidden-md hidden-sm visible-desktop mr175 inv " -}}
               {{- if eq (.Scratch.Get "theme") "brand" -}}
-                {{- $linkcss = "hidden-md hidden-sm visible-desktop wh mr2 inv " -}}
+                {{- $linkcss = "hidden-md hidden-sm visible-desktop wh mr175 inv " -}}
               {{- end -}}
               {{- partial "linksmenu.html" (dict "page" . "site" .Site  "ctx" $ "css" $linkcss "menu" $menu) -}}
 
