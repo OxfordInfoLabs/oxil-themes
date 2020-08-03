@@ -1,25 +1,13 @@
 
 <div class="grid px1 px2l flex pt2 pb050">
- <button class="uppercase but butsm butwh butwhbrand"><span class="uppercase ib px150">Sort by</span><i class="net-plus ib pr4"></i></button>
- <button class="but butsm justify-start flex1 flex align-center"><span class="uppercase ib px150">Filter by</span><i class="net-plus ib pr4"></i></button>
+<!-- <button class="uppercase but butsm butwh butwhbrand"><span class="uppercase ib px150">Sort by</span><i class="net-plus ib pr4"></i></button>-->
+ <button class="but butsm justify-start flex1 flex align-center btn-filters-domain-search" data-target="show"><span class="uppercase ib px150">Filter by</span><i class="net-plus ib pr4"></i></button>
 </div>
 <div class="grid px1 px3l small flex align-center justify-between">
  <div class="">
-  <span class="thin ib pr025">Category:</span><span class="bold ib pr025">Popular</span><button class="butlk inv"><i class="net-close vsmall g8-text"></i></button>
+  <span class="thin ib pr025">Category:</span><span class="bold ib pr025"><span kb-text="filterValues.categories"></span><span  kb-if="filterValues.categories | not" >Popular</span></span></span><button class="butlk inv" data-reset-filter data-filter="categories"><span kb-if="filterValues.categories"><i class="net-close vsmall g8-text" kb-if="filterValues.categories | notequals 'Popular'" ></i></span></button>
  </div>
- <button
-   class="butlk inv"><span class="g8-text normal">Clear all</span></button>
-</div>
-<div id="searchtools" class=" pt1 px1 px2l grid flex-grid align-center  flex-row-reverse justify-end hidden" >
-
- <div class="w-50 flex mb050 mb0l">
-  {{ partial "searchbox-sm" (dict "context" . "inputclass" "py050" "placeholder" "New domain search ..") }}
-  <button class="butlk inv flex align-center ml1 hidden-sm btn-filters-domain-search"  data-target="show">Filters <span kb-if="changedFilterCount">(<span kb-text="changedFilterCount"></span>)</span><i class="net-chevron-down"></i></button>
-
- </div>
-
- <div class="flex w-sm align-center justify-between-sm pl1 pl0l mr1l"><span class="small-sm">Your search: <b kb-cloak>{request.domainsearch}</b> &bullet; <span kb-text="filterValues.categories"></span><span  kb-if="filterValues.categories | not" >Popular</span></span>
-  <button class=" hidden-md butlk inv flex align-center ml1 btn-filters-domain-search" data-target="show">Filters <span kb-if="changedFilterCount">({changedFilterCount})</span><i class="net-chevron-down"></i></button></div>
+ <button class="butlk inv" data-reset-filters data-apply><span class="g8-text normal">Clear all</span></button>
 </div>
 <div id="filters-domain-search" class="expand-menu white flex flex-col" data-state="hide" >
   <div class="overflow flex1 ">

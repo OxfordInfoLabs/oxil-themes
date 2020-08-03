@@ -30,27 +30,38 @@ export default class NetDomainFilters extends HTMLElement {
     // Initialise function
     private init() {
 
-        // Apply filters, gets the current values and throws event
-        this.querySelectorAll("[data-apply-filters]").forEach(applyFilters => {
-            applyFilters.addEventListener("click", () => {
-
-                this.updateCurrentData(this.values);
-
-                let event = document.createEvent("Event");
-                event.initEvent("filterChange", false, true);
-                this.dispatchEvent(event);
-
-
-            });
-        });
-
 
         this.querySelectorAll("[data-reset-filters]").forEach(resetFilters => {
 
             resetFilters.addEventListener("click", () => {
                 this.updateValues(this.defaultValues);
+                if (resetFilters.hasAttribute("data-apply")) {
+                    this.applyCurrentFilters();
+                }
             });
         });
+
+
+        this.querySelectorAll("[data-reset-filter]").forEach(resetFilter => {
+            resetFilter.addEventListener("click", () => {
+                let filter = resetFilter.getAttribute("data-filter");
+                if (filter) {
+                    let newValues = {};
+                    newValues[filter] = this.defaultValues[filter];
+                    this.updateValues(newValues);
+                    this.applyCurrentFilters();
+                }
+            });
+        });
+
+
+        // Apply filters, gets the current values and throws event
+        this.querySelectorAll("[data-apply-filters]").forEach(applyFilters => {
+            applyFilters.addEventListener("click", () => {
+                this.applyCurrentFilters();
+            });
+        });
+
 
         this._defaultValues = this.values;
 
@@ -63,6 +74,15 @@ export default class NetDomainFilters extends HTMLElement {
             });
 
 
+    }
+
+
+    private applyCurrentFilters() {
+        this.updateCurrentData(this.values);
+
+        let event = document.createEvent("Event");
+        event.initEvent("filterChange", false, true);
+        this.dispatchEvent(event);
     }
 
     // Update kinibind data on changes
@@ -82,21 +102,25 @@ export default class NetDomainFilters extends HTMLElement {
 
         keys.forEach((key) => {
 
-            let field = this.querySelector("[data-filter='" + key + "']");
+            let fields = this.querySelectorAll("[data-filter='" + key + "']");
 
-            if (field.tagName.toLowerCase() == "input") {
-                switch (field.getAttribute("type")) {
-                    case "checkbox":
-                        (<HTMLInputElement>field).checked = (filterValues[key] === 1 || filterValues[key] === "1");
-                        let event = document.createEvent("Event");
-                        event.initEvent("change", false, true);
-                        field.dispatchEvent(event);
+            fields.forEach(field => {
 
-                        break;
+                if (field.tagName.toLowerCase() == "input") {
+                    switch (field.getAttribute("type")) {
+                        case "checkbox":
+                            (<HTMLInputElement>field).checked = (filterValues[key] === 1 || filterValues[key] === "1");
+                            let event = document.createEvent("Event");
+                            event.initEvent("change", false, true);
+                            field.dispatchEvent(event);
+
+                            break;
+                    }
+                } else {
+                    (<HTMLInputElement>field).value = filterValues[key];
                 }
-            } else {
-                (<HTMLInputElement>field).value = filterValues[key];
-            }
+
+            });
 
 
         });
