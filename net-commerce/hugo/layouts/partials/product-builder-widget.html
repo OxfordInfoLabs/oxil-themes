@@ -19,7 +19,7 @@
 
 
       <a kb-if="items.length" kb-on-click="addToCart | args '{{with .smallbutlink}}{{.}}{{else}}{{$.Site.Params.dashboard_url}}/checkout{{end}}'"
-      class="but butbrwh butsm butblk">Quick checkout
+      class="but bor2 boree butbrwh butsm butblk">Quick checkout
         <i class="{{with .smallbuticon}}{{.}}{{else}}net-cart-solid{{end}}"></i></a>
 
       <a kb-if="items.length | not"  href="#"
@@ -30,7 +30,7 @@
 
 
 
-<div class="white hidden-sm vsmall px075 py150 br8bl br8br" kb-i="items.length">
+<div class="white hidden-sm vsmall px075 py150 br8bl br8br" kb-if="items.length">
 
   <div class="bold">Domain names</div>
   <hr class="mb075">
