@@ -44,11 +44,13 @@ export default class NetDomainSearch extends NetPackageBuilder {
             toggleSelectedResult: (domainName) => {
 
                 let selectedItems = this._view.model.selectedItems;
+
                 if (!selectedItems[domainName]) {
-                    this._view.addNewProperty(selectedItems, domainName, true);
-                } else {
-                    selectedItems[domainName] = !selectedItems[domainName];
+                    this._view.addNewProperty(selectedItems, domainName, false);
                 }
+
+                selectedItems[domainName] = !selectedItems[domainName];
+
             }
         });
 
