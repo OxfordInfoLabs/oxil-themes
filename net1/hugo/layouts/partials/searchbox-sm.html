@@ -6,8 +6,8 @@
 {{- $modelkey := .modelkey -}}
 {{- $noform := .noform -}}
 
-<form {{ if $noform }} action="javascript:void(0)" {{ else }}  action="{{- with $action -}}{{- . -}}{{else}}/search/{{end}}" {{ end }}  class="flex1 pl050 flex bor2 br8tr br8br br8bl br8tl {{ with $class -}}{{- . -}}{{- end -}}">
- <input class="f5 flex1 pl050 bor0 {{ with $inputclass -}}{{- . -}}{{- end -}}" autocomplete="off" type="text" name="{{- if eq $function "transfer" -}}transferDomain {{- else -}} domainsearch {{- end -}}" placeholder="{{- with $placeholder -}}{{- . -}}{{- end -}}" {{ with $modelkey }} kb-value="{{- . -}}" event-name="change"{{ end }}>
+<form {{ if $noform }} action="javascript:void(0)" {{ else }}  action="{{- with $action -}}{{- . -}}{{else}}/search/{{end}}" {{ end }}  class="white pl050 flex bor2 br8tr br8br br8bl br8tl {{ with $class -}}{{- . -}}{{- end -}}">
+ <input class="f5 flex1 pl050 bor0 minw210 {{ with $inputclass -}}{{- . -}}{{- end -}}" autocomplete="off" type="text" name="{{- if eq $function "transfer" -}}transferDomain {{- else -}} domainsearch {{- end -}}" placeholder="{{- with $placeholder -}}{{- . -}}{{- end -}}" {{ with $modelkey }} kb-value="{{- . -}}" event-name="change"{{ end }}>
  <button type="submit" class="px1 borr0 bort0 borb0 ge br8tr br8br" > <i class="net-search g5-text f3 g3-text "></i></button>
 </form>
 
