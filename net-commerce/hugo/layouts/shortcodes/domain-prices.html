@@ -4,13 +4,35 @@
   <div kb-set-prices="tlds | filter 'tld' request.tldSearch | filter filterValues | slice 0 pageSize" class="pb4">
 
     <div class="overflow-x">
+     <div class="  bor0 borb1 bordd gf5">
+      <div id="searchtools"
+           class="borr0 py2 ">
 
-      <div class="ft flex minwxsm borl0m1md">
+       <div class="flex mb050 px1 px2l">
+        <div class="flex1">{{ partial "searchbox-sm" (dict "context" . "inputclass" "py050 " "placeholder" "Search for prices e.g. .com" "noform" "1" "modelkey" "request.tldSearch") }}</div>
+        <button class="butlk inv flex align-center ml1 btn-filters-domain-search"
+                data-target="show">Filters <span kb-if="changedFilterCount">(<span
+          kb-text="changedFilterCount"></span>)</span><i class="net-chevron-down"></i></button>
+
+       </div>
+
+       <div class="px2 px3l small"><span class=""
+                                         kb-if="filterValues.categories.length | or tldSearch | not">Category:&nbsp;</span><b
+         class=""><span
+         kb-if="filterValues.categories.length | or tldSearch">Your search:</span> <b kb-cloak>{request.domainsearch}</b> <b
+         kb-text="filterValues.categories"></b><b
+         kb-if="filterValues.categories | not">Popular</b></span>
+
+       </div>
+      </div>
+     </div>
+
+      <div class="ft flex  borl0m1md">
         <div class="py025 white o1 w-33 ">Registration</div>
         <div class="py025 white-text brand-lighter o2 w-33 ">Renewal</div>
         <div class="py025 white-text brand o3 w-33 ">Transfer</div>
       </div>
-      <div class="ft flex minwxsm borl0m1md borb1sm bordd ge mb1 mb0l">
+      <div class="ft flex  borl0m1md borb1sm bordd ge mb1 mb0l">
         <div class="o1 white w-33 flex flex-col justify-center borb1md bordd">
           <div class="semi pt150">Current Registration Price</div>
           <div class="py075 f4 semi">1 year</div>
@@ -26,38 +48,13 @@
         </div>
       </div>
 
-      <div class="ft flex minwxsm bor0 borb1 bordd">
-        <div id="searchtools"
-             class="borr0 py1 px1 px2l grid flex-grid align-center  flex-row-reverse justify-end">
-
-          <div class="w-50 flex mb050 mb0l">
-            {{ partial "searchbox-sm" (dict "context" . "inputclass" "py050" "placeholder" "e.g. .com" "noform" "1" "modelkey" "request.tldSearch") }}
-            <button class="butlk inv flex align-center ml1 hidden-sm btn-filters-domain-search"
-                    data-target="show">Filters <span kb-if="changedFilterCount">(<span
-                    kb-text="changedFilterCount"></span>)</span><i class="net-chevron-down"></i></button>
-
-          </div>
-
-          <div class="flex w-sm align-center justify-between-sm pl1 pl0l mr1l"><span class="small-sm"
-                                                                                     kb-if="filterValues.categories.length | or tldSearch | not">Search or filter&nbsp;</span><span
-                  class="small-sm"><span
-                  kb-if="filterValues.categories.length | or tldSearch">Your search:</span> <b kb-cloak>{request.domainsearch}</b> &bullet; <span
-                  kb-text="filterValues.categories"></span><span
-                  kb-if="filterValues.categories | not">Popular</span></span>
-            <button class=" hidden-md butlk inv flex align-center ml1 btn-filters-domain-search"
-                    data-target="show">Filters <span
-                    kb-if="changedFilterCount">({changedFilterCount})</span><i class="net-chevron-down"></i>
-            </button>
-          </div>
-        </div>
-      </div>
 
 
       <net1-endless-scroll  kb-data-last-results="tlds.lastResults" data-page-size-param="pageSize" data-page-size-increment="10" data-scroll-container="#fixedwrap">
 
         <div kb-each-tld="prices | length | ternary prices tlds.lastResults">
 
-          <div class="ft flex minwxsm borl0m1md bort0md">
+          <div class="ft flex borl0m1md bort0md">
 
             {{- partial "domain-price-row" (dict "model" "tld" "class" "w-33") -}}
 
