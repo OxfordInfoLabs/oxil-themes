@@ -82,7 +82,7 @@
           <div class="gf9 p1l px1 py050 flex flex-col justify-between flex1" >
            <div class="mb1">
 
-            <h5 class="m0 lh13"><a class="inv font-color semi" href="{{$link}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h5>
+            <h5 class="m0 lh13"><a class="inv font-color bold" href="{{$link}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h5>
 
             <time class="vsmall g8-text" datetime="{{ dateFormat " 2006-01-02T15:04:05-07:00" .Lastmod }}">
             {{ dateFormat "2 Jan, 2006" .Lastmod }}
