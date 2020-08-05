@@ -9,17 +9,19 @@
            class="borr0 py2 ">
 
        <div class="flex mb050 px1 px2l">
-        <div class="flex1">{{ partial "searchbox-sm" (dict "context" . "inputclass" "py050 " "placeholder" "Search for prices e.g. .com" "noform" "1" "modelkey" "request.tldSearch") }}</div>
+        {{- $placeholder := cond (ne (.Site.Params.domainlabels.searchpricesplaceholder) nil) .Site.Params.domainlabels.searchpricesplaceholder "Search for prices, e.g. com" -}}
+
+        <div class="flex1">{{ partial "searchbox-sm" (dict "context" . "inputclass" "py050 " "placeholder" $placeholder "noform" "1" "modelkey" "request.tldSearch") }}</div>
         <button class="butlk inv flex align-center ml1 btn-filters-domain-search"
-                data-target="show">Filters <span kb-if="changedFilterCount">(<span
+                data-target="show">{{- cond (ne (.Site.Params.domainlabels.filters) nil) .Site.Params.domainlabels.filters "Filters" -}} <span kb-if="changedFilterCount">(<span
           kb-text="changedFilterCount"></span>)</span><i class="net-chevron-down"></i></button>
 
        </div>
 
        <div class="px2 px3l small"><span class=""
-                                         kb-if="filterValues.categories.length | or tldSearch | not">Category:&nbsp;</span><b
+                                         kb-if="filterValues.categories.length | or tldSearch | not">{{- cond (ne (.Site.Params.domainlabels.condition) nil) .Site.Params.domainlabels.condition "Condition" -}}:&nbsp;</span><b
          class=""><span
-         kb-if="filterValues.categories.length | or tldSearch">Your search:</span> <b kb-cloak>{request.domainsearch}</b> <b
+         kb-if="filterValues.categories.length | or tldSearch">{{- cond (ne (.Site.Params.domainlabels.yoursearch) nil) .Site.Params.domainlabels.yoursearch "Your search" -}}:</span> <b kb-cloak>{request.domainsearch}</b> <b
          kb-text="filterValues.categories"></b><b
          kb-if="filterValues.categories | not">Popular</b></span>
 
@@ -28,23 +30,24 @@
      </div>
 
       <div class="ft flex  borl0m1md">
-        <div class="py025 white o1 w-33 ">Registration</div>
-        <div class="py025 white-text brand-lighter o2 w-33 ">Renewal</div>
-        <div class="py025 white-text brand o3 w-33 ">Transfer</div>
+        <div class="py025 white o1 w-33 ">{{- with .Site.Params.domainlabels.registration -}}{{- . -}}{{- else -}}Registration{{- end -}}</div>
+        <div class="py025 white-text brand-lighter o2 w-33 ">{{- with .Site.Params.domainlabels.renewal -}}{{- . -}}{{- else -}}Renewal{{- end -}}</div>
+        <div class="py025 white-text brand o3 w-33 ">{{- with .Site.Params.domainlabels.transfer -}}{{- . -}}{{- else -}}Transfer{{- end -}}</div>
       </div>
       <div class="ft flex  borl0m1md borb1sm bordd ge mb1 mb0l">
-        <div class="o1 white w-33 flex flex-col justify-center borb1md bordd">
-          <div class="semi pt150">Current Registration Price</div>
+        <div class="o1 white w-33 flex flex-col justify-center borb1md bordd py1">
+          <div class="semi ">{{- cond (ne (.Site.Params.domainlabels.registrationyearlabel) nil) .Site.Params.domainlabels.registrationyearlabel "Current Registration Price" -}}</div>
           <div class="py075 f4 semi">1 year</div>
         </div>
-        <div class="o2 brand-lighter white-text w-33 flex flex-col justify-center borb1md">
-          <div class="semi">Current Renewal Price</div>
+        <div class="o2 brand-lighter white-text w-33 flex flex-col justify-center borb1md py1">
+          <div class="semi">{{- cond (ne (.Site.Params.domainlabels.renewalyearlabel) nil) .Site.Params.domainlabels.renewalyearlabel "Current Renewal Price" -}}</div>
           <div class="py075 f4 semi">+ 1 year</div>
 
         </div>
-        <div class="o3 brand w-33 white-text flex flex-col justify-center borb1md">
-          <div class="semi">One-off transfer fee</div>
-          <div class="py075 f4 semi">if applicable</div>
+        <div class="o3 brand w-33 white-text flex flex-col justify-center borb1md py1">
+          <div class="semi">{{- cond (ne (.Site.Params.domainlabels.transferlabel) nil) .Site.Params.domainlabels.transferlabel "One-off transfer in fee" -}}</div>
+          <div class="py075 f4 semi">1 year</div>
+         <div class="thin vsmall">including 1 Yr Registration</div>
         </div>
       </div>
 

@@ -113,12 +113,13 @@ https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg
 {{- if eq "search" . -}}
 <div class="grid px1 px2l pt2 pb4 w-80 flex flex-col justify-center ">
 
- {{- with $.Page.Params.ctatitle -}}<h2 class="text-center mb2">{{- . -}}</h2>{{- end -}}
- {{- $placeholder := "Search for a domain name .." -}}
+ {{- with $.Page.Params.ctatitle -}}<h2 class="text-center mb3">{{- . -}}</h2>{{- end -}}
+ {{- $placeholder := "Find a domain name .." -}}
  {{- with $.Page.Params.ctatext -}}
  {{- $placeholder = . -}}
  {{- end -}}
- <div class="px4l mb2">{{- partial "searchbox" (dict "placeholder" $placeholder "inputclass" "white") -}}</div>
+ <div class="px4l mb2">{{- partial "searchbox" (dict "placeholder" $placeholder "class" "borcc bor1" "inputclass" "white flex1") -}}</div>
+ {{- with $.Page.Params.ctamore -}}<div class="vsmall thin text-center mt-1">{{- . -}}</div>{{- end -}}
 
 </div>
 {{- end -}}
