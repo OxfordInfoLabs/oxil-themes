@@ -11,12 +11,14 @@
  <div class="with-link gf9" >
   {{ $image := .Resources.GetMatch "*featured*" }}
   {{- $imagesrc := "" -}}
+  {{- $title := "" -}}
   {{- with $image -}}
   {{- $image = .Resize "600x" -}}
   {{- $imagesrc = .RelPermalink -}}
+  {{- $title = .Title -}}
   {{- end -}}
   <div class="aspect sixteen-nine ">
-   <img class="cover abs" src="{{$imagesrc}}" alt="Media item {{ $image.Title }}"></img>
+   <img class="cover abs" src="{{$imagesrc}}" alt="Media item {{ $title }}"></img>
    <a href="{{$permalink}}" class="link-over"></a>
   </div>
  </div>
