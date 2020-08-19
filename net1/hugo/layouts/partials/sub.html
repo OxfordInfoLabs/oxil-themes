@@ -1,5 +1,5 @@
 {{$permalink := .Permalink}}
-<div class="w-33  flex flex-col-md mb2" >
+<div class="w-33  flex flex-col mb2" >
  {{- with .Params.youtubeid -}}
  <div class="with-link gf9 w" >
   <div class="aspect sixteen-nine">
@@ -14,11 +14,12 @@
   {{- with $image -}}
   {{- $image = .Resize "600x" -}}
   {{- $imagesrc = .RelPermalink -}}
-  {{- end -}}
+
   <div class="aspect sixteen-nine ">
-   <img class="cover abs" src="{{$imagesrc}}" alt="Media item {{ $image.Title }}"></img>
+   <img class="cover abs" src="{{$imagesrc}}" alt="Media item {{ .Title }}"></img>
    <a href="{{$permalink}}" class="link-over"></a>
   </div>
+  {{- end -}}
  </div>
  {{- end -}}
  <div class="gf9 p1l px1 py050 flex flex-col justify-between " >
@@ -31,7 +32,7 @@
    </time>
   </div>
 
-  <div class="vsmall">{{ range .Params.categories }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}: {{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
+  <div class="vsmall">{{- with .Params.categories -}}{{ range . }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}: {{- end }}{{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
 
  </div>
 
