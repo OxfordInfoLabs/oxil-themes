@@ -15,7 +15,7 @@
 
         <h1 class="f-subheadline mt050 mb2">{apiMethod.controller.title}: {apiMethod.method.name}</h1>
 
-        <p kb-html="apiMethod.method.commentHTML"></p>
+        <p kb-html="apiMethod.method.commentHTML | replace '/object:(.*?)/g' '../object/?object=$1' | replace '/api:(.*?)/g' '../$1'"></p>
 
         <p>
             <span kb-if="apiMethod.method.httpMethodIndicator.GET" class="badge semi brand-2 white-text">{apiMethod.method.httpMethod}</span>

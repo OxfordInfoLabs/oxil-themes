@@ -15,7 +15,7 @@
 
         <h1 class="f-subheadline mt050 mb2">API Object: {object.object.name}</h1>
 
-        <p kb-html="object.object.commentHTML">
+        <p kb-html="object.object.commentHTML | replace '/object:(.*?)/g' '../object/?object=$1' | replace '/api:(.*?)/g' '../$1'">
         </p>
 
         <h4>Properties</h4>
@@ -45,7 +45,7 @@
                     <span kb-if="property.updatable | not">Read Only</span>
                 </td></tr>
 
-                <tr><td></td> <td colspan="2" class="text-left-sm" data-label="Description&nbsp;" kb-html="property.description"
+                <tr><td></td> <td colspan="2" class="text-left-sm" data-label="Description&nbsp;" kb-html="property.description | replace '/object:(.*?)/g' '../object/?object=$1' | replace '/api:(.*?)/g' '../$1'"
                                   style="word-break: break-word"></td></tr>
 
                 </tbody>
