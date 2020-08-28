@@ -18,9 +18,7 @@
 
 
       <div kb-if="{{.Params.apiController}}API.controller">
-
-
-
+        
         <a href="{{.Permalink}}" {{if eq $currentPage .}}class="active"{{ end }}>Overview</a>
         <a kb-each-method="{{.Params.apiController}}API.controller.methods"
            kb-class="method.name"
