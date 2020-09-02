@@ -1,9 +1,9 @@
 {{- $youtubepath := "https://www.youtube.com/embed/" -}}
 {{- $anchor := printf "/news/#%s" (.Params.id | urlize) }}
-<div class="w-50 flex flex-col justify-between nftheme" >
- <div >
+<div class="w-50 flex flex-col justify-between " >
+
  {{- with .Params.youtubeid -}}
- <div class="with-link gf9" >
+ <div class="with-link nftheme" >
   <div class="aspect sixteen-nine">
    <iframe src="{{ printf "%s%s" $youtubepath . }}" class="abs" title="YouTube Video"></iframe>
   </div>
@@ -11,7 +11,7 @@
  </div>
  {{- else -}}
 
- <div class="with-link gf9" >
+ <div class="with-link nftheme" >
 
   {{- $image := default (.Resources.GetMatch "*featured*") (.Resources.GetMatch "*highlight*") -}}
   {{- $imagesrc := "" -}}
@@ -30,17 +30,16 @@
  {{- end -}}
 
 
-
-  <div class="p1">
-
+ <div class="nftheme flex1 p1 flex flex-col justify-between">
+  <div class="mb1">
    <h5 class="m0 lh13"><a class="inv font-color bold" href="{{$anchor}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h5>
    {{- with .Params.expirestext -}}<p class="small red-text thin">{{- . -}}</p>{{- end -}}
-   <time class="vsmall g8-text" datetime="{{ dateFormat " 2006-01-02T15:04:05-07:00" .Lastmod }}">
-     {{ dateFormat "2 Jan, 2006" .Lastmod }}
-     </time>
+   <time class="vsmall g8-text" datetime="{{ dateFormat "2006-01-02T15:04:05-07:00" .Lastmod }}">
+   {{ dateFormat "2 Jan, 2006" .Lastmod }}
+   </time>
   </div>
- </div>
-  <div class="small p1">{{ range .Params.categories }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}: {{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
 
+  <div class="small">{{ range .Params.categories }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}: {{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
+ </div>
 
 </div>
