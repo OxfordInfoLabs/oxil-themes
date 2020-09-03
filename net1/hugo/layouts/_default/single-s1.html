@@ -1,4 +1,27 @@
 {{- define "main" -}}
+{{- $image := .Resources.GetMatch "*featured*" -}}
+{{- $imagesrc := "" -}}
+{{- with $image -}}
+{{- $image = .Resize "600x" -}}
+{{- $imagesrc = .RelPermalink -}}
+{{- end -}}
+{{- $bkImageSnap := "true" -}}
+
+{{- if eq .Params.hero "true" -}}
+<section class="rel px1 px2l minH33 flex flex-col justify-center ">
+ {{- with $imagesrc -}}
+ <img class="mask-max-0-75-none abs cover {{- if eq $bkImageSnap "true" }} snap{{- end -}}" src="{{ . -}}" alt="Section background image">
+ {{- end -}}
+ <div class="rel grid px1 px2l w ">
+  <div class="w-40 pt2 pt0l" ><h1 class="s1 bold white-text ">{{- .Title -}}</h1>
+   <p class=" white-text">{{- .Description -}}</p>
+  </div>
+ </div>
+
+</section>
+{{- end -}}
+
+{{- if eq .Params.breadcrumb "true" -}}
 <div class="white">
 <div class="gf9">
   <div class="grid px1 px2l py150">
@@ -7,34 +30,26 @@
     </div>
   </div>
 </div>
-
-
-
-<div class="white">
- <div class="grid px1 px2l pt4 mb2">
-  <h1 class="text-center">{{- .Title -}}</h1>
- </div>
-</div>
-
-{{- $image := .Resources.GetMatch "*featured*" -}}
-{{- $imagesrc := "" -}}
-{{- with $image -}}
-{{- $image = .Resize "600x" -}}
-{{- $imagesrc = .RelPermalink -}}
-{{- end -}}
-{{- with $imagesrc -}}
-<div class="">
- <div class="grid px1 px2l ">
-  <img class="responsive-image" src="{{- . -}}" alt="Hero image">
- </div>
-</div>
 {{- end -}}
 
-<div class="my3">
- <div class="grid px1 px2l">
-  {{- .Content -}}
+ {{- with .Params.contentlayout -}}
+
+ {{- if eq "style1" . -}}
+ <div class="grid px1 px2l pt4">
+  {{- with $.Page.Params.subtitle -}}
+  <h2 class="purple-text normal borb2 borgn py1">{{- . -}}</h2>
+  {{- end -}}
+  <div class="text2col small thin pb4 text-justify">
+   {{- $.Page.Content -}}
+  </div>
  </div>
-</div>
+{{- end -}}
+
+ {{- else -}}
+
+ {{- .Content -}}
+{{- end -}}
+
 
 <div>
  <div class="grid flex-grid flex-wrap flex-gutter-3 px1 px2l">
@@ -47,14 +62,15 @@
 </div>
 
 {{- if eq .Params.relatedbycategory "true" -}}
-<div class="white py3">
+<div class="gf9 py3">
  <div class="grid">
   <h5 class="px1 px2l uppercase">{{- with .Params.relatedbycategorytitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
   {{- partial "related-by-categories" . -}}
  </div>
 </div>
 {{- end -}}
-
+{{- if eq .Params.prevnext "true" -}}
 {{- partial "prev-next" . -}}
+{{- end -}}
 </div>
 {{- end -}}
