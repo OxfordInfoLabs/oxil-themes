@@ -10,7 +10,7 @@
  {{- if and $has_common_categories (ne $page_link $page.Permalink) (lt ($.Scratch.Get "$c") 500)}}
  {{- $.Scratch.Add "$c" 1 -}}
 
- {{- partial "news-related-item" . -}}
+ {{- partial "sub" . -}}
 
 
 {{- end -}}
