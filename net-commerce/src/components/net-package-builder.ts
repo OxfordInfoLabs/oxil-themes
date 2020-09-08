@@ -46,9 +46,9 @@ export default class NetPackageBuilder extends HTMLElement {
                 ElementSpinner.spinElement(<HTMLElement>event.target);
 
                 let api = new WhitelabelApi();
-                api.addItemsToCart(this._view.model.items, restoreKey).then(() => {
+                api.addItemsToCart(this._view.model.items, restoreKey).then((result) => {
                     sessionStorage.removeItem("net-package");
-                    window.location.href = href;
+                    window.location.href = href + (result ? "?errors=" + JSON.stringify(result) : "");
                 });
             }
         };

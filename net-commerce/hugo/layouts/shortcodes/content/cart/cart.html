@@ -1,6 +1,6 @@
 <div class="grid px1 px2l pb5 pt4">
   <net-cart>
-    <div class="vue-wrapper">
+
     <div class="flex-grid flex-row-reverse" kb-if="cart" kb-cloak >
 
       <div id="product-builder-widget-wrap" class="pl1l w-25" >
@@ -28,6 +28,17 @@
       </div>
       <div class="w-75 pr1l ">
         <h1 class="f3 mb150 semi">Viewing cart</h1>
+
+        <div kb-if="errors" class="bor1 p1 mb1">
+          <div kb-if="errors.UNAVAILABLE">
+            <div class="red-text">
+            The domain name<span kb-if="errors.UNAVAILABLE.length | gt 1">s</span>  <b>{errors.UNAVAILABLE | join ","}</b> {errors.UNAVAILABLE.length | gt 1 | ternary 'were' 'was'} unavailable and could not be added to the cart.  This usually happens when domain names have recently been deleted and are not yet available or
+            when they have been marked as restricted names by the Registry operator.
+            </div>
+          </div>
+
+        </div>
+
 
         <div class="flex ">
           <div class="w-70 w75sm thin borr1 bordd py025 pl1l pr1">Item</div>
@@ -76,7 +87,6 @@
 
 
       </div>
-    </div>
     </div>
   </net-cart>
 </div>
