@@ -41,8 +41,11 @@
                   (expires {method.payment.card.exp_month}/{method.payment.card.exp_year}
                   {method.payment.card.brand})
                 </label>
-                <label class="blk"><input name="paymentselected" type="radio" value="new"> use a
-                  different card</label>
+                <label class="blk"><input name="paymentselected" type="radio" value="new">
+                  <span kb-if="paymentMethods.length | gt 0">use a
+                  different card</span>
+                  <span kb-if="paymentMethods.length | equals 0">Add a card</span>
+                </label>
 
                 <kc-stripe-element id="stripe-element" class="p1"></kc-stripe-element>
                 <div id="loading-payment" class=" progress-modal flex justify-center align-center">
