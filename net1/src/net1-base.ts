@@ -13,7 +13,7 @@ import "cookie-notice/dist/cookie.notice.min";
 
 declare var window: any;
 
-
+// Default state
 function defaultState() {
 
     var blogNews: HTMLElement = document.querySelector('#blognews');
@@ -355,7 +355,7 @@ document.querySelectorAll('.add-domain').forEach((item: HTMLElement) => {
 
 document.querySelectorAll('[data-navigate-back]').forEach((item: HTMLElement) => {
     item.addEventListener('click', function (e) {
-      
+
       e.preventDefault();
         window.history.back();
     });
