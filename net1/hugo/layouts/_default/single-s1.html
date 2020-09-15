@@ -53,13 +53,16 @@
 
 <div>
  <div class="grid flex-grid flex-wrap flex-gutter-3 px1 px2l">
-  {{- range .Pages -}}
 
+  {{ range where .Site.Pages "Section" .CurrentSection }}
+hello
   {{- partial "sub" . -}}
 
   {{- end -}}
  </div>
 </div>
+
+
 
 {{- if eq .Params.relatedbycategory "true" -}}
 <div class="gf9 py3">
@@ -69,7 +72,10 @@
  </div>
 </div>
 {{- end -}}
-{{- if eq .Params.prevnext "true" -}}
+
+
+
+ {{- if eq .Params.prevnext "true" -}}
 {{- partial "prev-next" . -}}
 {{- end -}}
 </div>

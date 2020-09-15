@@ -1,5 +1,11 @@
 {{$permalink := .Permalink}}
-<div class="w-33  flex flex-col mb2 " >
+{{- $relatedContentClass := "" -}}
+{{- if .Params.relatedContentclass -}}
+{{- $relatedContentClass = .Params.relatedContentClass -}}
+{{- else -}}
+{{- $relatedContentClass = .Site.Params.theme.relatedContentDefaultClass -}}
+{{- end -}}
+<div class="w-33  flex flex-col-md mb2 " >
  {{- with .Params.youtubeid -}}
  <div class="with-link gf9 w" >
   <div class="aspect sixteen-nine">
@@ -8,7 +14,7 @@
   <a href="{{$permalink}}" class="link-over"></a>
  </div>
  {{- else -}}
- <div class="with-link gf9" >
+ <div class="with-link gf9 w thumb" >
   {{ $image := .Resources.GetMatch "*featured*" }}
   {{- $imagesrc := "" -}}
   {{- $title := "" -}}
@@ -21,9 +27,9 @@
    <img class="cover abs" src="{{$imagesrc}}" alt="Media item {{ $title }}">
    <a href="{{$permalink}}" class="link-over"></a>
   </div>
-  {{- end -}}
  </div>
- <div class="gf9 p1l px1 py050 flex flex-col justify-between flex1" >
+  {{- end -}}
+ <div class="{{- with $relatedContentClass}}{{ . -}}{{- else -}}gf9{{- end }} p1l px1 py050 flex flex-col justify-between flex1" >
   <div class="mb1">
 
    <h4 class="m0 lh13"><a class="inv font-color semi" href="{{$permalink}}">{{- with .Params.channel }}<b>{{.}}:</b> {{ end }}{{.Title}}</a></h4>
@@ -33,7 +39,7 @@
    </time>
   </div>
 
-  <div class="vsmall">{{- with .Params.categories -}}{{ range . }}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}: {{ end }}{{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
+  <div class="vsmall">{{- range .Params.categories -}}<a href="/categories/{{- . | urlize -}}/" class="pipe uppercase text-colour inv normal">{{ . }}</a>{{ end }}{{- if and .Params.categories .Params.tags }}: {{ end -}} {{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}</div>
 
  </div>
 
