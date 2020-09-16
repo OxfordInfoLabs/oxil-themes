@@ -8,6 +8,12 @@
 {{- $bkImageSnap := "true" -}}
 
 {{- if eq .Params.hero "true" -}}
+{{- if eq .Params.heroStyle "simple" -}}
+<section class="brand white-text minH25 flex align-center justify-center flex-col">
+ <h1 class="white-text">{{- .Title -}}</h1>
+ <h5 class="thin ge-text">{{- .Description -}}</h5>
+</section>
+{{- else -}}
 <section class="rel px1 px2l minH33 flex flex-col justify-center ">
  {{- with $imagesrc -}}
  <img class="mask-max-0-75-none abs cover {{- if eq $bkImageSnap "true" }} snap{{- end -}}" src="{{ . -}}" alt="Section background image">
@@ -17,9 +23,12 @@
    <p class=" white-text">{{- .Description -}}</p>
   </div>
  </div>
-
 </section>
+
 {{- end -}}
+{{- end -}}
+
+
 
 {{- if eq .Params.breadcrumb "true" -}}
 <div class="white">
@@ -43,13 +52,26 @@
    {{- $.Page.Content -}}
   </div>
  </div>
-{{- end -}}
+ {{- end -}}
+ {{- if eq "style2" . -}}
+ <div class="grid px1 px2l py4">
+  {{- with $.Page.Params.subtitle -}}
+  <h2 class="normal borb2 py1">{{- . -}}</h2>
+  {{- end -}}
+  <div class="w-75">
+   {{- $.Page.Content -}}
+  </div>
+ </div>
+ {{- end -}}
 
  {{- else -}}
 
  {{- .Content -}}
 {{- end -}}
-
+ {{- $ctx := . -}}
+ {{- with .Params.id -}}
+ {{- partial . $ctx -}}
+ {{- end -}}
 
 <div>
  <div class="grid flex-grid flex-wrap flex-gutter-3 px1 px2l">
