@@ -8,6 +8,11 @@
 
 </div>
 
+
+{{with .Page.Params.confirmationmessage}}
+<p class="green">{{safeHTML .}}</p>
+{{end}}
+
 <div class="grid grid-desktop white my4 px1 px2l">
   <kc-order>
     <div class="overflow-x vue-wrapper">

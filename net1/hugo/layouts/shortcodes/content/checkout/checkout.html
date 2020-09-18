@@ -1,7 +1,8 @@
 
 
 <div class="grid px1 px2l pb3 pt2">
-  <kc-checkout data-security-url="/checkout/security" data-billing-url="/billing">
+  <kc-checkout data-security-url="/checkout/security" data-billing-url="/billing"
+               {{ with .Page.Params.logoutoncomplete }}data-logout-on-complete="true"{{end}}>
     <div id="checkout-wrapper" >
 
       <div class="flex flex-wrap vue-wrapper">
