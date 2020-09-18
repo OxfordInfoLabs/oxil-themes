@@ -78,7 +78,7 @@
  {{- with $sections := .Sections -}}
 
  <div>
-  <div class="grid flex-grid flex-wrap flex-gutter-3 px1 px2l">
+  <div class="grid flex-grid flex-wrap flex-gutter-3 px1 px2l pt2">
  {{- range $sections -}}
  {{- partial "sub-section" (dict "ctx" . "relatedContentClass" $relatedContentClass) -}}
  {{- end -}}
