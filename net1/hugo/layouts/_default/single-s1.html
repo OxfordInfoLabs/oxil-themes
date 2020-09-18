@@ -103,14 +103,24 @@ hello
 
 
 
-{{- if eq .Params.relatedbycategory "true" -}}
-<div class="gf9 py3">
- <div class="grid">
-  <h5 class="px1 px2l uppercase">{{- with .Params.relatedbycategorytitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
-  {{- partial "related-by-categories" . -}}
+ {{- if eq .Params.relatedbycategory "true" -}}
+ <div class="gf9 py3">
+  <div class="grid">
+   <h5 class="px1 px2l uppercase">{{- with .Params.relatedbycategorytitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
+   {{- partial "related-by-categories" . -}}
+  </div>
  </div>
-</div>
-{{- end -}}
+ {{- end -}}
+
+
+ {{- if eq .Params.relatedbytag "true" -}}
+ <div class="gf9 py3">
+  <div class="grid">
+   <h5 class="px1 px2l uppercase">{{- with .Params.relatedbycategorytitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
+   {{- partial "related-by-tags" . -}}
+  </div>
+ </div>
+ {{- end -}}
 
 
 
