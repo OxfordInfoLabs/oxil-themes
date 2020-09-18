@@ -1,6 +1,6 @@
 {{$permalink := .Permalink}}
 {{- $relatedContentClass := "" -}}
-{{- if .Params.relatedContentclass -}}
+{{- if .Params.relatedContentClass -}}
 {{- $relatedContentClass = .Params.relatedContentClass -}}
 {{- else -}}
 {{- $relatedContentClass = .Site.Params.theme.relatedContentDefaultClass -}}

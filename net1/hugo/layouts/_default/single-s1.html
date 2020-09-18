@@ -6,6 +6,7 @@
 {{- $imagesrc = .RelPermalink -}}
 {{- end -}}
 {{- $bkImageSnap := "true" -}}
+{{- $relatedContentClass := .Params.relatedcontentclass -}}
 
 {{- if eq .Params.hero "true" -}}
 {{- if eq .Params.heroStyle "simple" -}}
@@ -73,10 +74,26 @@
  {{- partial . $ctx -}}
  {{- end -}}
 
+ {{- if eq .Params.childSections "true" -}}
+ {{- with $sections := .Sections -}}
+
+ <div>
+  <div class="grid flex-grid flex-wrap flex-gutter-3 px1 px2l">
+ {{- range $sections -}}
+ {{- partial "sub-section" (dict "ctx" . "relatedContentClass" $relatedContentClass) -}}
+ {{- end -}}
+  </div>
+ </div>
+ {{- end -}}
+ {{- end -}}
+
+
+ {{- $pages := where .Site.Pages "Section" .CurrentSection -}}
+
 <div>
  <div class="grid flex-grid flex-wrap flex-gutter-3 px1 px2l">
 
-  {{ range where .Site.Pages "Section" .CurrentSection }}
+  {{ range .RegularPages }}
 hello
   {{- partial "sub" . -}}
 

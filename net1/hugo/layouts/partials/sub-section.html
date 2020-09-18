@@ -1,0 +1,39 @@
+{{$permalink := .ctx.Permalink}}
+{{- $relatedContentClass := "" -}}
+
+{{- if .relatedContentClass -}}
+
+{{- $relatedContentClass = .relatedContentClass -}}
+{{- else -}}
+{{- $relatedContentClass = .Site.Params.theme.relatedContentDefaultClass -}}
+{{- end -}}
+<div class="w-33  flex flex-col-md mb2 " >
+
+ <div class="with-link gf9 w thumb" >
+  {{ $image := .ctx.Resources.GetMatch "*featured*" }}
+  {{- $imagesrc := "" -}}
+  {{- $title := "" -}}
+  {{- with $image -}}
+  {{- $image = .Resize "600x" -}}
+  {{- $imagesrc = .RelPermalink -}}
+  {{- $title = .Title -}}
+  {{- end -}}
+  <div class="aspect sixteen-nine ">
+   <img class="cover abs" src="{{$imagesrc}}" alt="Media item {{ $title }}">
+   <a href="{{$permalink}}" class="link-over"></a>
+  </div>
+ </div>
+
+ <div class="{{- with $relatedContentClass}}{{ . -}}{{- else -}}gf9{{- end }} p1l px1 py050 flex flex-col justify-between flex1" >
+
+
+   <h3 class="mb2 lh13"><a class="inv font-color semi" href="{{$permalink}}">{{- with .ctx.Params.channel }}<b>{{.}}:</b> {{ end }}{{.ctx.Title}}</a></h3>
+
+
+
+
+
+
+ </div>
+
+</div>
