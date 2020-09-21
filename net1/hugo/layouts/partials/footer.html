@@ -53,8 +53,19 @@
        <img src="/images/{{.Site.Params.logo_mini_rev}}" height="{{.Site.Params.logo_mini_rev_height}}" >
       {{- end -}}
       </div>
-        <p class="brandsubtle-text small text-right text-center-sm mb0 pb025">{{.Site.Params.contractingCompany}} &copy; {{ dateFormat "2006" now }} {{.Site.Params.copyright}}. All rights reserved.</p>
-        <p class="brandsubtle-text small text-right text-center-sm">{{with .Site.Params.companyFooter}}{{.}}{{else}}{{.Site.Params.address | safeHTML}}{{end}}</p>
+       {{- with .Site.Params.contractingCompany -}}
+        <p class="brandsubtle-text small text-right text-center-sm mb0 pb025">{{ . | markdownify }}</p>{{- end -}}
+
+       {{- $companyFooter := .Site.Params.address | safeHTML -}}
+       {{with .Site.Params.companyFooter}}
+       {{- $companyFooter = . -}}
+       {{- end -}}
+
+       {{- with $companyFooter -}}
+        <p class="brandsubtle-text small text-right text-center-sm">{{- . | markdownify -}}</p>
+       {{- end -}}
+       <p class="brandsubtle-text vsmall text-right text-center-sm mb0 pb025">&copy; {{ dateFormat "2006" now }} {{.Site.Params.copyright}}. All rights reserved.</p>
+
       </div>
     </div>
 
