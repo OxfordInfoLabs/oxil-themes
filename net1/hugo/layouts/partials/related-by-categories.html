@@ -4,14 +4,23 @@
 {{- $categories := .Params.categories -}}
 {{- $c := 0 -}}
 
+{{- $sectionPages := where .Site.RegularPages "Section" .Section -}}
+{{- $relatedCategoryExcludeSection := .Params.relatedByCategoryExcludeSection -}}
+
 <div class="px1 px2l grid flex flex-grid flex-wrap flex-gutter-3">
- {{- range $page := .Site.Pages -}}
+ {{- range $page := .Site.RegularPages -}}
+
  {{- $has_common_categories := intersect $categories .Params.categories | len | lt 0 -}}
  {{- if and $has_common_categories (ne $page_link $page.Permalink) (lt ($.Scratch.Get "$c") 500)}}
  {{- $.Scratch.Add "$c" 1 -}}
 
+ {{- if eq $relatedCategoryExcludeSection "true" -}}
+ {{- if not (in $sectionPages $page) -}}
  {{- partial "sub" . -}}
-
+ {{- end -}}
+ {{- else -}}
+ {{- partial "sub" . -}}
+ {{- end -}}
 
 {{- end -}}
 {{- end -}}

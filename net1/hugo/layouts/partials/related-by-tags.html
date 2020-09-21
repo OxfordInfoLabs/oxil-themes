@@ -5,7 +5,7 @@
 {{- $c := 0 -}}
 
 <div class="px1 px2l grid flex flex-grid flex-wrap flex-gutter-3">
- {{- range $page := .Site.Pages -}}
+ {{- range $page := .Site.RegularPages -}}
  {{- $has_common_tags := intersect $tags .Params.tags | len | lt 0 -}}
  {{- if and $has_common_tags (ne $page_link $page.Permalink) (lt ($.Scratch.Get "$c") 500)}}
  {{- $.Scratch.Add "$c" 1 -}}

@@ -11,7 +11,7 @@
 {{- if eq .Params.hero "true" -}}
 {{- if eq .Params.heroStyle "simple" -}}
 <section class="brand white-text minH25 flex align-center justify-center flex-col">
- <h1 class="white-text">{{- .Title -}}</h1>
+ <h1 class="white-text text-center">{{- .Title -}}</h1>
  <h5 class="thin ge-text">{{- .Description -}}</h5>
 </section>
 {{- else -}}
@@ -55,11 +55,11 @@
  </div>
  {{- end -}}
  {{- if eq "style2" . -}}
- <div class="grid px1 px2l py4">
-  {{- with $.Page.Params.subtitle -}}
-  <h2 class="normal borb2 py1">{{- . -}}</h2>
-  {{- end -}}
+ <div class="grid px1 px2l py4 flex justify-center">
   <div class="w-75">
+   {{- with $.Page.Params.subtitle -}}
+   <h2 class="normal borb2 py1">{{- . -}}</h2>
+   {{- end -}}
    {{- $.Page.Content -}}
   </div>
  </div>
@@ -89,35 +89,27 @@
 
 
  {{- $pages := where .Site.Pages "Section" .CurrentSection -}}
-
+ {{- if eq .Params.regularPages "true" -}}
 <div>
  <div class="grid flex-grid flex-wrap flex-gutter-3 px1 px2l">
-
   {{ range .RegularPages }}
-hello
   {{- partial "sub" . -}}
-
   {{- end -}}
  </div>
 </div>
+{{- end -}}
 
 
-
- {{- if eq .Params.relatedbycategory "true" -}}
+ {{- if or (eq .Params.relatedbycategory "true") (eq .Params.relatedbytag "true") -}}
  <div class="gf9 py3">
   <div class="grid">
-   <h5 class="px1 px2l uppercase">{{- with .Params.relatedbycategorytitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
+   <h5 class="px1 px2l uppercase">{{- with .Params.relatedTitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
+   {{- if eq .Params.relatedbycategory "true" -}}
    {{- partial "related-by-categories" . -}}
-  </div>
- </div>
- {{- end -}}
-
-
- {{- if eq .Params.relatedbytag "true" -}}
- <div class="gf9 py3">
-  <div class="grid">
-   <h5 class="px1 px2l uppercase">{{- with .Params.relatedbycategorytitle -}}{{- . -}}{{- else -}}Related {{- end -}}</h5>
+   {{- end -}}
+   {{- if eq .Params.relatedbytag "true" -}}
    {{- partial "related-by-tags" . -}}
+   {{- end -}}
   </div>
  </div>
  {{- end -}}
