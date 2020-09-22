@@ -14,7 +14,7 @@
 
 <header  class="pr1 py1 {{ if eq (.Scratch.Get "theme") "brand" }}brand{{end}} {{ if eq (.Param "noshadow") "true" }}noshadow{{end}}">
 <div class="grid px1 px2l flex justify-between">{{- partial "logo" . -}}
-    <a class="g8-text inv thin flex align-center f5" href="#" data-navigate-back>Cancel <i class="net-close "></i></a>
+    <a class="g8-text inv thin flex align-center f5"  {{if .Params.cancelurl}}href="{{.Params.cancelurl}}"{{else}}href="#" data-navigate-back{{end}} data-cancel-link>Cancel <i class="net-close "></i></a>
 </div>
 
 </header>
