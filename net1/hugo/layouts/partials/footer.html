@@ -62,9 +62,9 @@
        {{- end -}}
 
        {{- with $companyFooter -}}
-        <p class="brandsubtle-text small text-right text-center-sm">{{- . | markdownify -}}</p>
+        <p class="brandsubtle-text small text-right text-center-sm">{{- . | markdownify }} &copy; {{ dateFormat "2006" now }} {{$.Site.Params.copyright}} All rights reserved.</p>
        {{- end -}}
-       <p class="brandsubtle-text vsmall text-right text-center-sm mb0 pb025">&copy; {{ dateFormat "2006" now }} {{.Site.Params.copyright}}. All rights reserved.</p>
+
 
       </div>
     </div>

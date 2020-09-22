@@ -10,7 +10,8 @@
 
 
 {{with .Page.Params.confirmationmessage}}
-<p class="green">{{safeHTML .}}</p>
+<div class="green success">
+<div class="grid px1 px2l py2">{{safeHTML .}}</div></div>
 {{end}}
 
 <div class="grid grid-desktop white my4 px1 px2l">
@@ -59,8 +60,8 @@
     </div>
   </kc-order>
   <div class="text-center g8-text vsmall pt2 bort3 bortdd">
-   {{- with .Site.Params.orderconfirmation -}}{{- . -}}<br>{{- end -}}
-   {{- with .Site.Params.companyFooter -}}{{- . -}}<br>{{- end -}}
+   {{- with .Site.Params.orderconfirmation -}}{{- . | markdownify -}}{{- end -}}
+
   </div>
 
 </div>
