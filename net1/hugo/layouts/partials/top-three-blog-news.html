@@ -1,0 +1,40 @@
+<div id="top-three-blog-media" class="flex flex-wrap flex-gutter-2-050">
+{{ $b := where .Site.RegularPages.ByLastmod.Reverse "Section" "blog" | first 3 }}
+{{ $m := where .Site.RegularPages.ByLastmod.Reverse "Section" "news" | first 3 }}
+{{$rendered := 0}}
+{{$lastBlogDate := now }}
+{{range $b}}
+{{$currentDate := .Lastmod }}
+{{range $m}}
+{{if and (ge .Lastmod $currentDate) (lt .Lastmod $lastBlogDate) (lt $rendered 3)   }}
+{{$rendered = add $rendered 1 }}
+  {{- if eq $rendered 1}}
+    {{- partial "top-news" . -}}
+    <div class="w-50 mb2 mb0l flex flex-gutter-2-050 stick" >
+  {{- else -}}
+    {{- partial "sub-news" . -}}
+  {{- end -}}
+  {{- if eq $rendered 3}}
+    </div>
+  {{- end -}}
+{{end}}
+{{end}}
+{{if lt $rendered 3  }}
+  {{$rendered = add $rendered 1 }}
+  {{- if eq $rendered 1}}
+    {{- partial "top-blog" . -}}
+    <div class="w-50 mb2 mb0l flex flex-gutter-2-050 stick" >
+  {{- else -}}
+    {{- partial "sub-blog" . -}}
+  {{- end -}}
+  {{- if eq $rendered 3}}
+    </div>
+  {{- end -}}
+{{end}}
+
+{{$lastBlogDate = $currentDate}}
+{{end}}
+
+</div>
+
+

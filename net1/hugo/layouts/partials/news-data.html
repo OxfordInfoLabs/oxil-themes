@@ -54,7 +54,7 @@
 {{- end -}}
   <hr class="muted">
   <div class="flex justify-between align-center py050 px075">
-   <div class="vsmall bor1 borbb px050 py025">{{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}<a href="{{- .RelPermalink -}}" class="com inv normal">related ..</a></div><div>{{ partial "amp-share-bar" $item }}  </div>
+   <div class="vsmall bor1 borbb px050 py025 ">{{ range .Params.tags }}<a href="/tags/{{- . | urlize -}}/" class="com text-colour inv normal">{{ . }}</a>{{ end }}<a href="{{- .RelPermalink -}}" class="com inv normal">related ..</a></div><div class="">{{ partial "amp-share-bar" $item }}  </div>
   </div>
 </div>
 
