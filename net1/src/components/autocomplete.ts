@@ -176,6 +176,9 @@ export default class Autocomplete extends HTMLElement {
         let resultsDiv = <HTMLElement>this.querySelector("[data-results]");
         Configuration.elementVisibilityFunction(resultsDiv, visible);
 
+        // Remove clear selection flag if allow new
+        clearSelection = clearSelection && !this.hasAttribute("data-allow-new");
+
         if (visible) {
             let event = document.createEvent("Event");
             event.initEvent("resultsShow", false, true);
