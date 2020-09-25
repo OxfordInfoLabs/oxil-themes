@@ -1,5 +1,9 @@
 {{- define "main" -}}
 {{- $image := .Resources.GetMatch "*featured*" -}}
+{{- with .Params.heroImage -}}
+{{- $image = $.Page.Resources.GetMatch "*hero*" -}}
+{{- end -}}
+
 {{- $imagesrc := "" -}}
 {{- with $image -}}
 {{- $image = .Resize "600x" -}}
