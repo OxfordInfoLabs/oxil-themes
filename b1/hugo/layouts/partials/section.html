@@ -1,0 +1,45 @@
+{{- $ctx := .ctx -}}
+{{- $gridCss := .section.gridClasses -}}
+{{- $colsPerRow := .section.colsPerRow -}}
+{{- $colsMax := $ctx.Site.Params.columnsMaxDefault -}}
+<h1>hello {{- $colsMax -}}</h1>
+{{- with .section.colsMax -}}
+{{- $colsMax = . -}}
+{{- end -}}
+{{- $colsWrapClass := .section.colsWrapClass -}}
+{{- $colsGutterClass := .section.colsGutterClass -}}
+{{- $bkColourClass := .section.bkColourClass -}}
+{{- $textColourClass := .section.textColourClass -}}
+{{- $bkImagePath := .section.bkImage -}}
+{{- $bkImageSrc := "" -}}
+{{- with $bkImagePath -}}
+{{ $bkImage := resources.Get . }}
+
+{{- $bkImage = $bkImage.Resize "1200x" -}}
+{{- $bkImageSrc = $bkImage.RelPermalink -}}
+{{- end -}}
+{{- $bkImageSnap := .section.bkImageSnap -}}
+{{- $margin := .section.marginClass -}}
+{{- $padding := .section.paddingClass -}}
+{{- $colsPerRow := .section.colsPerRow -}}
+{{- $columnClasses := .section.columnClasses -}}
+{{- $content := .content -}}
+
+
+
+
+<section class="rel px1 px2l {{- with $padding }} {{ . -}}{{- end -}} {{- with $margin }} {{ . -}}{{- end -}} {{- with $bkColourClass }} {{ . }}{{ end -}} {{- with $textColourClass }} {{ . -}}{{- end }} {{ with .minHeightClass -}}{{- . -}}{{- end }}"  style="">
+ {{- with $bkImageSrc -}}
+ <img class="mask-max-0-75-none abs cover {{- if eq $bkImageSnap "true" }} snap{{- end -}}" src="{{- with $bkImageSrc }} {{ . -}}{{- end -}}" alt="Section background image">
+ {{- end -}}
+ <div class="rel {{ with $gridCss }} {{ . -}}{{- else -}}grid px1 px2l{{- end -}}{{- with $colsWrapClass }} {{ . -}}{{- end -}}{{- with $colsGutterClass }} {{ . -}}{{- end -}}">
+<h1>Cols max {{- $colsMax -}}</h1>
+  {{- range first (int $colsMax) .section.columns  -}}
+
+  {{- partial "column" (dict "ctx" $ctx "col" . "columnClasses" $columnClasses "content" $content) -}}
+
+  {{- end -}}
+
+ </div>
+
+</section>
