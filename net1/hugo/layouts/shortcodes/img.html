@@ -4,8 +4,8 @@
     <img class="responsive-image {{with .Get "imageclass"}}{{.}}{{end}}" src="{{ .Get "src" }}" {{ with .Get "alt"}}alt="{{.}}"{{end}} >
 
 {{ with .Get "caption"}}
-<figcaption class="mb2" >
-  <small>{{.}}</small>
+<figcaption class="mb2 " >
+  <small >{{.}}</small>
 </figcaption>
 {{ end }}
   </figure>
