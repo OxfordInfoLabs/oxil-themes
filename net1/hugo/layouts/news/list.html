@@ -100,7 +100,10 @@
 {{ end }}
 
 {{- define "main" -}}
-{{- .Content -}}
+<div class="brand pb1 py2l flex flex-col align-center minherolg justify-center">
+ <h1 class="white-text text-center">{{- .Title -}}</h1>
+ <h4 class="w-60 thin gc-text text-center">{{- .Description -}}</h4>
+</div>
 
 
 <div class="ge pb5">
