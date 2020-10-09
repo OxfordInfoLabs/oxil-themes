@@ -1,5 +1,5 @@
 
-<div class="black white-text">
+<div class="black white-text minH25 flex flex-col justify-center">
 
   <div class="px1 px2l text-center pt1 pb3 ">
     <h1 class="f2 normal white-text pb1"><i class="net-check green-text"></i> {{.Site.Title}}</h1>
@@ -14,9 +14,9 @@
 <div class="grid px1 px2l py2">{{safeHTML .}}</div></div>
 {{end}}
 
-<div class="grid grid-desktop white my4 px1 px2l">
+<div class="grid white my4 px1 px2l">
   <kc-order>
-    <div class="overflow-x vue-wrapper">
+    <div class="vue-wrapper">
 
       <table class="table table-cart">
         <thead>
@@ -44,14 +44,15 @@
         </tbody>
         <tfoot>
         <tr>
-          <th colspan="2" class="text-right-lg ">
-            <div class="pt2 flex align-center mb0"><span class="pr1 w-66 normal">Total ex. VAT</span><span
-                class="w-33 normal">{currency}{order.subtotal}</span></div>
-            <div class="flex align-center mb0 pt1"><span class="pr1 w-66 normal">VAT</span><span
-                class="w-33 normal">{currency}{order.taxes}</span></div>
-            <div class="pt1 pb2 flex align-center"><span class="bold pr1 w-66">Total</span><span
-                class="f3 normal w-33">{currency}{order.total}</span></div>
+          <th colspan="2">
+            <div class="pt2 flex align-center justify-between mb0"><div class="pr1 w-75 normal text-right-lg">Total ex. VAT</div><div
+                class="w-25 normal text-right">{currency}{order.subtotal}</div></div>
+            <div class="flex align-center justify-between mb0 pt1"><div class="pr1 w-75 normal text-right-lg">VAT</div><div
+                class="w-25 normal text-right">{currency}{order.taxes}</div></div>
+            <div class="pt1 pb2 flex align-center justify-between"><div class="bold pr1 w-75 text-right-lg">Total</div><div
+                class="f3 normal w-25 text-right">{currency}{order.total}</div></div>
           </th>
+
 
         </tr>
         </tfoot>

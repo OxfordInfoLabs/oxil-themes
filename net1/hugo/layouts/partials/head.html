@@ -1,7 +1,7 @@
 
 
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-<meta name="description" content="{{- block "description" .}}{{ if .Description }}{{ .Description }}{{ else }}A Netistrar article: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}} {{- end}}">
+<meta name="description" content="{{- block "description" .}}{{ if .Description }}{{ .Description }}{{ else }}Article: {{.Title}} | Published on {{dateFormat "2006-01-02 11:11" .Lastmod }} | {{.Site.Params.subtitle}}{{end}} {{- end}}">
 <link rel="canonical" href="{{if .Params.canonical_part }}{{.Site.BaseURL}}{{.Params.canonical_part}}{{else}}{{ .Permalink }}{{end}}">
 {{if .Params.noindex}}<meta name="robots" content="noindex, nofollow, noarchive">{{end}}
 <link rel="icon" type="image/png" href="/favicon.png" />
