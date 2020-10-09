@@ -11,7 +11,7 @@
             <h1 class="f3 ">{{.Site.Title}}</h1>
             <p class=" ">Please review your order and payment details</p>
 
-            <div class="bort3 ge pt2l pt1 pb2 pl4l px1 mb125">
+            <div class="bort3 ge pt2l pt1 pb2 pl4l px1 mb125"  kb-if="billingContact.id">
               <h4 class=" thin">Your Billing details</h4>
               <div class="flex-grid flex-row-reverse">
                 <div class="w-40" kb-html="billingContact.htmlAddressLinesString">
@@ -29,6 +29,8 @@
             </div>
             <div class="ge pt2l pt1 pb2 pl4l px1 ">
               <h4 class="normal">Payment</h4>
+
+              <div kb-if="cart.total | substring 1 | gt 0">
 
               <div class="flex align-center mb075">
                 <label class="mb0"><input name="configurestaticpackage" type="radio" checked="checked">
@@ -57,6 +59,12 @@
                     </div>
                   </div>
                 </div>
+              </div>
+
+              </div>
+
+              <div kb-if="cart.total | substring 1 | equals 0">
+                <p>No payment required</p>
               </div>
 
 
