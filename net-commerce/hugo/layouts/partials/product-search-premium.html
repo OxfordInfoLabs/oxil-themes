@@ -1,4 +1,4 @@
-<div class="white px1 prod flex justify-between mb1l {{ if eq (.featured) "true" }}featured{{end}} ">
+<div kb-class-prod-selected="selectedItems | member {{.itemSelector}}.domainName" class="white px1 prod flex justify-between mb1l {{ if eq (.featured) "true" }}featured{{end}} ">
     <div class="flex1 pt050 pb050">
         <div class="flex-grid flex-wrap justify-between align-start ">
             <div>
@@ -8,7 +8,7 @@
             <div class="vsmall red-text pt050 pb050l">This has been categorised by the Registry as a high-value premium domain name.</div>
         </div>
 
-            <div>
+            <div kb-if="{{.itemSelector}}.registrationPrices[0].confirmed | equals 'N/A'">
 
                 <div class="pt1 flex-grid justify-end">
 
@@ -25,16 +25,20 @@
 
             </div>
 
-            <div data-state="hide">
+            <div  kb-if="{{.itemSelector}}.registrationPrices[0].confirmed | notequals 'N/A'">
+                <div class="py1 flex-grid justify-end">
 
-
-                <div class="pt1 flex-grid justify-end">
-                    <span class=" f4"></span><button data-template="one" class="pop but butlk inv small text-colour super "><i class="net-help-circle"></i></button> <div class="hidden" id="one"><strong>Pricing</strong><p>The price based upon a discounted rate for 1 year.  Renewal price is £24.98 ex VAT.  Further years are as follows: £13.99 per year ex VAT</p></div></div>
-                <div class="text-right-lg pb050 lh12"><span class=" vsmall"></span></div>
-
-
+                  <span class="f5" >
+                    &pound;{ {{.itemSelector}}.registrationPrices[0].confirmed }
+                    <button class="pop but butlk small inv text-colour super "><i class="net-help-circle"></i></button>
+                  <div class="hidden content" ><strong>Pricing</strong>
+                      <p>
+                        The price displayed is for 1 year.  Renewal price is &pound;{ {{.itemSelector}}.renewalPrice.confirmed }.  Two year registration price is &pound;{ {{.itemSelector}}.registrationPrices[1].confirmed }
+                      </p>
+                  </div>
+                  </span>
+                </div>
             </div>
-
 
 
         </div>
@@ -54,10 +58,24 @@
 
 
 
-    <div class="pt150">
-<!--        <label class="rcheck mb0"><input class="add-domain" name="configurestaticpackage" type="checkbox" data-add-item="" data-key="lucien.blog" data-label="lucien.blog 1yr" data-price="13.80">-->
-<!--            <span class="checkmark"></span> <span class="g8-text select-label small hidden-md"></span>-->
-<!--        </label>-->
-    </div>
+<div class="pt150 spinner-sm"  kb-if="{{.itemSelector}}.registrationPrices[0].confirmed | notequals 'N/A'">
+    <label class="rcheck mb0" ><input
+            class="add-domain" name="configurestaticpackage" type="checkbox"
+            data-toggle-item
+            kb-checked="selectedItems | member {{.itemSelector}}.domainName"
+            one-way
+            kb-on-click="toggleSelectedResult | args {{.itemSelector}}.domainName"
+            data-type="domainname"
+            data-product-data-operation="registration"
+            kb-data-key="{{.itemSelector}}.domainName"
+            kb-data-label="{{.itemSelector}}.domainName"
+            data-quantity-suffix="yrs"
+            data-quantity="1"
+            kb-data-prices="{{.itemSelector}}.allConfirmedRegistrationPricesString"/>
+        <span class="checkmark"></span> <span class="g8-text select-label small hidden-md"></span>
+    </label>
+
+
+</div>
 
 </div>

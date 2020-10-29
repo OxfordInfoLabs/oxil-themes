@@ -180,15 +180,24 @@ export default class NetDomainSearch extends NetPackageBuilder {
                 item.pricingType = availability.pricingType;
                 item.availability = availability.availability;
 
+
                 // If standard, ensure it's added
-                if (availability.availability == "AVAILABLE" && availability.pricingType == "STANDARD") {
+                if (availability.availability == "AVAILABLE" &&
+                    (availability.pricingType == "STANDARD") || availability.prices.registration[0].confirmedBuyPrice) {
 
                     let allConfirmedPrices = [];
-                    item.registrationPrices.forEach(price => {
-                        price.confirmed = price.standard;
-                        allConfirmedPrices.push(price.standard);
+                    item.registrationPrices.forEach((price, index) => {
+                        if (availability.pricingType == "STANDARD") {
+                            price.confirmed = price.standard;
+                            allConfirmedPrices.push(price.standard);
+                        } else {
+                            price.confirmed = availability.prices.registration[index] ? availability.prices.registration[index].confirmedBuyPrice : "N/A";
+                            if (price.confirmed != "N/A") allConfirmedPrices.push(price.confirmed);
+                        }
                     });
                     item.allConfirmedRegistrationPricesString = allConfirmedPrices.join(",");
+
+                    item.renewalPrice.confirmed = availability.prices.renewal[0] ? availability.prices.renewal[0].confirmedBuyPrice : "N/A";
 
                     if (interactive) {
                         let addComponent = <HTMLElement>this.querySelector("[data-toggle-item][data-key='" + domainName + "']");
@@ -201,6 +210,8 @@ export default class NetDomainSearch extends NetPackageBuilder {
                         this._view.model.selectedItems = selectedItems;
                     }
                 }
+
+
 
             }
         });
