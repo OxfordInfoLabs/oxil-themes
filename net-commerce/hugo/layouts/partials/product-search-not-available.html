@@ -19,7 +19,7 @@
     <br>Alternatives:
     <span kb-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
     <span kb-if="$index gt; 0">&bullet;</span>
-    <a class='normal inv' href='#' kb-on-click="toggleVisibleSuggestion | args suggestion.domainName">{suggestion.domainName}</a>&nbsp;
+        <a class='normal inv' href='#' kb-on-click="toggleVisibleSuggestion | args suggestion.domainName">{suggestion.domainName}</a>&nbsp;
     </span>
     </span>
 </div>

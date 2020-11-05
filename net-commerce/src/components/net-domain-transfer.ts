@@ -203,6 +203,7 @@ export default class NetDomainTransfer extends HTMLElement {
                     "key": this.transferDomain,
                     "label": this.transferDomain + " transfer",
                     "price": result[1],
+                    "pricingType": result[2],
                     "quantity": 1
                 };
 

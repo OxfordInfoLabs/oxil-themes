@@ -60,7 +60,7 @@
                 <dt>Current status:</dt>
                 <dd class="green-text"><i class="net-tickbox"></i> Unlocked</dd>
                 <dt>Next:</dt>
-                <dd>Ready to transfer, enter the authorisation code in the box provided. <button class="but butlk small inv text-colour super" data-tippy-content="You can obtain this from your current Registrar.  Note, authorisation codes typically contain a mixture of non-standard characters.  They can also timeout, so try minimise any delay between generating the authorisation code and entering it here."><i class="net-help-circle"></i></button></dd>
+                <dd>Ready to transfer, enter the authorisation code in the box provided. <button class="but butlk small inv text-colour " data-tippy-content="You can obtain this from your current Registrar.  Note, authorisation codes typically contain a mixture of non-standard characters.  They can also timeout, so try minimise any delay between generating the authorisation code and entering it here."><i class="net-help-circle"></i></button></dd>
               </dl>
 
             </div>
@@ -97,7 +97,11 @@
             <div class="w-50 gd flex flex-col justify-center p2">
               <h4 class="green-text">Authorisation accepted <i class="net-check"></i></h4>
               <p class="small">The authorisation code has been accepted.  To complete the transfer the following fees are applicable:</p>
-              <ul class="small"><li>Registration Fee: £{items[0].price}</li>
+              <ul class="small">
+                <li>Registration Fee: £{items[0].price}
+                  <button class="but butlk small inv text-colour " data-tippy-content="Under ICANN rules tranfers of domain names are fulfilled by adding one year to the registration."><i class="net-help-circle"></i></button>
+                  <div class="vsmall red-text pt050 pb050l" kb-if="items[0].pricingType | equals 'PREMIUM'">This has been categorised by the Registry as a high-value premium domain name.</div>
+              </li>
                 <li>Transfer fee: N/A</li>
               </ul>
               <p class="small">To complete the transfer, click 'Add to Cart' and checkout as normal.</p>

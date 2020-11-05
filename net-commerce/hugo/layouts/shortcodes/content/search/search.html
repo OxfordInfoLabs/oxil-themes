@@ -31,19 +31,14 @@
             <div kb-if="results.directResult">
 
                 <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains results.directResult.availability">
-                    <div kb-if="results.directResult.pricingType | notequals 'PREMIUM'">
-                        {{partial "product-search-available" (dict "itemSelector" "results.directResult" "featured" "true") }}
-                    </div>
-                    <div kb-if="results.directResult.pricingType | equals 'PREMIUM'">
-                        {{partial  "product-search-premium" (dict "itemSelector" "results.directResult" "featured" "true") }}
-                    </div>
+                    {{partial "product-search-available-wrapper" (dict "itemSelector" "results.directResult" "featured" "true") }}
                 </div>
                 <div kb-if="'HINTED_UNAVAILABLE,UNAVAILABLE' | split | contains results.directResult.availability">
                     {{partial "product-search-not-available" (dict "itemSelector" "results.directResult" "featured" "true") }}
 
                     <div kb-each-suggestion="results.directResult.suggestions">
                         <div kb-if="visibleSuggestions | keys | contains suggestion.domainName">
-                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
+                            {{partial "product-search-available-wrapper" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
                         </div>
                     </div>
 
@@ -54,7 +49,7 @@
 
                     <div kb-each-suggestion="results.directResult.suggestions">
                         <div kb-if="visibleSuggestions | member suggestion.domainName" >
-                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
+                            {{partial "product-search-available-wrapper" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
                         </div>
                     </div>
 
@@ -67,19 +62,14 @@
 
             <div kb-each-featured="results.featuredResults">
                 <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains featured.availability">
-                    <div kb-if="featured.pricingType | notequals 'PREMIUM'">
-                        {{partial "product-search-available" (dict "itemSelector" "featured" "featured" "true") }}
-                    </div>
-                    <div kb-if="featured.pricingType | equals 'PREMIUM'">
-                        {{partial "product-search-premium" (dict "itemSelector" "featured" "featured" "true") }}
-                    </div>
+                        {{partial "product-search-available-wrapper" (dict "itemSelector" "featured" "featured" "true") }}
                 </div>
                 <div kb-if="'HINTED_UNAVAILABLE,UNAVAILABLE' | split | contains featured.availability">
                     {{partial "product-search-not-available" (dict "itemSelector" "featured" "featured" "true") }}
 
                     <div kb-each-suggestion="featured.suggestions">
                         <div kb-if="visibleSuggestions | member suggestion.domainName">
-                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
+                            {{partial "product-search-available-wrapper" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
                         </div>
                     </div>
 
@@ -91,7 +81,7 @@
 
                     <div kb-each-suggestion="featured.suggestions">
                         <div kb-if="visibleSuggestions | member suggestion.domainName">
-                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
+                            {{partial "product-search-available-wrapper" (dict "itemSelector" "suggestion" "featured" "true" "suggestion" "true") }}
                         </div>
                     </div>
 
@@ -110,18 +100,13 @@
             <div class="prod-parent" kb-each-categoried="results.categoryResults"
                  kb-class-child-selected="selectedItems | keys | contains categoried.domainName}">
                 <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains categoried.availability">
-                    <div kb-if="categoried.pricingType | notequals 'PREMIUM'">
-                        {{partial "product-search-available" (dict "itemSelector" "categoried" "featured" "false") }}
-                    </div>
-                    <div kb-if="categoried.pricingType | equals 'PREMIUM'">
-                        {{partial "product-search-premium" (dict "itemSelector" "categoried" "featured" "false") }}
-                    </div>
+                        {{partial "product-search-available-wrapper" (dict "itemSelector" "categoried" "featured" "false") }}
                 </div>
                 <div kb-if="'HINTED_UNAVAILABLE,UNAVAILABLE' | split | contains categoried.availability">
                     {{partial "product-search-not-available" (dict "itemSelector" "categoried" "featured" "false") }}
                     <div kb-each-suggestion="categoried.suggestions">
                         <div kb-if="visibleSuggestions | member suggestion.domainName">
-                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
+                            {{partial "product-search-available-wrapper" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
                         </div>
                     </div>
                 </div>
@@ -130,7 +115,7 @@
 
                     <div kb-each-suggestion="categoried.suggestions">
                         <div kb-if="visibleSuggestions | member suggestion.domainName" >
-                            {{partial "product-search-available" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
+                            {{partial "product-search-available-wrapper" (dict "itemSelector" "suggestion" "featured" "false" "suggestion" "true") }}
                         </div>
                     </div>
 

@@ -34,12 +34,17 @@ export default class NetDomainSearch extends NetPackageBuilder {
             visibleSuggestions: {},
             selectedItems: {},
             toggleVisibleSuggestion: (domainName) => {
+
                 let visibleSuggestions = this._view.model.visibleSuggestions;
                 if (!visibleSuggestions[domainName]) {
-                    this._view.addNewProperty(visibleSuggestions, domainName, true);
-                } else {
-                    visibleSuggestions[domainName] = !visibleSuggestions[domainName];
+                    this._view.addNewProperty(visibleSuggestions, domainName, false);
                 }
+                visibleSuggestions[domainName] = !visibleSuggestions[domainName];
+
+                let event = document.createEvent("Event");
+                event.initEvent("search", false, true);
+                this.dispatchEvent(event);
+
             },
             toggleSelectedResult: (domainName) => {
 
@@ -171,9 +176,8 @@ export default class NetDomainSearch extends NetPackageBuilder {
     // Update domain result status.
     private updateDomainPricingType(domainName, availability, interactive: boolean = false) {
 
-        let results = this._view.model.results;
 
-        let allResults = [results.directResult].concat(results.featuredResults).concat(results.categoryResults);
+        let allResults = this.getAllResults();
 
         allResults.forEach(item => {
             if (item && item.domainName == domainName) {
@@ -212,13 +216,49 @@ export default class NetDomainSearch extends NetPackageBuilder {
                 }
 
 
-
             }
         });
 
         let event = document.createEvent("Event");
         event.initEvent("search", false, true);
         this.dispatchEvent(event);
+
+    }
+
+
+    private getAllResults() {
+
+        let results = this._view.model.results;
+
+        let allResults = [];
+
+        if (results.directResult) {
+            allResults = allResults.concat(results.directResult);
+            if (results.directResult.suggestions) {
+                allResults = allResults.concat(results.directResult.suggestions);
+            }
+        }
+
+        if (results.featuredResults) {
+            results.featuredResults.forEach(result => {
+                allResults = allResults.concat(result);
+                if (result.suggestions) {
+                    allResults = allResults.concat(result.suggestions);
+                }
+            });
+        }
+
+        if (results.categoryResults) {
+            results.categoryResults.forEach(result => {
+                allResults = allResults.concat(result);
+                if (result.suggestions) {
+                    allResults = allResults.concat(result.suggestions);
+                }
+            });
+        }
+
+
+        return allResults;
 
     }
 
