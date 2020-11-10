@@ -67,8 +67,6 @@
     <div class="">
       {{- block "herotag" . }}{{- end }}
 
-
-
       {{- block "main" . }}{{- end }}
 
     </div>
@@ -109,7 +107,7 @@
 
 {{- end -}}
 
-{{- if eq .Site.Params.ga true -}}
+{{- if eq .Site.Params.ga "true" -}}
 {{- if .Site.Params.ga_code -}}
 {{- if eq (.Scratch.Get "amp") true -}}
 <amp-analytics type="gtag" data-credentials="include">
