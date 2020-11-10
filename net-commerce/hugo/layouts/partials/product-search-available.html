@@ -9,6 +9,8 @@
       </div>
 
 
+        <div class="vsmall red-text pt050 pb050l" kb-if="{{.itemSelector}}.pricingType | equals 'HINTED_PREMIUM'">This has been categorised by the Registry as a high-value premium domain name.</div>
+
         <div class="vsmall red-text pt050 pb050l" kb-if="{{.itemSelector}}.offers.length">
             <span kb-each-offer="{{.itemSelector}}.offers">
                 {offer}.&nbsp;
@@ -24,12 +26,16 @@
 
           <span class="f5" >
             <small kb-if="{{.itemSelector}}.pricingType | notequals 'STANDARD'">from</small>
-            &pound;{ {{.itemSelector}}.registrationPrices[0].standard }
+            &pound;{ {{.itemSelector}}.registrationPrices[0].hinted | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[0].standard {{.itemSelector}}.registrationPrices[0].hinted }
             <button class="pop but butlk small inv text-colour super "><i class="net-help-circle"></i></button>
           <div class="hidden content" ><strong>Pricing</strong>
-              <p>
+              <p kb-if="{{.itemSelector}}.pricingType | equals 'STANDARD'">
                 The price displayed is for 1 year.  Renewal price is &pound;{ {{.itemSelector}}.renewalPrice.standard }.  Two year registration price is &pound;{ {{.itemSelector}}.registrationPrices[1].standard }
               </p>
+              <p kb-if="{{.itemSelector}}.pricingType | notequals 'STANDARD'">
+                The price displayed is for 1 year.  Renewal price is from &pound;{ {{.itemSelector}}.renewalPrice.hinted | equals 'N/A' | ternary {{.itemSelector}}.renewalPrice.standard {{.itemSelector}}.renewalPrice.hinted }.  Two year registration price is from &pound;{ {{.itemSelector}}.registrationPrices[1].hinted | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[1].standard {{.itemSelector}}.registrationPrices[1].hinted }
+              </p>
+
           </div>
           </span>
         </div>

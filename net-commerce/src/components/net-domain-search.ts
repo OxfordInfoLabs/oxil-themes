@@ -34,12 +34,17 @@ export default class NetDomainSearch extends NetPackageBuilder {
             visibleSuggestions: {},
             selectedItems: {},
             toggleVisibleSuggestion: (domainName) => {
+
                 let visibleSuggestions = this._view.model.visibleSuggestions;
                 if (!visibleSuggestions[domainName]) {
-                    this._view.addNewProperty(visibleSuggestions, domainName, true);
-                } else {
-                    visibleSuggestions[domainName] = !visibleSuggestions[domainName];
+                    this._view.addNewProperty(visibleSuggestions, domainName, false);
                 }
+                visibleSuggestions[domainName] = !visibleSuggestions[domainName];
+
+                let event = document.createEvent("Event");
+                event.initEvent("search", false, true);
+                this.dispatchEvent(event);
+
             },
             toggleSelectedResult: (domainName) => {
 
@@ -171,24 +176,32 @@ export default class NetDomainSearch extends NetPackageBuilder {
     // Update domain result status.
     private updateDomainPricingType(domainName, availability, interactive: boolean = false) {
 
-        let results = this._view.model.results;
 
-        let allResults = [results.directResult].concat(results.featuredResults).concat(results.categoryResults);
+        let allResults = this.getAllResults();
 
         allResults.forEach(item => {
             if (item && item.domainName == domainName) {
                 item.pricingType = availability.pricingType;
                 item.availability = availability.availability;
 
+
                 // If standard, ensure it's added
-                if (availability.availability == "AVAILABLE" && availability.pricingType == "STANDARD") {
+                if (availability.availability == "AVAILABLE" &&
+                    (availability.pricingType == "STANDARD") || availability.prices.registration[0].confirmedBuyPrice) {
 
                     let allConfirmedPrices = [];
-                    item.registrationPrices.forEach(price => {
-                        price.confirmed = price.standard;
-                        allConfirmedPrices.push(price.standard);
+                    item.registrationPrices.forEach((price, index) => {
+                        if (availability.pricingType == "STANDARD") {
+                            price.confirmed = price.standard;
+                            allConfirmedPrices.push(price.standard);
+                        } else {
+                            price.confirmed = availability.prices.registration[index] ? availability.prices.registration[index].confirmedBuyPrice : "N/A";
+                            if (price.confirmed != "N/A") allConfirmedPrices.push(price.confirmed);
+                        }
                     });
                     item.allConfirmedRegistrationPricesString = allConfirmedPrices.join(",");
+
+                    item.renewalPrice.confirmed = availability.prices.renewal[0] ? availability.prices.renewal[0].confirmedBuyPrice : "N/A";
 
                     if (interactive) {
                         let addComponent = <HTMLElement>this.querySelector("[data-toggle-item][data-key='" + domainName + "']");
@@ -202,12 +215,50 @@ export default class NetDomainSearch extends NetPackageBuilder {
                     }
                 }
 
+
             }
         });
 
         let event = document.createEvent("Event");
         event.initEvent("search", false, true);
         this.dispatchEvent(event);
+
+    }
+
+
+    private getAllResults() {
+
+        let results = this._view.model.results;
+
+        let allResults = [];
+
+        if (results.directResult) {
+            allResults = allResults.concat(results.directResult);
+            if (results.directResult.suggestions) {
+                allResults = allResults.concat(results.directResult.suggestions);
+            }
+        }
+
+        if (results.featuredResults) {
+            results.featuredResults.forEach(result => {
+                allResults = allResults.concat(result);
+                if (result.suggestions) {
+                    allResults = allResults.concat(result.suggestions);
+                }
+            });
+        }
+
+        if (results.categoryResults) {
+            results.categoryResults.forEach(result => {
+                allResults = allResults.concat(result);
+                if (result.suggestions) {
+                    allResults = allResults.concat(result.suggestions);
+                }
+            });
+        }
+
+
+        return allResults;
 
     }
 
