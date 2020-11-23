@@ -11,7 +11,7 @@ module.exports = {
 
     entry: {
         'net1': 'net1.ts',
-        'net1-base': 'net1-base.ts'
+        'net1base': 'net1-base.ts'
     },
 
     module: {
