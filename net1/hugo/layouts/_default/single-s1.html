@@ -15,8 +15,8 @@
 {{- if eq .Params.hero "true" -}}
 {{- if eq .Params.heroStyle "simple" -}}
 <section class="brand white-text minH25 flex align-center justify-center flex-col">
- <h1 class="white-text text-center">{{- .Title -}}</h1>
- <h5 class="thin ge-text">{{- .Description -}}</h5>
+ <div class="grid px1 px2l"><h1 class="white-text text-center">{{- .Title -}}</h1>
+  <h5 class="thin ge-text text-center">{{- .Description -}}</h5></div>
 </section>
 {{- else -}}
 <section class="rel px1 px2l minH33 flex flex-col justify-center ">
@@ -70,8 +70,9 @@
  {{- end -}}
 
  {{- else -}}
-
+ <div class="grid px1 px2l py4  justify-center">
  {{- .Content -}}
+ </div>
 {{- end -}}
  {{- $ctx := . -}}
  {{- with .Params.id -}}
