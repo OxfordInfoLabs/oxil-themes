@@ -10,7 +10,8 @@ module.exports = {
     context: ROOT,
 
     entry: {
-        'Net1': 'net1.ts'
+        'net1': 'net1.ts',
+        'net1-base': 'net1-base.ts'
     },
 
     module: {
@@ -35,10 +36,10 @@ module.exports = {
     },
 
     output: {
-        library: 'Net1',
+        library: '[name]',
         libraryTarget: 'umd',
         libraryExport: 'default',
-        filename: 'net1.js',
+        filename: '[name].js',
         path: DESTINATION
     },
     resolve: {
