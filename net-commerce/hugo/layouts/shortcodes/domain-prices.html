@@ -33,22 +33,28 @@
         <div class="py025 white o1 w-33 ">{{- with .Site.Params.domainlabels.registration -}}{{- . -}}{{- else -}}Registration{{- end -}}</div>
         <div class="py025 white-text brand-lighter o2 w-33 ">{{- with .Site.Params.domainlabels.renewal -}}{{- . -}}{{- else -}}Renewal{{- end -}}</div>
         <div class="py025 white-text brand o3 w-33 ">{{- with .Site.Params.domainlabels.transfer -}}{{- . -}}{{- else -}}Transfer{{- end -}}</div>
+        <div class="py025 white-text brand o3 w-33 ">{{- with .Site.Params.domainlabels.restore -}}{{- . -}}{{- else -}}Restore{{- end -}}</div>
       </div>
       <div class="ft flex  borl0m1md borb1sm bordd ge mb1 mb0l">
-        <div class="o1 white w-33 flex flex-col justify-center borb1md bordd py1">
+        <div class="o1 white w-25 flex flex-col justify-center borb1md bordd py1">
           <div class="semi ">{{- cond (ne (.Site.Params.domainlabels.registrationyearlabel) nil) .Site.Params.domainlabels.registrationyearlabel "Current Registration Price" -}}</div>
           <div class="py075 f4 semi">1 year</div>
         </div>
-        <div class="o2 brand-lighter white-text w-33 flex flex-col justify-center borb1md py1">
+        <div class="o2 brand-lighter white-text w-25 flex flex-col justify-center borb1md py1">
           <div class="semi">{{- cond (ne (.Site.Params.domainlabels.renewalyearlabel) nil) .Site.Params.domainlabels.renewalyearlabel "Current Renewal Price" -}}</div>
           <div class="py075 f4 semi">+ 1 year</div>
 
         </div>
-        <div class="o3 brand w-33 white-text flex flex-col justify-center borb1md py1">
+        <div class="o3 brand w-25 white-text flex flex-col justify-center borb1md py1">
           <div class="semi">{{- cond (ne (.Site.Params.domainlabels.transferlabel) nil) .Site.Params.domainlabels.transferlabel "One-off Transfer Fee" -}}</div>
           <div class="py075 thin">if applicable</div>
 
         </div>
+          <div class="o3 brand w-25 white-text flex flex-col justify-center borb1md py1">
+              <div class="semi">{{- cond (ne (.Site.Params.domainlabels.restorelabel) nil) .Site.Params.domainlabels.restorelabel "Restore Fee" -}}</div>
+              <div class="py075 thin">if applicable</div>
+
+          </div>
       </div>
 
 

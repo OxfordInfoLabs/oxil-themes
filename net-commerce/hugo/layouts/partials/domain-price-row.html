@@ -27,6 +27,15 @@
     <div class="tiny gc-text">Transfer fee</div>
     <div kb-each-offer="{{ $model }}.offers" class="brightred-text tiny thin lh13 ">{offer}</div>
 </div>
-
+<div class="{{- with $class -}}{{- . -}}{{- else -}}w-25{{- end }} o4 brand white-text flex flex-col justify-center bordd borb1md pb050" kb-if="{{ $model }}.tld">
+    <div class="pt1"><img kb-src="{{ $model }}.imageAsBase64" alt="" height="42" kb-if="{{ $model }}.imageAsBase64"
+                          class="f-white maxw100pc"/><span
+            kb-if="{{ $model }}.imageAsBase64 | not" class="f4 white-text semi mb050 ib lowercase">.{ {{ $model }}.tld}</span></div>
+    <div class="f4 py025 " kb-if="{{ $model }}.originalRestorePrice | not">&pound;{ {{ $model }}.restorePrice}</div>
+    <div class="red-text f4 py025 " kb-if="{{ $model }}.originalRestorePrice">&pound;{ {{ $model }}.restorePrice}</div>
+    <div class="vsmall strike thin gc-text" kb-if="{{ $model }}.originalRestorePrice">&pound;{ {{ $model }}.originalRestorePrice}</div>
+    <div class="tiny gc-text" kb-if="{{ $model }}.originalRestorePrice | not">Restore Fee</div>
+    <div kb-each-offer="{{ $model }}.offers" class="brightred-text tiny thin lh13 ">{offer}</div>
+</div>
 
 
