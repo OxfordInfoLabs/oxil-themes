@@ -1,4 +1,4 @@
-{{- $ampcats := slice "category" "author" "tag" }}
+{{- $ampcats := slice "category" "news" "author" "tag" }}
 {{- if in $ampcats .Data.Singular -}}
   {{- $.Scratch.Set "amp" true -}}
 {{- end -}}
