@@ -12,10 +12,13 @@ export default class WhitelabelApi {
      * @param searchTerm
      * @param filters
      */
-    public getHintedAvailability(searchTerm, filters) {
+    public getHintedAvailability(searchTerm, filters, tlds = []) {
 
         let params = {...filters};
         params["keyword"] = searchTerm;
+        if (tlds && tlds.length){
+            params["tlds"] = tlds;
+        }
 
         return this.callAPI("/guest/domain/hinted", params, "POST");
     }

@@ -1,0 +1,84 @@
+<net-bind data-source="/guest/domain/tld/{request.tld}" data-source-key="tld" data-join-element="#header-bind">
+
+    <net-domain-search kb-if="tld.notFound | not">
+
+        <div class="grid px2l pb3">
+
+            <div class="flex flex-row-reverse" >
+                <div id="product-builder-widget-wrap" class="pl1l flex flex-col pt3" >
+                    <div class="stick">
+                        {{ partial "product-builder-widget" (dict "bigbuttext" "Continue"  "bigbuticon" "net-chevron-right" "bigbutlink" "/configure" "smallbuticon" "net-cart-solid" "Site" .Site) }}
+                    </div>
+
+                </div>
+
+                <div class="w-75 pr1l" kb-cloak>
+
+                    <div class="my2 pt2 text-center"  kb-if="results.metrics | not">
+
+                        <img src="/images/loading-animation.gif" alt="Netistrar loading animation">
+
+                    </div>
+
+
+                    <div kb-if="results.metrics" >
+
+                        <div class="pt150 pb1 px1 px0l" kb-if="results.metrics">
+                            <span class="semi uppercase">.{request.tld} Search results<span kb-if="results.metrics.featuredMin">: </span></span>
+                            <div kb-if="results.metrics.featuredMin" class="label label-gn lh1">Top names</div>
+                            <span kb-if="results.metrics.featuredMin"><b> available</b> from £{results.metrics.featuredMin}</span>
+                        </div>
+
+
+                        <div kb-if="results.directResult">
+
+                            <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains results.directResult.availability">
+                                {{partial "product-search-available-wrapper" (dict "itemSelector" "results.directResult" "featured" "true") }}
+                            </div>
+                            <div kb-if="'HINTED_UNAVAILABLE,UNAVAILABLE' | split | contains results.directResult.availability">
+                                {{partial "product-search-not-available" (dict "itemSelector" "results.directResult" "featured" "true" "showSuggestions" "false") }}
+                            </div>
+
+                            <div kb-if="results.directResult.availability | equals 'MY_DOMAIN'">
+                                {{partial "product-search-my-domain" (dict "itemSelector" "results.directResult" "featured" "true" "showSuggestions" "false")  }}
+                            </div>
+
+
+                        </div>
+
+                        <div class="pt125 pb1 borb2 borbrand px1 px0l">
+                            <span class="semi uppercase">Alternative Suggestions:</span>
+                        </div>
+
+                        <div class="prod-parent" kb-each-categoried="results.directResult.suggestions"
+                             kb-class-child-selected="selectedItems | keys | contains categoried.domainName}">
+                            <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains categoried.availability">
+                                {{partial "product-search-available-wrapper" (dict "itemSelector" "categoried" "featured" "false") }}
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+                <!--    main cell-->
+            </div>
+            <!--  row-->
+
+        </div>
+        <!--grid-->
+
+
+
+    </net-domain-search>
+
+    <div kb-if="tld.notFound">
+        <div class="grid px2l pb3 mt2">
+            <h1>Invalid TLD supplied</h1>
+        </div>
+    </div>
+
+
+</net-bind>
