@@ -61,7 +61,7 @@
                   <span class="f3 pr1 flex align-center" >&nbsp;&pound;
                     <span
                         kb-text="gsuite.Monthly.netPrice"></span>
-                    <span class="small"> /user/month</span></span>
+                    <span class="small pl025"> /user/month </span><span class="vsmall thin pl025"> (ex. VAT)</span></span>
                 </div>
 
                 <div class="small mt2 desc">
@@ -85,25 +85,21 @@
             <div class="bold f5 pb1 ">Purchase options:
             </div>
             <h4 class="ga-text normal">Option 1:</h4>
-            <p class="small">If you already have a domain name that you manage with {{ .Site.Params.shorttitle }}. <button data-tippy-content="From your dashboard, search for your domain name and follow options to add G Suite." class="but butlk small inv text-colour super "><i class="net-help-circle"></i></button></p>
+            <p class="small">If you already have a domain name that you manage with {{ .Site.Params.shorttitle }}. <button data-tippy-content="From your dashboard, search for your domain name and follow options to add G Suite." class="but butlk small inv text-colour"><i class="net-help-circle"></i></button></p>
 
           <p><a href="{{ .Site.Params.dashboard_url }}" class="but butblk butgn">Add from Dashboard <i class="net-launch-out"></i></a></p>
           <h4 class="ga-text normal mt3">Option 2:</h4>
-          <p class="small">For a brand new business, email address - search for a domain name and then follow the options to add G Suite. <button data-tippy-content="From the search screen click 'Continue' to add G Suite and other options." class="but butlk small inv text-colour super "><i class="net-help-circle"></i></button></p>
+          <p class="small">For a brand new business, email address - search for a domain name and then follow the options to add G Suite. <button data-tippy-content="From the search screen click 'Continue' to add G Suite and other options." class="but butlk small inv text-colour"><i class="net-help-circle"></i></button></p>
 
-        <div class=""><form action="/search/" class="flex search-group search-groupmuted white">
-          <input class="w-80 " type="text" name="domainsearch"  placeholder="Search for domain ..">
-          <button type="submit" class="br0 " >
-            <i class="net-search g8-text f4 white-text"></i>
-          </button>
-
-        </form>
+        <div>
+          {{- $class :=  cond (eq (.Scratch.Get "theme") "brand") "white mx050 mx1l" "white bor1 borbrand" -}}
+          {{- partial "searchbox" (dict "placeholder" "Search for domain .." "class" $class "inputclass" "py050 small" "buttonclass" "white" "buttonpadding" "px050" "iconclass" "f5") -}}
         </div>
         <div class="gf9 p1 mt2">
-          <p class="thin mb050"><span class="red-text">&pound;</span>
+          <p class=" mb050"><span class="red-text">&pound;</span>
             <span class="red-text"
                   kb-text="gsuite.Monthly.netPrice"></span>
-            <span class="small">/user/month</span></span><span class="vsmall">(ex. VAT)</span>
+            <span class="small thin">/user/month </span></span><span class="vsmall thin">(ex. VAT)</span>
           </p>
           <p class="small">Provided by Netistrar Limited (Google Authorised Reseller)</p>
 
