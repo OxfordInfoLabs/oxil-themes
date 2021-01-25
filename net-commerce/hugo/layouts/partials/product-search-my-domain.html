@@ -6,22 +6,26 @@
     <div class="{{if eq (.featured) "true"}}f3{{else}}f4{{end}} semi pt1  bw">{{with .itemSelector}}{ {{.}}.domainName }{{end}} <span class="{{if eq (.featured) "true"}}f4{{else}}f5{{end}} green-text">is owned by you</span>
     </div>
 {{- if eq (.featured) "true" -}}
-    <div class="small py1 borb1 borcc g5-text">Please navigate to your control panel to <a class="bold" href="{{ .Site.Params.dashboard_url }}" target="_blank">manage your domains</a>.</div>
+    <div class="small py1 {{ if ne (.showSuggestions) "false" -}}borb1{{- end -}} borcc g5-text">Please navigate to your control panel to <a class="bold" href="{{ .Site.Params.dashboard_url }}" target="_blank">manage your domains</a>.</div>
+    {{- if ne (.showSuggestions) "false" -}}
     <div class="vsmall thin py050" kb-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">We have some alternative suggestions available to purchase today:
-        <span kb-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
+        <span kb-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}} | slice 0 3">
             <span kb-if="$index | gt 0">&bullet;</span>
             <a class='inv' href='#' kb-on-click="toggleVisibleSuggestion | args suggestion.domainName">{suggestion.domainName}</a>&nbsp;
         </span>
     </div>
+    {{- end -}}
 {{- else -}}
 <div class="vsmall thin py1 g5-text">Please navigate to your control panel to <a class="bold" href="{{ .Site.Params.dashboard_url }}" target="_blank">manage your domains</a>.
+    {{- if ne (.showSuggestions) "false" -}}
     <span kb-if="{{with .itemSelector}}{{.}}.suggestions{{end}}.length">
     <br>Alternatives:
-    <span kb-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}}">
+    <span kb-each-suggestion="{{with .itemSelector}}{{.}}.suggestions{{end}} | slice 0 3">
             <span kb-if="$index | gt 0">&bullet;</span>
         <a class='normal inv' href='#' kb-on-click="toggleVisibleSuggestion | args suggestion.domainName">{suggestion.domainName}</a>&nbsp;
     </span>
     </span>
+    {{- end -}}
 </div>
 
 

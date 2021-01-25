@@ -27,6 +27,8 @@ export default class NetDomainSearch extends NetPackageBuilder {
     // Initialise function
     protected init() {
 
+        this.currentChangedFilters = {"useNameGenerator": 1};
+
         // Add out model to the vue options
         super.init({
             results: {},
@@ -63,30 +65,32 @@ export default class NetDomainSearch extends NetPackageBuilder {
         // Stash the filters object.
         this.filters = document.querySelector("net-domain-filters");
 
-        this.filters.addEventListener("filterChange", () => {
+        if (this.filters) {
+            this.filters.addEventListener("filterChange", () => {
 
-            this.filters = document.querySelector("net-domain-filters");
+                this.filters = document.querySelector("net-domain-filters");
 
-            this.currentChangedFilters = this.filters.changes;
+                this.currentChangedFilters = this.filters.changes;
 
-            if (Object.keys(this.currentChangedFilters).length == 0) {
-                RequestParamSerialiser.unset("filters");
-            } else {
-                // Update the current url for history purposes.
-                RequestParamSerialiser.set("filters", this.currentChangedFilters);
-            }
+                if (Object.keys(this.currentChangedFilters).length == 0) {
+                    RequestParamSerialiser.unset("filters");
+                } else {
+                    // Update the current url for history purposes.
+                    RequestParamSerialiser.set("filters", this.currentChangedFilters);
+                }
 
-            // Reissue search.
-            this.search();
-        });
+                // Reissue search.
+                this.search();
+            });
 
-        // Restore any encoded filters from the URL
-        this.currentChangedFilters = RequestParamSerialiser.get("filters");
-        if (this.currentChangedFilters) {
-            this.filters.values = this.currentChangedFilters;
-        } else
-            this.currentChangedFilters = this.filters.defaultValues;
+            // Restore any encoded filters from the URL
+            this.currentChangedFilters = RequestParamSerialiser.get("filters");
+            if (this.currentChangedFilters) {
+                this.filters.values = this.currentChangedFilters;
+            } else
+                this.currentChangedFilters = this.filters.defaultValues;
 
+        }
 
         // Pick up general clicks to handle add and remove from packages.
         this.addEventListener("click", (event) => {
@@ -106,10 +110,25 @@ export default class NetDomainSearch extends NetPackageBuilder {
         // Nullify the results on search
         this._view.model.results = null;
 
-        let searchFilters = {...this.filters.defaultValues, ...this.currentChangedFilters};
+        let defaultValues = this.filters ? this.filters.defaultValues : {};
+
+        let searchFilters = {...defaultValues, ...this.currentChangedFilters};
+
+        let searchString = RequestParams.get()["domainsearch"];
+
+        let tlds = [];
+        if (RequestParams.get()["tld"]){
+            tlds.push(RequestParams.get()["tld"]);
+            let splitString = searchString.split(".");
+            if (splitString.length > 1){
+                splitString.pop();
+            }
+            splitString.push(RequestParams.get()["tld"]);
+            searchString = splitString.join(".");
+        }
 
         let api = new WhitelabelApi();
-        api.getHintedAvailability(RequestParams.get()["domainsearch"], searchFilters).then((response) => {
+        api.getHintedAvailability(searchString, searchFilters, tlds).then((response) => {
             this._view.model.results = response;
             this._view.model.filterValues = searchFilters;
 
