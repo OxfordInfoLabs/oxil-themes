@@ -115,10 +115,11 @@ https://i.ytimg.com/vi/{{.Params.youtubeid}}/hqdefault.jpg
 
  {{- with $.Page.Params.ctatitle -}}<h2 class="text-center mb3">{{- . -}}</h2>{{- end -}}
  {{- $placeholder := "Find a domain name .." -}}
- {{- with $.Page.Params.ctatext -}}
+ {{- with $.Page.Params.placeholder -}}
  {{- $placeholder = . -}}
  {{- end -}}
- <div class="px4l mb2">{{- partial "searchbox" (dict "placeholder" $placeholder "class" "borcc bor1" "inputclass" "white flex1") -}}</div>
+ {{- $tld := $.Page.Params.tld -}}
+ <div class="px4l mb2">{{- partial "searchbox" (dict "placeholder" $placeholder "class" "borcc bor1" "inputclass" "white flex1" "buttonclass" "white" "buttonpadding" "px050" "iconclass" "f5" "tld" $tld) -}}</div>
  {{- with $.Page.Params.ctamore -}}<div class="vsmall thin text-center mt-1">{{- . -}}</div>{{- end -}}
 
 </div>

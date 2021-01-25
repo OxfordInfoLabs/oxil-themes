@@ -23,11 +23,18 @@
 
                     <div kb-if="results.metrics" >
 
+
                         <div class="pt150 pb1 px1 px0l" kb-if="results.metrics">
-                            <span class="semi uppercase">.{request.tld} Search results<span kb-if="results.metrics.featuredMin">: </span></span>
+                            <h4 class="semi ">.{request.tld} Search results<span kb-if="results.metrics.featuredMin">: </span></h4>
                             <div kb-if="results.metrics.featuredMin" class="label label-gn lh1">Top names</div>
                             <span kb-if="results.metrics.featuredMin"><b> available</b> from £{results.metrics.featuredMin}</span>
+                            <div class="mb2">
+                            {{- $class :=  cond (eq (.Scratch.Get "theme") "brand") "white" "white bor1 borbrand" -}}
+                            {{- $tldparam := "request.tld" -}}
+                            {{- partial "searchbox" (dict "class" $class "inputclass" "py050 small" "buttonclass" "white" "buttonpadding" "px050" "iconclass" "f5" "tldparam" $tldparam ) -}}
+                            </div>
                         </div>
+
 
 
                         <div kb-if="results.directResult">
@@ -51,7 +58,7 @@
                         </div>
 
                         <div class="prod-parent" kb-each-categoried="results.directResult.suggestions"
-                             kb-class-child-selected="selectedItems | keys | contains categoried.domainName}">
+                             kb-class-child-selected="selectedItems | keys | contains categoried.domainName">
                             <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains categoried.availability">
                                 {{partial "product-search-available-wrapper" (dict "itemSelector" "categoried" "featured" "false") }}
                             </div>

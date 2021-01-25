@@ -98,7 +98,7 @@
             </div>
 
             <div class="prod-parent" kb-each-categoried="results.categoryResults"
-                 kb-class-child-selected="selectedItems | keys | contains categoried.domainName}">
+                 kb-class-child-selected="selectedItems | keys | contains categoried.domainName">
                 <div kb-if="'HINTED_AVAILABLE,AVAILABLE' | split | contains categoried.availability">
                         {{partial "product-search-available-wrapper" (dict "itemSelector" "categoried" "featured" "false") }}
                 </div>
