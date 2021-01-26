@@ -18,4 +18,5 @@ id: "{{ .Name | lower }}"
 publishdate: "{{ .Date }}"
 lastmod: "{{ .Date }}"
 type: "news"
+
 ---
