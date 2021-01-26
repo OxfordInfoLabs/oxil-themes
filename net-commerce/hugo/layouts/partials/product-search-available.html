@@ -24,10 +24,10 @@
 
         <div class="py1 flex-grid justify-end" kb-if="{{.itemSelector}}.registrationPrices[0].original | equals 'N/A'">
 
-          <span class="f5 semi" >
+          <span class="f5 " >
             <small kb-if="{{.itemSelector}}.pricingType | notequals 'STANDARD'" class="normal">from</small>
             &pound;{ {{.itemSelector}}.registrationPrices[0].hinted | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[0].standard {{.itemSelector}}.registrationPrices[0].hinted }
-            <button class="pop but butlk small inv text-colour super "><i class="net-help-circle"></i></button>
+            <button class="pop but butlk small inv text-colour  "><i class="net-help-circle"></i></button>
           <div class="hidden content" ><strong>Pricing</strong>
               <p kb-if="{{.itemSelector}}.pricingType | equals 'STANDARD'">
                 The price displayed is for 1 year.  Renewal price is &pound;{ {{.itemSelector}}.renewalPrice.standard }.  Two year registration price is &pound;{ {{.itemSelector}}.registrationPrices[1].standard }
@@ -43,10 +43,10 @@
         <div class="pt1 flex-grid align-center justify-end" kb-if="{{.itemSelector}}.registrationPrices[0].original | notequals 'N/A'">
             <small kb-if="{{.itemSelector}}.pricingType | notequals 'STANDARD'">from&nbsp;</small>
             <span kb-if="{{.itemSelector}}.pricingType | equals 'STANDARD'" class="strike pr050">&pound;{ {{.itemSelector}}.registrationPrices[0].original}</span>
-            <span class="red-text semi {{if eq (.featured) "true"}}f4{{else}}f5{{end}}">
+            <span class="red-text  {{if eq (.featured) "true"}}f4{{else}}f5{{end}}">
       &pound;{ {{.itemSelector}}.registrationPrices[0].standard }
             </span>
-            <button class="pop but butlk small inv text-colour super "><i class="net-help-circle"></i></button>
+            <button class="pop but butlk small inv text-colour  "><i class="net-help-circle"></i></button>
               <div class="hidden content" ><strong>Pricing</strong>
                   <p>
                       The price displayed is for 1 year.  Renewal price is &pound;{ {{.itemSelector}}.renewalPrice.standard }.  Two year registration price is &pound;{ {{.itemSelector}}.registrationPrices[1].standard }
