@@ -11,7 +11,7 @@
 <form  action="{{- with $action -}}{{- . -}}{{else}}/search/{{- with $tld -}}tld/{{- end -}}{{- with $tldparam -}}tld/{{- end -}}{{end}}" class="pl050 flex br8tr br8br br8bl br8tl {{ with $class -}}{{- . -}}{{- end -}}">
 
 <input class="f5 pl0 bor0 w {{ with $inputclass -}}{{- . -}}{{- end -}}" type="text" name="domainsearch"  {{- with $placeholder -}}placeholder="{{- . -}}"{{- end }}
-       {{- with $tldparam -}}kb-placeholder="'Search for another ' | append {{- . -}}"{{- end -}}
+       {{- with $tldparam -}}kb-placeholder="'Search for another ' | append {{ . -}}"{{- end -}}
        {{- with $tld -}}placeholder="Search for another {{- . -}}"{{- end -}}
 >
 <button type="submit" class="{{ with $buttonclass -}}{{- . -}}{{- end }} {{ with $buttonpadding -}}{{- . -}}{{- else -}}px1{{- end }} flex align-center bor0 ge br8tr br8br" > <svg class="i24 g9-text" viewBox="0 0 24 24">

@@ -22,6 +22,7 @@
 
 {{- $link := $item.Params.link -}}
 {{- $channel := $item.Params.channel -}}
+{{- $tld := $item.Params.tld -}}
 
 <h1 class="h2 bold">{{- .Title -}}</h1>
 {{- with .Params.expirestext -}}<p class="f4 red-text ">{{- . -}}</p>{{- end -}}
@@ -53,14 +54,21 @@
 </div>
 {{- end -}}
 
+{{- with $tld -}}
+<net-bind data-source="/guest/domain/tld/{{.}}" data-source-key="tld">
+ {{- end -}}
+
+ <p kb-if="tld.offers | length | gt 0" ><span class="orange-text">{tld.offers[0]}</span>
+ <span kb-if="tld.tierPrices.onethousandplus.registration.original">: from <s>&pound;{tld.tierPrices.onethousandplus.registration.original}</s> &pound;{tld.tierPrices.onethousandplus.registration.price}</span>
+</p>
+
 {{- with $desc -}}
 <p class="bold mt2">{{- . -}}</p>
 {{- end -}}
 <div class="mb2">{{- .Content -}}</div>
 
-
-
-
-
+{{- with $tld -}}
+</net-bind>
+{{- end -}}
 
 
