@@ -181,9 +181,9 @@ export default class NetDomainSearch extends NetPackageBuilder {
             ElementSpinner.spinElement(label);
 
             let api = new WhitelabelApi();
-            api.getLiveAvailability(target.dataset.key).then((availability: any) => {
+            api.getPremiumPriceInfo(target.dataset.key).then((priceInfo: any) => {
                 ElementSpinner.restoreElement(label);
-                this.updateDomainPricingType(target.dataset.key, availability, interactive);
+                this.updateDomainPricingType(target.dataset.key, priceInfo, interactive);
 
             });
 
@@ -193,34 +193,34 @@ export default class NetDomainSearch extends NetPackageBuilder {
 
 
     // Update domain result status.
-    private updateDomainPricingType(domainName, availability, interactive: boolean = false) {
+    private updateDomainPricingType(domainName, priceInfo, interactive: boolean = false) {
 
 
         let allResults = this.getAllResults();
 
         allResults.forEach(item => {
             if (item && item.domainName == domainName) {
-                item.pricingType = availability.pricingType;
-                item.availability = availability.availability;
+                item.pricingType = priceInfo.pricingType;
+                item.availability = priceInfo.prices["registration"] ? item.availability : "UNAVAILABLE";
 
 
                 // If standard, ensure it's added
-                if (availability.availability == "AVAILABLE" &&
-                    (availability.pricingType == "STANDARD") || availability.prices.registration[0].confirmedBuyPrice) {
+                if (item.availability == "AVAILABLE" &&
+                    (priceInfo.pricingType == "STANDARD") || priceInfo.prices.registration[0].confirmedBuyPrice) {
 
                     let allConfirmedPrices = [];
                     item.registrationPrices.forEach((price, index) => {
-                        if (availability.pricingType == "STANDARD") {
+                        if (priceInfo.pricingType == "STANDARD") {
                             price.confirmed = price.standard;
                             allConfirmedPrices.push(price.standard);
                         } else {
-                            price.confirmed = availability.prices.registration[index] ? availability.prices.registration[index].confirmedBuyPrice : "N/A";
+                            price.confirmed = priceInfo.prices.registration[index] ? priceInfo.prices.registration[index].confirmedBuyPrice : "N/A";
                             if (price.confirmed != "N/A") allConfirmedPrices.push(price.confirmed);
                         }
                     });
-                    item.allConfirmedRegistrationPricesString = allConfirmedPrices.join(",");
+                    item.allRegistrationPricesString = allConfirmedPrices.join(",");
 
-                    item.renewalPrice.confirmed = availability.prices.renewal[0] ? availability.prices.renewal[0].confirmedBuyPrice : "N/A";
+                    item.renewalPrice.confirmed = priceInfo.prices.renewal[0] ? priceInfo.prices.renewal[0].confirmedBuyPrice : "N/A";
 
                     if (interactive) {
                         let addComponent = <HTMLElement>this.querySelector("[data-toggle-item][data-key='" + domainName + "']");

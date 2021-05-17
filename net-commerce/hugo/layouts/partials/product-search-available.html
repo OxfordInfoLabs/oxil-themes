@@ -74,7 +74,7 @@
 
 
   <div class="pt150 spinner-sm">
-    <label class="rcheck mb0" kb-if="{{.itemSelector}}.pricingType | equals 'STANDARD'"><input
+    <label class="rcheck mb0" kb-if="{{.itemSelector}}.pricingType | notequals 'UNKNOWN'"><input
                                      class="add-domain" name="configurestaticpackage" type="checkbox"
                                      data-toggle-item
                                      kb-checked="selectedItems | member {{.itemSelector}}.domainName"
@@ -86,11 +86,11 @@
                                      kb-data-label="{{.itemSelector}}.domainName"
                                      data-quantity-suffix="yrs"
                                      data-quantity="1"
-                                     kb-data-prices="{{.itemSelector}}.allConfirmedRegistrationPricesString"/>
+                                     kb-data-prices="{{.itemSelector}}.allRegistrationPricesString"/>
       <span class="checkmark"></span> <span class="g8-text select-label small hidden-md"></span>
     </label>
 
-    <label class="rcheck mbo" kb-if="{{.itemSelector}}.pricingType | notequals 'STANDARD'">
+    <label class="rcheck mbo" kb-if="{{.itemSelector}}.pricingType | equals 'UNKNOWN'">
 
         <input class="add-domain" name="configurestaticpackage" type="checkbox"
                data-check-item

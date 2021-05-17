@@ -1,9 +1,9 @@
 <net-package-builder data-preserve-state>
 
-  <net-product-price data-key="gsuiteBasic"  data-product-type="gsuite" data-filter-gsuite-product="Google-Apps-For-Business"></net-product-price>
-  <net-product-price data-key="gsuiteBusiness" data-product-type="gsuite" data-filter-gsuite-product="Google-Apps-Unlimited"></net-product-price>
-  <net-product-price data-key="gsuiteEnterprise" data-product-type="gsuite" data-filter-gsuite-product="1010020020"></net-product-price>
-  <net-product-price data-key="netistrarProfessional" data-product-type="qboxmail" data-filter-qboxmail-plan="basic"></net-product-price>
+<!--  <net-product-price data-key="gsuiteBasic"  data-product-type="gsuite" data-filter-gsuite-product="Google-Apps-For-Business"></net-product-price>-->
+<!--  <net-product-price data-key="gsuiteBusiness" data-product-type="gsuite" data-filter-gsuite-product="Google-Apps-Unlimited"></net-product-price>-->
+<!--  <net-product-price data-key="gsuiteEnterprise" data-product-type="gsuite" data-filter-gsuite-product="1010020020"></net-product-price>-->
+<!--  <net-product-price data-key="netistrarProfessional" data-product-type="qboxmail" data-filter-qboxmail-plan="basic"></net-product-price>-->
 
 
   <div class="grid px2l pb3 vue-wrapper" >
@@ -52,19 +52,19 @@
 
 
 
-          <h5 class="mb050 mt175">Email</h5>
-          <p class="vsmall thin mb1">Purchase email with us to save costs and we'll configure it to work with your domain.  Choose between a simple professional email package provided by Netistrar, or a full suite of products by Google. <a href="" class="normal">Which email choice is right for you?</a>
-          </p>
+<!--          <h5 class="mb050 mt175">Email</h5>-->
+<!--          <p class="vsmall thin mb1">Purchase email with us to save costs and we'll configure it to work with your domain.  Choose between a simple professional email package provided by Netistrar, or a full suite of products by Google. <a href="" class="normal">Which email choice is right for you?</a>-->
+<!--          </p>-->
 
 
-          <div kb-class-build-item-selected="item.subItemsByKey.email | not"
-               data-remove-item data-key="email" kb-data-parent-key="item.key"
-               class="build-item">
-            <div>
-              <div class="f5 semi">Configure email later</div>
-            </div>
+<!--          <div kb-class-build-item-selected="item.subItemsByKey.email | not"-->
+<!--               data-remove-item data-key="email" kb-data-parent-key="item.key"-->
+<!--               class="build-item">-->
+<!--            <div>-->
+<!--              <div class="f5 semi">Configure email later</div>-->
+<!--            </div>-->
 
-          </div>
+<!--          </div>-->
 
 
           <!--      <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd build-item"-->
@@ -98,125 +98,125 @@
 
 
           <!--      </div>-->
-          <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd build-item"
-               data-add-item data-type="gsuite" data-key="email" kb-data-parent-key="item.key"
-               data-product-data-gsuite-product="Google-Apps-For-Business"
-               data-label="G Suite Basic" data-quantity-suffix=" users"
-               kb-data-price="prices.gsuiteBasic"
-               kb-class-build-item-selected="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email">
-            <div class="w-75">
-              <div class="f5 semi lh13 pr2">G Suite by Google</div>
-              <div class="vsmall">Full suite of business applications at discounted rates.</div>
+<!--          <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd build-item"-->
+<!--               data-add-item data-type="gsuite" data-key="email" kb-data-parent-key="item.key"-->
+<!--               data-product-data-gsuite-product="Google-Apps-For-Business"-->
+<!--               data-label="G Suite Basic" data-quantity-suffix=" users"-->
+<!--               kb-data-price="prices.gsuiteBasic"-->
+<!--               kb-class-build-item-selected="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email">-->
+<!--            <div class="w-75">-->
+<!--              <div class="f5 semi lh13 pr2">G Suite by Google</div>-->
+<!--              <div class="vsmall">Full suite of business applications at discounted rates.</div>-->
 
-            </div>
-            <div class="text-right"><span class="vsmall thin">from</span> £{prices.gsuiteBasic}/user/month</div>
-          </div>
-
-
-
-          <div kb-if="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email" >
-            <h5 class="mb050 mt175">G Suite</h5>
-            <p class="vsmall thin mb1">Choose a G Suite plan which we will configure to work with your business domain name. <a href="/email/gsuite/" class="normal" target="_blank">Which G Suite plan is right for you?</a>
-            </p>
-          </div>
+<!--            </div>-->
+<!--            <div class="text-right"><span class="vsmall thin">from</span> £{prices.gsuiteBasic}/user/month</div>-->
+<!--          </div>-->
 
 
 
-          <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"
-               kb-if="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email"
-               kb-class-build-item="item.subItemsByKey.email.label | equals 'G Suite Basic' | and item.subItemsByKey.email"
-               kb-class-build-item-selected="item.subItemsByKey.email.label | equals 'G Suite Basic' | and item.subItemsByKey.email"
-               data-add-item data-type="gsuite" data-key="email" kb-data-parent-key="item.key"
-               data-product-data-gsuite-product="Google-Apps-For-Business"
-               data-label="G Suite Basic" data-quantity-suffix=" users"
-               kb-data-price="prices.gsuiteBasic">
-            <div>
-              <div class="f5 semi">G Suite Basic</div>
-
-            </div>
-            <div>
-              <div class="flex-grid justify-between align-center">
-                <div class="text-right">£{prices.gsuiteBasic}/user/month</div>
-                <net-quantity-filter class="flex align-center justify-end pl1l"
-                                     data-update-item
-                                     data-key="email"
-                                     kb-data-parent-key="item.key"
-                                     kb-if="item.subItemsByKey.email.label | equals 'G Suite Basic'">
-                  <button class="but-widget" data-minus><i class="net-minus"></i></button>
-                  <input type="text"  data-value kb-value="item.subItemsByKey.email.quantity" readonly/>
-                  <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>
-                </net-quantity-filter>
-              </div>
-
-            </div>
-          </div>
+<!--          <div kb-if="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email" >-->
+<!--            <h5 class="mb050 mt175">G Suite</h5>-->
+<!--            <p class="vsmall thin mb1">Choose a G Suite plan which we will configure to work with your business domain name. <a href="/email/gsuite/" class="normal" target="_blank">Which G Suite plan is right for you?</a>-->
+<!--            </p>-->
+<!--          </div>-->
 
 
 
-          <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"
-               kb-if="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email"
-               kb-class-build-item="item.subItemsByKey.email.label | equals 'G Suite Business' | and item.subItemsByKey.email"
-               kb-class-build-item-selected="item.subItemsByKey.email.label | equals 'G Suite Business' | and item.subItemsByKey.email"
-               data-add-item data-type="gsuite" data-key="email" kb-data-parent-key="item.key"
-               data-product-data-gsuite-product="Google-Apps-Unlimited"
-               data-label="G Suite Business" data-quantity-suffix=" users"
-               kb-data-price="prices.gsuiteBusiness">
-            <div>
-              <div class="f5 semi">G Suite Business</div>
+<!--          <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"-->
+<!--               kb-if="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email"-->
+<!--               kb-class-build-item="item.subItemsByKey.email.label | equals 'G Suite Basic' | and item.subItemsByKey.email"-->
+<!--               kb-class-build-item-selected="item.subItemsByKey.email.label | equals 'G Suite Basic' | and item.subItemsByKey.email"-->
+<!--               data-add-item data-type="gsuite" data-key="email" kb-data-parent-key="item.key"-->
+<!--               data-product-data-gsuite-product="Google-Apps-For-Business"-->
+<!--               data-label="G Suite Basic" data-quantity-suffix=" users"-->
+<!--               kb-data-price="prices.gsuiteBasic">-->
+<!--            <div>-->
+<!--              <div class="f5 semi">G Suite Basic</div>-->
 
-            </div>
-            <div>
-              <div class="flex-grid justify-between align-center">
-                <div class="text-right">£{prices.gsuiteBusiness}/user/month</div>
-                <net-quantity-filter class="flex align-center justify-end pl1l"
-                                     data-update-item
-                                     data-key="email"
-                                     kb-data-parent-key="item.key"
-                                     kb-if="item.subItemsByKey.email.label | equals 'G Suite Business'">
-                  <button class="but-widget" data-minus><i class="net-minus"></i></button>
-                  <input type="text"  data-value kb-value="item.subItemsByKey.email.quantity" readonly/>
-                  <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>
-                </net-quantity-filter>
-              </div>
+<!--            </div>-->
+<!--            <div>-->
+<!--              <div class="flex-grid justify-between align-center">-->
+<!--                <div class="text-right">£{prices.gsuiteBasic}/user/month</div>-->
+<!--                <net-quantity-filter class="flex align-center justify-end pl1l"-->
+<!--                                     data-update-item-->
+<!--                                     data-key="email"-->
+<!--                                     kb-data-parent-key="item.key"-->
+<!--                                     kb-if="item.subItemsByKey.email.label | equals 'G Suite Basic'">-->
+<!--                  <button class="but-widget" data-minus><i class="net-minus"></i></button>-->
+<!--                  <input type="text"  data-value kb-value="item.subItemsByKey.email.quantity" readonly/>-->
+<!--                  <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>-->
+<!--                </net-quantity-filter>-->
+<!--              </div>-->
 
-            </div>
-          </div>
-
-
-
-          <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"
-               kb-if="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email"
-               kb-class-build-item="item.subItemsByKey.email.label | equals 'G Suite Enterprise' | and item.subItemsByKey.email"
-               kb-class-build-item-selected="item.subItemsByKey.email.label | equals 'G Suite Enterprise' | and item.subItemsByKey.email"
-               data-add-item data-type="gsuite" data-key="email" kb-data-parent-key="item.key"
-               data-product-data-gsuite-product="1010020020"
-               data-label="G Suite Enterprise" data-quantity-suffix=" users"
-               kb-data-price="prices.gsuiteEnterprise">
-            <div>
-              <div class="f5 semi">G Suite Enterprise</div>
-
-            </div>
-            <div>
-              <div class="flex-grid justify-between align-center">
-                <div class="text-right">£{prices.gsuiteEnterprise}/user/month</div>
-                <net-quantity-filter class="flex align-center justify-end pl1l"
-                                     data-update-item
-                                     data-key="email"
-                                     kb-data-parent-key="item.key"
-                                     kb-if="item.subItemsByKey.email.label | equals 'G Suite Enterprise'">
-                  <button class="but-widget" data-minus><i class="net-minus"></i></button>
-                  <input type="text"  data-value kb-value="item.subItemsByKey.email.quantity" readonly/>
-                  <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>
-                </net-quantity-filter>
-              </div>
-
-            </div>
-          </div>
+<!--            </div>-->
+<!--          </div>-->
 
 
 
+<!--          <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"-->
+<!--               kb-if="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email"-->
+<!--               kb-class-build-item="item.subItemsByKey.email.label | equals 'G Suite Business' | and item.subItemsByKey.email"-->
+<!--               kb-class-build-item-selected="item.subItemsByKey.email.label | equals 'G Suite Business' | and item.subItemsByKey.email"-->
+<!--               data-add-item data-type="gsuite" data-key="email" kb-data-parent-key="item.key"-->
+<!--               data-product-data-gsuite-product="Google-Apps-Unlimited"-->
+<!--               data-label="G Suite Business" data-quantity-suffix=" users"-->
+<!--               kb-data-price="prices.gsuiteBusiness">-->
+<!--            <div>-->
+<!--              <div class="f5 semi">G Suite Business</div>-->
 
-        </div>
+<!--            </div>-->
+<!--            <div>-->
+<!--              <div class="flex-grid justify-between align-center">-->
+<!--                <div class="text-right">£{prices.gsuiteBusiness}/user/month</div>-->
+<!--                <net-quantity-filter class="flex align-center justify-end pl1l"-->
+<!--                                     data-update-item-->
+<!--                                     data-key="email"-->
+<!--                                     kb-data-parent-key="item.key"-->
+<!--                                     kb-if="item.subItemsByKey.email.label | equals 'G Suite Business'">-->
+<!--                  <button class="but-widget" data-minus><i class="net-minus"></i></button>-->
+<!--                  <input type="text"  data-value kb-value="item.subItemsByKey.email.quantity" readonly/>-->
+<!--                  <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>-->
+<!--                </net-quantity-filter>-->
+<!--              </div>-->
+
+<!--            </div>-->
+<!--          </div>-->
+
+
+
+<!--          <div class="white mb075 flex px175 py1 justify-between align-center bor1 bordd"-->
+<!--               kb-if="item.subItemsByKey.email.type | equals 'gsuite' | and item.subItemsByKey.email"-->
+<!--               kb-class-build-item="item.subItemsByKey.email.label | equals 'G Suite Enterprise' | and item.subItemsByKey.email"-->
+<!--               kb-class-build-item-selected="item.subItemsByKey.email.label | equals 'G Suite Enterprise' | and item.subItemsByKey.email"-->
+<!--               data-add-item data-type="gsuite" data-key="email" kb-data-parent-key="item.key"-->
+<!--               data-product-data-gsuite-product="1010020020"-->
+<!--               data-label="G Suite Enterprise" data-quantity-suffix=" users"-->
+<!--               kb-data-price="prices.gsuiteEnterprise">-->
+<!--            <div>-->
+<!--              <div class="f5 semi">G Suite Enterprise</div>-->
+
+<!--            </div>-->
+<!--            <div>-->
+<!--              <div class="flex-grid justify-between align-center">-->
+<!--                <div class="text-right">£{prices.gsuiteEnterprise}/user/month</div>-->
+<!--                <net-quantity-filter class="flex align-center justify-end pl1l"-->
+<!--                                     data-update-item-->
+<!--                                     data-key="email"-->
+<!--                                     kb-data-parent-key="item.key"-->
+<!--                                     kb-if="item.subItemsByKey.email.label | equals 'G Suite Enterprise'">-->
+<!--                  <button class="but-widget" data-minus><i class="net-minus"></i></button>-->
+<!--                  <input type="text"  data-value kb-value="item.subItemsByKey.email.quantity" readonly/>-->
+<!--                  <button class="but-widget text-colour" data-plus><i class="net-plus"></i></button>-->
+<!--                </net-quantity-filter>-->
+<!--              </div>-->
+
+<!--            </div>-->
+<!--          </div>-->
+
+
+
+
+<!--        </div>-->
 
         <!--    main cell-->
       </div>

@@ -1,6 +1,7 @@
 ---
 title: "Gmail and G Suite Services"
 date: "2019-01-07T11:21:05Z"
+draft: true
 description: "Help and documention for G Suite and Gmail provided by ENWAU.  How to review the plans and editions on offer, understanding licenses, payment plans, setting up your account, and more."
 categories:
 aliases:

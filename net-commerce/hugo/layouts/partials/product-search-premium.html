@@ -8,7 +8,7 @@
             <div class="vsmall red-text pt050 pb050l">This has been categorised by the Registry as a high-value premium domain name.</div>
         </div>
 
-            <div kb-if="{{.itemSelector}}.registrationPrices[0].confirmed | equals 'N/A'">
+            <div kb-if="{{.itemSelector}}.registrationPrices[0].confirmed | append {{.itemSelector}}.registrationPrices[0].hinted | equals 'N/AN/A'">
 
                 <div class="pt1 flex-grid justify-end">
 
@@ -25,15 +25,15 @@
 
             </div>
 
-            <div  kb-if="{{.itemSelector}}.registrationPrices[0].confirmed | notequals 'N/A'">
+            <div  kb-if="{{.itemSelector}}.registrationPrices[0].confirmed | append {{.itemSelector}}.registrationPrices[0].hinted | notequals 'N/AN/A'">
                 <div class="py1 flex-grid justify-end">
-
                   <span class="f5" >
-                    &pound;{ {{.itemSelector}}.registrationPrices[0].confirmed }
+                    <span kb-if="{{.itemSelector}}.registrationPrices[0].hinted | notequals 'N/A'">from </span>
+                    &pound;{ {{.itemSelector}}.registrationPrices[0].confirmed | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[0].hinted {{.itemSelector}}.registrationPrices[0].confirmed }
                     <button class="pop but butlk small inv text-colour super "><i class="net-help-circle"></i></button>
                   <div class="hidden content" ><strong>Pricing</strong>
                       <p>
-                        The price displayed is for 1 year.  Renewal price is &pound;{ {{.itemSelector}}.renewalPrice.confirmed }.  Two year registration price is &pound;{ {{.itemSelector}}.registrationPrices[1].confirmed }
+                        The price displayed is for 1 year.  Renewal price is &pound;{ {{.itemSelector}}.renewalPrice.confirmed | equals 'N/A' | ternary {{.itemSelector}}.renewalPrice.hinted {{.itemSelector}}.renewalPrice.confirmed }.  Two year registration price is &pound;{ {{.itemSelector}}.registrationPrices[1].confirmed | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[1].hinted {{.itemSelector}}.registrationPrices[1].confirmed}
                       </p>
                   </div>
                   </span>
@@ -58,7 +58,7 @@
 
 
 
-<div class="pt150 spinner-sm"  kb-if="{{.itemSelector}}.registrationPrices[0].confirmed | notequals 'N/A'">
+<div class="pt150 spinner-sm"  kb-if="{{.itemSelector}}.registrationPrices[0].confirmed | append {{.itemSelector}}.registrationPrices[0].hinted | notequals 'N/AN/A'">
     <label class="rcheck mb0" ><input
             class="add-domain" name="configurestaticpackage" type="checkbox"
             data-toggle-item
@@ -71,7 +71,7 @@
             kb-data-label="{{.itemSelector}}.domainName"
             data-quantity-suffix="yrs"
             data-quantity="1"
-            kb-data-prices="{{.itemSelector}}.allConfirmedRegistrationPricesString"/>
+            kb-data-prices="{{.itemSelector}}.allRegistrationPricesString"/>
         <span class="checkmark"></span> <span class="g8-text select-label small hidden-md"></span>
     </label>
 
