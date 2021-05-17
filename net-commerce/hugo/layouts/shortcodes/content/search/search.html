@@ -23,8 +23,8 @@
 
           <div class="pt150 pb1 px1 px0l" kb-if="results.metrics">
             <span class="semi uppercase">Search results<span kb-if="results.metrics.featuredMin">: </span></span>
-            <div kb-if="results.metrics.featuredMin" class="label label-gn lh1">Top names</div>
-            <span kb-if="results.metrics.featuredMin"><b> available</b> from £{results.metrics.featuredMin}</span>
+            <div kb-if="results.metrics.featuredMin" class="label label-gn white-text small uppercase lh1">Top names</div>
+            <span kb-if="results.metrics.featuredMin"><b> available</b> from <b>£{results.metrics.featuredMin}</b></span>
           </div>
 
 
@@ -91,7 +91,7 @@
 
 
 
-            <div class="pt125 pb1 borb2 borbrand px1 px0l">
+            <div class="pt125 pb1 borbrand px1 px0l">
                 <span class="semi uppercase">Category:</span>  {filterValues.categories} -
                 <button class="butlk btn-filters-domain-search semi" data-target="show">filter</button>
                 these results</span>
