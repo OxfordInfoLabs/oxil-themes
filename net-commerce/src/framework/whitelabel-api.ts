@@ -16,7 +16,7 @@ export default class WhitelabelApi {
 
         let params = {...filters};
         params["keyword"] = searchTerm;
-        if (tlds && tlds.length){
+        if (tlds && tlds.length) {
             params["tlds"] = tlds;
         }
 
@@ -31,6 +31,16 @@ export default class WhitelabelApi {
      */
     public getLiveAvailability(domainName) {
         return this.callAPI("/guest/domain/live/" + domainName);
+    }
+
+
+    /**
+     * Get premium price info for a domain name
+     *
+     * @param domainName
+     */
+    public getPremiumPriceInfo(domainName) {
+        return this.callAPI("/guest/domain/premiumPrice/" + domainName);
     }
 
 

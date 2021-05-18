@@ -1,6 +1,6 @@
-<div kb-if="{{.itemSelector}}.pricingType | notequals 'PREMIUM'">
+<div kb-if="'PREMIUM,HINTED_PREMIUM' | contains {{.itemSelector}}.pricingType | not">
     {{partial "product-search-available" (dict "itemSelector" .itemSelector "featured" .featured "suggestion" .suggestion) }}
 </div>
-<div kb-if="{{.itemSelector}}.pricingType | equals 'PREMIUM'">
+<div kb-if="'PREMIUM,HINTED_PREMIUM' | contains {{.itemSelector}}.pricingType">
     {{partial  "product-search-premium" (dict "itemSelector" .itemSelector "featured" .featured "suggestion" .suggestion) }}
 </div>
