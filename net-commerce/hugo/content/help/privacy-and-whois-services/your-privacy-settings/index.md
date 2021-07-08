@@ -1,6 +1,6 @@
 
 {
-"title": "Your privacy",
+"title": "Your privacy settings",
 "date": "2018-10-25T18:18:12+01:00",
 "description": "Help documentation - Privacy Proxy Settings",
 
