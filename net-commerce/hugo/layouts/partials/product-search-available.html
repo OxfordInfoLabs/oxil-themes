@@ -26,14 +26,14 @@
 
           <span class="f5 " >
             <small kb-if="{{.itemSelector}}.pricingType | notequals 'STANDARD'" class="normal">from</small>
-            &pound;{ {{.itemSelector}}.registrationPrices[0].hinted | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[0].standard {{.itemSelector}}.registrationPrices[0].hinted }
+            <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.registrationPrices[0].hinted | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[0].standard {{.itemSelector}}.registrationPrices[0].hinted }
             <button class="pop but butlk small inv text-colour  "><i class="net-help-circle"></i></button>
           <div class="hidden content" ><strong>Pricing</strong>
               <p kb-if="{{.itemSelector}}.pricingType | equals 'STANDARD'">
-                The price displayed is for 1 year.  Renewal price is &pound;{ {{.itemSelector}}.renewalPrice.standard }.  Two year registration price is &pound;{ {{.itemSelector}}.registrationPrices[1].standard }
+                The price displayed is for 1 year.  Renewal price is <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.renewalPrice.standard }.  Two year registration price is <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.registrationPrices[1].standard }
               </p>
               <p kb-if="{{.itemSelector}}.pricingType | notequals 'STANDARD'">
-                The price displayed is for 1 year.  Renewal price is from &pound;{ {{.itemSelector}}.renewalPrice.hinted | equals 'N/A' | ternary {{.itemSelector}}.renewalPrice.standard {{.itemSelector}}.renewalPrice.hinted }.  Two year registration price is from &pound;{ {{.itemSelector}}.registrationPrices[1].hinted | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[1].standard {{.itemSelector}}.registrationPrices[1].hinted }
+                The price displayed is for 1 year.  Renewal price is from <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.renewalPrice.hinted | equals 'N/A' | ternary {{.itemSelector}}.renewalPrice.standard {{.itemSelector}}.renewalPrice.hinted }.  Two year registration price is from <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.registrationPrices[1].hinted | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[1].standard {{.itemSelector}}.registrationPrices[1].hinted }
               </p>
 
           </div>
@@ -42,14 +42,14 @@
 
         <div class="pt1 flex-grid align-center justify-end" kb-if="{{.itemSelector}}.registrationPrices[0].original | notequals 'N/A'">
             <small kb-if="{{.itemSelector}}.pricingType | notequals 'STANDARD'">from&nbsp;</small>
-            <span kb-if="{{.itemSelector}}.pricingType | equals 'STANDARD'" class="strike pr050">&pound;{ {{.itemSelector}}.registrationPrices[0].original}</span>
+            <span kb-if="{{.itemSelector}}.pricingType | equals 'STANDARD'" class="strike pr050"><span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.registrationPrices[0].original}</span>
             <span class="red-text  {{if eq (.featured) "true"}}f4{{else}}f5{{end}}">
-      &pound;{ {{.itemSelector}}.registrationPrices[0].standard }
+      <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.registrationPrices[0].standard }
             </span>
             <button class="pop but butlk small inv text-colour  "><i class="net-help-circle"></i></button>
               <div class="hidden content" ><strong>Pricing</strong>
                   <p>
-                      The price displayed is for 1 year.  Renewal price is &pound;{ {{.itemSelector}}.renewalPrice.standard }.  Two year registration price is &pound;{ {{.itemSelector}}.registrationPrices[1].standard }
+                      The price displayed is for 1 year.  Renewal price is <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.renewalPrice.standard }.  Two year registration price is <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.registrationPrices[1].standard }
                   </p>
               </div>
         </div>

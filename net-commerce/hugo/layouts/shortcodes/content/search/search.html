@@ -24,7 +24,7 @@
           <div class="pt150 pb1 px1 px0l" kb-if="results.metrics">
             <span class="semi uppercase">Search results<span kb-if="results.metrics.featuredMin">: </span></span>
             <div kb-if="results.metrics.featuredMin" class="label label-gn white-text small uppercase lh1">Top names</div>
-            <span kb-if="results.metrics.featuredMin"><b> available</b> from <b>£{results.metrics.featuredMin}</b></span>
+            <span kb-if="results.metrics.featuredMin"><b> available</b> from <b><span kb-html="session.currencySymbol"></span>{results.metrics.featuredMin}</b></span>
           </div>
 
 

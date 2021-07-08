@@ -28,7 +28,7 @@
                 <div class="borb1 borr1 borl1 boree rel p050"
                      kb-each-quick="tldQuickSearchResults | filter 'tld' tldQuickSearch | slice 0 5"
                      kb-data-result-label="quick.tld" kb-data-result-value="quick.tld">
-                    <span>.{quick.tld} from &pound;{quick.{{ $frompricepath }} }</span>
+                    <span>.{quick.tld} from <span kb-html="session.currencySymbol"></span>{quick.{{ $frompricepath }} }</span>
                 </div>
 
             </div>

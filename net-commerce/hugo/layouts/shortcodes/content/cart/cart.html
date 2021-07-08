@@ -8,7 +8,7 @@
           <div id="dec" class="img-shadow text-center white-text brand hidden-md"><i class="net-chevron-up"></i></div>
           <div class="totals">
             <div class="semi uppercase white-text small pb050">Total</div>
-            <div class="white-text f3 bold pb050" data-state="show">£{cart.netTotal}</div>
+            <div class="white-text f3 bold pb050" data-state="show"><span kb-html="session.currencySymbol"></span>{cart.netTotal}</div>
 
           </div>
           <div class="ctrls pt050">
@@ -56,7 +56,7 @@
               <div class="vsmall" kb-if="item.productDescription">{item.productDescription}</div>
               <div class="pt050"><button class="butctrl pr1 delete" kb-on-click="removeCartItem | args $index" kb-if="item.domainName" >delete x</button> <a kb-href="'/configure?cartItem=' | append $index" class="butctrl inv px1 hidden-md" kb-if="item.domainOperation | equals 'registration'">edit <i class="net-edit"></i></a> </div>
             </div>
-            <div class="w-15 w25sm thin py050 px1 text-right">&pound;{item.netPrice}</div>
+            <div class="w-15 w25sm thin py050 px1 text-right"><span kb-html="session.currencySymbol"></span>{item.netPrice}</div>
             <div class="w-15 hidden-sm borl1 bordd py050 px1">
               <a kb-href="'/configure?cartItem=' | append $index" class="vsmall normal" kb-if="item.domainOperation | equals 'registration'">edit</a>
             </div>
@@ -69,7 +69,7 @@
                 <div class="vsmall" kb-if="subitem.productShortDescription">{subitem.productShortDescription} {subitem.productDescription}</div>
                 <div class="vsmall" kb-if="item.productTitle">Domain Name: {item.productTitle}</div>
               </div>
-              <div class="w-15 w25sm thin py050 px1 text-right">&pound;{subitem.netPrice}</div>
+              <div class="w-15 w25sm thin py050 px1 text-right"><span kb-html="session.currencySymbol"></span>{subitem.netPrice}</div>
               <div class="w-15 hidden-sm borl1 bordd py050 px1">
                 <a kb-href="'/configure?cartItem=' | append $index" class="vsmall normal" kb-if="item.domainOperation | equals 'registration'">edit</a>
               </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="flex">
           <div class="flex1 flex align-center justify-end pr1"><span class="semi pr1">Total ex. VAT</span><span
-              class="f3 semi py2">&pound;{cart.netTotal}</span></div>
+              class="f3 semi py2"><span kb-html="session.currencySymbol"></span>{cart.netTotal}</span></div>
           <div class="w-15 w25sm hidden-sm"></div>
         </div>
 

@@ -4,7 +4,7 @@
   <div id="dec" class="img-shadow text-center white-text brand hidden-md"><i class="net-chevron-up"></i></div>
   <div class="totals pl075 pr075l " >
     <div class="semi uppercase white-text small pb050">Total</div>
-    <div class="white-text semi f3 pb050" >£<span kb-html="total"></span></div>
+    <div class="white-text semi f3 pb050" ><span kb-html="session.currencySymbol"></span><span kb-html="total"></span></div>
     <div class="vsmall gc-text pb075"><span kb-html="items.length"></span> items</div>
   </div>
   <div class="ctrls pb150 pr075 pl075l">
@@ -37,12 +37,12 @@
   <div class="pb025" kb-each-item="items">
     <div class="flex pb025">
       <div class="flex1 semi bw lh1">{item.label} <span class="normal">{item.quantity}{item.quantitySuffix}</span></div>
-      <div class="w-30 text-right">£{item.price}</div>
+      <div class="w-30 text-right"><span kb-html="session.currencySymbol"></span>{item.price}</div>
     </div>
     <div class="flex pb025" kb-each-subitem="item.subItems">
 <!--      <div>&nbsp;-&nbsp;</div>-->
       <div class="thin flex1 lh12 pr025">{subitem.label} {subitem.quantity}{subitem.quantitySuffix}</div>
-      <div class="w-30 lh12 text-right">£{subitem.price}</div>
+      <div class="w-30 lh12 text-right"><span kb-html="session.currencySymbol"></span>{subitem.price}</div>
     </div>
   </div>
 

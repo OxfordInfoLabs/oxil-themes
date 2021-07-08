@@ -37,8 +37,8 @@
               <label class="flex justify-between align-center select-chevron">
 
                 <select kb-value="item.quantity" data-update-item kb-data-key="item.key" kb-data-label="item.key" data-quantity-suffix="yrs" >
-                  <option kb-each-year="item.allPrices | slice 1"  kb-value="$index | add 1">
-                    {$index | add 1} yrs - &pound;{year}
+                  <option kb-each-year="item.allPrices | slice 1"  kb-value="$index | add 1"
+                    kb-html="$index | add 1 | append ' yrs - ' session.currencySymbol year">
                   </option>
                 </select>
 

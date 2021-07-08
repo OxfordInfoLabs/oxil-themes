@@ -29,11 +29,11 @@
                 <div class="py1 flex-grid justify-end">
                   <span class="f5" >
                     <span kb-if="{{.itemSelector}}.registrationPrices[0].hinted | notequals 'N/A'">from </span>
-                    &pound;{ {{.itemSelector}}.registrationPrices[0].confirmed | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[0].hinted {{.itemSelector}}.registrationPrices[0].confirmed }
+                    <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.registrationPrices[0].confirmed | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[0].hinted {{.itemSelector}}.registrationPrices[0].confirmed }
                     <button class="pop but butlk small inv text-colour super "><i class="net-help-circle"></i></button>
                   <div class="hidden content" ><strong>Pricing</strong>
                       <p>
-                        The price displayed is for 1 year.  Renewal price is &pound;{ {{.itemSelector}}.renewalPrice.confirmed | equals 'N/A' | ternary {{.itemSelector}}.renewalPrice.hinted {{.itemSelector}}.renewalPrice.confirmed }.  Two year registration price is &pound;{ {{.itemSelector}}.registrationPrices[1].confirmed | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[1].hinted {{.itemSelector}}.registrationPrices[1].confirmed}
+                        The price displayed is for 1 year.  Renewal price is <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.renewalPrice.confirmed | equals 'N/A' | ternary {{.itemSelector}}.renewalPrice.hinted {{.itemSelector}}.renewalPrice.confirmed }.  Two year registration price is <span kb-html="session.currencySymbol"></span>{ {{.itemSelector}}.registrationPrices[1].confirmed | equals 'N/A' | ternary {{.itemSelector}}.registrationPrices[1].hinted {{.itemSelector}}.registrationPrices[1].confirmed}
                       </p>
                   </div>
                   </span>
