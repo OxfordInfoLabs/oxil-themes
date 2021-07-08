@@ -1,6 +1,7 @@
 {
 "title": "Registrant Terms and Conditions",
 "date": "2019-03-02",
+"lastmod": "2021-07-05",
 "description": "",
 "tags": [],
 "categories": [],
@@ -10,41 +11,45 @@
 }
 
 
+[Introduction](#introduction)
 
-- [Introduction](#intro)
+1. [Definitions](#1-definitions)
+2. [Interpretation](#2-interpretation)
+3. [Selection and availability of domain name](#3-selection-and-availability-of-domain-name)
+4. [Payment of fees](#4-payment-of-fees)
+5. [No refund](#5-no-refund)
+6. [Accurate information](#6-accurate-information)
+7. [Your responsibilities to provide and maintain accurate and reliable information](#7-your-responsibilities-to-provide-and-maintain-accurate-and-reliable-information)
+8. [Our processing of your personal data](#8-our-processing-of-your-personal-data)
+9. [Warranty of non infringement](#9-warranty-of-non-infringement)
+10. [Disputes relating to the Registered Name](#10-disputes-relating-to-the-registered-name)
+11. [Limitation and exclusions of liability](#11-limitation-and-exclusions-of-liability)
+12. [Transfer of ownership](#12-transfer-of-ownership)
+13. [Assignment](#13-assignment)
+14. [Our right to update this agreement](#14-our-right-to-update-this-agreement)
+15. [General terms](#15-general-terms)
 
-1. [Definitions](#definitions)
-2. [Interpretation](#interp)
-3. [Selection and availability of domain name](#selection)
-4. [Payment of fees](#payment)
-5. [No refund](#norefund)
-6. [Accurate information](#accurateinfo)
-7. [Your responsibilities to provide and maintain accurate and reliable information](#yourresp)
-8. [Our processing of your personal data](#personaldata)
-9. [Warranty of non infringement](#warranty)
-10. [Disputes relating to the Registered Name](#disputes)
-11. [Limitation and exclusions of liability](#limitation)
-12. [Transfer of ownership](#transfer)
-13. [Assignment](#assignment)
-14. [Our right to update this agreement](#ourright)
-15. [General terms](#general)
+[Registrants' Benefits and Responsibilities](#registrants-benefits-and-responsibilities) 
 
-- [Registrants' Benefits and Responsibilities](#regben)  
-* [Domain Name Registrants' Rights:](#regrights)  
-* [Domain Name Registrants' Responsibilities:](#regresp)  
-- [Additional Terms](#additional)  
-* [Terms for .UK domains](#uk)  
-* [Incorporation of individual registry terms and policies](#registryterms)
+[Domain Name Registrants' Rights:](#domain-name-registrants-rights)  
+
+[Domain Name Registrants' Responsibilities:](#domain-name-registrants-responsibilities)  
+
+[Additional Terms](#additional-terms)  
+
+[Terms for .UK domains](#terms-for-uk-domains) 
+
+[Incorporation of individual registry terms and policies](#incorporation-of-individual-registry-terms-and-policies)
 
 
-## <a name="intro"></a>Introduction
-This agreement forms the contract of registration of a domain name, and incorporates by reference the terms of our privacy policy, privacy proxy policy, and dispute resolution policies. It is also subject to the terms of individual registries (which are incorporated by reference) as appropriate.
+## Introduction
+This agreement forms the contract of registration of a domain name, and incorporates by reference the terms of all applicable ICANN consensus policies including without limitation the expired domain names policy, inter registrar transfer policy, change of registrant policy, as well as our privacy policy, privacy proxy policy, and dispute resolution policies. It is also subject to the terms of individual registries (which are incorporated by reference) as appropriate.
 
 This agreement is between: Netistrar Limited, a company incorporated in England and Wales with company number 8735583, whose registered office is at Repton House, Bretby Business Park, Ashby Road, Bretby, Derbyshire DE15 0YZ (We, us, ours), whose services are offered through the Reseller and The Registrant, whose details are set out in the Schedule (You, your).
 
 It is agreed as follows:
 
-### <a name="definitions"></a>1. Definitions
+### 1. Definitions
 In this agreement the following words and phrases have the following meanings:
 
 “Privacy Policy” 
@@ -98,7 +103,7 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 
 
-### <a name="interp"></a>2. Interpretation
+### 2. Interpretation
 2.1 Clause, schedule and paragraph headings will not affect the interpretation of this Agreement.
 
 2.2 A person includes a natural person, corporate or unincorporated body (whether or not having separate legal personality) and that person's legal and personal representatives, successors and permitted assigns. 2.3 The schedules form part of this Agreement and will have effect as if set out in full in the body of this Agreement. Any reference to this Agreement includes the schedules.
@@ -119,24 +124,24 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 
 
-### <a name="selection"></a>3. Selection and availability of domain name
+### 3. Selection and availability of domain name
 3.1 You acknowledge and agree that we cannot guarantee that you will obtain the domain name(s) that you wish to register, even if our systems or any other look up indicate that the domain name(s) is available at the time of your application. As we process your order, we will inform you by email as soon as possible if any domain name(s) you order turn out to be unavailable and you will not be charged for them.
 
 3.2 Despite our best efforts, a small number of the items for sale on our website, or the website of our Resellers, may be mispriced. We will verify pricing when processing your order and before we take payment. If we have made a mistake and a product or service's correct price is higher than the price on the website, we may either contact you to request whether you want to buy the product at the correct price or cancel your order. If the correct price is lower than our stated price, we will charge the lower amount and provide the product or service.
 
 
 
-### <a name="payment"></a>4. Payment of fees
+### 4. Payment of fees
 4.1 In consideration of the Services, you agree to pay the Reseller applicable fees in advance of registration or renewal (or any other chargeable transaction) of your specified domain name.
 
 
 
-### <a name="norefund"></a>5. No refund
+### 5. No refund
 5.1 You acknowledge and agree that, even if you are acting as a consumer, there will be no refund of domain name fees payable under this agreement. This is because it is the act of registration and renewal which is the essential element of the Services, and these acts are time dependent. As soon as a domain name is registered or renewed, the applicable fees become payable in advance to the relevant registry, many of which do not provide refunds. In some service contracts, it is possible to delay delivery of services until after a cooling off period, but this is not possible in domain name registration or renewals, which are time dependent as described in this clause.
 
 
 
-### <a name="accurateinfo"></a>6. Accurate information
+### 6. Accurate information
 6.1 You shall provide to us accurate and reliable contact details and correct and update them within seven (7) days of any change during the term of the Registered Name registration, including: the full name, postal address, e-mail address, voice telephone number, and your fax number if available; name of authorized person for contact purposes in the case that you are an organization, association, or corporation; and the following data elements:
 
 6.1.1 The names of the primary nameserver and secondary nameserver(s) for the Registered Name;
@@ -147,18 +152,18 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 
 
-### <a name="yourresp"></a>7. Your responsibilities to provide and maintain accurate and reliable information
+### 7. Your responsibilities to provide and maintain accurate and reliable information
 7.1 Your willful provision of inaccurate or unreliable information, your willful failure to update information provided to us within seven (7) days of any change, or your failure to respond for over fifteen (15) days to inquiries by us concerning the accuracy of contact details associated with your registration shall constitute a material breach of your contract with us and be a basis for suspension and/or cancellation of the Registered Name registration.
 
 7.2 In the event that you intend to license use of a Registered Name to a third party, you are nonetheless the Registered Name Holder of record and are responsible for providing your own full contact information and for providing and updating accurate technical and administrative contact information adequate to facilitate timely resolution of any problems that arise in connection with the Registered Name. In the event that you are licensing use of a Registered Name according to this provision, you shall accept liability for harm caused by wrongful use of the Registered Name, unless you disclose the current contact information provided by the licensee and the identity of the licensee within seven (7) days to a party providing you with reasonable evidence of actionable harm.
 
 
 
-### <a name="personaldata"></a>8. Our processing of your personal data
+### 8. Our processing of your personal data
 8.1 Your privacy and personal information are important to us. Any personal information that you provide to us will be dealt with in line with our [Privacy Policy](/terms/policies/privacy/), which explains what personal information we collect from you, how and why we collect, store, use and share such information, your rights in relation to your personal information and how to contact us and supervisory authorities in the event you have a query or complaint about the use of your personal information.
 
 
-### <a name="warranty"></a>9. Warranty of non infringement
+### 9. Warranty of non infringement
 
 9.1 You represent that, to the best of your knowledge and belief, neither the registration of the Registered Name nor the manner in which it is directly or indirectly used infringes the legal rights of any third party, and further that the domain name is not being registered for, not shall it at any time be used for, any unlawful purpose.
 
@@ -168,7 +173,7 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 
 
-### <a name="disputes"></a>10. Disputes relating to the Registered Name
+### 10. Disputes relating to the Registered Name
 10.1 You agree to be bound by our current Dispute Resolution Policy, which is incorporated by into this Agreement. The Uniform Domain Name Dispute Resolution Policy applies to all gTLDs, and some ccTLDs provide other dispute resolution policies. Links to these policies are given in "additional registry requirements" and you agree to check these terms periodically for modifications. If you cancel or terminate your Services with us as a result of modifications to any applicable dispute resolution policy, no fees will be refunded to you. You also agree to submit to proceedings commenced under ICANN's Uniform Rapid Suspension System, if applicable.
 
 10.2 For the adjudication of disputes concerning or arising from use of the Registered Name, you shall submit, without prejudice to other potentially applicable jurisdictions, to the jurisdiction of the courts (1) of the Registered Name Holder's domicile and (2) where Registrar is located.
@@ -179,7 +184,7 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 
 
-### <a name="limitation"></a>11. Limitation and exclusions of liability
+### 11. Limitation and exclusions of liability
 11.1 We will do our utmost to ensure that availability of our Services will be uninterrupted and that transmissions will be error-free. However, due to the nature of the Internet, this cannot be guaranteed. Also, your access to Netistrar Services may be occasionally suspended or restricted to allow for repairs, maintenance or the introduction of new facilities or services. We will attempt to limit the frequency and duration of any such suspension or restriction.
 
 11.2 Netistrar will not be responsible for (i) losses that were not caused by any breach on our part, or (ii) any business loss (including loss of profits, revenue, contracts, anticipated savings, data, goodwill or wasted expenditure), or (iii) any indirect or consequential losses that were not foreseeable to both you and us when you commenced using Netistrar Services.
@@ -192,17 +197,17 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 
 
-### <a name="transfer"></a>12. Transfer of ownership
+### 12. Transfer of ownership
 12.1 The person named as Registrant on the WHOIS shall be the registered name holder. The person named as administrative contact at the time the controlling account identifier and password are secured shall be deemed to have the Registrant's authority to manage the domain name. You agree that prior to transferring the ownership of your domain name to another person (the "Transferee") you shall require the Transferee to agree, in writing, to be bound by all the terms and conditions of this Agreement. Unless the Transferee agrees to be bound by these terms and conditions, we will be unable to process the transfer.
 
 
 
-### <a name="assignment"></a>13. Assignment
+### 13. Assignment
 13.1 We may assign all or part of our rights and obligations under this agreement to our parent company, a subsidiary, its survivor in connection with a corporate reorganisation, to any entity acquiring all or substantially all of its property, or to any entity in which it is merged or consolidated. No assignment of this agreement will operate to discharge the assignor of any duty or obligations under this agreement without your prior written consent.
 
 
 
-### <a name="ourright"></a>14. Our right to update this agreement
+### 14. Our right to update this agreement
 14.1 The Internet, and domain name registration, are rapidly evolving environments, which are subject to frequent changes and development. In order to reflect such changes and developments, we reserve the right to make reasonable changes to these terms and conditions at any time during the term of this agreement. While we will (through our network of Resellers if appropriate) notify Registered Name Holders of significant changes in writing (significance being determined by us in our sole discretion), you should visit our website regularly to keep yourself updated as regards any or all other changes.
 
 14.2 Any such modification or change will be binding and effective within 30 days of posting in the Netistrar Control Panel or our website, or notification direct to you by email.
@@ -213,7 +218,7 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 
 
-### <a name="general"></a>15. General terms
+### 15. General terms
 15.1 Severance: If a court rules that any of these conditions is not valid or cannot be enforced, the other conditions will continue to be valid and enforceable.
 
 15.2 Third parties: This contract does not give you any legal rights against other people who have registered .uk domain names or give other people rights against us for any reason.
@@ -242,8 +247,8 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 
 
-## <a name="regben"></a>Registrants' Benefits and Responsibilities
-### <a name="regrights"></a>Domain Name Registrants' Rights:
+## Registrants' Benefits and Responsibilities
+### Domain Name Registrants' Rights:
 1.1 Your domain name registration and any privacy/proxy services you may use in conjunction with it must be subject to a Registration Agreement with an ICANN Accredited Registrar.
 
 1.1.1 You are entitled to review this Registration Agreement at any time, and download a copy for your records.
@@ -266,7 +271,7 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 1.3 You shall not be subject to false advertising or deceptive practices by your Registrar or though any Proxy/Privacy Services made available by your Registrar. This includes deceptive notices, hidden fees, and any practices that are illegal under the consumer protection law of your residence.
 
-### <a name="regresp"></a>Domain Name Registrants' Responsibilities:
+### Domain Name Registrants' Responsibilities:
 1.1 You must comply with the terms and conditions posted by your Registrar, including applicable policies from your Registrar, the Registry and ICANN.
 
 1.2 You must review your Registrar's current Registration Agreement, along with any updates.
@@ -279,8 +284,8 @@ include Consensus Policies, Specifications (such as the Whois Accuracy Program S
 
 
 
-## <a name="additional"></a>Additional Terms
-### <a name="uk"></a>Terms for .UK domains
+## Additional Terms
+### Terms for .UK domains
 For every .uk domain name, the registrant (end user) enters into a direct contract with the .uk registry, Nominet.
 
 The terms and conditions governing the contract are at [http://www.nominet.org.uk/nominet-terms](http://www.nominet.org.uk/nominet-terms).
@@ -291,13 +296,10 @@ If you are registering a .uk domain name on your own behalf, you agree to be bou
 
 Disputes under .uk are covered by the Dispute Resolution Service Policy and Procedure
 
-
-
-Expired domain names in .uk
-We may, no earlier than 30 days after the expiry of a domain name on an Accredited Channel Partner Tag, take steps to transfer the domain name into our name, provided that we have previously informed you that we intend to do this and obtained your explicit consent to our doing so. Such consent must be obtained no earlier than 30 days before the date on which the domain name is due to expire, and no later than 30 days after the date on which the domain name expired. Even if we transfer a domain name in these circumstances, you retain the right to renew the domain name in question. We will not transfer a domain name into the name of a third party under this paragraph.
+Expired domain names in .uk we may, no earlier than 30 days after the expiry of a domain name on an Accredited Channel Partner Tag, take steps to transfer the domain name into our name, provided that we have previously informed you that we intend to do this and obtained your explicit consent to our doing so. Such consent must be obtained no earlier than 30 days before the date on which the domain name is due to expire, and no later than 30 days after the date on which the domain name expired. Even if we transfer a domain name in these circumstances, you retain the right to renew the domain name in question. We will not transfer a domain name into the name of a third party under this paragraph.
 
 
 
-### <a name="registryterms"></a>Incorporation of individual registry terms and policies
+### Incorporation of individual registry terms and policies
 ADDITIONAL REGISTRY REQUIREMENTS. Some registries have additional contractual requirements that you (or if you are a reseller, your customers) agree to by registering domain names from those registries. You are responsible for reviewing any terms and conditions applicable to or provided by such registries.
 

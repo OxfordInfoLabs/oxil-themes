@@ -1,6 +1,7 @@
 ---
 title: "Expired Domain Names Policy"
 date: "2019-02-07"
+lastmod: "2021-07-05"
 description: ""
 tags: 
 categories: 
@@ -28,13 +29,16 @@ Such notices will be provided in the language of the registration agreement (Eng
 ## Policy if registrant fails to renew
 On occasion, the registered name holder may wish to restore a domain name which it has failed to renew, and which has been listed for deletion (or even deleted). We will abide by [ICANN consensus policies](http://www.icann.org/en/resources/registrars/consensus-policies/errp) on expired domains, as amended from time to time. Renewal can take place during the Post-Expiration Renewal period or the Redemption Grace period.
 
-Renewal during Post-Expiration Renewal period
+#### Renewal during Post-Expiration Renewal period
 
 Following the expiry date, we will mark non-renewed domain names for deletion.  For at least eight (8) consecutive dates after expiration, the domain name will continue to be renewable by the registered name holder at expiration.  To the extent that the relevant domain name registry allows, we will interrupt the resolution path specified by the registered name holder at expiration, and will display a web page that conspicuously indicates that the domain name registration is expired and provides renewal instructions.  During this eight (8) day period, should the registered name holder at expiration so choose, the registered name holder at expiration may renew the domain name.  Upon renewal by the registered name holder at expiration, we will restore the DNS path set by the registered name holder at expiration immediately or as soon as commercially reasonable.
 
-Renewal during Redemption Grace period
+#### Renewal during Redemption Grace period
 
-For a period of 30 days immediately following the deletion of a registration, we will provide a Redemption Grace Period, provided that the relevant registry allows a Redemption Grace Period.  During the Redemption Grace Period the deleted registration may be restored at the request of the registered name holder at expiration, and we will permit the registered name holder at expiration to redeem a delegated registration during Redemption Grace Period (subject to Redemption Grace Period being offered by the relevant registry).
+For a period of up to 29 days immediately following the deletion of a registration, we will provide a Redemption Grace Period, provided that the relevant registry allows a Redemption Grace Period.  During the Redemption Grace Period the deleted registration may be restored at the request of the registered name holder at expiration, and we will permit the registered name holder at expiration to redeem a delegated registration during Redemption Grace Period (subject to you paying to us the applicable restoration fee, and subject to a Redemption Grace Period being offered by the relevant registry).
+
+If you do not renew before the end of the (non-guaranteed) 29-day Redemption Grace Period, we may make your domain available to third parties, we may auction the right to renew expired domain name services (the auction beginning close to the end or after the end of the applicable Redemption Grace Period), and/or we may re-register the domain name to any party including to ourselves. __Renew your domain quickly to retain the domain and automatically restore all of your domain services (like your website and email)__.
+
 
 ## Fees
 For renewal up to and including 8 consecutive days after expiration: Relevant renewal fee (exc. VAT)
