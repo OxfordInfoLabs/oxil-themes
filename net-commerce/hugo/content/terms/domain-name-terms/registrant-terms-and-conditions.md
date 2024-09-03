@@ -300,8 +300,8 @@ Disputes under .uk are covered by the Dispute Resolution Service Policy and Proc
 
 Expired domain names in .uk we may, no earlier than 30 days after the expiry of a domain name on an Accredited Channel Partner Tag, take steps to transfer the domain name into our name, provided that we have previously informed you that we intend to do this and obtained your explicit consent to our doing so. Such consent must be obtained no earlier than 30 days before the date on which the domain name is due to expire, and no later than 30 days after the date on which the domain name expired. Even if we transfer a domain name in these circumstances, you retain the right to renew the domain name in question. We will not transfer a domain name into the name of a third party under this paragraph.
 
-### Terms for .org.uk domains
-For every .org.uk domain name, the registrant (end user) agrees to additional terms set out by the UK Government [https://www.gov.uk/guidance/additional-terms-for-govuk-agreements#terms-you-must-include-in-govuk-agreements](on the gov.uk website).  Please note additional terms for a 'sub-Registrant' as defined in their terms.
+### Terms for .gov.uk domains
+For every .gov.uk domain name, the registrant (end user) agrees to additional terms set out by the UK Government [on the gov.uk website](https://www.gov.uk/guidance/additional-terms-for-govuk-agreements#terms-you-must-include-in-govuk-agreements).  Please note additional terms for a 'sub-Registrant' as defined in their terms.
 
 ### Incorporation of individual registry terms and policies
 ADDITIONAL REGISTRY REQUIREMENTS. Some registries have additional contractual requirements that you (or if you are a reseller, your customers) agree to by registering domain names from those registries. You are responsible for reviewing any terms and conditions applicable to or provided by such registries.
