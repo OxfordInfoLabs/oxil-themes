@@ -136,12 +136,10 @@ e.g. for **netistrar.com** <a href="javascript:kinibindView.models.expandRespons
             {{}},
             "text",
             [
-              "Repton House",
-              "Bretby Business Park",
-              "Burton-on-Trent",
+              "23A West Street",
+              "Swadlincote",
               "Derbyshire",
-              "DE15 0YZ",
-              "GB"
+              "DE11 9DG"
             ]
           ],
           [

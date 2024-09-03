@@ -45,7 +45,7 @@
 ## Introduction
 This agreement forms the contract of registration of a domain name, and incorporates by reference the terms of all applicable ICANN consensus policies including without limitation the expired domain names policy, inter registrar transfer policy, change of registrant policy, as well as our privacy policy, privacy proxy policy, and dispute resolution policies. It is also subject to the terms of individual registries (which are incorporated by reference) as appropriate.
 
-This agreement is between: Netistrar Limited, a company incorporated in England and Wales with company number 8735583, whose registered office is at Repton House, Bretby Business Park, Ashby Road, Bretby, Derbyshire DE15 0YZ (We, us, ours), whose services are offered through the Reseller and The Registrant, whose details are set out in the Schedule (You, your).
+This agreement is between: Netistrar Limited, a company incorporated in England and Wales with company number 8735583, whose registered office is at 23A West Street, Swadlincote, Derbyshire, DE11 9DG (We, us, ours), whose services are offered through the Reseller and The Registrant, whose details are set out in the Schedule (You, your).
 
 It is agreed as follows:
 
