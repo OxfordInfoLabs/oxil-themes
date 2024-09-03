@@ -37,7 +37,9 @@
 
 [Additional Terms](#additional-terms)  
 
-[Terms for .UK domains](#terms-for-uk-domains) 
+[Terms for .UK domains](#terms-for-uk-domains)
+
+[Terms for .org.uk domains](#terms-for-orguk-domains)
 
 [Incorporation of individual registry terms and policies](#incorporation-of-individual-registry-terms-and-policies)
 
@@ -45,7 +47,7 @@
 ## Introduction
 This agreement forms the contract of registration of a domain name, and incorporates by reference the terms of all applicable ICANN consensus policies including without limitation the expired domain names policy, inter registrar transfer policy, change of registrant policy, as well as our privacy policy, privacy proxy policy, and dispute resolution policies. It is also subject to the terms of individual registries (which are incorporated by reference) as appropriate.
 
-This agreement is between: Netistrar Limited, a company incorporated in England and Wales with company number 8735583, whose registered office is at 23A West Street, Swadlincote, Derbyshire, DE11 9DG (We, us, ours), whose services are offered through the Reseller and The Registrant, whose details are set out in the Schedule (You, your).
+This agreement is between: Netistrar Limited, a company incorporated in England and Wales with company number 8735583, whose registered office is at 23A West Street, Swadlincote, Derbyshire DE11 9DG (We, us, ours), whose services are offered through the Reseller and The Registrant, whose details are set out in the Schedule (You, your).
 
 It is agreed as follows:
 
@@ -298,7 +300,8 @@ Disputes under .uk are covered by the Dispute Resolution Service Policy and Proc
 
 Expired domain names in .uk we may, no earlier than 30 days after the expiry of a domain name on an Accredited Channel Partner Tag, take steps to transfer the domain name into our name, provided that we have previously informed you that we intend to do this and obtained your explicit consent to our doing so. Such consent must be obtained no earlier than 30 days before the date on which the domain name is due to expire, and no later than 30 days after the date on which the domain name expired. Even if we transfer a domain name in these circumstances, you retain the right to renew the domain name in question. We will not transfer a domain name into the name of a third party under this paragraph.
 
-
+### Terms for .org.uk domains
+For every .org.uk domain name, the registrant (end user) agrees to additional terms set out by the UK Government [https://www.gov.uk/guidance/additional-terms-for-govuk-agreements#terms-you-must-include-in-govuk-agreements](on the gov.uk website).  Please note additional terms for a 'sub-Registrant' as defined in their terms.
 
 ### Incorporation of individual registry terms and policies
 ADDITIONAL REGISTRY REQUIREMENTS. Some registries have additional contractual requirements that you (or if you are a reseller, your customers) agree to by registering domain names from those registries. You are responsible for reviewing any terms and conditions applicable to or provided by such registries.
