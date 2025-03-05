@@ -18,12 +18,12 @@ export default class NetQuantityFilter extends HTMLElement {
         this.addEventListener("click", (event) => {
             let target = <HTMLElement>event.target;
 
-            if (target.tagName.toLowerCase() != "button"){
+            if (target.tagName.toLowerCase() != "button") {
                 target = target.parentElement;
             }
 
-            if (target.hasAttribute("data-plus")){
-                let max = this.getAttribute("data-max") ? this.getAttribute("data-max") : 50;
+            if (target.hasAttribute("data-plus")) {
+                let max = Number(this.getAttribute("data-max") ? this.getAttribute("data-max") : 50);
 
                 let value = this.value;
                 if (value < max) {
@@ -32,8 +32,8 @@ export default class NetQuantityFilter extends HTMLElement {
                     this.fireInputChange();
                 }
 
-            } else if (target.hasAttribute("data-minus")){
-                let min = this.getAttribute("data-min") ? this.getAttribute("data-min") : 1;
+            } else if (target.hasAttribute("data-minus")) {
+                let min = Number(this.getAttribute("data-min") ? this.getAttribute("data-min") : 1);
 
                 let value = this.value;
                 if (value > min) {

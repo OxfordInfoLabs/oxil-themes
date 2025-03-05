@@ -158,7 +158,7 @@ export default class Autocomplete extends HTMLElement {
         }
 
         let input = this.querySelector("input");
-        let minChars = this.getAttribute("data-min-chars") ? this.getAttribute("data-min-chars") : 2;
+        let minChars = Number(this.getAttribute("data-min-chars") ? this.getAttribute("data-min-chars") : 2);
 
         // Show / hide according to length of value.
         this.setResultVisibility(input.value.length >= minChars, false);
